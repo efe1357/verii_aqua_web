@@ -676,7 +676,7 @@ export const ROUTE_PERMISSION_MAP: Record<string, string> = {
 
   '/user-management': 'admin-only',
   '/users/mail-settings': 'admin-only',
-  '/hangfire-monitoring': 'admin-only',
+  '/hangfire-monitoring': 'settings.hangfire-monitoring.view',
   '/access-control/permission-definitions': 'access-control.permission-definitions.view',
   '/access-control/permission-groups': 'access-control.permission-groups.view',
   '/access-control/user-group-assignments': 'access-control.user-group-assignments.view',
@@ -736,6 +736,7 @@ export const PATH_TO_PERMISSION_PATTERNS: Array<{ pattern: RegExp; permission: s
 
   { pattern: /^\/stocks(\/|$)/, permission: 'stock.stocks.view' },
   { pattern: /^\/profile(\/|$)/, permission: 'users.profile.view' },
+  { pattern: /^\/hangfire-monitoring(\/|$)/, permission: 'settings.hangfire-monitoring.view' },
 
   ...AQUA_PERMISSION_RESOURCES.flatMap((resource) =>
     (resource.routePatterns ?? []).map((pattern) => ({
@@ -773,13 +774,13 @@ export const ACCESS_CONTROL_ADMIN_FALLBACK_TO_SYSTEM_ADMIN = true as const;
 export const ACCESS_CONTROL_ADMIN_ONLY_PATTERNS: RegExp[] = [
   /^\/user-management(\/|$)/,
   /^\/users\/mail-settings(\/|$)/,
-  /^\/hangfire-monitoring(\/|$)/,
 ];
 
 export const PERMISSION_CODE_DISPLAY: Record<string, PermissionDisplayMeta> = {
   'dashboard.view': { key: 'sidebar.home', fallback: 'Ana Sayfa' },
   'stock.stocks.view': { key: 'sidebar.stockManagement', fallback: 'Stok Yönetimi' },
   'users.profile.view': { key: 'sidebar.settings', fallback: 'Ayarlar' },
+  'settings.hangfire-monitoring.view': { key: 'sidebar.hangfireMonitoring', fallback: 'Hangfire İzleme' },
   ...AQUA_RESOURCE_PERMISSION_DISPLAY,
   ...ACCESS_CONTROL_RESOURCE_PERMISSION_DISPLAY,
 };
@@ -792,6 +793,7 @@ export const PERMISSION_MODULE_DISPLAY: Record<string, PermissionDisplayMeta> = 
   dashboard: { key: 'sidebar.home', fallback: 'Ana Sayfa' },
   stock: { key: 'sidebar.productAndStock', fallback: 'Ürünler ve Stok' },
   users: { key: 'sidebar.profile', fallback: 'Profil' },
+  settings: { key: 'sidebar.accessControl', fallback: 'Sistem Ayarları' },
   aqua: { key: 'sidebar.aquaOperations', fallback: 'Aqua İşlemleri' },
   'access-control': { key: 'sidebar.accessControl', fallback: 'Erişim Kontrolü' },
 };
@@ -804,6 +806,7 @@ const SIDEBAR_PERMISSION_CODES = [
   'dashboard.view',
   'stock.stocks.view',
   'users.profile.view',
+  'settings.hangfire-monitoring.view',
   ...ACCESS_CONTROL_PERMISSION_RESOURCES.flatMap((resource) =>
     resource.actions.map((action) => `${resource.codeBase}.${action}`)
   ),
