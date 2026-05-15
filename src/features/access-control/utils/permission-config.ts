@@ -198,8 +198,19 @@ const AQUA_PERMISSION_RESOURCES: AquaPermissionResource[] = [
   },
   {
     codeBase: 'aqua.operations.weighings',
+    routePermission: 'aqua.operations.weighings.view',
+    routePaths: ['/aqua/operations/weighings'],
+    routePatterns: [/^\/aqua\/operations\/weighings(\/|$)/],
     actions: ['view', 'create', 'update', 'delete'],
-    display: { key: 'permissions.aqua.operations.weighings', fallback: 'Tartımlar' },
+    display: { key: 'sidebar.aquaWeighings', fallback: 'Tartım' },
+  },
+  {
+    codeBase: 'aqua.operations.fish-batches',
+    routePermission: 'aqua.operations.fish-batches.view',
+    routePaths: ['/aqua/operations/fish-batches'],
+    routePatterns: [/^\/aqua\/operations\/fish-batches(\/|$)/],
+    actions: ['view', 'create', 'update', 'delete'],
+    display: { key: 'sidebar.aquaFishBatches', fallback: 'Balık Partileri' },
   },
   {
     codeBase: 'aqua.operations.stock-converts',
@@ -307,8 +318,11 @@ const AQUA_PERMISSION_RESOURCES: AquaPermissionResource[] = [
   },
   {
     codeBase: 'aqua.operations.weighing-lines',
+    routePermission: 'aqua.operations.weighing-lines.view',
+    routePaths: ['/aqua/operations/weighing-lines'],
+    routePatterns: [/^\/aqua\/operations\/weighing-lines(\/|$)/],
     actions: ['view', 'create', 'update', 'delete'],
-    display: { key: 'permissions.aqua.operations.weighing-lines', fallback: 'Tartım Satırları' },
+    display: { key: 'sidebar.aquaWeighingLines', fallback: 'Tartım Satırları' },
   },
   {
     codeBase: 'aqua.operations.stock-convert-lines',
@@ -357,6 +371,22 @@ const AQUA_PERMISSION_RESOURCES: AquaPermissionResource[] = [
     routePatterns: [/^\/aqua\/reports\/cage-balances(\/|$)/],
     actions: ['view'],
     display: { key: 'sidebar.aquaCageBalances', fallback: 'Kafes Dengesi' },
+  },
+  {
+    codeBase: 'aqua.reports.raw-kpi',
+    routePermission: 'aqua.reports.raw-kpi.view',
+    routePaths: ['/aqua/reports/raw-kpi'],
+    routePatterns: [/^\/aqua\/reports\/raw-kpi(\/|$)/],
+    actions: ['view'],
+    display: { key: 'sidebar.aquaRawKpiReport', fallback: 'Raw KPI Raporu' },
+  },
+  {
+    codeBase: 'aqua.reports.business-kpi',
+    routePermission: 'aqua.reports.business-kpi.view',
+    routePaths: ['/aqua/reports/business-kpi'],
+    routePatterns: [/^\/aqua\/reports\/business-kpi(\/|$)/],
+    actions: ['view'],
+    display: { key: 'sidebar.aquaBusinessKpiReport', fallback: 'Business KPI Raporu' },
   },
 ];
 
@@ -493,6 +523,12 @@ export const AQUA_CONFIG_PERMISSION_CODES: Record<string, Partial<Record<AquaCru
     update: 'aqua.operations.weighings.update',
     delete: 'aqua.operations.weighings.delete',
   },
+  fishBatches: {
+    view: 'aqua.operations.fish-batches.view',
+    create: 'aqua.operations.fish-batches.create',
+    update: 'aqua.operations.fish-batches.update',
+    delete: 'aqua.operations.fish-batches.delete',
+  },
   stockConverts: {
     view: 'aqua.operations.stock-converts.view',
     create: 'aqua.operations.stock-converts.create',
@@ -598,6 +634,12 @@ export const AQUA_CONFIG_PERMISSION_CODES: Record<string, Partial<Record<AquaCru
   cageBalances: {
     view: 'aqua.reports.cage-balances.view',
   },
+  rawKpi: {
+    view: 'aqua.reports.raw-kpi.view',
+  },
+  businessKpi: {
+    view: 'aqua.reports.business-kpi.view',
+  },
 };
 
 export const AQUA_SPECIAL_PERMISSION_CODES = {
@@ -659,7 +701,9 @@ export const ROUTE_PERMISSION_MAP: Record<string, string> = {
   '/aqua/operations/cage-warehouse-transfers': 'aqua.operations.cage-warehouse-transfers.view',
   '/aqua/operations/warehouse-cage-transfers': 'aqua.operations.warehouse-cage-transfers.view',
   '/aqua/operations/shipments': 'aqua.operations.shipments.view',
+  '/aqua/operations/weighings': 'aqua.operations.weighings.view',
   '/aqua/operations/stock-converts': 'aqua.operations.stock-converts.view',
+  '/aqua/operations/fish-batches': 'aqua.operations.fish-batches.view',
   '/aqua/operations/daily-weathers': 'aqua.operations.daily-weathers.view',
   '/aqua/operations/net-operations': 'aqua.operations.net-operations.view',
 
@@ -673,6 +717,7 @@ export const ROUTE_PERMISSION_MAP: Record<string, string> = {
   '/aqua/operations/warehouse-cage-transfer-lines': 'aqua.operations.warehouse-cage-transfer-lines.view',
   '/aqua/operations/shipment-lines': 'aqua.operations.shipment-lines.view',
   '/aqua/operations/mortality-lines': 'aqua.operations.mortality-lines.view',
+  '/aqua/operations/weighing-lines': 'aqua.operations.weighing-lines.view',
   '/aqua/operations/stock-convert-lines': 'aqua.operations.stock-convert-lines.view',
   '/aqua/operations/net-operation-lines': 'aqua.operations.net-operation-lines.view',
 
@@ -680,6 +725,8 @@ export const ROUTE_PERMISSION_MAP: Record<string, string> = {
   '/aqua/reports/devir-fcr': 'aqua.reports.devir-fcr.view',
   '/aqua/reports/batch-movements': 'aqua.reports.batch-movements.view',
   '/aqua/reports/cage-balances': 'aqua.reports.cage-balances.view',
+  '/aqua/reports/raw-kpi': 'aqua.reports.raw-kpi.view',
+  '/aqua/reports/business-kpi': 'aqua.reports.business-kpi.view',
   '/aqua/dashboard': 'dashboard.view',
 };
 

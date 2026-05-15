@@ -7,6 +7,7 @@ import { Sidebar } from './Sidebar';
 import { RoutePermissionGuard } from '@/features/access-control/components/RoutePermissionGuard';
 import { useMyPermissionsQuery } from '@/features/access-control/hooks/useMyPermissionsQuery';
 import { filterNavItemsByPermission } from '@/features/access-control/utils/filterNavItems';
+import { ensurePermissionDefinitionsSynced } from '@/features/access-control/utils/permission-definition-sync';
 import { 
   Shield01Icon,
   PackageIcon, 
@@ -34,6 +35,16 @@ export function MainLayout({ navItems }: MainLayoutProps): ReactElement {
   useEffect(() => {
     releaseRadixBodyPointerAndScrollLock();
   }, [location.pathname, location.search]);
+
+  useEffect(() => {
+    if (!permissions?.userId) return;
+
+    void ensurePermissionDefinitionsSynced({
+      userId: permissions.userId,
+      permissions,
+    });
+  }, [permissions]);
+
   const sidebarT = useCallback((key: string): string => t(`sidebar.${key}`, { ns: 'common' }), [t]);
 
   const defaultNavItems: NavItem[] = useMemo(() => {

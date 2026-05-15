@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { erpCommonApi } from '../erp-common-api';
+import { netsisReadApi } from '../netsis-read-api';
 import type { ErpProduct } from '../erp-types';
 
 export const useErpProducts = (search?: string) => {
   return useQuery<ErpProduct[]>({
     queryKey: ['erpProducts', search || 'all'],
-    queryFn: () => erpCommonApi.getProducts(),
+    queryFn: () => netsisReadApi.getProducts(),
     staleTime: 5 * 60 * 1000,
     select: (data) => {
       if (!search) return data;

@@ -32,6 +32,7 @@ import { PermissionDefinitionForm } from './PermissionDefinitionForm';
 import type { PermissionDefinitionDto } from '../types/access-control.types';
 import type { CreatePermissionDefinitionSchema } from '../schemas/permission-definition-schema';
 import { getPermissionDisplayMeta, PERMISSION_CODE_CATALOG } from '../utils/permission-config';
+import { ensurePermissionDefinitionsSynced } from '../utils/permission-definition-sync';
 import { cn } from '@/lib/utils';
 import { useMyPermissionsQuery } from '../hooks/useMyPermissionsQuery';
 import { hasPermission } from '../utils/hasPermission';
@@ -108,23 +109,16 @@ export function PermissionDefinitionsPage(): ReactElement {
   }, [definitionCatalogData?.data]);
 
   useEffect(() => {
-    if (!canSync || autoSyncTriggeredRef.current || missingPermissionCodes.length === 0) {
+    if (!canSync || autoSyncTriggeredRef.current || missingPermissionCodes.length === 0 || !permissions?.userId) {
       return;
     }
 
     autoSyncTriggeredRef.current = true;
-    void syncMutation.mutateAsync({
-      items: PERMISSION_CODE_CATALOG.map((code) => {
-        const meta = getPermissionDisplayMeta(code);
-        const name = meta ? getPermissionTitle(meta.key, meta.fallback) : code;
-        return { code, name, isActive: true };
-      }),
-      reactivateSoftDeleted: true,
-      updateExistingNames: true,
-      updateExistingDescriptions: true,
-      updateExistingIsActive: true,
+    void ensurePermissionDefinitionsSynced({
+      userId: permissions.userId,
+      permissions,
     });
-  }, [canSync, getPermissionTitle, missingPermissionCodes, syncMutation]);
+  }, [canSync, missingPermissionCodes, permissions]);
 
   const handleRefresh = async (): Promise<void> => {
     await queryClient.invalidateQueries({ queryKey: ['permissions', 'definitions'] });
