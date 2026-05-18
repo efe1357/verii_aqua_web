@@ -61,6 +61,14 @@ const AQUA_PERMISSION_RESOURCES: AquaPermissionResource[] = [
     display: { key: 'sidebar.aquaCages', fallback: 'Kafesler' },
   },
   {
+    codeBase: 'aqua.definitions.cage-warehouse-mappings',
+    routePermission: 'aqua.definitions.cage-warehouse-mappings.view',
+    routePaths: ['/aqua/definitions/cage-warehouse-mappings'],
+    routePatterns: [/^\/aqua\/definitions\/cage-warehouse-mappings(\/|$)/],
+    actions: ['view', 'create', 'update', 'delete'],
+    display: { key: 'sidebar.aquaCageWarehouseMappings', fallback: 'Kafes-Depo Eşleştirme' },
+  },
+  {
     codeBase: 'aqua.definitions.project-cage-assignments',
     routePermission: 'aqua.definitions.project-cage-assignments.view',
     routePaths: ['/aqua/definitions/project-cage-assignments'],
@@ -444,6 +452,12 @@ export const AQUA_CONFIG_PERMISSION_CODES: Record<string, Partial<Record<AquaCru
     create: 'aqua.definitions.cages.create',
     update: 'aqua.definitions.cages.update',
     delete: 'aqua.definitions.cages.delete',
+  },
+  cageWarehouseMappings: {
+    view: 'aqua.definitions.cage-warehouse-mappings.view',
+    create: 'aqua.definitions.cage-warehouse-mappings.create',
+    update: 'aqua.definitions.cage-warehouse-mappings.update',
+    delete: 'aqua.definitions.cage-warehouse-mappings.delete',
   },
   projectCageAssignments: {
     view: 'aqua.definitions.project-cage-assignments.view',

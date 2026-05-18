@@ -96,6 +96,7 @@ export function MainLayout({ navItems }: MainLayoutProps): ReactElement {
         children: [
           { title: sidebarT('aquaProjects'), href: '/aqua/definitions/projects' },
           { title: sidebarT('aquaCages'), href: '/aqua/definitions/cages' },
+          { title: sidebarT('aquaCageWarehouseMappings'), href: '/aqua/definitions/cage-warehouse-mappings' },
           { title: sidebarT('aquaProjectCageAssignments'), href: '/aqua/definitions/project-cage-assignments' },
           { title: sidebarT('aquaWeatherSeverities'), href: '/aqua/definitions/weather-severities' },
           { title: sidebarT('aquaWeatherTypes'), href: '/aqua/definitions/weather-types' },

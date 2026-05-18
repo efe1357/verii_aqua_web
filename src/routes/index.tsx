@@ -47,6 +47,7 @@ const HangfireMonitoringPage = lazyImport(() => import('@/features/hangfire-moni
 const ProfilePage = lazyImport(() => import('@/features/user-detail-management/components/ProfilePage.tsx'), 'ProfilePage', 'user-detail-management');
 const ProjectsPage = lazyImport(() => import('@/features/aqua/definitions/components/ProjectsPage.tsx'), 'ProjectsPage', 'aqua');
 const CagesPage = lazyImport(() => import('@/features/aqua/definitions/components/CagesPage.tsx'), 'CagesPage', 'aqua');
+const CageWarehouseMappingsPage = lazyImport(() => import('@/features/aqua/definitions/components/CageWarehouseMappingsPage.tsx'), 'CageWarehouseMappingsPage', 'aqua');
 const ProjectCageAssignmentsPage = lazyImport(() => import('@/features/aqua/definitions/components/ProjectCageAssignmentsPage.tsx'), 'ProjectCageAssignmentsPage', 'aqua');
 const WeatherSeveritiesPage = lazyImport(() => import('@/features/aqua/definitions/components/WeatherSeveritiesPage.tsx'), 'WeatherSeveritiesPage', 'aqua');
 const WeatherTypesPage = lazyImport(() => import('@/features/aqua/definitions/components/WeatherTypesPage.tsx'), 'WeatherTypesPage', 'aqua');
@@ -118,6 +119,7 @@ export const router = createBrowserRouter([
       { path: 'profile', element: <ProfilePage /> },
       { path: 'aqua/definitions/projects', element: <ProjectsPage /> },
       { path: 'aqua/definitions/cages', element: <CagesPage /> },
+      { path: 'aqua/definitions/cage-warehouse-mappings', element: <CageWarehouseMappingsPage /> },
       { path: 'aqua/definitions/project-cage-assignments', element: <ProjectCageAssignmentsPage /> },
       { path: 'aqua/definitions/weather-severities', element: <WeatherSeveritiesPage /> },
       { path: 'aqua/definitions/weather-types', element: <WeatherTypesPage /> },

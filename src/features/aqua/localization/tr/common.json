@@ -37,7 +37,9 @@
       "confirmBulkDelete": "Seçili {{count}} kaydı silmek istediğinize emin misiniz?",
       "bulkDeleteSuccess": "{{count}} kayıt başarıyla silindi.",
       "bulkDeleteError": "Toplu silme işlemi sırasında bazı hatalar oluştu.",
-      "deleting": "Siliniyor..."
+      "deleting": "Siliniyor...",
+      "active": "Aktif",
+      "passive": "Pasif"
     },
     "toast": {
       "created": "Kayıt oluşturuldu",
@@ -75,6 +77,10 @@
       "cages": {
         "title": "Kafesler",
         "description": "Kafes tanımları ve kapasite bilgileri."
+      },
+      "cageWarehouseMappings": {
+        "title": "Kafes-Depo Eşleştirme",
+        "description": "Kafes kodlarını senkronize Netsis depoları ile eşleştirin."
       },
       "projectCageAssignments": {
         "title": "Proje-Kafes Atama",
@@ -230,6 +236,10 @@
       "receiptDate": "Belge Tarihi",
       "supplierId": "Tedarikçi ID",
       "warehouseId": "Depo",
+      "netsisWarehouseId": "Netsis Deposu",
+      "erpWarehouseCode": "Netsis Depo Kodu",
+      "warehouseName": "Depo Adı",
+      "isActive": "Aktif",
       "goodsReceiptId": "Mal Kabul ID",
       "goodsReceiptLineId": "Mal Kabul Satır ID",
       "itemType": "Ürün Tipi",

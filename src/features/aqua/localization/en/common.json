@@ -618,7 +618,9 @@
       "confirmBulkDelete": "Are you sure you want to delete the selected {{count}} record?",
       "bulkDeleteSuccess": "{{count}} record was deleted successfully.",
       "bulkDeleteError": "Some errors occurred during the bulk deletion process.",
-      "deleting": "Deleting..."
+      "deleting": "Deleting...",
+      "active": "Active",
+      "passive": "Passive"
     },
     "toast": {
       "created": "Record created",
@@ -656,6 +658,10 @@
       "cages": {
         "title": "cages",
         "description": "Cage definitions and capacity information."
+      },
+      "cageWarehouseMappings": {
+        "title": "Cage-Warehouse Mapping",
+        "description": "Map cage codes to synchronized Netsis warehouses."
       },
       "projectCageAssignments": {
         "title": "Project-Cage Assignment",
@@ -811,6 +817,10 @@
       "receiptDate": "Document Date",
       "supplierId": "Supplier ID",
       "warehouseId": "Warehouse",
+      "netsisWarehouseId": "Netsis Warehouse",
+      "erpWarehouseCode": "Netsis Warehouse Code",
+      "warehouseName": "Warehouse Name",
+      "isActive": "Active",
       "goodsReceiptId": "Goods Acceptance ID",
       "goodsReceiptLineId": "Goods Acceptance Line ID",
       "itemType": "Product Type",

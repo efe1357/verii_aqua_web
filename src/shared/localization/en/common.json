@@ -280,6 +280,7 @@
     "aquaDefinitions": "Aqua Definitions",
     "aquaProjects": "Projects",
     "aquaCages": "cages",
+    "aquaCageWarehouseMappings": "Cage-Warehouse Mapping",
     "aquaProjectCageAssignments": "Project-Cage Assignment",
     "aquaWeatherSeverities": "Weather Severity Definition",
     "aquaWeatherTypes": "Weather Type Description",

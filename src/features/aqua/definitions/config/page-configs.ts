@@ -49,6 +49,66 @@ export const cagesConfig: AquaCrudConfig = {
   ],
 };
 
+export const cageWarehouseMappingsConfig: AquaCrudConfig = {
+  key: 'cageWarehouseMappings',
+  title: 'aqua.pages.cageWarehouseMappings.title',
+  description: 'aqua.pages.cageWarehouseMappings.description',
+  endpoint: 'CageWarehouseMapping',
+  listStaleTimeMs: 60000,
+  fields: [
+    {
+      key: 'cageId',
+      label: 'aqua.fields.cageId',
+      type: 'select',
+      required: true,
+      lookup: {
+        endpoint: 'Cage',
+        labelKeys: ['cageCode', 'cageName'],
+        labelSeparator: ' - ',
+        valueKey: 'id',
+        staleTimeMs: 60000,
+      },
+    },
+    {
+      key: 'warehouseId',
+      label: 'aqua.fields.netsisWarehouseId',
+      type: 'select',
+      required: true,
+      lookup: {
+        endpoint: 'Warehouse',
+        labelKeys: ['erpWarehouseCode', 'warehouseName'],
+        labelSeparator: ' - ',
+        valueKey: 'id',
+        staleTimeMs: 60000,
+      },
+    },
+    {
+      key: 'isActive',
+      label: 'aqua.fields.isActive',
+      type: 'select',
+      required: true,
+      options: [
+        { label: 'aqua.common.active', value: 1 },
+        { label: 'aqua.common.passive', value: 0 },
+      ],
+    },
+    { key: 'note', label: 'aqua.fields.note', type: 'textarea' },
+  ],
+  columns: [
+    { key: 'cageCode', label: 'aqua.fields.cageCode' },
+    { key: 'cageName', label: 'aqua.fields.cageName' },
+    { key: 'erpWarehouseCode', label: 'aqua.fields.erpWarehouseCode' },
+    { key: 'warehouseName', label: 'aqua.fields.warehouseName' },
+    { key: 'isActive', label: 'aqua.fields.isActive' },
+    { key: 'note', label: 'aqua.fields.note' },
+  ],
+  defaultValues: { isActive: 1 },
+  prepareSubmitPayload: ({ payload }) => ({
+    ...payload,
+    isActive: Number(payload.isActive) === 1,
+  }),
+};
+
 export const projectCageAssignmentsConfig: AquaCrudConfig = {
   key: 'projectCageAssignments',
   title: 'aqua.pages.projectCageAssignments.title',
