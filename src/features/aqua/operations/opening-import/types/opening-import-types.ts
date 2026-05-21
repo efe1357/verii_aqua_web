@@ -90,6 +90,7 @@ export interface OpeningImportCommitResultDto {
   jobId: number;
   createdProjects: number;
   createdCages: number;
+  createdCageWarehouseMappings: number;
   createdProjectCages: number;
   createdFishBatches: number;
   createdGoodsReceipts: number;

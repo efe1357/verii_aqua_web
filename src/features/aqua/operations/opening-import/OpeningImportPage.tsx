@@ -39,6 +39,7 @@ const SHEET_DEFINITIONS: OpeningImportSheetDefinition[] = [
       { field: 'projectCode', label: 'ProjectCode', required: true },
       { field: 'cageCode', label: 'CageCode', required: true },
       { field: 'cageName', label: 'CageName', required: true },
+      { field: 'warehouseCode', label: 'WarehouseCode' },
       { field: 'assignedDate', label: 'AssignedDate' },
     ],
   },
@@ -130,6 +131,7 @@ const TEMPLATE_ROWS: Record<string, Record<string, string | number | null>[]> = 
       ProjectCode: 'PRJ-001',
       CageCode: 'A1',
       CageName: 'A1 Kafesi',
+      WarehouseCode: 10,
       AssignedDate: '2026-01-01',
     },
   ],
@@ -248,6 +250,52 @@ const FIELD_LABEL_ALIASES: Record<string, string[]> = {
   UnitPrice: ['UnitPrice', 'Unit Price', 'Birim Fiyat'],
   TargetWarehouseCode: ['TargetWarehouseCode', 'Target Warehouse Code', 'Hedef Depo Kodu', 'Hedef ERP Depo Kodu', 'Hedef Mirror Depo Kodu', 'TargetErpWarehouseCode'],
 };
+
+const TEMPLATE_GUIDE_ROWS = [
+  {
+    Bolum: 'Projeler',
+    NeZamanKullanilir: 'Aqua içinde açılacak projenin ana bilgisidir. Her ilk geçiş dosyasında proje kodu ve proje adı net olmalıdır.',
+    DoldurmaKurali: 'ProjectCode benzersiz olmalıdır. Aynı proje daha önce kurulduysa import tekrar çalıştırılmaz ve kullanıcı uyarılır.',
+  },
+  {
+    Bolum: 'Kafesler',
+    NeZamanKullanilir: 'Projeye bağlı kafesleri tanımlar. Kafes B2 gibi bir isim taşıyabilir; bu isim artık otomatik olarak Netsis deposu kabul edilmez.',
+    DoldurmaKurali: 'WarehouseCode opsiyoneldir. Doldurulursa bu kafes ilgili ERP/Netsis deposuna aktif olarak eşlenir.',
+  },
+  {
+    Bolum: 'Açılış Stoku',
+    NeZamanKullanilir: 'Sisteme bugün başlarken eldeki net canlı stok ve biyokütleyi girmek için kullanılır.',
+    DoldurmaKurali: 'Geçmiş detay bilinmiyorsa en güvenli başlangıç burasıdır. Belge üretmez; açılış bakiyesi oluşturur.',
+  },
+  {
+    Bolum: 'Açılış Mal Kabul',
+    NeZamanKullanilir: 'Sistem başlamadan önce tesise/projeye girmiş balık hareketlerini özet belge olarak taşımak için kullanılır.',
+    DoldurmaKurali: 'Stokun kaynağı ve geçmiş giriş hareketi raporlarda görünsün isteniyorsa doldurulur.',
+  },
+  {
+    Bolum: 'Açılış Sevkiyat',
+    NeZamanKullanilir: 'Sistem başlamadan önce satılmış veya çıkışı yapılmış balıkları özet sevkiyat olarak taşımak için kullanılır.',
+    DoldurmaKurali: 'Business KPI, gelir/marj ve geçmiş satış adedi/kg takibi için fiyat varsa UnitPrice doldurulur; yoksa 0 kabul edilir.',
+  },
+  {
+    Bolum: 'Açılış Fire ve Yemleme',
+    NeZamanKullanilir: 'Geçmiş fire ve yem tüketimi raporlarda görünsün, FCR/yaşam oranı başlangıçtan itibaren anlamlı hesaplansın diye kullanılır.',
+    DoldurmaKurali: 'Geçmiş detay yoksa boş bırakılabilir. Doldurulursa ilgili batch, stok ve kafes bilgileriyle eşleşmelidir.',
+  },
+  {
+    Bolum: 'Tarih Formatı',
+    NeZamanKullanilir: 'Başlangıç, atama, bakiye, mal kabul, fire, yemleme ve sevkiyat tarihleri için geçerlidir.',
+    DoldurmaKurali: 'Önerilen format yyyy-MM-dd örn. 2026-01-31. Kullanıcı isterse gg.aa.yyyy örn. 31.01.2026 veya Excel seri tarihi de kullanılabilir.',
+  },
+];
+
+function getTemplateGuideRows(t: (key: string, options?: Record<string, unknown>) => string): Array<Record<string, string>> {
+  return TEMPLATE_GUIDE_ROWS.map((row, index) => ({
+    [ttExport(t, 'aqua.openingImport.guide.exportSection', 'Bölüm')]: ttExport(t, `aqua.openingImport.guide.rows.${index}.title`, row.Bolum),
+    [ttExport(t, 'aqua.openingImport.guide.exportWhen', 'Ne zaman kullanılır?')]: ttExport(t, `aqua.openingImport.guide.rows.${index}.when`, row.NeZamanKullanilir),
+    [ttExport(t, 'aqua.openingImport.guide.exportRule', 'Doldurma kuralı')]: ttExport(t, `aqua.openingImport.guide.rows.${index}.rule`, row.DoldurmaKurali),
+  }));
+}
 
 function getSheetTitle(t: (key: string, options?: Record<string, unknown>) => string, sheetName: string): string {
   return t(`aqua.openingImport.sheets.${sheetName}`, { defaultValue: sheetName });
@@ -404,6 +452,12 @@ async function downloadWorkbook(
       );
     });
   } else {
+    XLSX.utils.book_append_sheet(
+      workbook,
+      XLSX.utils.json_to_sheet(getTemplateGuideRows(t)),
+      ttExport(t, 'aqua.openingImport.guide.sheetName', 'Kullanım Rehberi')
+    );
+
     SHEET_DEFINITIONS.forEach((definition) => {
       XLSX.utils.book_append_sheet(
         workbook,
@@ -578,6 +632,66 @@ export function OpeningImportPage(): ReactElement {
           </div>
         </div>
       </section>
+
+      <Card className="border-cyan-200/70 bg-white/90">
+        <CardHeader>
+          <CardTitle>{tt('aqua.openingImport.guide.title', 'Açılış şablonları ne işe yarar?')}</CardTitle>
+          <CardDescription>
+            {tt(
+              'aqua.openingImport.guide.description',
+              'Kurulum ekibinin kafası karışmasın diye her açılış sheetinin hangi iş senaryosu için kullanıldığını burada özetledik. Aynı rehber Excel şablonunun ilk sayfasında da bulunur.'
+            )}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="grid gap-4 lg:grid-cols-3">
+          {[
+            {
+              key: 'openingStock',
+              title: 'Açılış Stoku',
+              body: 'Bugün Aqua kullanmaya başlarken elinizdeki net balık adedi ve ortalama gramdır. Geçmiş belge detayı yoksa yalnızca bu sheet ile canlı stok başlatılır.',
+            },
+            {
+              key: 'openingGoodsReceipts',
+              title: 'Açılış Mal Kabul',
+              body: 'Balığın sisteme başlamadan önce hangi giriş hareketleriyle geldiğini özet belge olarak taşır. Stok kaynağı ve geçmiş giriş izi raporda görünsün istendiğinde doldurulur.',
+            },
+            {
+              key: 'openingShipments',
+              title: 'Açılış Sevkiyat',
+              body: 'Sistem açılmadan önce satılmış ya da çıkışı yapılmış balıkları taşır. Satış fiyatı girilirse gelir, marj ve Business KPI tarafı geçmiş satışları da hesaba katar.',
+            },
+            {
+              key: 'cageWarehouse',
+              title: 'Kafes-Depo Eşleştirme',
+              body: 'Cages sheetindeki WarehouseCode opsiyoneldir. Doldurulursa kafes aktif ERP/Netsis deposuna bağlanır; B2 gibi kafes adı artık otomatik depo kabul edilmez.',
+            },
+            {
+              key: 'openingMortalityFeedings',
+              title: 'Açılış Fire ve Yemleme',
+              body: 'Geçmiş fire ve yem tüketimi FCR, yaşam oranı ve üretim raporlarında görünsün isteniyorsa doldurulur. Detay bilinmiyorsa boş bırakılabilir.',
+            },
+            {
+              key: 'recommendedPath',
+              title: 'Önerilen En Basit Yol',
+              body: 'Sadece canlı başlangıç yapılacaksa Projects, Cages ve OpeningStock yeterlidir. Geçmiş hareket analizi isteniyorsa ilgili özet sheetler ayrıca doldurulur.',
+            },
+            {
+              key: 'dateFormat',
+              title: 'Tarih Formatı',
+              body: 'Tüm tarih alanlarında önerilen format 2026-01-31 şeklindedir. 31.01.2026 gibi Türk formatı ve Excel seri tarihleri de desteklenir.',
+            },
+          ].map((item) => (
+            <div key={item.key} className="rounded-2xl border border-slate-200 bg-slate-50/80 p-4">
+              <p className="text-sm font-semibold text-slate-900">
+                {tt(`aqua.openingImport.guide.cards.${item.key}.title`, item.title)}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                {tt(`aqua.openingImport.guide.cards.${item.key}.body`, item.body)}
+              </p>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
 
       <div className="grid gap-6 xl:grid-cols-[1.1fr,0.9fr]">
         <Card className="border-slate-200/70">
@@ -792,6 +906,7 @@ export function OpeningImportPage(): ReactElement {
             {[
               ['createdProjects', commitResult.createdProjects, 'Oluşturulan Proje'],
               ['createdCages', commitResult.createdCages, 'Oluşturulan Kafes'],
+              ['createdCageWarehouseMappings', commitResult.createdCageWarehouseMappings, 'Oluşturulan Kafes-Depo Eşleme'],
               ['createdProjectCages', commitResult.createdProjectCages, 'Oluşturulan Proje-Kafes'],
               ['createdFishBatches', commitResult.createdFishBatches, 'Oluşturulan Batch'],
               ['createdGoodsReceipts', commitResult.createdGoodsReceipts, 'Oluşturulan Özet Mal Kabul'],
