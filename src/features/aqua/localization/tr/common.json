@@ -947,6 +947,14 @@
       "noIssues": "Sorun yok",
       "commitResultTitle": "İçe Aktarım Sonucu",
       "commitResultDescription": "İlk geçiş başarıyla işlendi. Oluşan kayıt özetini aşağıda görebilirsiniz.",
+      "cleanupSoftDeleted": {
+        "title": "Silinmiş test kaydı bulundu",
+        "description": "Bu kodlar daha önce test sırasında açılıp silinmiş. İstersen sistem bu önizlemede görünen silinmiş proje/kafes kayıtlarını kalıcı temizlemeyi denesin; ilişkili hareket varsa işlem güvenlik için durur.",
+        "action": "Silinmiş test kayıtlarını temizle",
+        "confirm": "Bu işlem yalnızca bu önizlemede yakalanan silinmiş test proje/kafes kayıtlarını kalıcı temizlemeyi dener. İlişkili hareket varsa işlem durdurulur. Devam edilsin mi?",
+        "success": "{{projects}} proje ve {{cages}} kafes test kaydı temizlendi. Önizlemeyi yeniden çalıştırın.",
+        "failed": "Silinmiş test kayıtları temizlenemedi."
+      },
       "steps": {
         "uploadTitle": "Dosya ve Kaynak Bilgisi",
         "uploadDescription": "Şablonu indirip doldurduktan sonra Excel dosyasını seçin ve önizleme başlatın."

@@ -106,3 +106,11 @@ export interface OpeningImportCommitResultDto {
   appliedWarehouseRows: number;
   skippedRows: number;
 }
+
+export interface OpeningImportCleanupSoftDeletedResultDto {
+  jobId: number;
+  deletedProjects: number;
+  deletedCages: number;
+  deletedProjectCodes: string[];
+  deletedCageCodes: string[];
+}

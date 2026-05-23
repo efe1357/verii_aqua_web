@@ -1524,6 +1524,14 @@
       "noIssues": "No issues",
       "commitResultTitle": "Import Result",
       "commitResultDescription": "The initial load has been processed successfully. You can review the created records below.",
+      "cleanupSoftDeleted": {
+        "title": "Deleted test records found",
+        "description": "These codes were created and deleted during testing. If you approve, the system will try to permanently clean the deleted project/cage records shown in this preview; if related movements exist, the operation stops for safety.",
+        "action": "Clean deleted test records",
+        "confirm": "This action only tries to permanently clean the deleted test project/cage records found in this preview. If related movements exist, the operation is stopped. Continue?",
+        "success": "{{projects}} project and {{cages}} cage test records were cleaned. Please run preview again.",
+        "failed": "Deleted test records could not be cleaned."
+      },
       "steps": {
         "uploadTitle": "File and Source Information",
         "uploadDescription": "After downloading and filling in the template, select the Excel file and start the preview."

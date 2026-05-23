@@ -1,6 +1,7 @@
 import { api } from '@/lib/axios';
 import type { ApiResponse } from '@/types/api';
 import type {
+  OpeningImportCleanupSoftDeletedResultDto,
   OpeningImportCommitResultDto,
   OpeningImportPreviewRequestDto,
   OpeningImportPreviewResponseDto,
@@ -28,5 +29,10 @@ export const openingImportApi = {
   commit: async (id: number): Promise<OpeningImportCommitResultDto> => {
     const response = await api.post<ApiResponse<OpeningImportCommitResultDto>>(`/api/aqua/OpeningImport/${id}/commit`);
     return ensureSuccess(response, 'Commit failed.');
+  },
+
+  cleanupSoftDeleted: async (id: number): Promise<OpeningImportCleanupSoftDeletedResultDto> => {
+    const response = await api.post<ApiResponse<OpeningImportCleanupSoftDeletedResultDto>>(`/api/aqua/OpeningImport/${id}/cleanup-soft-deleted`);
+    return ensureSuccess(response, 'Soft-deleted test records could not be cleaned.');
   },
 };

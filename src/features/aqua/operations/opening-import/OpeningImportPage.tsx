@@ -505,6 +505,11 @@ export function OpeningImportPage(): ReactElement {
     () => Object.fromEntries(sheets.map((sheet) => [sheet.sheetName, sheet])) as Record<string, ParsedImportSheet>,
     [sheets]
   );
+  const hasSoftDeletedReferenceErrors = Boolean(
+    preview?.rows.some((row) =>
+      row.messages.some((message) => message.includes('daha önce silinmiş kayıt olarak mevcut'))
+    )
+  );
 
   if (!canView) {
     return (
@@ -594,6 +599,38 @@ export function OpeningImportPage(): ReactElement {
     }
   };
 
+  const handleCleanupSoftDeleted = async (): Promise<void> => {
+    if (!canCreate || !preview) return;
+
+    const confirmed = window.confirm(
+      tt(
+        'aqua.openingImport.cleanupSoftDeleted.confirm',
+        'Bu işlem yalnızca bu önizlemede yakalanan silinmiş test proje/kafes kayıtlarını kalıcı temizlemeyi dener. İlişkili hareket varsa işlem durdurulur. Devam edilsin mi?'
+      )
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const result = await openingImportApi.cleanupSoftDeleted(preview.jobId);
+      toast.success(
+        tt(
+          'aqua.openingImport.cleanupSoftDeleted.success',
+          '{{projects}} proje ve {{cages}} kafes test kaydı temizlendi. Önizlemeyi yeniden çalıştırın.',
+          { projects: result.deletedProjects, cages: result.deletedCages }
+        )
+      );
+      setPreview(await openingImportApi.getById(preview.jobId));
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : tt('aqua.openingImport.cleanupSoftDeleted.failed', 'Silinmiş test kayıtları temizlenemedi.'));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <section className="rounded-[28px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(7,89,133,0.06),rgba(16,185,129,0.05),rgba(255,255,255,0.95))] p-6 shadow-sm backdrop-blur">
@@ -632,6 +669,26 @@ export function OpeningImportPage(): ReactElement {
           </div>
         </div>
       </section>
+
+      {hasSoftDeletedReferenceErrors ? (
+        <Card className="border-amber-300 bg-amber-50/80">
+          <CardHeader>
+            <CardTitle>{tt('aqua.openingImport.cleanupSoftDeleted.title', 'Silinmiş test kaydı bulundu')}</CardTitle>
+            <CardDescription>
+              {tt(
+                'aqua.openingImport.cleanupSoftDeleted.description',
+                'Bu kodlar daha önce test sırasında açılıp silinmiş. İstersen sistem bu önizlemede görünen silinmiş proje/kafes kayıtlarını kalıcı temizlemeyi denesin; ilişkili hareket varsa işlem güvenlik için durur.'
+              )}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button type="button" variant="outline" disabled={isLoading || !canCreate} onClick={handleCleanupSoftDeleted}>
+              <AlertTriangle className="mr-2 h-4 w-4 text-amber-600" />
+              {tt('aqua.openingImport.cleanupSoftDeleted.action', 'Silinmiş test kayıtlarını temizle')}
+            </Button>
+          </CardContent>
+        </Card>
+      ) : null}
 
       <Card className="border-cyan-200/70 bg-white/90">
         <CardHeader>
