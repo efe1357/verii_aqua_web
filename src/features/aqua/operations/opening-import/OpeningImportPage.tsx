@@ -510,6 +510,14 @@ export function OpeningImportPage(): ReactElement {
       row.messages.some((message) => message.includes('daha önce silinmiş kayıt olarak mevcut'))
     )
   );
+  const hasExistingOpeningDataErrors = Boolean(
+    preview?.rows.some((row) =>
+      row.messages.some((message) =>
+        message.includes('zaten mevcut') ||
+        message.includes('daha önce silinmiş kayıt olarak mevcut')
+      )
+    )
+  );
 
   if (!canView) {
     return (
@@ -631,6 +639,42 @@ export function OpeningImportPage(): ReactElement {
     }
   };
 
+  const handleResetExistingData = async (): Promise<void> => {
+    if (!canCreate || !preview) return;
+
+    const confirmed = window.confirm(
+      tt(
+        'aqua.openingImport.resetExistingData.confirm',
+        'Bu işlem bu Excel önizlemesinde geçen proje ve kafeslere ait mevcut kafes, proje-kafes eşleme, batch, mal kabul, yemleme, fire, sevkiyat, stok hareketi ve rapor bakiyesi kayıtlarını KALICI olarak temizler. Bu işlem soft delete değildir ve geri alınamaz. İlk geçişi yeniden kurmak için devam edilsin mi?'
+      )
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const result = await openingImportApi.resetExistingData(preview.jobId);
+      toast.success(
+        tt(
+          'aqua.openingImport.resetExistingData.success',
+          '{{projects}} proje, {{cages}} kafes ve {{operations}} bağlı hareket kaydı kalıcı temizlendi. Önizlemeyi yeniden çalıştırın.',
+          {
+            projects: result.deletedProjects,
+            cages: result.deletedCages,
+            operations: result.deletedOperationalRecords,
+          }
+        )
+      );
+      setPreview(await openingImportApi.getById(preview.jobId));
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : tt('aqua.openingImport.resetExistingData.failed', 'Mevcut ilk geçiş kayıtları temizlenemedi.'));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <section className="rounded-[28px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(7,89,133,0.06),rgba(16,185,129,0.05),rgba(255,255,255,0.95))] p-6 shadow-sm backdrop-blur">
@@ -685,6 +729,26 @@ export function OpeningImportPage(): ReactElement {
             <Button type="button" variant="outline" disabled={isLoading || !canCreate} onClick={handleCleanupSoftDeleted}>
               <AlertTriangle className="mr-2 h-4 w-4 text-amber-600" />
               {tt('aqua.openingImport.cleanupSoftDeleted.action', 'Silinmiş test kayıtlarını temizle')}
+            </Button>
+          </CardContent>
+        </Card>
+      ) : null}
+
+      {hasExistingOpeningDataErrors ? (
+        <Card className="border-rose-300 bg-rose-50/80">
+          <CardHeader>
+            <CardTitle>{tt('aqua.openingImport.resetExistingData.title', 'İlk geçişi yeniden kur')}</CardTitle>
+            <CardDescription>
+              {tt(
+                'aqua.openingImport.resetExistingData.description',
+                'Bu Excel daha önce demo veya test amacıyla içeri alınmış olabilir. Onay verirsen sistem bu önizlemede geçen proje/kafes kapsamındaki kafes, mal kabul, yemleme, fire, sevkiyat ve bağlı stok hareketlerini kalıcı temizler; ardından aynı dosya yeniden önizlenebilir.'
+              )}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button type="button" variant="destructive" disabled={isLoading || !canCreate} onClick={handleResetExistingData}>
+              <AlertTriangle className="mr-2 h-4 w-4" />
+              {tt('aqua.openingImport.resetExistingData.action', 'Evet, ilk geçiş verilerini kalıcı temizle')}
             </Button>
           </CardContent>
         </Card>

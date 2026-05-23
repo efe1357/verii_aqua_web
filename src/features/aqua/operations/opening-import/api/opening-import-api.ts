@@ -5,6 +5,7 @@ import type {
   OpeningImportCommitResultDto,
   OpeningImportPreviewRequestDto,
   OpeningImportPreviewResponseDto,
+  OpeningImportResetExistingDataResultDto,
 } from '../types/opening-import-types';
 
 function ensureSuccess<T>(response: ApiResponse<T>, fallback: string): T {
@@ -34,5 +35,10 @@ export const openingImportApi = {
   cleanupSoftDeleted: async (id: number): Promise<OpeningImportCleanupSoftDeletedResultDto> => {
     const response = await api.post<ApiResponse<OpeningImportCleanupSoftDeletedResultDto>>(`/api/aqua/OpeningImport/${id}/cleanup-soft-deleted`);
     return ensureSuccess(response, 'Soft-deleted test records could not be cleaned.');
+  },
+
+  resetExistingData: async (id: number): Promise<OpeningImportResetExistingDataResultDto> => {
+    const response = await api.post<ApiResponse<OpeningImportResetExistingDataResultDto>>(`/api/aqua/OpeningImport/${id}/reset-existing-data`);
+    return ensureSuccess(response, 'Existing opening import data could not be reset.');
   },
 };

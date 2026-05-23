@@ -114,3 +114,18 @@ export interface OpeningImportCleanupSoftDeletedResultDto {
   deletedProjectCodes: string[];
   deletedCageCodes: string[];
 }
+
+export interface OpeningImportResetExistingDataResultDto {
+  jobId: number;
+  deletedProjects: number;
+  deletedCages: number;
+  deletedProjectCages: number;
+  deletedFishBatches: number;
+  deletedGoodsReceipts: number;
+  deletedFeedings: number;
+  deletedMortalities: number;
+  deletedShipments: number;
+  deletedOperationalRecords: number;
+  deletedProjectCodes: string[];
+  deletedCageCodes: string[];
+}
