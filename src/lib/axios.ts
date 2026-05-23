@@ -24,6 +24,21 @@ export const api = axios.create({
   },
 });
 
+api.delete = function deleteWithMethodOverride<T = unknown>(
+  url: string,
+  config?: import('axios').AxiosRequestConfig
+): Promise<T> {
+  return api.request<T>({
+    ...(config ?? {}),
+    url,
+    method: 'post',
+    headers: {
+      ...((config?.headers ?? {}) as Record<string, unknown>),
+      'X-HTTP-Method-Override': 'DELETE',
+    },
+  }) as unknown as Promise<T>;
+};
+
 let refreshPromise: Promise<string | null> | null = null;
 
 function resolveBranchCodeFromPersistedState(): string | null {
