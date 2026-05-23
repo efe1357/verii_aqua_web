@@ -28,14 +28,13 @@ api.delete = function deleteWithMethodOverride<T = unknown>(
   url: string,
   config?: import('axios').AxiosRequestConfig
 ): Promise<T> {
+  const separator = url.includes('?') ? '&' : '?';
+
   return api.request<T>({
     ...(config ?? {}),
-    url,
+    url: `${url}${separator}__method=DELETE`,
     method: 'post',
-    headers: {
-      ...((config?.headers ?? {}) as Record<string, unknown>),
-      'X-HTTP-Method-Override': 'DELETE',
-    },
+    headers: config?.headers,
   }) as unknown as Promise<T>;
 };
 
