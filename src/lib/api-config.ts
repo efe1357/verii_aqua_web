@@ -1,9 +1,11 @@
 export const DEFAULT_API_BASE_URL = 'https://aquaapi.v3rii.com';
-const RUNTIME_CONFIG_CACHE_KEY = 'aqua-runtime-config-cache-v2';
-const RUNTIME_CONFIG_TTL_MS = 60 * 60 * 1000;
+const RUNTIME_CONFIG_FILE_NAME = 'runtime-settings.json';
+const RUNTIME_CONFIG_CACHE_KEY = 'aqua-runtime-settings-cache-v1';
 
 interface RuntimeConfig {
   apiUrl?: string;
+  apiBaseUrl?: string;
+  apiBaseURL?: string;
   baseUrl?: string;
 }
 
@@ -68,12 +70,20 @@ function normalizeAppBasePath(value: string | undefined | null): string {
 let cachedApiUrl = normalizeBaseUrl(DEFAULT_API_BASE_URL);
 let cachedAppBasePath = normalizeAppBasePath(import.meta.env.BASE_URL || '/');
 let configPromise: Promise<ResolvedRuntimeConfig> | null = null;
-let backgroundRefreshPromise: Promise<void> | null = null;
 const runtimeBasePath = import.meta.env.BASE_URL || '/';
 
 function toBaseRelativePath(fileName: string): string {
   const normalizedBase = runtimeBasePath.endsWith('/') ? runtimeBasePath : `${runtimeBasePath}/`;
   return `${normalizedBase}${fileName}`;
+}
+
+function resolveRuntimeConfig(config: RuntimeConfig | undefined | null, fallbackConfig: ResolvedRuntimeConfig): ResolvedRuntimeConfig {
+  const configuredApiUrl = config?.apiUrl ?? config?.apiBaseUrl ?? config?.apiBaseURL;
+
+  return {
+    apiUrl: isValidApiUrl(configuredApiUrl) ? normalizeBaseUrl(configuredApiUrl!) : fallbackConfig.apiUrl,
+    baseUrl: normalizeAppBasePath(config?.baseUrl ?? fallbackConfig.baseUrl),
+  };
 }
 
 async function fetchRuntimeConfig(): Promise<ResolvedRuntimeConfig> {
@@ -83,23 +93,25 @@ async function fetchRuntimeConfig(): Promise<ResolvedRuntimeConfig> {
   };
 
   try {
-    const response = await fetch(toBaseRelativePath('config.json'), {
-      cache: import.meta.env.PROD ? 'no-cache' : 'default',
+    const response = await fetch(toBaseRelativePath(RUNTIME_CONFIG_FILE_NAME), {
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        Accept: 'application/json',
+      },
     });
-    if (!response.ok) return fallbackConfig;
-    const config = (await response.json()) as RuntimeConfig;
+    if (!response.ok) {
+      throw new Error(`${RUNTIME_CONFIG_FILE_NAME} HTTP ${response.status}`);
+    }
 
-    return {
-      apiUrl: isValidApiUrl(config?.apiUrl) ? normalizeBaseUrl(config.apiUrl!) : fallbackConfig.apiUrl,
-      baseUrl: normalizeAppBasePath(config?.baseUrl ?? fallbackConfig.baseUrl),
-    };
+    const config = (await response.json()) as RuntimeConfig;
+    return resolveRuntimeConfig(config, fallbackConfig);
   } catch (error) {
     if (import.meta.env.DEV) {
-      console.warn('[api-config] config.json yüklenemedi, fallback kullanılıyor:', error);
+      console.warn(`[api-config] ${RUNTIME_CONFIG_FILE_NAME} yüklenemedi, fallback kontrol ediliyor:`, error);
     }
+    throw error;
   }
-
-  return fallbackConfig;
 }
 
 function readPersistedRuntimeConfig(): PersistedRuntimeConfig | null {
@@ -121,13 +133,8 @@ function readPersistedRuntimeConfig(): PersistedRuntimeConfig | null {
     const apiUrl = parsed.apiUrl as string;
     const baseUrl = parsed.baseUrl as string;
 
-    const normalizedApiUrl = normalizeBaseUrl(apiUrl);
-    if (/^https?:\/\/localhost(?::\d+)?$/i.test(normalizedApiUrl)) {
-      return null;
-    }
-
     return {
-      apiUrl: normalizedApiUrl,
+      apiUrl: normalizeBaseUrl(apiUrl),
       baseUrl: normalizeAppBasePath(baseUrl),
       fetchedAt: parsed.fetchedAt,
     };
@@ -158,56 +165,31 @@ function hydrateMemoryCache(config: ResolvedRuntimeConfig): ResolvedRuntimeConfi
   return config;
 }
 
-function isPersistedConfigFresh(config: PersistedRuntimeConfig | null): boolean {
-  if (!config) return false;
-  return Date.now() - config.fetchedAt < RUNTIME_CONFIG_TTL_MS;
-}
-
-function refreshRuntimeConfigInBackground(): void {
-  if (backgroundRefreshPromise) return;
-
-  backgroundRefreshPromise = fetchRuntimeConfig()
-    .then((config) => {
-      hydrateMemoryCache(config);
-      persistRuntimeConfig(config);
-    })
-    .finally(() => {
-      backgroundRefreshPromise = null;
-    });
-}
-
 export function loadConfig(): Promise<string> {
   if (!configPromise) {
-    if (import.meta.env.DEV) {
-      configPromise = fetchRuntimeConfig().then((config) => {
+    configPromise = fetchRuntimeConfig()
+      .catch((error) => {
+        const persisted = import.meta.env.PROD ? readPersistedRuntimeConfig() : null;
+        if (persisted) {
+          if (import.meta.env.DEV) {
+            console.warn(`[api-config] ${RUNTIME_CONFIG_FILE_NAME} okunamadı, persisted fallback kullanılıyor:`, error);
+          }
+          return {
+            apiUrl: persisted.apiUrl,
+            baseUrl: persisted.baseUrl,
+          };
+        }
+
+        return {
+          apiUrl: normalizeBaseUrl(DEFAULT_API_BASE_URL),
+          baseUrl: normalizeAppBasePath(import.meta.env.BASE_URL || '/'),
+        };
+      })
+      .then((config) => {
         hydrateMemoryCache(config);
         persistRuntimeConfig(config);
         return config;
       });
-
-      return configPromise.then((config) => config.apiUrl);
-    }
-
-    const persisted = readPersistedRuntimeConfig();
-
-    if (persisted) {
-      const resolved = hydrateMemoryCache({
-        apiUrl: persisted.apiUrl,
-        baseUrl: persisted.baseUrl,
-      });
-
-      if (!isPersistedConfigFresh(persisted)) {
-        refreshRuntimeConfigInBackground();
-      }
-
-      configPromise = Promise.resolve(resolved);
-    } else {
-      configPromise = fetchRuntimeConfig().then((config) => {
-        hydrateMemoryCache(config);
-        persistRuntimeConfig(config);
-        return config;
-      });
-    }
   }
 
   return configPromise.then((config) => config.apiUrl);

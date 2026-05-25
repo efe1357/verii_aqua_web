@@ -13,7 +13,7 @@ import { markPerformanceEnd, markPerformanceStart } from './lib/performance';
 
 async function bootstrap(): Promise<void> {
   const bootstrapMark = markPerformanceStart('app-bootstrap');
-  await ensureI18nReady();
+  await Promise.all([ensureApiReady(), ensureI18nReady()]);
   useAuthStore.getState().init();
   const root = document.getElementById('root')!;
   createRoot(root).render(
@@ -28,7 +28,6 @@ async function bootstrap(): Promise<void> {
     </StrictMode>,
   );
   markPerformanceEnd('app-bootstrap', bootstrapMark);
-  void ensureApiReady();
 }
 
 bootstrap();
