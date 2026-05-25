@@ -24,21 +24,15 @@ export const api = axios.create({
   },
 });
 
-api.delete = function deleteWithMethodOverride<T = unknown>(
-  url: string,
-  config?: import('axios').AxiosRequestConfig
-): Promise<T> {
-  const separator = url.includes('?') ? '&' : '?';
-
-  return api.request<T>({
-    ...(config ?? {}),
-    url: `${url}${separator}__method=DELETE`,
-    method: 'post',
-    headers: config?.headers,
-  }) as unknown as Promise<T>;
-};
-
 let refreshPromise: Promise<string | null> | null = null;
+
+function appendPathSegment(url: string | undefined, segment: string): string | undefined {
+  if (!url) return url;
+
+  const [path, query] = url.split('?');
+  const nextPath = path.endsWith(`/${segment}`) ? path : `${path.replace(/\/$/, '')}/${segment}`;
+  return query ? `${nextPath}?${query}` : nextPath;
+}
 
 function resolveBranchCodeFromPersistedState(): string | null {
   try {
@@ -259,6 +253,14 @@ async function refreshAccessToken(): Promise<string | null> {
 
 api.interceptors.request.use((config) => {
   config.baseURL = config.baseURL || getApiBaseUrl() || api.defaults.baseURL;
+  const originalMethod = (config.method ?? 'get').toLowerCase();
+  if (originalMethod === 'put') {
+    config.method = 'post';
+    config.url = appendPathSegment(config.url, 'update');
+  } else if (originalMethod === 'delete') {
+    config.method = 'post';
+    config.url = appendPathSegment(config.url, 'delete');
+  }
 
   const token = getStoredAccessToken();
   if (token) {
