@@ -14,15 +14,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
+import { DestructiveConfirmDialog } from '@/components/shared/DestructiveConfirmDialog';
 import { usePermissionDefinitionsQuery } from '../hooks/usePermissionDefinitionsQuery';
 import { useSyncPermissionDefinitionsMutation } from '../hooks/useSyncPermissionDefinitionsMutation';
 import { useCreatePermissionDefinitionMutation } from '../hooks/useCreatePermissionDefinitionMutation';
@@ -352,31 +345,22 @@ export function PermissionDefinitionsPage(): ReactElement {
         canSubmit={editingItem ? canUpdate : canCreate}
       />
 
-      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent className="bg-white dark:bg-blue-950 border-slate-200 dark:border-cyan-800/30 text-slate-900 dark:text-white rounded-3xl shadow-2xl p-6 sm:p-8 w-[calc(100vw-1rem)] sm:w-[calc(100vw-2rem)] max-w-md">
-          <DialogHeader className="p-0">
-            <DialogTitle className="text-xl font-bold flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-rose-50 dark:bg-rose-500/10 border border-rose-100 dark:border-rose-500/20">
-                <Trash2 className="size-5 text-rose-600 dark:text-rose-500" />
-              </div>
-              {t('permissionDefinitions.delete.confirmTitle')}
-            </DialogTitle>
-            <DialogDescription className="text-slate-500 dark:text-slate-400 mt-3 text-sm font-medium">
-              {t('permissionDefinitions.delete.confirmMessage', {
-                name: itemToDelete?.name ?? '',
-              })}
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="mt-8 gap-3 sm:gap-0">
-            <Button variant="outline" onClick={() => setDeleteDialogOpen(false)} disabled={deleteMutation.isPending} className="border-slate-200 dark:border-cyan-800/30 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-blue-900/30 font-bold rounded-xl h-11 px-6">
-              {t('common.cancel')}
-            </Button>
-            <Button variant="destructive" onClick={handleDeleteConfirm} disabled={deleteMutation.isPending || !canDelete} className="bg-rose-600 hover:bg-rose-500 text-white rounded-xl h-11 px-8 font-bold border-0 shadow-lg shadow-rose-500/20 active:scale-[0.98] transition-all">
-              {deleteMutation.isPending ? t('common.processing') : t('common.delete')}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <DestructiveConfirmDialog
+        open={deleteDialogOpen}
+        onOpenChange={(open) => {
+          setDeleteDialogOpen(open);
+          if (!open) setItemToDelete(null);
+        }}
+        title={t('permissionDefinitions.delete.confirmTitle')}
+        description={t('permissionDefinitions.delete.confirmMessage', {
+          name: itemToDelete?.name ?? '',
+        })}
+        cancelLabel={t('common.no', { defaultValue: 'Hayır' })}
+        confirmLabel={t('common.yesDelete', { defaultValue: 'Evet, sil' })}
+        pendingLabel={t('common.processing')}
+        isPending={deleteMutation.isPending}
+        onConfirm={handleDeleteConfirm}
+      />
     </div>
   );
 }

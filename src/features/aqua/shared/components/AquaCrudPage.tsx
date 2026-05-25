@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
+import { DestructiveConfirmDialog } from '@/components/shared/DestructiveConfirmDialog';
 import {
   Dialog,
   DialogContent,
@@ -31,7 +32,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { 
-  Plus, ArrowUpDown, ArrowUp, ArrowDown, ChevronDown, X, AlertTriangle, FileText,
+  Plus, ArrowUpDown, ArrowUp, ArrowDown, ChevronDown, X, FileText,
   ChevronRight, Edit, Trash2, Menu, FileSpreadsheet, Presentation, Filter, GripVertical,
   CheckCircle2, Copy, Eye, Download
 } from 'lucide-react';
@@ -290,6 +291,7 @@ export function AquaCrudPage({
   // PREMIUM ÖZELLİK: Çoklu Seçim State
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [isBulkDeleting, setIsBulkDeleting] = useState(false);
+  const [bulkDeleteDialogOpen, setBulkDeleteDialogOpen] = useState(false);
 
   // PREMIUM ÖZELLİK: Sağ Çekmece (Detay Görüntüleme)
   const [viewingRow, setViewingRow] = useState<Record<string, unknown> | null>(null);
@@ -551,17 +553,16 @@ export function AquaCrudPage({
     onError: (error) => toast.error(error instanceof Error ? error.message : t('aqua.toast.postFailed')),
   });
 
-  // Toplu Silme Fonksiyonu
-  const handleBulkDelete = async () => {
+  const confirmBulkDelete = async (): Promise<void> => {
     if (!canDelete) return;
     if (selectedIds.length === 0) return;
-    if (!window.confirm(t('aqua.common.confirmBulkDelete', { count: selectedIds.length }))) return;
-    
+
     setIsBulkDeleting(true);
     try {
       await Promise.all(selectedIds.map(id => aquaCrudApi.remove(config.endpoint, id)));
       toast.success(t('aqua.common.bulkDeleteSuccess', { count: selectedIds.length }));
       setSelectedIds([]);
+      setBulkDeleteDialogOpen(false);
       void queryClient.invalidateQueries({ queryKey: ['aqua', config.key] });
     } catch {
       toast.error(t('aqua.common.bulkDeleteError'));
@@ -1212,7 +1213,7 @@ export function AquaCrudPage({
                 <Download size={14} className="sm:mr-2" /> <span className="hidden sm:inline">{t('aqua.common.export')}</span>
               </Button>
               {canDelete && (
-                <Button size="sm" variant="ghost" onClick={handleBulkDelete} disabled={isBulkDeleting} className="text-rose-400 hover:text-rose-300 hover:bg-rose-500/20 rounded-xl h-8 font-bold text-xs transition-colors">
+                <Button size="sm" variant="ghost" onClick={() => setBulkDeleteDialogOpen(true)} disabled={isBulkDeleting} className="text-rose-400 hover:text-rose-300 hover:bg-rose-500/20 rounded-xl h-8 font-bold text-xs transition-colors">
                   <Trash2 size={14} className="sm:mr-2" /> <span className="hidden sm:inline">{isBulkDeleting ? t('aqua.common.deleting') : t('aqua.common.deleteSelected')}</span>
                 </Button>
               )}
@@ -1304,21 +1305,30 @@ export function AquaCrudPage({
           </Dialog>
         )}
 
-        <Dialog open={!!rowToDelete} onOpenChange={(open) => !open && setRowToDelete(null)}>
-          <DialogContent className="[&>button]:hidden bg-white dark:bg-blue-950 border border-slate-200 dark:border-cyan-800/30 text-slate-900 dark:text-white max-w-sm w-[95%] shadow-2xl sm:rounded-2xl p-0 overflow-hidden">
-              <div className="p-8 flex flex-col items-center justify-center text-center space-y-5">
-                 <div className="h-16 w-16 rounded-full bg-red-100 dark:bg-red-600/10 flex items-center justify-center"><AlertTriangle size={32} className="text-red-600 dark:text-red-500" /></div>
-                 <div className="space-y-3">
-                   <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">{t('aqua.common.confirmDelete')}</h2>
-                   <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-[280px] mx-auto">{t('aqua.crud.deleteDescription')}</p>
-                 </div>
-              </div>
-              <DialogFooter className="px-6 py-4 border-t border-slate-200 dark:border-cyan-800/30 bg-slate-50/50 dark:bg-blue-950/50 flex-col sm:flex-row gap-3">
-                <Button variant="outline" onClick={() => setRowToDelete(null)} className="w-full sm:w-auto h-11 rounded-xl bg-white dark:bg-transparent border-slate-200 dark:border-cyan-800/30 hover:bg-slate-100 dark:hover:bg-blue-900/50 text-slate-700 dark:text-slate-200 font-medium">{t('aqua.common.cancel')}</Button>
-                <Button onClick={confirmDelete} disabled={isDeleting} className="w-full sm:w-auto h-11 rounded-xl bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-500/25 border-0 font-bold">{isDeleting ? t('aqua.common.deleting') : t('aqua.common.delete')}</Button>
-              </DialogFooter>
-          </DialogContent>
-        </Dialog>
+        <DestructiveConfirmDialog
+          open={!!rowToDelete}
+          onOpenChange={(open) => !open && setRowToDelete(null)}
+          title={t('aqua.common.confirmDelete')}
+          description={t('aqua.crud.deleteDescription')}
+          cancelLabel={t('aqua.common.no', { defaultValue: 'Hayır' })}
+          confirmLabel={t('aqua.common.yesDelete', { defaultValue: 'Evet, sil' })}
+          pendingLabel={t('aqua.common.deleting')}
+          isPending={isDeleting}
+          onConfirm={confirmDelete}
+        />
+
+        <DestructiveConfirmDialog
+          open={bulkDeleteDialogOpen}
+          onOpenChange={setBulkDeleteDialogOpen}
+          title={t('aqua.common.confirmDelete')}
+          description={t('aqua.common.confirmBulkDelete', { count: selectedIds.length })}
+          contextLabel={t('aqua.common.selectedCount', { count: selectedIds.length })}
+          cancelLabel={t('aqua.common.no', { defaultValue: 'Hayır' })}
+          confirmLabel={t('aqua.common.yesDeleteSelected', { defaultValue: 'Evet, seçilenleri sil' })}
+          pendingLabel={t('aqua.common.deleting')}
+          isPending={isBulkDeleting}
+          onConfirm={confirmBulkDelete}
+        />
 
         {/* PREMIUM ÖZELLİK: Detay Görüntüleme Modalı (Ortalanmış ve Taşma Korumalı) */}
         <Dialog open={!!viewingRow} onOpenChange={(open) => !open && setViewingRow(null)}>

@@ -9,16 +9,9 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Trash2, CheckCircle2, XCircle, Link, AlertTriangle, Loader2 } from 'lucide-react';
+import { DestructiveConfirmDialog } from '@/components/shared/DestructiveConfirmDialog';
+import { Trash2, CheckCircle2, XCircle, Link } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useStockRelations } from '../hooks/useStockRelations';
 import { useStockRelationDelete } from '../hooks/useStockRelationDelete';
@@ -161,50 +154,22 @@ export function StockRelationList({ stockId }: StockRelationListProps): ReactEle
         </Table>
       </div>
 
-      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent className="w-[calc(100vw-1rem)] sm:w-[calc(100vw-2rem)] max-w-[425px]">
-          <DialogHeader>
-            <div className="flex items-center gap-2 text-red-600 mb-2">
-                <div className="p-2 bg-red-100 rounded-full">
-                    <AlertTriangle className="h-5 w-5" />
-                </div>
-                <DialogTitle className="text-xl">
-                    {t('stock.relations.deleteConfirm')}
-                </DialogTitle>
-            </div>
-            <DialogDescription className="pt-2 text-zinc-600 dark:text-zinc-400">
-              {t('stock.relations.deleteConfirmMessage', {
-                name: relationToDelete?.relatedStockName || '',
-              })}
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="gap-2 sm:gap-0 mt-4">
-            <Button
-              variant="outline"
-              onClick={() => setDeleteDialogOpen(false)}
-              disabled={deleteRelation.isPending}
-              className="rounded-lg"
-            >
-              {t('stock.relations.cancel')}
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={handleDeleteConfirm}
-              disabled={deleteRelation.isPending}
-              className="rounded-lg bg-red-600 hover:bg-red-700 shadow-lg shadow-red-500/20"
-            >
-              {deleteRelation.isPending ? (
-                 <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    {t('stock.relations.deleting')}
-                 </>
-              ) : (
-                 t('stock.relations.confirmDelete')
-              )}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <DestructiveConfirmDialog
+        open={deleteDialogOpen}
+        onOpenChange={(open) => {
+          setDeleteDialogOpen(open);
+          if (!open) setRelationToDelete(null);
+        }}
+        title={t('stock.relations.deleteConfirm')}
+        description={t('stock.relations.deleteConfirmMessage', {
+          name: relationToDelete?.relatedStockName || '',
+        })}
+        cancelLabel={t('common.no', { defaultValue: 'Hayır' })}
+        confirmLabel={t('stock.relations.confirmDeleteAction', { defaultValue: 'Evet, sil' })}
+        pendingLabel={t('stock.relations.deleting')}
+        isPending={deleteRelation.isPending}
+        onConfirm={handleDeleteConfirm}
+      />
     </>
   );
 }

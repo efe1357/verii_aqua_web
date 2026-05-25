@@ -4,15 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
-import { Star, Trash2, Image as ImageIcon, Loader2, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { DestructiveConfirmDialog } from '@/components/shared/DestructiveConfirmDialog';
+import { Star, Trash2, Image as ImageIcon, Loader2, CheckCircle2 } from 'lucide-react';
 import { useStockImages } from '../hooks/useStockImages';
 import { useStockImageDelete } from '../hooks/useStockImageDelete';
 import { useStockImageSetPrimary } from '../hooks/useStockImageSetPrimary';
@@ -183,50 +176,20 @@ export function StockImageList({ stockId }: StockImageListProps): ReactElement {
         ))}
       </div>
 
-      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent className="w-[calc(100vw-1rem)] sm:w-[calc(100vw-2rem)] max-w-[425px] bg-white dark:bg-blue-950 border-slate-200 dark:border-cyan-800/30 rounded-2xl shadow-2xl p-0 overflow-hidden">
-          <div className="p-6">
-            <DialogHeader>
-              <div className="flex items-center gap-3 text-red-600 dark:text-red-500 mb-4">
-                  <div className="p-2.5 bg-red-50 dark:bg-red-900/20 rounded-xl">
-                      <AlertTriangle className="h-6 w-6" />
-                  </div>
-                  <DialogTitle className="text-xl font-bold tracking-tight">
-                      {t('stock.images.deleteConfirm')}
-                  </DialogTitle>
-              </div>
-              <DialogDescription className="text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
-                {t('stock.images.deleteConfirmMessage')}
-              </DialogDescription>
-            </DialogHeader>
-          </div>
-          <DialogFooter className="bg-slate-50 dark:bg-blue-950/50 px-6 py-4 border-t border-slate-100 dark:border-cyan-800/30 gap-3 sm:gap-0">
-            <Button
-              variant="outline"
-              onClick={() => setDeleteDialogOpen(false)}
-              disabled={deleteImage.isPending}
-              className="rounded-xl font-bold border-slate-200 dark:border-cyan-800/50"
-            >
-              {t('stock.images.cancel')}
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={handleDeleteConfirm}
-              disabled={deleteImage.isPending}
-              className="rounded-xl bg-red-600 hover:bg-red-700 font-bold shadow-lg shadow-red-500/20 border-0"
-            >
-              {deleteImage.isPending ? (
-                 <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    {t('stock.images.deleting')}
-                  </>
-                ) : (
-                 t('stock.images.confirmDelete')
-                )}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <DestructiveConfirmDialog
+        open={deleteDialogOpen}
+        onOpenChange={(open) => {
+          setDeleteDialogOpen(open);
+          if (!open) setImageToDelete(null);
+        }}
+        title={t('stock.images.deleteConfirm')}
+        description={t('stock.images.deleteConfirmMessage')}
+        cancelLabel={t('common.no', { defaultValue: 'Hayır' })}
+        confirmLabel={t('stock.images.confirmDeleteAction', { defaultValue: 'Evet, sil' })}
+        pendingLabel={t('stock.images.deleting')}
+        isPending={deleteImage.isPending}
+        onConfirm={handleDeleteConfirm}
+      />
     </>
   );
 }

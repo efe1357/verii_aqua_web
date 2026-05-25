@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { DestructiveConfirmDialog } from '@/components/shared/DestructiveConfirmDialog';
 import { useMyPermissionsQuery } from '@/features/access-control/hooks/useMyPermissionsQuery';
 import { hasPermission } from '@/features/access-control/utils/hasPermission';
 import { AQUA_SPECIAL_PERMISSION_CODES } from '@/features/access-control/utils/permission-config';
@@ -500,6 +501,7 @@ export function OpeningImportPage(): ReactElement {
   const [preview, setPreview] = useState<OpeningImportPreviewResponseDto | null>(null);
   const [commitResult, setCommitResult] = useState<OpeningImportCommitResultDto | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [pendingDestructiveAction, setPendingDestructiveAction] = useState<'cleanupSoftDeleted' | 'resetExistingData' | null>(null);
 
   const parsedSheetMap = useMemo(
     () => Object.fromEntries(sheets.map((sheet) => [sheet.sheetName, sheet])) as Record<string, ParsedImportSheet>,
@@ -610,17 +612,6 @@ export function OpeningImportPage(): ReactElement {
   const handleCleanupSoftDeleted = async (): Promise<void> => {
     if (!canCreate || !preview) return;
 
-    const confirmed = window.confirm(
-      tt(
-        'aqua.openingImport.cleanupSoftDeleted.confirm',
-        'Bu işlem yalnızca bu önizlemede yakalanan silinmiş test proje/kafes kayıtlarını kalıcı temizlemeyi dener. İlişkili hareket varsa işlem durdurulur. Devam edilsin mi?'
-      )
-    );
-
-    if (!confirmed) {
-      return;
-    }
-
     try {
       setIsLoading(true);
       const result = await openingImportApi.cleanupSoftDeleted(preview.jobId);
@@ -632,6 +623,7 @@ export function OpeningImportPage(): ReactElement {
         )
       );
       setPreview(await openingImportApi.getById(preview.jobId));
+      setPendingDestructiveAction(null);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : tt('aqua.openingImport.cleanupSoftDeleted.failed', 'Silinmiş test kayıtları temizlenemedi.'));
     } finally {
@@ -641,17 +633,6 @@ export function OpeningImportPage(): ReactElement {
 
   const handleResetExistingData = async (): Promise<void> => {
     if (!canCreate || !preview) return;
-
-    const confirmed = window.confirm(
-      tt(
-        'aqua.openingImport.resetExistingData.confirm',
-        'Bu işlem bu Excel önizlemesinde geçen proje ve kafeslere ait mevcut kafes, proje-kafes eşleme, batch, mal kabul, yemleme, fire, sevkiyat, stok hareketi ve rapor bakiyesi kayıtlarını KALICI olarak temizler. Bu işlem soft delete değildir ve geri alınamaz. İlk geçişi yeniden kurmak için devam edilsin mi?'
-      )
-    );
-
-    if (!confirmed) {
-      return;
-    }
 
     try {
       setIsLoading(true);
@@ -668,6 +649,7 @@ export function OpeningImportPage(): ReactElement {
         )
       );
       setPreview(await openingImportApi.getById(preview.jobId));
+      setPendingDestructiveAction(null);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : tt('aqua.openingImport.resetExistingData.failed', 'Mevcut ilk geçiş kayıtları temizlenemedi.'));
     } finally {
@@ -726,7 +708,7 @@ export function OpeningImportPage(): ReactElement {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button type="button" variant="outline" disabled={isLoading || !canCreate} onClick={handleCleanupSoftDeleted}>
+            <Button type="button" variant="outline" disabled={isLoading || !canCreate} onClick={() => setPendingDestructiveAction('cleanupSoftDeleted')}>
               <AlertTriangle className="mr-2 h-4 w-4 text-amber-600" />
               {tt('aqua.openingImport.cleanupSoftDeleted.action', 'Silinmiş test kayıtlarını temizle')}
             </Button>
@@ -746,7 +728,7 @@ export function OpeningImportPage(): ReactElement {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button type="button" variant="destructive" disabled={isLoading || !canCreate} onClick={handleResetExistingData}>
+            <Button type="button" variant="destructive" disabled={isLoading || !canCreate} onClick={() => setPendingDestructiveAction('resetExistingData')}>
               <AlertTriangle className="mr-2 h-4 w-4" />
               {tt('aqua.openingImport.resetExistingData.action', 'Evet, ilk geçiş verilerini kalıcı temizle')}
             </Button>
@@ -1051,6 +1033,42 @@ export function OpeningImportPage(): ReactElement {
           </CardContent>
         </Card>
       ) : null}
+
+      <DestructiveConfirmDialog
+        open={pendingDestructiveAction !== null}
+        onOpenChange={(open) => !open && setPendingDestructiveAction(null)}
+        title={
+          pendingDestructiveAction === 'resetExistingData'
+            ? tt('aqua.openingImport.resetExistingData.confirmTitle', 'Kalıcı temizlemeyi onaylıyor musunuz?')
+            : tt('aqua.openingImport.cleanupSoftDeleted.confirmTitle', 'Silinmiş test kayıtları temizlensin mi?')
+        }
+        description={
+          pendingDestructiveAction === 'resetExistingData'
+            ? tt(
+                'aqua.openingImport.resetExistingData.confirm',
+                'Bu işlem bu Excel önizlemesinde geçen proje ve kafeslere ait mevcut kafes, proje-kafes eşleme, batch, mal kabul, yemleme, fire, sevkiyat, stok hareketi ve rapor bakiyesi kayıtlarını KALICI olarak temizler. Bu işlem soft delete değildir ve geri alınamaz.'
+              )
+            : tt(
+                'aqua.openingImport.cleanupSoftDeleted.confirm',
+                'Bu işlem yalnızca bu önizlemede yakalanan silinmiş test proje/kafes kayıtlarını kalıcı temizlemeyi dener. İlişkili hareket varsa işlem güvenlik için durdurulur.'
+              )
+        }
+        contextLabel={
+          pendingDestructiveAction === 'resetExistingData'
+            ? tt('aqua.openingImport.resetExistingData.context', 'Dikkat: Bu işlem geri alınamaz.')
+            : tt('aqua.openingImport.cleanupSoftDeleted.context', 'İlişkili gerçek hareket bulunan kayıtlar silinmez.')
+        }
+        cancelLabel={tt('aqua.common.no', 'Hayır')}
+        confirmLabel={
+          pendingDestructiveAction === 'resetExistingData'
+            ? tt('aqua.openingImport.resetExistingData.confirmAction', 'Evet, kalıcı temizle')
+            : tt('aqua.openingImport.cleanupSoftDeleted.confirmAction', 'Evet, test kayıtlarını temizle')
+        }
+        pendingLabel={tt('aqua.common.processing', 'İşleniyor...')}
+        isPending={isLoading}
+        tone={pendingDestructiveAction === 'resetExistingData' ? 'critical' : 'warning'}
+        onConfirm={pendingDestructiveAction === 'resetExistingData' ? handleResetExistingData : handleCleanupSoftDeleted}
+      />
     </div>
   );
 }

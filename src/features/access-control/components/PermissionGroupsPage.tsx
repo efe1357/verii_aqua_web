@@ -14,15 +14,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
+import { DestructiveConfirmDialog } from '@/components/shared/DestructiveConfirmDialog';
 import { usePermissionGroupsQuery } from '../hooks/usePermissionGroupsQuery';
 import { useCreatePermissionGroupMutation } from '../hooks/useCreatePermissionGroupMutation';
 import { useUpdatePermissionGroupMutation } from '../hooks/useUpdatePermissionGroupMutation';
@@ -308,32 +301,22 @@ export function PermissionGroupsPage(): ReactElement {
 
       <GroupPermissionsPanel groupId={permissionsPanelGroupId} open={permissionsPanelOpen} onOpenChange={setPermissionsPanelOpen} canUpdate={canUpdate} />
 
-      {/* Delete Dialog: Aqua Stilleri */}
-      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <DialogContent className="bg-white dark:bg-blue-950 border-slate-200 dark:border-cyan-800/30 text-slate-900 dark:text-white rounded-2xl shadow-2xl p-5 sm:p-6 md:p-8 w-[calc(100vw-1rem)] sm:w-[calc(100vw-2rem)] max-w-md transition-colors duration-300">
-          <DialogHeader className="p-0">
-            <DialogTitle className="text-xl font-bold flex items-center gap-3 text-slate-900 dark:text-white">
-              <div className="p-2 bg-rose-50 dark:bg-rose-900/20 rounded-xl">
-                <Trash2 className="size-5 text-rose-600 dark:text-rose-500" />
-              </div>
-              {t('permissionGroups.delete.confirmTitle')}
-            </DialogTitle>
-            <DialogDescription className="text-slate-500 dark:text-slate-400 mt-4 text-sm font-medium leading-relaxed">
-              {t('permissionGroups.delete.confirmMessage', {
-                name: itemToDelete?.name ?? '',
-              })}
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="mt-8 gap-3 sm:gap-0 border-t border-slate-100 dark:border-cyan-800/20 pt-6">
-            <Button variant="ghost" onClick={() => setDeleteDialogOpen(false)} disabled={deleteMutation.isPending} className="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 font-bold transition-colors">
-              {t('common.cancel')}
-            </Button>
-            <Button variant="destructive" onClick={handleDeleteConfirm} disabled={deleteMutation.isPending || !canDelete} className="bg-rose-600 hover:bg-rose-700 rounded-xl px-8 font-bold border-0 shadow-lg shadow-rose-500/20 text-white transition-all">
-              {deleteMutation.isPending ? t('common.processing') : t('common.delete')}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <DestructiveConfirmDialog
+        open={deleteDialogOpen}
+        onOpenChange={(open) => {
+          setDeleteDialogOpen(open);
+          if (!open) setItemToDelete(null);
+        }}
+        title={t('permissionGroups.delete.confirmTitle')}
+        description={t('permissionGroups.delete.confirmMessage', {
+          name: itemToDelete?.name ?? '',
+        })}
+        cancelLabel={t('common.no', { defaultValue: 'Hayır' })}
+        confirmLabel={t('common.yesDelete', { defaultValue: 'Evet, sil' })}
+        pendingLabel={t('common.processing')}
+        isPending={deleteMutation.isPending}
+        onConfirm={handleDeleteConfirm}
+      />
     </div>
   );
 }

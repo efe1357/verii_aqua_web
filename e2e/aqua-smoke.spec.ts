@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
 test('Opening Import smoke renders source system and action buttons', async ({ page }) => {
   await page.goto('/aqua/operations/opening-import');
 
-  await expect(page.getByRole('heading', { name: 'İlk Geçiş / Data Migration' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'İlk Geçiş / Veri Aktarımı' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Şablon İndir' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Önizle ve Doğrula' })).toBeVisible();
 });
@@ -32,6 +32,38 @@ test('Shipments smoke renders shipment line list with readable values', async ({
   await expect(page.getByText('Deniz Kafes Projesi')).toBeVisible();
 });
 
+test('Delete confirmation cancels safely without sending a delete command', async ({ page }) => {
+  let deleteCommandCount = 0;
+  page.on('request', (request) => {
+    if (request.method() === 'POST' && request.url().endsWith('/delete')) deleteCommandCount += 1;
+  });
+
+  await page.goto('/aqua/operations/shipments');
+  await page.getByRole('button', { name: 'Sil' }).first().click();
+
+  await expect(page.getByRole('alertdialog')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Hayır' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Evet, sil' })).toBeVisible();
+  await page.getByRole('button', { name: 'Hayır' }).click();
+
+  await expect(page.getByRole('alertdialog')).toBeHidden();
+  expect(deleteCommandCount).toBe(0);
+});
+
+test('Delete confirmation sends a single delete command only after explicit approval', async ({ page }) => {
+  let deleteCommandCount = 0;
+  page.on('request', (request) => {
+    if (request.method() === 'POST' && request.url().endsWith('/delete')) deleteCommandCount += 1;
+  });
+
+  await page.goto('/aqua/operations/shipments');
+  await page.getByRole('button', { name: 'Sil' }).first().click();
+  await page.getByRole('button', { name: 'Evet, sil' }).click();
+
+  await expect.poll(() => deleteCommandCount).toBe(1);
+  await expect(page.getByRole('alertdialog')).toBeHidden();
+});
+
 test('Cage to warehouse transfer smoke renders readable transfer values', async ({ page }) => {
   await page.goto('/aqua/operations/cage-warehouse-transfers');
 
@@ -52,6 +84,8 @@ test('Raw KPI smoke renders project snapshot and KPI cards', async ({ page }) =>
   await page.goto('/aqua/reports/raw-kpi');
 
   await expect(page.locator('main').getByText('Raw KPI Raporu', { exact: true }).first()).toBeVisible();
+  await page.getByRole('combobox').click();
+  await page.getByText('PRJ-001 - Deniz Kafes Projesi (1)', { exact: true }).click();
   await expect(page.getByText('Proje Özeti', { exact: true })).toBeVisible();
   await expect(page.getByRole('columnheader', { name: 'Survival %' })).toBeVisible();
   await expect(page.getByRole('columnheader', { name: 'FCR' })).toBeVisible();
@@ -71,6 +105,8 @@ test('Business KPI smoke renders business snapshot and assumptions', async ({ pa
   await page.goto('/aqua/reports/business-kpi');
 
   await expect(page.locator('main').getByText('Business KPI Raporu', { exact: true }).first()).toBeVisible();
+  await page.getByRole('combobox').click();
+  await page.getByText('PRJ-001 - Deniz Kafes Projesi (1)', { exact: true }).click();
   await expect(page.getByText('Business Özet', { exact: true })).toBeVisible();
   await expect(page.getByText('Varsayımlar', { exact: true })).toBeVisible();
   await expect(page.getByText('Tahmini Ciro', { exact: true }).first()).toBeVisible();
