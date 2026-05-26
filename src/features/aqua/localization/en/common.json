@@ -1438,7 +1438,7 @@
           },
           "openingGoodsReceipts": {
             "title": "Opening Goods Receipt",
-            "body": "Carries fish entries that happened before Aqua as summary documents. Fill it when the stock source and historical entry trail should appear in reports."
+            "body": "Carries fish entries that happened before Aqua as a summary document. One goods receipt is created per project; enter its header on the first row and distribute the same batch to cages below."
           },
           "openingShipments": {
             "title": "Opening Shipment",
@@ -1480,7 +1480,7 @@
           "3": {
             "title": "Opening Goods Receipt",
             "when": "Used to carry fish entries made before Aqua as summary documents.",
-            "rule": "Fill it when the stock source and historical entry movement should appear in reports."
+            "rule": "One goods receipt header is created per project; Receipt No and Date may be entered on the first row and left blank on continuation distribution rows. If the same BatchCode repeats across cages, the counts sum to one batch line. Use a different BatchCode for a different product or average gram."
           },
           "4": {
             "title": "Opening Shipment",

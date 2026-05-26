@@ -271,7 +271,7 @@ const TEMPLATE_GUIDE_ROWS = [
   {
     Bolum: 'Açılış Mal Kabul',
     NeZamanKullanilir: 'Sistem başlamadan önce tesise/projeye girmiş balık hareketlerini özet belge olarak taşımak için kullanılır.',
-    DoldurmaKurali: 'Stokun kaynağı ve geçmiş giriş hareketi raporlarda görünsün isteniyorsa doldurulur.',
+    DoldurmaKurali: 'Her proje için tek mal kabul başlığı oluşur; Mal Kabul No ve Tarihi ilk satırda yazılıp devam dağıtım satırlarında boş bırakılabilir. Aynı BatchCode farklı kafeslerde tekrar ediyorsa adetlerin toplamı tek batch kalemidir. Farklı ürün veya ortalama gram için farklı BatchCode kullanılır.',
   },
   {
     Bolum: 'Açılış Sevkiyat',
@@ -756,7 +756,7 @@ export function OpeningImportPage(): ReactElement {
             {
               key: 'openingGoodsReceipts',
               title: 'Açılış Mal Kabul',
-              body: 'Balığın sisteme başlamadan önce hangi giriş hareketleriyle geldiğini özet belge olarak taşır. Stok kaynağı ve geçmiş giriş izi raporda görünsün istendiğinde doldurulur.',
+              body: 'Balığın sisteme başlamadan önce hangi giriş hareketleriyle geldiğini özet belge olarak taşır. Bir projede tek mal kabul oluşur; başlık ilk satırda yazılır, aynı batch alt satırlarda kafeslere dağıtılır.',
             },
             {
               key: 'openingShipments',
