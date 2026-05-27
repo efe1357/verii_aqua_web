@@ -523,7 +523,7 @@ export function OpeningImportPage(): ReactElement {
 
   if (!canView) {
     return (
-      <div className="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-8 text-sm text-slate-600">
+      <div className="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-8 text-sm text-slate-600 dark:border-cyan-800/30 dark:bg-blue-950/50 dark:text-slate-300">
         {tt('aqua.openingImport.noPermission', 'Bu ekranı görüntüleme yetkiniz yok.')}
       </div>
     );
@@ -659,22 +659,22 @@ export function OpeningImportPage(): ReactElement {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-[28px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(7,89,133,0.06),rgba(16,185,129,0.05),rgba(255,255,255,0.95))] p-6 shadow-sm backdrop-blur">
+      <section className="rounded-[28px] border border-slate-200/70 bg-[linear-gradient(135deg,rgba(7,89,133,0.06),rgba(16,185,129,0.05),rgba(255,255,255,0.95))] p-6 shadow-sm backdrop-blur dark:border-cyan-800/30 dark:bg-[linear-gradient(135deg,rgba(7,89,133,0.28),rgba(16,185,129,0.14),rgba(15,23,42,0.96))]">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-2">
-            <Badge variant="outline" className="border-cyan-300 bg-cyan-50 text-cyan-700">
+            <Badge variant="outline" className="border-cyan-300 bg-cyan-50 text-cyan-700 dark:border-cyan-700 dark:bg-cyan-950/30 dark:text-cyan-300">
               {tt('aqua.openingImport.badge', 'İlk Geçiş')}
             </Badge>
-            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
               {tt('aqua.openingImport.title', 'İlk Geçiş / Data Migration')}
             </h1>
-            <p className="max-w-3xl text-sm leading-6 text-slate-600">
+            <p className="max-w-3xl text-sm leading-6 text-slate-600 dark:text-slate-300">
               {tt(
                 'aqua.openingImport.description',
                 'Eski sistemdeki aktif proje, kafes ve açılış stok durumunu kontrollü şekilde içeri alın. Excel şablonu indirip doldurun, kolonları eşleyin, önizleyin ve hatasız ise tek adımda sisteme aktarın.'
               )}
             </p>
-            <div className="max-w-4xl rounded-2xl border border-cyan-200/70 bg-cyan-50/80 px-4 py-3 text-xs leading-6 text-slate-700">
+            <div className="max-w-4xl rounded-2xl border border-cyan-200/70 bg-cyan-50/80 px-4 py-3 text-xs leading-6 text-slate-700 dark:border-cyan-800/40 dark:bg-cyan-950/20 dark:text-slate-200">
               {tt(
                 'aqua.openingImport.cutoverModeHint',
                 'Eğer sadece bugünkü net stokla başlayacaksan OpeningStock yeterlidir. Geçmiş özet mal kabul, fire, yemleme ve sevkiyat bilgisini de sisteme almak istersen ilgili açılış sheetlerini doldurabilirsin. OpeningStock boşsa sistem net açılış bakiyesini mal kabul ve fire özetlerinden türetir.'
@@ -697,7 +697,7 @@ export function OpeningImportPage(): ReactElement {
       </section>
 
       {hasSoftDeletedReferenceErrors ? (
-        <Card className="border-amber-300 bg-amber-50/80">
+        <Card className="border-amber-300 bg-amber-50/80 dark:border-amber-700/50 dark:bg-amber-950/20">
           <CardHeader>
             <CardTitle>{tt('aqua.openingImport.cleanupSoftDeleted.title', 'Silinmiş test kaydı bulundu')}</CardTitle>
             <CardDescription>
@@ -717,7 +717,7 @@ export function OpeningImportPage(): ReactElement {
       ) : null}
 
       {hasExistingOpeningDataErrors ? (
-        <Card className="border-rose-300 bg-rose-50/80">
+        <Card className="border-rose-300 bg-rose-50/80 dark:border-rose-700/50 dark:bg-rose-950/20">
           <CardHeader>
             <CardTitle>{tt('aqua.openingImport.resetExistingData.title', 'İlk geçişi yeniden kur')}</CardTitle>
             <CardDescription>
@@ -736,7 +736,7 @@ export function OpeningImportPage(): ReactElement {
         </Card>
       ) : null}
 
-      <Card className="border-cyan-200/70 bg-white/90">
+      <Card className="border-cyan-200/70 bg-white/90 dark:border-cyan-800/30 dark:bg-blue-950/50">
         <CardHeader>
           <CardTitle>{tt('aqua.openingImport.guide.title', 'Açılış şablonları ne işe yarar?')}</CardTitle>
           <CardDescription>
@@ -784,11 +784,11 @@ export function OpeningImportPage(): ReactElement {
               body: 'Tüm tarih alanlarında önerilen format 2026-01-31 şeklindedir. 31.01.2026 gibi Türk formatı ve Excel seri tarihleri de desteklenir.',
             },
           ].map((item) => (
-            <div key={item.key} className="rounded-2xl border border-slate-200 bg-slate-50/80 p-4">
-              <p className="text-sm font-semibold text-slate-900">
+            <div key={item.key} className="rounded-2xl border border-slate-200 bg-slate-50/80 p-4 dark:border-cyan-800/30 dark:bg-blue-950/40">
+              <p className="text-sm font-semibold text-slate-900 dark:text-white">
                 {tt(`aqua.openingImport.guide.cards.${item.key}.title`, item.title)}
               </p>
-              <p className="mt-2 text-sm leading-6 text-slate-600">
+              <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
                 {tt(`aqua.openingImport.guide.cards.${item.key}.body`, item.body)}
               </p>
             </div>
@@ -797,7 +797,7 @@ export function OpeningImportPage(): ReactElement {
       </Card>
 
       <div className="grid gap-6 xl:grid-cols-[1.1fr,0.9fr]">
-        <Card className="border-slate-200/70">
+        <Card className="border-slate-200/70 dark:border-cyan-800/30 dark:bg-blue-950/50">
           <CardHeader>
             <CardTitle>{tt('aqua.openingImport.steps.uploadTitle', 'Dosya ve Kaynak Bilgisi')}</CardTitle>
             <CardDescription>{tt('aqua.openingImport.steps.uploadDescription', 'Şablonu indirip doldurduktan sonra Excel dosyasını seçin ve önizleme başlatın.')}</CardDescription>
@@ -805,21 +805,21 @@ export function OpeningImportPage(): ReactElement {
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-[minmax(0,1fr),220px]">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700">{tt('aqua.openingImport.sourceSystem', 'Kaynak Sistem')}</label>
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">{tt('aqua.openingImport.sourceSystem', 'Kaynak Sistem')}</label>
                 <Input value={sourceSystem} onChange={(event) => setSourceSystem(event.target.value)} placeholder="Legacy ERP" />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-700">{tt('aqua.openingImport.file', 'Excel Dosyası')}</label>
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">{tt('aqua.openingImport.file', 'Excel Dosyası')}</label>
                 <Input type="file" accept=".xlsx,.xls" onChange={handleFileChange} />
               </div>
             </div>
 
-            <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50/80 p-4 text-sm text-slate-600">
+            <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50/80 p-4 text-sm text-slate-600 dark:border-cyan-800/30 dark:bg-blue-950/40 dark:text-slate-300">
               {selectedFile ? (
                 <div className="flex items-center gap-2">
-                  <Upload className="h-4 w-4 text-emerald-600" />
-                  <span className="font-medium text-slate-800">{selectedFile.name}</span>
-                  <span className="text-slate-500">({Math.ceil(selectedFile.size / 1024)} KB)</span>
+                  <Upload className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                  <span className="font-medium text-slate-800 dark:text-slate-100">{selectedFile.name}</span>
+                  <span className="text-slate-500 dark:text-slate-400">({Math.ceil(selectedFile.size / 1024)} KB)</span>
                 </div>
               ) : (
                 tt('aqua.openingImport.noFile', 'Henüz dosya seçilmedi.')
@@ -844,24 +844,24 @@ export function OpeningImportPage(): ReactElement {
           </CardContent>
         </Card>
 
-        <Card className="border-slate-200/70">
+        <Card className="border-slate-200/70 dark:border-cyan-800/30 dark:bg-blue-950/50">
           <CardHeader>
             <CardTitle>{tt('aqua.openingImport.summaryTitle', 'İş Özeti')}</CardTitle>
             <CardDescription>{tt('aqua.openingImport.summaryDescription', 'Önizleme sonrası satır bazlı validasyon sonuçları burada görünür.')}</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4 sm:grid-cols-2">
             {[
-              { label: tt('aqua.openingImport.summary.totalRows', 'Toplam Satır'), value: preview?.summary.totalRows ?? 0, icon: FileSpreadsheet, tint: 'text-slate-700' },
-              { label: tt('aqua.openingImport.summary.validRows', 'Geçerli Satır'), value: preview?.summary.validRows ?? 0, icon: CheckCircle2, tint: 'text-emerald-600' },
-              { label: tt('aqua.openingImport.summary.warningRows', 'Uyarılı Satır'), value: preview?.summary.warningRows ?? 0, icon: AlertTriangle, tint: 'text-amber-600' },
-              { label: tt('aqua.openingImport.summary.errorRows', 'Hatalı Satır'), value: preview?.summary.errorRows ?? 0, icon: AlertTriangle, tint: 'text-rose-600' },
+              { label: tt('aqua.openingImport.summary.totalRows', 'Toplam Satır'), value: preview?.summary.totalRows ?? 0, icon: FileSpreadsheet, tint: 'text-slate-700 dark:text-slate-300' },
+              { label: tt('aqua.openingImport.summary.validRows', 'Geçerli Satır'), value: preview?.summary.validRows ?? 0, icon: CheckCircle2, tint: 'text-emerald-600 dark:text-emerald-400' },
+              { label: tt('aqua.openingImport.summary.warningRows', 'Uyarılı Satır'), value: preview?.summary.warningRows ?? 0, icon: AlertTriangle, tint: 'text-amber-600 dark:text-amber-400' },
+              { label: tt('aqua.openingImport.summary.errorRows', 'Hatalı Satır'), value: preview?.summary.errorRows ?? 0, icon: AlertTriangle, tint: 'text-rose-600 dark:text-rose-400' },
             ].map((item) => (
-              <div key={item.label} className="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm">
+              <div key={item.label} className="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-cyan-800/30 dark:bg-blue-950/40">
                 <div className="flex items-center gap-3">
                   <item.icon className={`h-5 w-5 ${item.tint}`} />
                   <div>
-                    <p className="text-xs uppercase tracking-[0.16em] text-slate-500">{item.label}</p>
-                    <p className="mt-1 text-2xl font-semibold text-slate-900">{item.value}</p>
+                    <p className="text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">{item.label}</p>
+                    <p className="mt-1 text-2xl font-semibold text-slate-900 dark:text-white">{item.value}</p>
                   </div>
                 </div>
               </div>
@@ -870,7 +870,7 @@ export function OpeningImportPage(): ReactElement {
         </Card>
       </div>
 
-      <Card className="border-slate-200/70">
+      <Card className="border-slate-200/70 dark:border-cyan-800/30 dark:bg-blue-950/50">
         <CardHeader>
           <CardTitle>{tt('aqua.openingImport.mappingTitle', 'Kolon Eşleme')}</CardTitle>
           <CardDescription>{tt('aqua.openingImport.mappingDescription', 'Excel kolonlarını sistem alanlarına eşleyin. Zorunlu alanlar boş bırakılmamalıdır.')}</CardDescription>
@@ -879,11 +879,11 @@ export function OpeningImportPage(): ReactElement {
           {SHEET_DEFINITIONS.map((definition) => {
             const sheet = parsedSheetMap[definition.sheetName];
             return (
-              <div key={definition.sheetName} className="rounded-2xl border border-slate-200 bg-white/80 p-4">
+              <div key={definition.sheetName} className="rounded-2xl border border-slate-200 bg-white/80 p-4 dark:border-cyan-800/30 dark:bg-blue-950/40">
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <h3 className="text-base font-semibold text-slate-900">{getSheetTitle(t, definition.titleKey)}</h3>
-                    <p className="text-sm text-slate-500">
+                    <h3 className="text-base font-semibold text-slate-900 dark:text-white">{getSheetTitle(t, definition.titleKey)}</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
                       {tt('aqua.openingImport.sheetStats', '{{headers}} kolon, {{rows}} satır', { headers: sheet?.headers.length ?? 0, rows: sheet?.rows.length ?? 0 })}
                     </p>
                   </div>
@@ -901,7 +901,7 @@ export function OpeningImportPage(): ReactElement {
                     <TableBody>
                       {sheet.headers.map((header) => (
                         <TableRow key={`${definition.sheetName}-${header}`}>
-                          <TableCell className="font-medium text-slate-700">{header}</TableCell>
+                          <TableCell className="font-medium text-slate-700 dark:text-slate-200">{header}</TableCell>
                           <TableCell className="w-[260px]">
                             <Select
                               value={sheet.mappings[header] || '__none__'}
@@ -925,7 +925,7 @@ export function OpeningImportPage(): ReactElement {
                     </TableBody>
                   </Table>
                 ) : (
-                  <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-6 text-sm text-slate-500">
+                  <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-6 text-sm text-slate-500 dark:border-cyan-800/30 dark:bg-blue-950/30 dark:text-slate-400">
                     {tt('aqua.openingImport.sheetMissing', 'Bu sheet dosyada bulunamadı ya da boş.')}
                   </div>
                 )}
@@ -936,7 +936,7 @@ export function OpeningImportPage(): ReactElement {
       </Card>
 
       {preview ? (
-        <Card className="border-slate-200/70">
+        <Card className="border-slate-200/70 dark:border-cyan-800/30 dark:bg-blue-950/50">
           <CardHeader>
             <CardTitle>{tt('aqua.openingImport.previewTitle', 'Önizleme Sonuçları')}</CardTitle>
             <CardDescription>{tt('aqua.openingImport.previewDescription', 'İş #{{jobId}} için durum: {{status}}', { jobId: preview.jobId, status: preview.status })}</CardDescription>
@@ -949,7 +949,7 @@ export function OpeningImportPage(): ReactElement {
               return (
                 <div key={`preview-${definition.sheetName}`} className="space-y-3">
                   <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-base font-semibold text-slate-900">{getSheetTitle(t, definition.titleKey)}</h3>
+                    <h3 className="text-base font-semibold text-slate-900 dark:text-white">{getSheetTitle(t, definition.titleKey)}</h3>
                     <Badge variant="outline">{rows.length}</Badge>
                   </div>
                   <Table>
@@ -970,19 +970,19 @@ export function OpeningImportPage(): ReactElement {
                               variant="outline"
                               className={
                                 row.status === 'Valid'
-                                  ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
+                                  ? 'border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-300'
                                   : row.status === 'Applied'
-                                    ? 'border-cyan-300 bg-cyan-50 text-cyan-700'
-                                    : 'border-rose-300 bg-rose-50 text-rose-700'
+                                    ? 'border-cyan-300 bg-cyan-50 text-cyan-700 dark:border-cyan-700 dark:bg-cyan-950/30 dark:text-cyan-300'
+                                    : 'border-rose-300 bg-rose-50 text-rose-700 dark:border-rose-700 dark:bg-rose-950/30 dark:text-rose-300'
                               }
                             >
                               {getPreviewStatusLabel(t, row.status)}
                             </Badge>
                           </TableCell>
-                          <TableCell className="max-w-[360px] whitespace-normal text-sm text-slate-600">
+                          <TableCell className="max-w-[360px] whitespace-normal text-sm text-slate-600 dark:text-slate-300">
                             {row.messages.length ? row.messages.join(' | ') : tt('aqua.openingImport.noIssues', 'Sorun yok')}
                           </TableCell>
-                          <TableCell className="max-w-[360px] whitespace-normal text-xs text-slate-500">
+                          <TableCell className="max-w-[360px] whitespace-normal text-xs text-slate-500 dark:text-slate-400">
                             {Object.entries(row.normalizedData)
                               .filter(([, value]) => value != null && String(value).trim().length > 0)
                               .map(([key, value]) => `${key}: ${value}`)
@@ -1000,7 +1000,7 @@ export function OpeningImportPage(): ReactElement {
       ) : null}
 
       {commitResult ? (
-        <Card className="border-emerald-200 bg-emerald-50/60">
+        <Card className="border-emerald-200 bg-emerald-50/60 dark:border-emerald-700/50 dark:bg-emerald-950/20">
           <CardHeader>
             <CardTitle>{tt('aqua.openingImport.commitResultTitle', 'İçe Aktarım Sonucu')}</CardTitle>
             <CardDescription>{tt('aqua.openingImport.commitResultDescription', 'İlk geçiş başarıyla işlendi. Oluşan kayıt özetini aşağıda görebilirsiniz.')}</CardDescription>
@@ -1025,9 +1025,9 @@ export function OpeningImportPage(): ReactElement {
               ['appliedWarehouseRows', commitResult.appliedWarehouseRows, 'Depoya Yazılan Satır'],
               ['skippedRows', commitResult.skippedRows, 'Atlanan Satır'],
             ].map(([key, value, fallback]) => (
-              <div key={String(key)} className="rounded-2xl border border-emerald-200 bg-white p-4">
-                <div className="text-xs uppercase tracking-[0.14em] text-emerald-700">{tt(`aqua.openingImport.commitSummary.${String(key)}`, String(fallback))}</div>
-                <div className="mt-2 text-2xl font-semibold text-slate-900">{value}</div>
+              <div key={String(key)} className="rounded-2xl border border-emerald-200 bg-white p-4 dark:border-emerald-700/40 dark:bg-blue-950/40">
+                <div className="text-xs uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">{tt(`aqua.openingImport.commitSummary.${String(key)}`, String(fallback))}</div>
+                <div className="mt-2 text-2xl font-semibold text-slate-900 dark:text-white">{value}</div>
               </div>
             ))}
           </CardContent>
