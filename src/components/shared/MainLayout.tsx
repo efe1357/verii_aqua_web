@@ -159,7 +159,7 @@ export function MainLayout({ navItems }: MainLayoutProps): ReactElement {
         <Sidebar items={items} />
       </div>
 
-      <div className="flex flex-1 flex-col h-full overflow-hidden relative z-10">
+      <div className="flex flex-1 flex-col h-full min-w-0 overflow-hidden relative z-10">
         <Navbar />
         <main className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-5 text-foreground scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-800 scrollbar-track-transparent">
           <div className="w-full min-h-full">

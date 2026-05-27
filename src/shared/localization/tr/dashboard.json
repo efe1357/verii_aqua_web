@@ -89,7 +89,8 @@
     "dailyFlowEmptyDescription": "Yemleme, mortalite, transfer, sevkiyat, hava, ağ veya diğer günlük işlemler girildiğinde burada gün gün görünecektir.",
     "activeProjectFilters": {
       "title": "Aktif Proje Filtreleri",
-      "description": "Seçtiğin projeler aşağıdaki kartları ve listeleri filtreler."
+      "description": "Seçtiğin projeler aşağıdaki kartları ve listeleri filtreler.",
+      "cageSortLockedHint": "Kafes sırası açıkken proje filtresi kilitlidir."
     },
     "yesterdayAlert": {
       "title": "Dünün girişleri eksik",
@@ -220,7 +221,8 @@
       "close": "Kapat",
       "detail": "Detay",
       "cageSortToggle": "Kafes sırası",
-      "cageSortToggleHint": "Açıldığında tüm projeleri otomatik seçer. Kafesleri kafes koduna göre tek listede gösterir; birden fazla projede her kafesin üstünde proje kodu ve adı görünür."
+      "cageSortToggleHint": "Açıldığında tüm projeleri otomatik seçer ve kafesleri kafes koduna göre tek listede gösterir. Tekrar basınca kapatır ve proje seçimini temizler.",
+      "cageSortFilterLockedHint": "Kafes sırası açıkken proje filtresi değiştirilemez."
     },
     "cageSortSection": {
       "title": "Kafes koduna göre görünüm",
