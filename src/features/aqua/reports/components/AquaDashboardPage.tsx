@@ -1,4 +1,4 @@
-import { lazy, memo, Suspense, type MouseEvent, type ReactElement, useCallback, useEffect, useId, useMemo, useState } from 'react';
+import { lazy, memo, Suspense, type MouseEvent, type ReactElement, type ReactNode, useCallback, useEffect, useId, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useQuery } from '@tanstack/react-query';
 import { AnimatePresence, LayoutGroup, motion } from 'motion/react';
@@ -29,6 +29,7 @@ import {
   ArrowRight,
   LoaderCircle,
   Boxes,
+  ChevronDown,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -115,6 +116,12 @@ interface CageSizeClasses {
   fcrLabel: string;
 }
 
+const AQUA_DASHBOARD_CAGE_GRID_CLASS =
+  'grid w-full min-w-0 gap-4 sm:gap-6 [grid-template-columns:repeat(auto-fill,minmax(min(100%,17.5rem),1fr))]';
+
+const AQUA_DIALOG_CAGE_GRID_CLASS =
+  'grid w-full min-w-0 gap-3 sm:gap-4 [grid-template-columns:repeat(auto-fill,minmax(min(100%,11.25rem),1fr))]';
+
 const CAGE_SIZE_CLASSES: Record<CageCardSize, CageSizeClasses> = {
   default: {
     outer: 'max-w-[350px] xl:max-w-[370px]',
@@ -177,7 +184,10 @@ interface GlobalCageRow {
   projectId: number;
   projectCode: string;
   projectName: string;
+  isUnassigned?: boolean;
 }
+
+const UNASSIGNED_PROJECT_LABEL = '-';
 
 function cageOrderingKey(cage: DashboardCageSummary): string {
   const code = cage.cageCode?.trim();
@@ -198,7 +208,7 @@ function compareGlobalCageRows(a: GlobalCageRow, b: GlobalCageRow): number {
   return a.cage.projectCageId - b.cage.projectCageId;
 }
 
-function buildGlobalCageRows(projects: DashboardProjectSummary[]): GlobalCageRow[] {
+function buildGlobalCageRows(projects: DashboardProjectSummary[], unassignedCages: DashboardCageSummary[] = []): GlobalCageRow[] {
   const rows: GlobalCageRow[] = [];
   for (const project of projects) {
     for (const cage of project.cages) {
@@ -210,8 +220,41 @@ function buildGlobalCageRows(projects: DashboardProjectSummary[]): GlobalCageRow
       });
     }
   }
+
+  for (const cage of unassignedCages) {
+    rows.push({
+      cage,
+      projectId: 0,
+      projectCode: UNASSIGNED_PROJECT_LABEL,
+      projectName: UNASSIGNED_PROJECT_LABEL,
+      isUnassigned: true,
+    });
+  }
+
   rows.sort(compareGlobalCageRows);
   return rows;
+}
+
+function globalCageRowKey(row: GlobalCageRow): string {
+  return row.isUnassigned ? `unassigned-${Math.abs(row.cage.projectCageId)}` : `${row.projectId}-${row.cage.projectCageId}`;
+}
+
+interface AquaCageScaleShellProps {
+  enabled: boolean;
+  hasBadge: boolean;
+  children: ReactNode;
+}
+
+function AquaCageScaleShell({ enabled, hasBadge, children }: AquaCageScaleShellProps): ReactElement {
+  if (!enabled) {
+    return <>{children}</>;
+  }
+
+  return (
+    <div className={cn('aqua-cage-scale-viewport', hasBadge && 'aqua-cage-scale-viewport--badge')}>
+      <div className="aqua-cage-scale-design">{children}</div>
+    </div>
+  );
 }
 
 interface CageCardProps {
@@ -382,6 +425,7 @@ function CageCardComponent({
   const sz = CAGE_SIZE_CLASSES[size];
   const isPeek = size === 'peek';
   const isDialog = size === 'dialog';
+  const isDefault = size === 'default';
 
   const totalInitial = cage.currentFishCount + cage.totalDeadCount;
   const survivalRate = totalInitial > 0 ? (cage.currentFishCount / totalInitial) * 100 : 100;
@@ -413,13 +457,14 @@ function CageCardComponent({
       onMouseEnter={onHoverEnter}
       onMouseLeave={onHoverLeave}
       className={cn(
-        'relative mx-auto transition-transform duration-300 ease-out group',
-        !isDialog && 'w-full aqua-contain',
-        sz.outer,
+        'relative mx-auto min-w-0 transition-transform duration-300 ease-out group',
+        !isDialog && 'aqua-contain',
+        isDefault ? 'aqua-cage-scale-host w-full' : cn('w-full', sz.outer),
         isSelected && 'scale-[1.02]',
         clickable && (isDialog ? 'cursor-pointer hover:scale-[1.02]' : 'cursor-pointer hover:scale-[1.035]')
       )}
     >
+      <AquaCageScaleShell enabled={isDefault} hasBadge={projectBadge != null}>
       {projectBadge != null ? (
         <div className={cn('relative z-30 flex flex-col items-center', isPeek ? 'mb-1 pt-2' : isDialog ? 'pt-2' : 'pt-3')}>
           {/* Ribbon unit — whole group floats together */}
@@ -429,7 +474,7 @@ function CageCardComponent({
               title={`${projectBadge.projectCode} — ${projectBadge.projectName}`}
               className={cn(
                 'aqua-ribbon-inner inline-flex max-w-full flex-col items-center gap-1 rounded-sm border text-center',
-                isPeek ? 'px-6 py-2.5' : isDialog ? 'max-w-[158px] px-2 py-1' : 'max-w-[min(220px,88vw)] px-4 py-2',
+                isPeek ? 'px-6 py-2.5' : isDialog ? 'max-w-[158px] px-2 py-1' : 'max-w-[220px] px-4 py-2',
                 'border-pink-400/50',
                 'shadow-[0_6px_22px_rgba(236,72,153,0.22),0_2px_8px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.11)]',
               )}
@@ -481,7 +526,13 @@ function CageCardComponent({
           </div>
         </div>
       ) : null}
-      <div className={cn('relative aspect-square w-full', isDialog ? 'overflow-visible' : 'pt-5')}>
+      <div
+        className={cn(
+          'relative pt-5',
+          isDefault ? 'h-[370px] w-[370px] shrink-0' : 'aspect-square w-full',
+          isDialog && 'overflow-visible'
+        )}
+      >
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 320 320" aria-hidden>
           <defs>
             <radialGradient id={waterDepthId} cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
@@ -567,7 +618,6 @@ function CageCardComponent({
               sz.cageLabel
             )}
           >
-            {/* Kafes adı */}
             <div
               className={cn(
                 'flex min-w-0 max-w-full items-center justify-center',
@@ -585,7 +635,6 @@ function CageCardComponent({
                 {cage.cageLabel}
               </span>
             </div>
-            {/* Kafes kodu */}
             {cage.cageCode && (
               <span
                 className={cn(
@@ -597,7 +646,12 @@ function CageCardComponent({
               </span>
             )}
           </div>
-          <div className={cn('pointer-events-none rounded-b-sm shadow-sm', isPeek ? 'h-4 w-[4px] bg-cyan-600/60' : isDialog ? 'h-2.5 w-[2.5px] bg-cyan-500/50' : 'h-3 w-[3px] bg-cyan-500/50')} />
+          <div
+            className={cn(
+              'pointer-events-none rounded-b-sm shadow-sm',
+              isPeek ? 'h-4 w-[4px] bg-cyan-600/60' : isDialog ? 'h-2.5 w-[2.5px] bg-cyan-500/50' : 'h-3 w-[3px] bg-cyan-500/50'
+            )}
+          />
         </div>
 
         <div
@@ -901,6 +955,7 @@ function CageCardComponent({
           </div>
         </div>
       </div>
+      </AquaCageScaleShell>
     </div>
   );
 }
@@ -940,6 +995,7 @@ interface ProjectCageCardProps {
   projectCode: string;
   projectName: string;
   showProjectBadge: boolean;
+  isUnassigned?: boolean;
   t: (key: string, options?: Record<string, unknown>) => string;
   onOpenDaily: (projectId: number, projectCageId: number) => void;
   onQuickEntry: (projectId: number, projectCageId: number) => void;
@@ -952,18 +1008,21 @@ function ProjectCageCardComponent({
   projectCode,
   projectName,
   showProjectBadge,
+  isUnassigned = false,
   t,
   onOpenDaily,
   onQuickEntry,
   onPeekOpen,
 }: ProjectCageCardProps): ReactElement {
   const handleClick = useCallback((): void => {
+    if (isUnassigned) return;
     onOpenDaily(projectId, cage.projectCageId);
-  }, [onOpenDaily, projectId, cage.projectCageId]);
+  }, [isUnassigned, onOpenDaily, projectId, cage.projectCageId]);
 
   const handleQuickEntry = useCallback((): void => {
+    if (isUnassigned) return;
     onQuickEntry(projectId, cage.projectCageId);
-  }, [onQuickEntry, projectId, cage.projectCageId]);
+  }, [isUnassigned, onQuickEntry, projectId, cage.projectCageId]);
 
   const handleExpand = useCallback((): void => {
     onPeekOpen(cage);
@@ -975,16 +1034,16 @@ function ProjectCageCardComponent({
     <motion.div
       layoutId={peekLayoutId(cage.projectCageId)}
       transition={PEEK_SPRING_TRANSITION}
-      className="flex justify-center"
+      className="flex min-w-0 w-full justify-center"
     >
       <CageCard
         cage={cage}
         projectBadge={projectBadge}
-        clickable
+        clickable={!isUnassigned}
         showExpand
         showExpandProgress={false}
-        onClick={handleClick}
-        onQuickEntryClick={handleQuickEntry}
+        onClick={isUnassigned ? undefined : handleClick}
+        onQuickEntryClick={isUnassigned ? undefined : handleQuickEntry}
         onExpandClick={handleExpand}
         t={t}
       />
@@ -1049,17 +1108,18 @@ function GlobalCageSortSectionComponent({
         </div>
       </CardHeader>
 
-      <CardContent className="p-4 sm:p-5 lg:p-6 bg-transparent">
+      <CardContent className="min-w-0 p-4 sm:p-5 lg:p-6 bg-transparent">
         {viewMode === 'card' ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+          <div className={AQUA_DASHBOARD_CAGE_GRID_CLASS}>
             {rows.map((row) => (
               <ProjectCageCard
-                key={`${row.projectId}-${row.cage.projectCageId}`}
+                key={globalCageRowKey(row)}
                 cage={row.cage}
                 projectId={row.projectId}
                 projectCode={row.projectCode}
                 projectName={row.projectName}
                 showProjectBadge={showProjectBadge}
+                isUnassigned={row.isUnassigned}
                 t={t}
                 onOpenDaily={onOpenDaily}
                 onQuickEntry={onQuickEntry}
@@ -1095,12 +1155,18 @@ function GlobalCageSortSectionComponent({
 
                   return (
                     <tr
-                      key={`${row.projectId}-${cage.projectCageId}`}
+                      key={globalCageRowKey(row)}
                       className={cn(
-                        'group cursor-pointer transition-colors hover:bg-slate-50 dark:hover:bg-blue-900/20',
+                        'group transition-colors',
+                        row.isUnassigned
+                          ? 'cursor-default'
+                          : 'cursor-pointer hover:bg-slate-50 dark:hover:bg-blue-900/20',
                         isCritical && 'bg-rose-50/40 dark:bg-rose-500/4'
                       )}
-                      onClick={() => onOpenDaily(row.projectId, cage.projectCageId)}
+                      onClick={() => {
+                        if (row.isUnassigned) return;
+                        onOpenDaily(row.projectId, cage.projectCageId);
+                      }}
                     >
                       <td className="px-5 py-3 font-extrabold text-slate-900 dark:text-white" title={cage.cageLabel}>
                         <div className="flex items-center gap-2">
@@ -1172,13 +1238,15 @@ function GlobalCageSortSectionComponent({
                       </td>
 
                       <td className="px-5 py-3 text-right">
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="h-8 rounded-xl px-4 text-xs font-black text-cyan-600 opacity-0 transition-all hover:bg-cyan-50 group-hover:opacity-100 dark:text-cyan-400 dark:hover:bg-cyan-900/50"
-                        >
-                          {t('aquaDashboard.listTable.dailyFlowButton', { ns: 'dashboard' })}
-                        </Button>
+                        {!row.isUnassigned ? (
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="h-8 rounded-xl px-4 text-xs font-black text-cyan-600 opacity-0 transition-all hover:bg-cyan-50 group-hover:opacity-100 dark:text-cyan-400 dark:hover:bg-cyan-900/50"
+                          >
+                            {t('aquaDashboard.listTable.dailyFlowButton', { ns: 'dashboard' })}
+                          </Button>
+                        ) : null}
                       </td>
                     </tr>
                   );
@@ -1475,6 +1543,9 @@ export function AquaDashboardPage(): ReactElement {
   const [draftProjectIds, setDraftProjectIds] = useState<number[]>([]);
   const [peekCage, setPeekCage] = useState<DashboardCageSummary | null>(null);
   const [isApplyingProjectSelection, setIsApplyingProjectSelection] = useState(false);
+  const [isActiveProjectFiltersExpanded, setIsActiveProjectFiltersExpanded] = useState(true);
+
+  const isCageSortMode = cageGroupingMode === 'byCage';
 
   const safeActiveDashboardProjectIds = Array.isArray(activeDashboardProjectIds) ? activeDashboardProjectIds : [];
   const safeDraftProjectIds = Array.isArray(draftProjectIds) ? draftProjectIds : [];
@@ -1580,9 +1651,19 @@ export function AquaDashboardPage(): ReactElement {
     }));
   }, [selectedProjectsSummaryQuery.data, cageCodeMapQuery.data]);
 
-  const globalCageRows = useMemo(() => buildGlobalCageRows(activeProjects), [activeProjects]);
+  const unassignedCagesQuery = useQuery<DashboardCageSummary[]>({
+    queryKey: ['aqua-dashboard-unassigned-cages'],
+    queryFn: aquaDashboardApi.getUnassignedCageSummaries,
+    enabled: cageGroupingMode === 'byCage',
+    staleTime: 5 * 60_000,
+  });
 
-  const showFloatingProjectOnCages = cageGroupingMode === 'byCage' && activeProjects.length > 1;
+  const globalCageRows = useMemo(
+    () => buildGlobalCageRows(activeProjects, unassignedCagesQuery.data ?? []),
+    [activeProjects, unassignedCagesQuery.data]
+  );
+
+  const showFloatingProjectOnCages = cageGroupingMode === 'byCage';
 
   useEffect(() => {
     if (!isApplyingProjectSelection) return;
@@ -1693,10 +1774,11 @@ export function AquaDashboardPage(): ReactElement {
   }, []);
 
   const openProjectSelector = useCallback((): void => {
+    if (isCageSortMode) return;
     setDraftProjectIds(safeActiveDashboardProjectIds);
     setProjectSearch('');
     setIsProjectSelectorOpen(true);
-  }, [safeActiveDashboardProjectIds]);
+  }, [isCageSortMode, safeActiveDashboardProjectIds]);
 
   const closeProjectSelector = useCallback((open: boolean): void => {
     setIsProjectSelectorOpen(open);
@@ -1721,17 +1803,19 @@ export function AquaDashboardPage(): ReactElement {
   }, [safeDraftProjectIds]);
 
   const removeSelectedProject = useCallback((projectId: number): void => {
+    if (isCageSortMode) return;
     setActiveDashboardProjectIds((prev) => {
       const safePrev = Array.isArray(prev) ? prev : [];
       return safePrev.filter((id) => id !== projectId);
     });
-  }, []);
+  }, [isCageSortMode]);
 
   const toggleCageGroupingMode = useCallback((): void => {
     if (cageGroupingMode === 'byProject') {
       setActiveDashboardProjectIds(projectOptions.map((p) => p.projectId));
       setCageGroupingMode('byCage');
     } else {
+      setActiveDashboardProjectIds([]);
       setCageGroupingMode('byProject');
     }
   }, [cageGroupingMode, projectOptions]);
@@ -1766,7 +1850,7 @@ export function AquaDashboardPage(): ReactElement {
 
   return (
     <LayoutGroup>
-      <div className={cn('relative space-y-6 sm:space-y-8 pb-10 animate-in fade-in duration-500', perfLiteClass)}>
+      <div className={cn('relative min-w-0 space-y-6 sm:space-y-8 pb-10 animate-in fade-in duration-500', perfLiteClass)}>
       {isApplyingProjectSelection && (
         <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex justify-center px-4">
           <div className="inline-flex items-center gap-3 rounded-full border border-cyan-400/25 bg-slate-950/90 px-4 py-2 text-sm font-bold text-cyan-100 shadow-[0_12px_40px_rgba(6,182,212,0.22)] backdrop-blur-sm">
@@ -1853,7 +1937,9 @@ export function AquaDashboardPage(): ReactElement {
               type="button"
               variant="outline"
               onClick={openProjectSelector}
-              className="h-11 rounded-2xl px-4 sm:px-5 bg-white/90 dark:bg-blue-950/70 backdrop-blur-sm border-slate-200 dark:border-cyan-800/50 shadow-sm transition-shadow hover:shadow-lg dark:hover:border-cyan-600 w-full sm:w-auto justify-center"
+              disabled={isCageSortMode}
+              title={isCageSortMode ? t('aquaDashboard.controls.cageSortFilterLockedHint', { ns: 'dashboard' }) : undefined}
+              className="h-11 rounded-2xl px-4 sm:px-5 bg-white/90 dark:bg-blue-950/70 backdrop-blur-sm border-slate-200 dark:border-cyan-800/50 shadow-sm transition-shadow hover:shadow-lg dark:hover:border-cyan-600 w-full sm:w-auto justify-center disabled:pointer-events-none disabled:opacity-50"
             >
               <Filter className="size-4 mr-2 shrink-0" />
               <span className="truncate">{t('aquaDashboard.projectSelector.openButton', { ns: 'dashboard' })}</span>
@@ -1864,85 +1950,132 @@ export function AquaDashboardPage(): ReactElement {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-slate-200 bg-white/92 p-4 shadow-sm ring-1 ring-slate-900/[0.04] backdrop-blur-sm dark:border-cyan-800/45 dark:bg-blue-950/55 dark:shadow-[0_8px_30px_rgba(0,0,0,0.28)] dark:ring-cyan-500/[0.06] sm:p-5">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="min-w-0">
-              <div className="mb-2 flex items-center gap-2">
-                <div className="shrink-0 rounded-xl border border-pink-400/40 bg-pink-500/12 p-2 text-pink-600 dark:border-pink-400/35 dark:bg-pink-500/15 dark:text-pink-300">
-                  <Sparkles className="size-4" />
-                </div>
-                <p className="text-sm font-black tracking-tight text-slate-900 dark:text-white">
-                  {t('aquaDashboard.activeProjectFilters.title', { ns: 'dashboard' })}
-                </p>
+        <div className="rounded-3xl border border-slate-200 bg-white/92 shadow-sm ring-1 ring-slate-900/[0.04] backdrop-blur-sm dark:border-cyan-800/45 dark:bg-blue-950/55 dark:shadow-[0_8px_30px_rgba(0,0,0,0.28)] dark:ring-cyan-500/[0.06]">
+          <button
+            type="button"
+            onClick={() => setIsActiveProjectFiltersExpanded((prev) => !prev)}
+            className="flex w-full items-center gap-3 rounded-3xl p-4 text-left transition-colors hover:bg-slate-50/80 dark:hover:bg-cyan-950/20 sm:p-5"
+            aria-expanded={isActiveProjectFiltersExpanded}
+          >
+            <div className="flex min-w-0 flex-1 items-center gap-2">
+              <div className="shrink-0 rounded-xl border border-pink-400/40 bg-pink-500/12 p-2 text-pink-600 dark:border-pink-400/35 dark:bg-pink-500/15 dark:text-pink-300">
+                <Sparkles className="size-4" />
               </div>
-              <p className="text-xs font-medium leading-relaxed text-slate-600 dark:text-slate-400">
-                {t('aquaDashboard.activeProjectFilters.description', { ns: 'dashboard' })}
+              <p className="text-sm font-black tracking-tight text-slate-900 dark:text-white">
+                {t('aquaDashboard.activeProjectFilters.title', { ns: 'dashboard' })}
               </p>
+              {!isActiveProjectFiltersExpanded ? (
+                <span className="inline-flex h-6 min-w-6 shrink-0 items-center justify-center rounded-full bg-pink-500/10 px-2 text-[11px] font-black text-pink-600 dark:bg-pink-500/15 dark:text-pink-300">
+                  {safeActiveDashboardProjectIds.length}
+                </span>
+              ) : null}
             </div>
+            <ChevronDown
+              className={cn(
+                'size-5 shrink-0 text-slate-400 transition-transform duration-200 dark:text-cyan-400/80',
+                isActiveProjectFiltersExpanded && 'rotate-180'
+              )}
+            />
+          </button>
 
-            <div className="flex shrink-0 flex-wrap items-center gap-2">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setActiveDashboardProjectIds(projectOptions.map((summary) => summary.projectId))}
-                className="h-9 rounded-xl border-cyan-200 bg-cyan-50/90 px-3 text-[11px] font-black text-cyan-700 shadow-sm hover:bg-cyan-100 dark:border-cyan-700/50 dark:bg-cyan-950/50 dark:text-cyan-200 dark:hover:bg-cyan-900/40"
-              >
-                {t('aquaDashboard.controls.selectAll', { ns: 'dashboard' })}
-              </Button>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setActiveDashboardProjectIds([])}
-                className="h-9 rounded-xl border-rose-200 bg-rose-50/90 px-3 text-[11px] font-black text-rose-700 shadow-sm hover:bg-rose-100 dark:border-rose-800/50 dark:bg-rose-950/40 dark:text-rose-200 dark:hover:bg-rose-900/35"
-              >
-                {t('aquaDashboard.controls.clear', { ns: 'dashboard' })}
-              </Button>
-            </div>
-          </div>
+          {isActiveProjectFiltersExpanded ? (
+            <div className="border-t border-slate-100 px-4 pb-4 pt-3 dark:border-cyan-900/35 sm:px-5 sm:pb-5">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <p className="text-xs font-medium leading-relaxed text-slate-600 dark:text-slate-400">
+                  {t('aquaDashboard.activeProjectFilters.description', { ns: 'dashboard' })}
+                  {isCageSortMode ? (
+                    <span className="mt-1 block font-semibold text-cyan-700 dark:text-cyan-300">
+                      {t('aquaDashboard.activeProjectFilters.cageSortLockedHint', { ns: 'dashboard' })}
+                    </span>
+                  ) : null}
+                </p>
 
-          <div className="mt-3 rounded-2xl border border-slate-100 bg-slate-50/60 p-2.5 sm:p-3 dark:border-cyan-900/35 dark:bg-black/20">
-            {selectedProjectSummaries.length > 0 ? (
-              <ul
-                className={cn(
-                  'grid w-full gap-2',
-                  'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 min-[1600px]:grid-cols-10'
-                )}
-              >
-                {selectedProjectSummaries.map((project) => (
-                  <li key={project.projectId} className="min-w-0">
-                    <button
-                      type="button"
-                      onClick={() => removeSelectedProject(project.projectId)}
-                      title={`${project.projectCode} — ${project.projectName}`}
-                      className={cn(
-                        'flex h-9 w-full min-w-0 items-center gap-1.5 overflow-hidden rounded-full border px-2 text-left shadow-sm transition-all',
-                        'border-cyan-200/70 bg-linear-to-r from-sky-100/70 via-cyan-50/85 to-blue-100/65 text-slate-800',
-                        'dark:border-cyan-700/45 dark:bg-linear-to-r dark:from-cyan-950/55 dark:via-slate-900 dark:to-blue-950/50 dark:text-slate-100',
-                        'hover:border-cyan-400 hover:from-sky-100 hover:via-cyan-100/90 hover:to-sky-100/80 hover:shadow-md hover:ring-2 hover:ring-cyan-400/30',
-                        'dark:hover:border-cyan-500/55 dark:hover:from-cyan-900/40 dark:hover:via-cyan-950/50 dark:hover:to-blue-950/60 dark:hover:ring-cyan-400/25'
-                      )}
-                    >
-                      <span className="size-1.5 shrink-0 rounded-full bg-cyan-500 shadow-[0_0_0_2px_rgba(6,182,212,0.2)] dark:bg-cyan-400 dark:shadow-[0_0_0_2px_rgba(34,211,238,0.15)]" aria-hidden />
-                      <span className="shrink-0 text-[10px] font-black uppercase tracking-wide text-pink-600 dark:text-pink-300">
-                        {project.projectCode}
-                      </span>
-                      <span className="min-w-0 flex-1 truncate text-[11px] font-semibold leading-none text-slate-700 dark:text-slate-200">
-                        {project.projectName}
-                      </span>
-                      <span className="flex size-5 shrink-0 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-rose-500/15 hover:text-rose-600 dark:text-slate-400 dark:hover:bg-rose-500/20 dark:hover:text-rose-300">
-                        <X className="size-3" strokeWidth={2.5} />
-                      </span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <div className="flex items-center gap-2 rounded-xl border border-dashed border-slate-200 bg-white/70 px-3 py-2.5 text-xs font-semibold text-slate-600 dark:border-cyan-800/40 dark:bg-slate-900/30 dark:text-slate-400">
-                <Info className="size-4 shrink-0 text-slate-400 dark:text-cyan-500/70" />
-                {t('aquaDashboard.selectProjectHint', { ns: 'dashboard' })}
+                <div className="flex shrink-0 flex-wrap items-center gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={isCageSortMode}
+                    onClick={() => setActiveDashboardProjectIds(projectOptions.map((summary) => summary.projectId))}
+                    className="h-9 rounded-xl border-cyan-200 bg-cyan-50/90 px-3 text-[11px] font-black text-cyan-700 shadow-sm hover:bg-cyan-100 disabled:pointer-events-none disabled:opacity-50 dark:border-cyan-700/50 dark:bg-cyan-950/50 dark:text-cyan-200 dark:hover:bg-cyan-900/40"
+                  >
+                    {t('aquaDashboard.controls.selectAll', { ns: 'dashboard' })}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={isCageSortMode}
+                    onClick={() => setActiveDashboardProjectIds([])}
+                    className="h-9 rounded-xl border-rose-200 bg-rose-50/90 px-3 text-[11px] font-black text-rose-700 shadow-sm hover:bg-rose-100 disabled:pointer-events-none disabled:opacity-50 dark:border-rose-800/50 dark:bg-rose-950/40 dark:text-rose-200 dark:hover:bg-rose-900/35"
+                  >
+                    {t('aquaDashboard.controls.clear', { ns: 'dashboard' })}
+                  </Button>
+                </div>
               </div>
-            )}
-          </div>
+
+              <div className="mt-3 rounded-2xl border border-slate-100 bg-slate-50/60 p-2.5 sm:p-3 dark:border-cyan-900/35 dark:bg-black/20">
+                {selectedProjectSummaries.length > 0 ? (
+                  <ul
+                    className={cn(
+                      'grid w-full gap-2',
+                      'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 min-[1600px]:grid-cols-10'
+                    )}
+                  >
+                    {selectedProjectSummaries.map((project) => (
+                      <li key={project.projectId} className="min-w-0">
+                        {isCageSortMode ? (
+                          <div
+                            title={`${project.projectCode} — ${project.projectName}`}
+                            className={cn(
+                              'flex h-9 w-full min-w-0 items-center gap-1.5 overflow-hidden rounded-full border px-2 text-left shadow-sm',
+                              'border-cyan-200/70 bg-linear-to-r from-sky-100/70 via-cyan-50/85 to-blue-100/65 text-slate-800',
+                              'dark:border-cyan-700/45 dark:bg-linear-to-r dark:from-cyan-950/55 dark:via-slate-900 dark:to-blue-950/50 dark:text-slate-100'
+                            )}
+                          >
+                            <span className="size-1.5 shrink-0 rounded-full bg-cyan-500 shadow-[0_0_0_2px_rgba(6,182,212,0.2)] dark:bg-cyan-400 dark:shadow-[0_0_0_2px_rgba(34,211,238,0.15)]" aria-hidden />
+                            <span className="shrink-0 text-[10px] font-black uppercase tracking-wide text-pink-600 dark:text-pink-300">
+                              {project.projectCode}
+                            </span>
+                            <span className="min-w-0 flex-1 truncate text-[11px] font-semibold leading-none text-slate-700 dark:text-slate-200">
+                              {project.projectName}
+                            </span>
+                          </div>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => removeSelectedProject(project.projectId)}
+                            title={`${project.projectCode} — ${project.projectName}`}
+                            className={cn(
+                              'flex h-9 w-full min-w-0 items-center gap-1.5 overflow-hidden rounded-full border px-2 text-left shadow-sm transition-all',
+                              'border-cyan-200/70 bg-linear-to-r from-sky-100/70 via-cyan-50/85 to-blue-100/65 text-slate-800',
+                              'dark:border-cyan-700/45 dark:bg-linear-to-r dark:from-cyan-950/55 dark:via-slate-900 dark:to-blue-950/50 dark:text-slate-100',
+                              'hover:border-cyan-400 hover:from-sky-100 hover:via-cyan-100/90 hover:to-sky-100/80 hover:shadow-md hover:ring-2 hover:ring-cyan-400/30',
+                              'dark:hover:border-cyan-500/55 dark:hover:from-cyan-900/40 dark:hover:via-cyan-950/50 dark:hover:to-blue-950/60 dark:hover:ring-cyan-400/25'
+                            )}
+                          >
+                            <span className="size-1.5 shrink-0 rounded-full bg-cyan-500 shadow-[0_0_0_2px_rgba(6,182,212,0.2)] dark:bg-cyan-400 dark:shadow-[0_0_0_2px_rgba(34,211,238,0.15)]" aria-hidden />
+                            <span className="shrink-0 text-[10px] font-black uppercase tracking-wide text-pink-600 dark:text-pink-300">
+                              {project.projectCode}
+                            </span>
+                            <span className="min-w-0 flex-1 truncate text-[11px] font-semibold leading-none text-slate-700 dark:text-slate-200">
+                              {project.projectName}
+                            </span>
+                            <span className="flex size-5 shrink-0 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-rose-500/15 hover:text-rose-600 dark:text-slate-400 dark:hover:bg-rose-500/20 dark:hover:text-rose-300">
+                              <X className="size-3" strokeWidth={2.5} />
+                            </span>
+                          </button>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="flex items-center gap-2 rounded-xl border border-dashed border-slate-200 bg-white/70 px-3 py-2.5 text-xs font-semibold text-slate-600 dark:border-cyan-800/40 dark:bg-slate-900/30 dark:text-slate-400">
+                    <Info className="size-4 shrink-0 text-slate-400 dark:text-cyan-500/70" />
+                    {t('aquaDashboard.selectProjectHint', { ns: 'dashboard' })}
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -2138,9 +2271,9 @@ export function AquaDashboardPage(): ReactElement {
                 </div>
               </CardHeader>
 
-              <CardContent className="p-4 sm:p-5 lg:p-6 bg-transparent">
+              <CardContent className="min-w-0 p-4 sm:p-5 lg:p-6 bg-transparent">
                 {viewMode === 'card' ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                  <div className={AQUA_DASHBOARD_CAGE_GRID_CLASS}>
                     {project.cages.map((cage) => (
                       <ProjectCageCard
                         key={cage.projectCageId}
@@ -2569,7 +2702,7 @@ export function AquaDashboardPage(): ReactElement {
               </div>
 
               {detailQuery.isLoading ? (
-                <div className="grid w-full min-w-0 grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+                <div className={AQUA_DIALOG_CAGE_GRID_CLASS}>
                   {Array.from({ length: 8 }, (_, i) => (
                     <div
                       key={i}
@@ -2579,7 +2712,7 @@ export function AquaDashboardPage(): ReactElement {
                 </div>
               ) : detailCages.length > 0 ? (
                 <div className="w-full min-w-0">
-                  <div className="grid w-full min-w-0 grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+                  <div className={AQUA_DIALOG_CAGE_GRID_CLASS}>
                     {detailCages.map((cage) => (
                       <DetailCageCard
                         key={cage.projectCageId}

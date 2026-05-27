@@ -378,6 +378,39 @@ input:-webkit-autofill:active {
     contain: layout;
   }
 
+  /*
+   * Kafes kartı — sabit 370px tasarım; sütun genişliğine göre bütün olarak scale edilir.
+   * Mobilde, tablette, sidebar açıkken veya zoom'da içerik orantılı küçülür; layout bozulmaz.
+   */
+  .aqua-cage-scale-host {
+    container-type: inline-size;
+    container-name: aqua-scale;
+    width: 100%;
+    max-width: 370px;
+    margin-inline: auto;
+  }
+
+  .aqua-cage-scale-viewport {
+    --aqua-design-w: 370;
+    --aqua-design-h: 370;
+    position: relative;
+    height: calc(var(--aqua-design-h) * 1px * min(1, 100cqw / calc(var(--aqua-design-w) * 1px)));
+    overflow: visible;
+  }
+
+  .aqua-cage-scale-viewport--badge {
+    --aqua-design-h: 458;
+  }
+
+  .aqua-cage-scale-design {
+    width: calc(var(--aqua-design-w) * 1px);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(min(1, 100cqw / calc(var(--aqua-design-w) * 1px)));
+    transform-origin: top center;
+  }
+
   /* Dashboard: pause rotating caustics on non-hovered cards (fine pointer only) */
   @media (hover: hover) {
     .group.aqua-contain:not(:hover) .aqua-caustic,

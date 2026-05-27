@@ -112,12 +112,91 @@ const MAX_PAGE_GUARD = 100;
 interface ProjectCageRaw {
   id?: number;
   Id?: number;
+  projectId?: number;
+  ProjectId?: number;
+  cageId?: number;
+  CageId?: number;
   cageCode?: string;
   CageCode?: string;
+  assignedDate?: string | null;
+  AssignedDate?: string | null;
+  releasedDate?: string | null;
+  ReleasedDate?: string | null;
 }
 
-async function getAllProjectCages(): Promise<ProjectCageRaw[]> {
-  const result: ProjectCageRaw[] = [];
+interface CageMasterRaw {
+  id?: number;
+  Id?: number;
+  cageCode?: string;
+  CageCode?: string;
+  cageName?: string;
+  CageName?: string;
+}
+
+function readNumberField(item: ProjectCageRaw | CageMasterRaw, camel: string, pascal: string): number | null {
+  const raw = item[camel as keyof typeof item] ?? item[pascal as keyof typeof item];
+  if (raw == null) return null;
+  const value = Number(raw);
+  return Number.isFinite(value) ? value : null;
+}
+
+function readStringField(item: ProjectCageRaw | CageMasterRaw, camel: string, pascal: string): string | null {
+  const raw = item[camel as keyof typeof item] ?? item[pascal as keyof typeof item];
+  if (raw == null) return null;
+  const value = String(raw).trim();
+  return value.length > 0 ? value : null;
+}
+
+function normalizeDateOnly(value?: string | null): string | null {
+  if (!value) return null;
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+  return trimmed.length >= 10 ? trimmed.slice(0, 10) : trimmed;
+}
+
+function isActiveProjectCage(releasedDate?: string | null): boolean {
+  if (!releasedDate) return true;
+  const parsed = new Date(releasedDate);
+  if (Number.isNaN(parsed.getTime())) return true;
+  return parsed.getUTCFullYear() <= 1901;
+}
+
+function isEffectivelyActiveProjectCage(releasedDate?: string | null, assignedDate?: string | null): boolean {
+  if (isActiveProjectCage(releasedDate)) return true;
+  const releasedDay = normalizeDateOnly(releasedDate);
+  const assignedDay = normalizeDateOnly(assignedDate);
+  return releasedDay != null && assignedDay != null && releasedDay === assignedDay;
+}
+
+function buildMasterCageLabel(cage: CageMasterRaw): string {
+  const code = readStringField(cage, 'cageCode', 'CageCode');
+  const name = readStringField(cage, 'cageName', 'CageName');
+  if (code && name) return `${code} - ${name}`;
+  return name ?? code ?? '-';
+}
+
+function createEmptyCageSummary(masterCageId: number, cage: CageMasterRaw): DashboardCageSummary {
+  const cageCode = readStringField(cage, 'cageCode', 'CageCode') ?? undefined;
+  return {
+    projectCageId: -masterCageId,
+    cageLabel: buildMasterCageLabel(cage),
+    cageCode,
+    measurementAverageGram: 0,
+    initialFishCount: 0,
+    initialBiomassGram: 0,
+    currentFishCount: 0,
+    totalShipmentCount: 0,
+    totalShipmentBiomassGram: 0,
+    totalDeadCount: 0,
+    totalDeadBiomassGram: 0,
+    totalFeedGram: 0,
+    currentBiomassGram: 0,
+    fcr: null,
+  };
+}
+
+async function getAllAquaPaged<T>(endpoint: string): Promise<T[]> {
+  const result: T[] = [];
   let pageNumber = 1;
 
   while (pageNumber <= MAX_PAGE_GUARD) {
@@ -128,7 +207,7 @@ async function getAllProjectCages(): Promise<ProjectCageRaw[]> {
       sortDirection: 'asc',
     });
 
-    const response = await api.get<ApiResponse<PagedResultRaw<ProjectCageRaw>>>(`/api/aqua/ProjectCage?${query.toString()}`);
+    const response = await api.get<ApiResponse<PagedResultRaw<T>>>(`/api/aqua/${endpoint}?${query.toString()}`);
     const raw = ensureSuccess(response, i18n.t('errors.listLoadFailed', { ns: 'dashboard' }));
     const pageItems = extractPagedItems(raw);
     const totalCount = extractTotalCount(raw, result.length + pageItems.length);
@@ -142,6 +221,39 @@ async function getAllProjectCages(): Promise<ProjectCageRaw[]> {
   }
 
   return result;
+}
+
+async function getAllProjectCages(): Promise<ProjectCageRaw[]> {
+  return getAllAquaPaged<ProjectCageRaw>('ProjectCage');
+}
+
+async function getAllMasterCages(): Promise<CageMasterRaw[]> {
+  return getAllAquaPaged<CageMasterRaw>('Cage');
+}
+
+async function getUnassignedCageSummaries(): Promise<DashboardCageSummary[]> {
+  const [masterCages, projectCages] = await Promise.all([getAllMasterCages(), getAllProjectCages()]);
+
+  const assignedMasterCageIds = new Set<number>();
+  for (const assignment of projectCages) {
+    const cageId = readNumberField(assignment, 'cageId', 'CageId');
+    if (cageId == null || cageId <= 0) continue;
+
+    const releasedDate = readStringField(assignment, 'releasedDate', 'ReleasedDate');
+    const assignedDate = readStringField(assignment, 'assignedDate', 'AssignedDate');
+    if (isEffectivelyActiveProjectCage(releasedDate, assignedDate)) {
+      assignedMasterCageIds.add(cageId);
+    }
+  }
+
+  return masterCages
+    .map((cage) => {
+      const id = readNumberField(cage, 'id', 'Id');
+      if (id == null || id <= 0) return null;
+      if (assignedMasterCageIds.has(id)) return null;
+      return createEmptyCageSummary(id, cage);
+    })
+    .filter((cage): cage is DashboardCageSummary => cage != null);
 }
 
 async function buildProjectCageCodeMap(): Promise<Map<number, string>> {
@@ -204,6 +316,8 @@ export const aquaDashboardApi = {
   getProjects: async (): Promise<ProjectDto[]> => getAllProjects(),
 
   getCageCodeMap: async (): Promise<Map<number, string>> => buildProjectCageCodeMap(),
+
+  getUnassignedCageSummaries: async (): Promise<DashboardCageSummary[]> => getUnassignedCageSummaries(),
 
   getProjectSummaries: async (projectIds: number[]): Promise<DashboardProjectsResponseDto> => {
     const uniqueProjectIds = Array.from(new Set(projectIds)).filter((id) => Number.isFinite(id));

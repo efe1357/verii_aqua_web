@@ -89,7 +89,8 @@
     "dailyFlowEmptyDescription": "Once feeding, mortality, transfer, shipment, weather, net or other daily operations are entered, they will appear here day by day.",
     "activeProjectFilters": {
       "title": "Active Project Filters",
-      "description": "The projects you select filter the cards and lists below."
+      "description": "The projects you select filter the cards and lists below.",
+      "cageSortLockedHint": "Project filters are locked while cage sort mode is on."
     },
     "yesterdayAlert": {
       "title": "Yesterday's entries are missing",
@@ -220,7 +221,8 @@
       "close": "Close",
       "detail": "Detail",
       "cageSortToggle": "Cage order",
-      "cageSortToggleHint": "When turned on, selects all projects automatically. Shows every cage in one list sorted by cage code; with multiple projects, each cage shows its project code and name above the card."
+      "cageSortToggleHint": "Turns on cage sort, selects all projects, and lists cages by code. Press again to turn off and clear the project selection.",
+      "cageSortFilterLockedHint": "Project filters cannot be changed while cage sort mode is on."
     },
     "cageSortSection": {
       "title": "Sorted by cage code",
