@@ -36,6 +36,7 @@ export function UserManagementPage(): ReactElement {
     lastName: data.lastName || undefined,
     phoneNumber: data.phoneNumber || undefined,
     roleId: data.roleId,
+    managerUserId: data.managerUserId ?? null,
     isActive: data.isActive,
     permissionGroupIds: data.permissionGroupIds,
   });
@@ -46,6 +47,7 @@ export function UserManagementPage(): ReactElement {
     lastName: data.lastName || undefined,
     phoneNumber: data.phoneNumber || undefined,
     roleId: data.roleId || undefined,
+    managerUserId: data.managerUserId ?? null,
     isActive: data.isActive,
     permissionGroupIds: data.permissionGroupIds,
   });

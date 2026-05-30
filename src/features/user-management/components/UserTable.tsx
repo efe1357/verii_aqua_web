@@ -66,9 +66,21 @@ export function UserTable({
               </TableHead>
               <TableHead
                 className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400 py-4 cursor-pointer"
+                onClick={() => toggleSort('FullName')}
+              >
+                {t('table.fullName', { ns: 'user-management' })}
+              </TableHead>
+              <TableHead
+                className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400 py-4 cursor-pointer"
                 onClick={() => toggleSort('Email')}
               >
                 {t('table.email', { ns: 'user-management' })}
+              </TableHead>
+              <TableHead
+                className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400 py-4 cursor-pointer"
+                onClick={() => toggleSort('ManagerFullName')}
+              >
+                {t('table.manager', { ns: 'user-management' })}
               </TableHead>
               <TableHead
                 className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-400 py-4 cursor-pointer"
@@ -85,13 +97,13 @@ export function UserTable({
           <TableBody>
             {isLoading ? (
               <TableRow>
-                <TableCell colSpan={6} className="py-10 text-center text-sm text-slate-500 dark:text-slate-400">
+                <TableCell colSpan={8} className="py-10 text-center text-sm text-slate-500 dark:text-slate-400">
                   {t('common.loading')}
                 </TableCell>
               </TableRow>
             ) : users.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="py-10 text-center text-sm text-slate-500 dark:text-slate-400">
+                <TableCell colSpan={8} className="py-10 text-center text-sm text-slate-500 dark:text-slate-400">
                   {t('common.noData')}
                 </TableCell>
               </TableRow>
@@ -99,12 +111,14 @@ export function UserTable({
               <TableRow key={user.id} className="border-b border-slate-100 dark:border-cyan-800/20 hover:bg-slate-50 dark:hover:bg-blue-900/10 transition-colors">
                 <TableCell className="font-mono text-xs text-slate-400 dark:text-slate-500 pl-6">#{user.id}</TableCell>
                 <TableCell className="font-semibold text-sm text-slate-900 dark:text-slate-200">{user.username}</TableCell>
+                <TableCell className="text-sm text-slate-600 dark:text-slate-400">{user.fullName || '-'}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400">
                     <Mail className="size-3 text-cyan-500 dark:text-cyan-400" />
                     <span className="text-sm">{user.email}</span>
                   </div>
                 </TableCell>
+                <TableCell className="text-sm text-slate-600 dark:text-slate-400">{user.managerFullName || '-'}</TableCell>
                 <TableCell>
                   <Badge variant="outline" className="bg-slate-100 dark:bg-blue-900/30 border-0 text-slate-700 dark:text-slate-300 font-bold text-[10px] rounded-md px-2 py-0.5">
                     {user.role || '-'}

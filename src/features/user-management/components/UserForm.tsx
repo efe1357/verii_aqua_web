@@ -8,10 +8,11 @@ import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Switch } from '@/components/ui/switch';
 import { Combobox } from '@/components/ui/combobox';
-import { Loader2, User, Mail, Lock, Shield, Power } from 'lucide-react';
+import { Loader2, User, Mail, Lock, Shield, Power, Users } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { userFormSchema, userUpdateFormSchema } from '../types/user-types';
 import { useUserAuthorityOptionsQuery } from '../hooks/useUserAuthorityOptionsQuery';
+import { useUserManagerOptionsQuery } from '../hooks/useUserManagerOptionsQuery';
 import { useUserPermissionGroupsForForm } from '../hooks/useUserPermissionGroupsForForm';
 import { UserFormPermissionGroupSelect } from './UserFormPermissionGroupSelect';
 import { usePermissionGroupOptionsQuery } from '../hooks/usePermissionGroupOptionsQuery';
@@ -25,6 +26,7 @@ export interface UserFormValues {
   lastName: string;
   phoneNumber: string;
   roleId: number;
+  managerUserId: number | null;
   isActive: boolean;
   permissionGroupIds: number[];
 }
@@ -40,14 +42,16 @@ interface UserFormProps {
 export function UserForm({ open, onOpenChange, onSubmit, user, isLoading }: UserFormProps): ReactElement {
   const { t } = useTranslation('common');
   const isEditMode = !!user;
+  const userId = user?.id ?? null;
   const roleOptionsQuery = useUserAuthorityOptionsQuery();
+  const managerOptionsQuery = useUserManagerOptionsQuery();
   const permissionGroups = useUserPermissionGroupsForForm(user?.id ?? null);
   const permissionGroupOptionsQuery = usePermissionGroupOptionsQuery();
 
   const form = useForm<UserFormValues>({
     resolver: zodResolver(isEditMode ? userUpdateFormSchema : userFormSchema) as Resolver<UserFormValues>,
     mode: 'onChange',
-    defaultValues: { username: '', email: '', password: '', firstName: '', lastName: '', phoneNumber: '', roleId: 0, isActive: true, permissionGroupIds: [] },
+    defaultValues: { username: '', email: '', password: '', firstName: '', lastName: '', phoneNumber: '', roleId: 0, managerUserId: null, isActive: true, permissionGroupIds: [] },
   });
 
   const handleSubmit: SubmitHandler<UserFormValues> = async (data) => {
@@ -65,16 +69,21 @@ export function UserForm({ open, onOpenChange, onSubmit, user, isLoading }: User
           lastName: user.lastName ?? '',
           phoneNumber: user.phoneNumber ?? '',
           roleId: user.roleId || 0,
+          managerUserId: user.managerUserId ?? null,
           isActive: user.isActive,
           permissionGroupIds: permissionGroups.data || []
         });
       } else {
-        form.reset({ username: '', email: '', password: '', firstName: '', lastName: '', phoneNumber: '', roleId: 0, isActive: true, permissionGroupIds: [] });
+        form.reset({ username: '', email: '', password: '', firstName: '', lastName: '', phoneNumber: '', roleId: 0, managerUserId: null, isActive: true, permissionGroupIds: [] });
       }
     }
   }, [form, open, permissionGroups.data, user]);
 
   const roleOptions = useMemo(() => roleOptionsQuery.data ?? [], [roleOptionsQuery.data]);
+  const managerOptions = useMemo(
+    () => (managerOptionsQuery.data ?? []).filter((option) => option.value !== userId),
+    [managerOptionsQuery.data, userId]
+  );
   const permissionGroupOptions = useMemo(() => permissionGroupOptionsQuery.data ?? [], [permissionGroupOptionsQuery.data]);
 
   const adminRoleId = useMemo(
@@ -206,10 +215,30 @@ export function UserForm({ open, onOpenChange, onSubmit, user, isLoading }: User
               </FormItem>
             )} />
 
+            <FormField name="managerUserId" render={({ field }) => (
+              <FormItem>
+                <FormLabel className={labelStyle}>
+                  <Users className="size-3 text-cyan-600 dark:text-cyan-400" /> {t('userManagement.form.manager')}
+                </FormLabel>
+                <Combobox
+                  options={[
+                    { value: 'none', label: t('userManagement.form.noManager') },
+                    ...managerOptions.map((option) => ({ value: String(option.value), label: option.label })),
+                  ]}
+                  value={field.value ? String(field.value) : 'none'}
+                  onValueChange={(value) => field.onChange(value === 'none' ? null : Number(value))}
+                  placeholder={t('userManagement.form.managerPlaceholder')}
+                  className={inputStyle}
+                  disabled={isLoading}
+                />
+                <FormMessage className="text-[10px] text-red-500" />
+              </FormItem>
+            )} />
+
             {!isEditMode && (
               <FormField name="password" render={({ field }) => (
                 <FormItem>
-                  <FormLabel required className={labelStyle}><Lock className="size-3 text-cyan-600 dark:text-cyan-400" /> {t('userManagement.form.password')}</FormLabel>
+                  <FormLabel className={labelStyle}><Lock className="size-3 text-cyan-600 dark:text-cyan-400" /> {t('userManagement.form.password')}</FormLabel>
                   <FormControl><Input {...field} type="password" className={inputStyle} /></FormControl>
                   <FormMessage className="text-[10px] text-red-500" />
                 </FormItem>
