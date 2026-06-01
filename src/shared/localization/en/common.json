@@ -118,10 +118,19 @@
       "operatorStartsWith": "Starts with",
       "operatorEndsWith": "Ends with",
       "operatorEquals": "Equals",
+      "operator=": "=",
       "operator>": ">",
       "operator>=": ">=",
       "operator<": "<",
       "operator<=": "<=",
+      "operator!=": "!=",
+      "operatorNotContains": "Does not contain",
+      "operatorIsNull": "Is empty",
+      "operatorIsNotNull": "Is not empty",
+      "searchPlaceholder": "Search...",
+      "apply": "Apply",
+      "reset": "Reset",
+      "noResults": "No results found",
       "true": "Yes",
       "false": "No",
       "emptyState": "No filters added yet. You can add a new filter using the button above.",
@@ -178,7 +187,10 @@
         "updateFailed": "Record could not be updated",
         "deleteFailed": "Record could not be deleted",
         "queryFailed": "Query could not be loaded",
-        "postFailed": "Record could not be posted"
+        "postFailed": "Record could not be posted",
+        "loading": "Loading, please wait",
+        "error": "An error occurred",
+        "success": "Operation completed"
       }
     },
     "sidebar": {
@@ -243,7 +255,11 @@
   "sidebar": {
     "dashboard": "Dashboard",
     "search": "Search...",
+    "operations": "Operations",
     "home": "Home",
+    "masterData": "Master Data",
+    "finance": "Finance",
+    "crm": "CRM",
     "customers": "Customers",
     "opportunities": "Opportunities",
     "offers": "Offers",

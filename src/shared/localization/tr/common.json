@@ -118,10 +118,19 @@
       "operatorStartsWith": "Şununla başlar",
       "operatorEndsWith": "Şununla biter",
       "operatorEquals": "Eşittir",
+      "operator=": "=",
       "operator>": ">",
       "operator>=": ">=",
       "operator<": "<",
       "operator<=": "<=",
+      "operator!=": "Eşit değil",
+      "operatorNotContains": "İçermiyor",
+      "operatorIsNull": "Boş",
+      "operatorIsNotNull": "Boş değil",
+      "searchPlaceholder": "Ara...",
+      "apply": "Uygula",
+      "reset": "Sıfırla",
+      "noResults": "Sonuç bulunamadı",
       "true": "Evet",
       "false": "Hayır",
       "emptyState": "Henüz filtre eklenmedi. Yukarıdaki butondan yeni filtre ekleyebilirsiniz.",
@@ -178,7 +187,10 @@
         "updateFailed": "Kayıt güncellenemedi",
         "deleteFailed": "Kayıt silinemedi",
         "queryFailed": "Sorgu alınamadı",
-        "postFailed": "Kayıt post edilemedi"
+        "postFailed": "Kayıt post edilemedi",
+        "loading": "Yükleniyor, lütfen bekleyin",
+        "error": "Bir hata oluştu",
+        "success": "İşlem tamamlandı"
       }
     },
     "sidebar": {
@@ -241,6 +253,10 @@
     "deleted": "Silinen"
   },
   "sidebar": {
+    "operations": "Operasyonlar",
+    "masterData": "Ana Veriler",
+    "finance": "Finans",
+    "crm": "CRM",
     "dashboard": "Gösterge Paneli",
     "search": "Ara...",
     "home": "Ana Sayfa",

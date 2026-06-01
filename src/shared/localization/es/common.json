@@ -118,10 +118,19 @@
       "operatorStartsWith": "Empieza con",
       "operatorEndsWith": "Termina con",
       "operatorEquals": "Igual a",
+      "operator=": "=",
       "operator>": ">",
       "operator>=": ">=",
       "operator<": "<",
       "operator<=": "<=",
+      "operator!=": "!=",
+      "operatorNotContains": "No contiene",
+      "operatorIsNull": "Está vacío",
+      "operatorIsNotNull": "No está vacío",
+      "searchPlaceholder": "Buscar...",
+      "apply": "Aplicar",
+      "reset": "Restablecer",
+      "noResults": "No se encontraron resultados",
       "true": "Sí",
       "false": "No",
       "emptyState": "Aún no se agregaron filtros. Puede agregar uno con el botón superior.",
@@ -178,7 +187,10 @@
         "updateFailed": "No se pudo actualizar el registro",
         "deleteFailed": "No se pudo eliminar el registro",
         "queryFailed": "No se pudo cargar la consulta",
-        "postFailed": "No se pudo publicar el registro"
+        "postFailed": "No se pudo publicar el registro",
+        "loading": "Cargando, por favor espere",
+        "error": "Se produjo un error",
+        "success": "Completado"
       }
     },
     "sidebar": {
@@ -241,6 +253,10 @@
     "deleted": "Silinen"
   },
   "sidebar": {
+    "operations": "Operaciones",
+    "masterData": "Datos maestros",
+    "finance": "Finanzas",
+    "crm": "CRM",
     "dashboard": "Panel",
     "search": "Buscar...",
     "home": "Inicio",

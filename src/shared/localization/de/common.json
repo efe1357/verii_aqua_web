@@ -118,10 +118,19 @@
       "operatorStartsWith": "Beginnt mit",
       "operatorEndsWith": "Endet mit",
       "operatorEquals": "Ist gleich",
+      "operator=": "=",
       "operator>": ">",
       "operator>=": ">=",
       "operator<": "<",
       "operator<=": "<=",
+      "operator!=": "!=",
+      "operatorNotContains": "Enthält nicht",
+      "operatorIsNull": "Ist leer",
+      "operatorIsNotNull": "Ist nicht leer",
+      "searchPlaceholder": "Suchen...",
+      "apply": "Anwenden",
+      "reset": "Zurücksetzen",
+      "noResults": "Keine Ergebnisse gefunden",
       "true": "Ja",
       "false": "Nein",
       "emptyState": "Es wurden noch keine Filter hinzugefügt. Sie können oben einen neuen Filter hinzufügen.",
@@ -178,7 +187,10 @@
         "updateFailed": "Datensatz konnte nicht aktualisiert werden",
         "deleteFailed": "Datensatz konnte nicht gelöscht werden",
         "queryFailed": "Abfrage konnte nicht geladen werden",
-        "postFailed": "Datensatz konnte nicht gebucht werden"
+        "postFailed": "Datensatz konnte nicht gebucht werden",
+        "loading": "Wird geladen, bitte warten",
+        "error": "Ein Fehler ist aufgetreten",
+        "success": "Erfolgreich"
       }
     },
     "sidebar": {
@@ -241,6 +253,10 @@
     "deleted": "Silinen"
   },
   "sidebar": {
+    "operations": "Operationen",
+    "masterData": "Stammdaten",
+    "finance": "Finanzen",
+    "crm": "CRM",
     "dashboard": "Dashboard",
     "search": "Suchen...",
     "home": "Startseite",

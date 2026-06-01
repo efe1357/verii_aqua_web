@@ -118,10 +118,19 @@
       "operatorStartsWith": "يبدأ بـ",
       "operatorEndsWith": "ينتهي بـ",
       "operatorEquals": "يساوي",
+      "operator=": "=",
       "operator>": ">",
       "operator>=": ">=",
       "operator<": "<",
       "operator<=": "<=",
+      "operator!=": "لا يساوي",
+      "operatorNotContains": "لا يحتوي",
+      "operatorIsNull": "فارغ",
+      "operatorIsNotNull": "غير فارغ",
+      "searchPlaceholder": "بحث...",
+      "apply": "تطبيق",
+      "reset": "إعادة تعيين",
+      "noResults": "لا توجد نتائج",
       "true": "نعم",
       "false": "لا",
       "emptyState": "لم تتم إضافة أي فلاتر بعد. يمكنك إضافة فلتر جديد من الزر أعلاه.",
@@ -178,7 +187,10 @@
         "updateFailed": "تعذر تحديث السجل",
         "deleteFailed": "تعذر حذف السجل",
         "queryFailed": "تعذر تحميل الاستعلام",
-        "postFailed": "تعذر ترحيل السجل"
+        "postFailed": "تعذر ترحيل السجل",
+        "loading": "جاري التحميل، يرجى الانتظار",
+        "error": "حدث خطأ",
+        "success": "تمت العملية"
       }
     },
     "sidebar": {
@@ -241,6 +253,10 @@
     "deleted": "Silinen"
   },
   "sidebar": {
+    "operations": "العمليات",
+    "masterData": "البيانات الأساسية",
+    "finance": "المالية",
+    "crm": "CRM",
     "dashboard": "لوحة المعلومات",
     "search": "بحث...",
     "home": "الرئيسية",
