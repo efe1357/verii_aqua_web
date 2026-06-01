@@ -1,4 +1,4 @@
-import { type ReactElement, useEffect, useMemo, useState } from 'react';
+import { type ReactElement, type ReactNode, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
@@ -180,6 +180,53 @@ export function HangfireMonitoringPage(): ReactElement {
         <Button variant="outline" size="sm" className="h-8 px-3 rounded-lg text-xs bg-white border-slate-200 text-slate-700 hover:bg-slate-100 dark:bg-transparent dark:border-cyan-800/50 dark:text-slate-300 dark:hover:bg-blue-900/50 dark:hover:text-white disabled:opacity-50 transition-colors" onClick={onNext} disabled={page >= totalPages}>
           {t('common:next')} <ArrowRight className="w-3 h-3 ml-1" />
         </Button>
+      </div>
+    </div>
+  );
+
+  const renderPagedDataTable = ({
+    title,
+    icon,
+    headerRight,
+    tableHeaders,
+    tableRows,
+    total,
+    page,
+    totalPages,
+    onPrevious,
+    onNext,
+  }: {
+    title: string;
+    icon: ReactElement;
+    headerRight?: ReactNode;
+    tableHeaders: ReactNode;
+    tableRows: ReactNode;
+    total: number;
+    page: number;
+    totalPages: number;
+    onPrevious: () => void;
+    onNext: () => void;
+  }): ReactElement => (
+    <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
+      <div className="p-5 border-b border-slate-100 dark:border-cyan-800/30 bg-slate-50/50 dark:bg-blue-900/20 flex items-center justify-between">
+        <div className="flex items-center gap-3 min-w-0">
+          {icon}
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate">{title}</h2>
+        </div>
+        {headerRight ?? null}
+      </div>
+      <div className="bg-transparent flex flex-col min-h-0">
+        <div className="overflow-x-auto min-h-[300px] custom-scrollbar">
+          <Table>
+            <TableHeader className="bg-slate-50/80 dark:bg-blue-900/40">
+              <TableRow className="border-b border-slate-200 dark:border-cyan-800/30 hover:bg-transparent">
+                {tableHeaders}
+              </TableRow>
+            </TableHeader>
+            <TableBody>{tableRows}</TableBody>
+          </Table>
+        </div>
+        {renderStockPaging(total, page, totalPages, onPrevious, onNext)}
       </div>
     </div>
   );
@@ -404,140 +451,104 @@ export function HangfireMonitoringPage(): ReactElement {
           </CardContent>
         </Card>
 
-        <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
-          <div className="p-5 border-b border-slate-100 dark:border-cyan-800/30 bg-slate-50/50 dark:bg-blue-900/20 flex items-center gap-3">
-            <Clock className="size-5 text-cyan-600 dark:text-cyan-400" />
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">{t('recurring.title')}</h2>
-          </div>
-          <div className="overflow-x-auto custom-scrollbar">
-            <Table>
-              <TableHeader className="bg-slate-50/80 dark:bg-blue-900/40">
-                <TableRow className="border-b border-slate-200 dark:border-cyan-800/30 hover:bg-transparent">
-                  <TableHead className={cn(headStyle, 'px-6')}>{t('recurring.table.id')}</TableHead>
-                  <TableHead className={cn(headStyle, 'min-w-[240px]')}>{t('recurring.table.job')}</TableHead>
-                  <TableHead className={headStyle}>{t('recurring.table.cron')}</TableHead>
-                  <TableHead className={headStyle}>{t('recurring.table.nextExecution')}</TableHead>
-                  <TableHead className={headStyle}>{t('recurring.table.lastExecution')}</TableHead>
-                  <TableHead className={headStyle}>{t('recurring.table.queue')}</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>{renderRecurringRows(recurringRows)}</TableBody>
-            </Table>
-          </div>
-          {renderStockPaging(
-            recurringTotal,
-            recurringPage,
-            recurringTotalPages,
-            () => setRecurringPage((p) => Math.max(1, p - 1)),
-            () => setRecurringPage((p) => Math.min(recurringTotalPages, p + 1)),
-          )}
-        </div>
+        {renderPagedDataTable({
+          title: t('recurring.title'),
+          icon: <Clock className="size-5 text-cyan-600 dark:text-cyan-400" />,
+          tableHeaders: (
+            <>
+              <TableHead className={cn(headStyle, 'px-6')}>{t('recurring.table.id')}</TableHead>
+              <TableHead className={cn(headStyle, 'min-w-[240px]')}>{t('recurring.table.job')}</TableHead>
+              <TableHead className={headStyle}>{t('recurring.table.cron')}</TableHead>
+              <TableHead className={headStyle}>{t('recurring.table.nextExecution')}</TableHead>
+              <TableHead className={headStyle}>{t('recurring.table.lastExecution')}</TableHead>
+              <TableHead className={headStyle}>{t('recurring.table.queue')}</TableHead>
+            </>
+          ),
+          tableRows: renderRecurringRows(recurringRows),
+          total: recurringTotal,
+          page: recurringPage,
+          totalPages: recurringTotalPages,
+          onPrevious: () => setRecurringPage((p) => Math.max(1, p - 1)),
+          onNext: () => setRecurringPage((p) => Math.min(recurringTotalPages, p + 1)),
+        })}
       </div>
 
-      <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
-        <div className="p-5 border-b border-slate-100 dark:border-cyan-800/30 bg-slate-50/50 dark:bg-blue-900/20 flex items-center gap-3">
-          <CheckCircle2 className="size-5 text-emerald-600 dark:text-emerald-400" />
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">{t('succeeded.title')}</h2>
-        </div>
-        <div className="overflow-x-auto custom-scrollbar">
-          <Table>
-            <TableHeader className="bg-slate-50/80 dark:bg-blue-900/40">
-              <TableRow className="border-b border-slate-200 dark:border-cyan-800/30 hover:bg-transparent">
-                <TableHead className={cn(headStyle, 'w-[80px] px-6')}>ID</TableHead>
-                <TableHead className={cn(headStyle, 'min-w-[220px]')}>{t('table.jobName')}</TableHead>
-                <TableHead className={headStyle}>{t('table.recurringJobId')}</TableHead>
-                <TableHead className={headStyle}>{t('table.queue')}</TableHead>
-                <TableHead className={headStyle}>{t('table.duration')}</TableHead>
-                <TableHead className={headStyle}>{t('table.retryCount')}</TableHead>
-                <TableHead className={headStyle}>{t('table.time')}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>{renderSuccessRows(successQuery.data?.items ?? [])}</TableBody>
-          </Table>
-        </div>
-          {renderStockPaging(
-            successTotal,
-            successPage,
-            successTotalPages,
-            () => setSuccessPage((p) => Math.max(1, p - 1)),
-            () => setSuccessPage((p) => Math.min(successTotalPages, p + 1)),
-          )}
-      </div>
+      {renderPagedDataTable({
+        title: t('succeeded.title'),
+        icon: <CheckCircle2 className="size-5 text-emerald-600 dark:text-emerald-400" />,
+        tableHeaders: (
+          <>
+            <TableHead className={cn(headStyle, 'w-[80px] px-6')}>ID</TableHead>
+            <TableHead className={cn(headStyle, 'min-w-[220px]')}>{t('table.jobName')}</TableHead>
+            <TableHead className={headStyle}>{t('table.recurringJobId')}</TableHead>
+            <TableHead className={headStyle}>{t('table.queue')}</TableHead>
+            <TableHead className={headStyle}>{t('table.duration')}</TableHead>
+            <TableHead className={headStyle}>{t('table.retryCount')}</TableHead>
+            <TableHead className={headStyle}>{t('table.time')}</TableHead>
+          </>
+        ),
+        tableRows: renderSuccessRows(successQuery.data?.items ?? []),
+        total: successTotal,
+        page: successPage,
+        totalPages: successTotalPages,
+        onPrevious: () => setSuccessPage((p) => Math.max(1, p - 1)),
+        onNext: () => setSuccessPage((p) => Math.min(successTotalPages, p + 1)),
+      })}
 
-      <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
-        <div className="p-5 border-b border-slate-100 dark:border-cyan-800/30 bg-slate-50/50 dark:bg-blue-900/20 flex items-center gap-3">
-          <XCircle className="size-5 text-rose-600 dark:text-rose-500" />
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">{t('failed.title')}</h2>
-        </div>
-        <div className="overflow-x-auto custom-scrollbar">
-          <Table>
-            <TableHeader className="bg-slate-50/80 dark:bg-blue-900/40">
-              <TableRow className="border-b border-slate-200 dark:border-cyan-800/30 hover:bg-transparent">
-                <TableHead className={cn(headStyle, 'w-[80px] px-6')}>ID</TableHead>
-                <TableHead className={cn(headStyle, 'min-w-[200px]')}>{t('table.jobName')}</TableHead>
-                <TableHead className={cn(headStyle, 'w-[120px]')}>{t('table.state')}</TableHead>
-                <TableHead className={cn(headStyle, 'w-[180px]')}>{t('table.time')}</TableHead>
-                <TableHead className={headStyle}>{t('table.reason')}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {renderFailedRows(
-                failedQuery.data?.items ?? [],
-                t('failed.empty'),
-                <CheckCircle2 className="size-10 text-emerald-500/20" />,
-                'failedAt',
-              )}
-            </TableBody>
-          </Table>
-        </div>
-        {renderStockPaging(
-          failedTotal,
-          failedPage,
-          failedTotalPages,
-          () => setFailedPage((p) => Math.max(1, p - 1)),
-          () => setFailedPage((p) => Math.min(failedTotalPages, p + 1)),
-        )}
-      </div>
+      {renderPagedDataTable({
+        title: t('failed.title'),
+        icon: <XCircle className="size-5 text-rose-600 dark:text-rose-500" />,
+        tableHeaders: (
+          <>
+            <TableHead className={cn(headStyle, 'w-[80px] px-6')}>ID</TableHead>
+            <TableHead className={cn(headStyle, 'min-w-[200px]')}>{t('table.jobName')}</TableHead>
+            <TableHead className={cn(headStyle, 'w-[120px]')}>{t('table.state')}</TableHead>
+            <TableHead className={cn(headStyle, 'w-[180px]')}>{t('table.time')}</TableHead>
+            <TableHead className={headStyle}>{t('table.reason')}</TableHead>
+          </>
+        ),
+        tableRows: renderFailedRows(
+          failedQuery.data?.items ?? [],
+          t('failed.empty'),
+          <CheckCircle2 className="size-10 text-emerald-500/20" />,
+          'failedAt',
+        ),
+        total: failedTotal,
+        page: failedPage,
+        totalPages: failedTotalPages,
+        onPrevious: () => setFailedPage((p) => Math.max(1, p - 1)),
+        onNext: () => setFailedPage((p) => Math.min(failedTotalPages, p + 1)),
+      })}
 
-      <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
-        <div className="p-5 border-b border-slate-100 dark:border-cyan-800/30 bg-slate-50/50 dark:bg-blue-900/20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <AlertTriangle className="size-5 text-amber-600 dark:text-amber-500" />
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">{t('deadLetter.title')}</h2>
-          </div>
+      {renderPagedDataTable({
+        title: t('deadLetter.title'),
+        icon: <AlertTriangle className="size-5 text-amber-600 dark:text-amber-500" />,
+        headerRight: (
           <Badge variant="outline" className="bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-500 border-amber-200 dark:border-amber-500/20 font-black text-[10px]">
             {t('deadLetter.enqueued').toUpperCase()}: {deadLetterQuery.data?.enqueued ?? 0}
           </Badge>
-        </div>
-        <div className="overflow-x-auto custom-scrollbar">
-          <Table>
-            <TableHeader className="bg-slate-50/80 dark:bg-blue-900/40">
-              <TableRow className="border-b border-slate-200 dark:border-cyan-800/30 hover:bg-transparent">
-                <TableHead className={cn(headStyle, 'w-[80px] px-6')}>ID</TableHead>
-                <TableHead className={cn(headStyle, 'min-w-[200px]')}>{t('table.jobName')}</TableHead>
-                <TableHead className={cn(headStyle, 'w-[120px]')}>{t('table.state')}</TableHead>
-                <TableHead className={cn(headStyle, 'w-[180px]')}>{t('table.time')}</TableHead>
-                <TableHead className={headStyle}>{t('table.reason')}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {renderFailedRows(
-                deadLetterQuery.data?.items ?? [],
-                t('deadLetter.empty'),
-                <CheckCircle2 className="size-10 text-emerald-500/20" />,
-                'enqueuedAt',
-              )}
-            </TableBody>
-          </Table>
-        </div>
-        {renderStockPaging(
-          deadLetterTotal,
-          deadLetterPage,
-          deadLetterTotalPages,
-          () => setDeadLetterPage((p) => Math.max(1, p - 1)),
-          () => setDeadLetterPage((p) => Math.min(deadLetterTotalPages, p + 1)),
-        )}
-      </div>
+        ),
+        tableHeaders: (
+          <>
+            <TableHead className={cn(headStyle, 'w-[80px] px-6')}>ID</TableHead>
+            <TableHead className={cn(headStyle, 'min-w-[200px]')}>{t('table.jobName')}</TableHead>
+            <TableHead className={cn(headStyle, 'w-[120px]')}>{t('table.state')}</TableHead>
+            <TableHead className={cn(headStyle, 'w-[180px]')}>{t('table.time')}</TableHead>
+            <TableHead className={headStyle}>{t('table.reason')}</TableHead>
+          </>
+        ),
+        tableRows: renderFailedRows(
+          deadLetterQuery.data?.items ?? [],
+          t('deadLetter.empty'),
+          <CheckCircle2 className="size-10 text-emerald-500/20" />,
+          'enqueuedAt',
+        ),
+        total: deadLetterTotal,
+        page: deadLetterPage,
+        totalPages: deadLetterTotalPages,
+        onPrevious: () => setDeadLetterPage((p) => Math.max(1, p - 1)),
+        onNext: () => setDeadLetterPage((p) => Math.min(deadLetterTotalPages, p + 1)),
+      })}
     </div>
   );
 }
