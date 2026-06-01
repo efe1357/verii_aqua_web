@@ -2,15 +2,21 @@ import { type ReactElement, useDeferredValue, useEffect, useMemo, useState } fro
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { useUIStore } from '@/stores/ui-store';
+import { useAuthStore } from '@/stores/auth-store';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { PageToolbar, ColumnPreferencesPopover, AdvancedFilter } from '@/components/shared';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import {
   Table,
   TableBody,
@@ -20,8 +26,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
-import { Search, RefreshCw, ArrowLeft, ArrowRight, Boxes, Building2, UsersRound, GitBranch, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Boxes, Building2, UsersRound, GitBranch, ChevronDown, Filter } from 'lucide-react';
 import { netsisMirrorApi, type NetsisMirrorKind, type NetsisMirrorRow } from '../api/netsisMirrorApi';
+import { applyFilterRowsClient, type FilterColumnConfig, type FilterRow } from '@/lib/advanced-filter-types';
+import { loadColumnPreferences } from '@/lib/column-preferences';
 
 const DEFAULT_PAGE_SIZE = 20;
 const PAGE_SIZE_OPTIONS = [10, 20, 50, 100] as const;
@@ -85,12 +93,19 @@ function readCell(row: NetsisMirrorRow, key: string): string {
 function NetsisMirrorPage({ kind }: NetsisMirrorPageProps): ReactElement {
   const { t } = useTranslation(['netsis-mirror', 'stock', 'common']);
   const { setPageTitle } = useUIStore();
+  const { user } = useAuthStore();
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
   const [search, setSearch] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
+  const [draftFilterRows, setDraftFilterRows] = useState<FilterRow[]>([]);
+  const [appliedFilterRows, setAppliedFilterRows] = useState<FilterRow[]>([]);
   const deferredSearch = useDeferredValue(search);
   const columns = COLUMNS_BY_KIND[kind];
   const Icon = ICON_BY_KIND[kind];
+  const defaultColumnKeys = useMemo(() => columns.map((column) => column.key), [columns]);
+  const [columnOrder, setColumnOrder] = useState<string[]>(() => defaultColumnKeys);
+  const [visibleColumns, setVisibleColumns] = useState<string[]>(() => defaultColumnKeys);
 
   useEffect(() => {
     setPageTitle(t(`pages.${kind}.title`));
@@ -98,8 +113,14 @@ function NetsisMirrorPage({ kind }: NetsisMirrorPageProps): ReactElement {
   }, [kind, setPageTitle, t]);
 
   useEffect(() => {
+    const prefs = loadColumnPreferences(`aqua-netsis-mirror-${kind}`, user?.id, defaultColumnKeys, defaultColumnKeys[0]);
+    setVisibleColumns(prefs.visibleKeys);
+    setColumnOrder(prefs.order);
+  }, [defaultColumnKeys, kind, user?.id]);
+
+  useEffect(() => {
     setPageNumber(1);
-  }, [deferredSearch, pageSize]);
+  }, [deferredSearch, pageSize, appliedFilterRows]);
 
   const query = useQuery({
     queryKey: ['netsis-mirror', kind, pageNumber, pageSize, deferredSearch],
@@ -115,6 +136,20 @@ function NetsisMirrorPage({ kind }: NetsisMirrorPageProps): ReactElement {
   const rows = query.data?.data ?? [];
   const totalCount = query.data?.totalCount ?? 0;
   const totalPages = Math.max(1, query.data?.totalPages ?? Math.ceil(totalCount / pageSize));
+  const filterColumns = useMemo<(FilterColumnConfig & { translatedLabel: string })[]>(() => columns.map((column) => ({
+    value: column.key,
+    type: column.key.toLowerCase().includes('kilit') || column.key.toLowerCase().includes('locked') ? 'boolean' : 'string',
+    labelKey: column.labelKey,
+    translatedLabel: t(column.labelKey),
+  })), [columns, t]);
+  const activeColumns = useMemo(() => {
+    const byKey = new Map(columns.map((column) => [column.key, column]));
+    const ordered = columnOrder.map((key) => byKey.get(key)).filter((column): column is ColumnDefinition => Boolean(column));
+    const missing = columns.filter((column) => !columnOrder.includes(column.key));
+    return [...ordered, ...missing].filter((column) => visibleColumns.includes(column.key));
+  }, [columnOrder, columns, visibleColumns]);
+  const filteredRows = useMemo(() => applyFilterRowsClient(rows, appliedFilterRows, filterColumns), [appliedFilterRows, filterColumns, rows]);
+  const hasFiltersActive = appliedFilterRows.some((row) => row.value.trim());
 
   const pageMeta = useMemo(() => ({
     title: t(`pages.${kind}.title`),
@@ -149,42 +184,71 @@ function NetsisMirrorPage({ kind }: NetsisMirrorPageProps): ReactElement {
         </div>
       </div>
 
-      <div className="relative z-10 bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl p-5 flex flex-col md:flex-row md:items-center gap-3 shadow-sm transition-all duration-300">
-        <div className="relative flex-1 min-w-[220px]">
-          <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
-          <Input
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            placeholder={t(`pages.${kind}.searchPlaceholder`)}
-            className="h-12 rounded-2xl border-slate-200 bg-slate-50 pl-11 font-semibold shadow-sm dark:border-cyan-800/30 dark:bg-blue-950/70"
-          />
-        </div>
-        <div className="flex flex-wrap items-center justify-end gap-2">
-          <Button
-            variant="outline"
-            onClick={() => void query.refetch()}
-            disabled={query.isFetching}
-            className="h-10 w-10 p-0 rounded-xl border transition-all duration-300 bg-slate-50 dark:bg-blue-900/30 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-cyan-800/30 hover:bg-slate-100 dark:hover:bg-blue-900/50 hover:text-slate-900 dark:hover:text-white disabled:opacity-60"
-          >
-            <RefreshCw className={cn('size-4', query.isFetching && 'animate-spin')} />
-          </Button>
+      <div className="relative z-10 bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl p-5 flex flex-col gap-5 shadow-sm transition-all duration-300">
+        <PageToolbar
+          searchPlaceholder={t(`pages.${kind}.searchPlaceholder`)}
+          searchValue={search}
+          onSearchChange={setSearch}
+          onRefresh={async () => {
+            await query.refetch();
+          }}
+          rightSlot={
+            <div className="flex flex-wrap items-center gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 px-4 py-2 rounded-xl border transition-all duration-300 bg-slate-50 dark:bg-blue-900/30 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-cyan-800/30 hover:bg-slate-100 dark:hover:bg-blue-900/50 hover:text-slate-900 dark:hover:text-white">
+                    <span className="font-medium text-sm">{pageSize}</span>
+                    <ChevronDown size={16} />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-20 bg-white dark:bg-blue-950 border border-slate-200 dark:border-cyan-800/30 shadow-2xl rounded-xl overflow-hidden p-1">
+                  {PAGE_SIZE_OPTIONS.map((size) => (
+                    <DropdownMenuItem key={size} onSelect={() => setPageSize(size)} className={cn('flex items-center justify-center text-xs font-medium px-2 py-1.5 rounded-lg cursor-pointer transition-colors', pageSize === size ? 'bg-cyan-50 dark:bg-cyan-800/30 text-cyan-600 dark:text-cyan-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-blue-900/50 hover:text-slate-900 dark:hover:text-white')}>
+                      {size}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button className="flex items-center gap-2 px-4 py-2 rounded-xl border transition-all duration-300 bg-slate-50 dark:bg-blue-900/30 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-cyan-800/30 hover:bg-slate-100 dark:hover:bg-blue-900/50 hover:text-slate-900 dark:hover:text-white">
-                <span className="font-medium text-sm">{pageSize}</span>
-                <ChevronDown size={16} />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-20 bg-white dark:bg-blue-950 border border-slate-200 dark:border-cyan-800/30 shadow-2xl rounded-xl overflow-hidden p-1">
-              {PAGE_SIZE_OPTIONS.map((size) => (
-                <DropdownMenuItem key={size} onSelect={() => setPageSize(size)} className={cn('flex items-center justify-center text-xs font-medium px-2 py-1.5 rounded-lg cursor-pointer transition-colors', pageSize === size ? 'bg-cyan-50 dark:bg-cyan-800/30 text-cyan-600 dark:text-cyan-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-blue-900/50 hover:text-slate-900 dark:hover:text-white')}>
-                  {size}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+              <Popover open={showFilters} onOpenChange={setShowFilters}>
+                <PopoverTrigger asChild>
+                  <Button variant={hasFiltersActive ? 'default' : 'outline'} className={cn('h-10 px-3 sm:px-4 rounded-xl border transition-all duration-300', hasFiltersActive ? 'bg-cyan-50 dark:bg-cyan-800/30 text-cyan-600 dark:text-cyan-400 border-cyan-200 dark:border-cyan-700 hover:bg-cyan-100 dark:hover:bg-cyan-800/50' : 'bg-slate-50 dark:bg-blue-900/30 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-cyan-800/30 hover:bg-slate-100 dark:hover:bg-blue-900/50 hover:text-slate-900 dark:hover:text-white')}>
+                    <Filter className="sm:mr-2 h-4 w-4" />
+                    <span className="hidden sm:inline">{t('common:filters')}</span>
+                    {hasFiltersActive && <span className="ml-2 flex h-2 w-2 rounded-full bg-cyan-500 animate-pulse" />}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent side="bottom" align="start" className="w-[calc(100vw-2rem)] sm:w-[420px] p-0 bg-white dark:bg-blue-950 border border-slate-200 dark:border-cyan-800/30 shadow-2xl rounded-2xl overflow-hidden z-50">
+                  <AdvancedFilter
+                    columns={filterColumns}
+                    defaultColumn={filterColumns[0]?.value ?? ''}
+                    draftRows={draftFilterRows}
+                    onDraftRowsChange={setDraftFilterRows}
+                    onSearch={() => {
+                      setAppliedFilterRows(draftFilterRows);
+                      setShowFilters(false);
+                    }}
+                    onClear={() => {
+                      setDraftFilterRows([]);
+                      setAppliedFilterRows([]);
+                    }}
+                    embedded
+                  />
+                </PopoverContent>
+              </Popover>
+
+              <ColumnPreferencesPopover
+                pageKey={`aqua-netsis-mirror-${kind}`}
+                userId={user?.id}
+                columns={columns.map((column) => ({ key: column.key, label: t(column.labelKey) }))}
+                visibleColumns={visibleColumns}
+                columnOrder={columnOrder}
+                onVisibleColumnsChange={setVisibleColumns}
+                onColumnOrderChange={setColumnOrder}
+              />
+            </div>
+          }
+        />
       </div>
 
       <div className="relative z-10 bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl shadow-sm overflow-hidden transition-all duration-300">
@@ -193,7 +257,7 @@ function NetsisMirrorPage({ kind }: NetsisMirrorPageProps): ReactElement {
             <Table className="w-full text-sm">
               <TableHeader className="bg-slate-50 dark:bg-blue-950/80 sticky top-0 z-10 backdrop-blur-sm">
                 <TableRow className="hover:bg-transparent border-b border-slate-200 dark:border-cyan-800/30">
-                  {columns.map((column) => (
+                  {activeColumns.map((column) => (
                     <TableHead key={column.key} className="whitespace-nowrap py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       {t(column.labelKey)}
                     </TableHead>
@@ -203,19 +267,19 @@ function NetsisMirrorPage({ kind }: NetsisMirrorPageProps): ReactElement {
               <TableBody>
                 {query.isLoading ? (
                   <TableRow>
-                    <TableCell colSpan={columns.length} className="py-16 text-center text-sm font-bold text-slate-500">
+                    <TableCell colSpan={Math.max(1, activeColumns.length)} className="py-16 text-center text-sm font-bold text-slate-500">
                       {t('table.loading')}
                     </TableCell>
                   </TableRow>
-                ) : rows.length === 0 ? (
+                ) : filteredRows.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={columns.length} className="py-16 text-center text-sm font-bold text-slate-500">
+                    <TableCell colSpan={Math.max(1, activeColumns.length)} className="py-16 text-center text-sm font-bold text-slate-500">
                       {query.isError ? t('table.error') : t('table.empty')}
                     </TableCell>
                   </TableRow>
-                ) : rows.map((row, index) => (
+                ) : filteredRows.map((row, index) => (
                   <TableRow key={`${kind}-${pageNumber}-${index}`} className="group border-b border-slate-200 dark:border-cyan-800/30 last:border-0 hover:bg-slate-50 dark:hover:bg-blue-900/30 transition-colors duration-200">
-                    {columns.map((column) => (
+                    {activeColumns.map((column) => (
                       <TableCell key={column.key} className={cn('max-w-[320px] truncate py-4 text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400', column.className)} title={readCell(row, column.key)}>
                         {readCell(row, column.key)}
                       </TableCell>

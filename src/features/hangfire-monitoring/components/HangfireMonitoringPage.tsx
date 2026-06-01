@@ -3,10 +3,23 @@ import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { useUIStore } from '@/stores/ui-store';
+import { useAuthStore } from '@/stores/auth-store';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { PageToolbar, ColumnPreferencesPopover, AdvancedFilter } from '@/components/shared';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import {
   Table,
   TableBody,
@@ -26,6 +39,8 @@ import {
   ArrowLeft,
   ArrowRight,
   Loader2,
+  Filter,
+  ChevronDown,
 } from 'lucide-react';
 import {
   HANGFIRE_QUERY_KEYS,
@@ -42,6 +57,8 @@ import type {
   HangfireSuccessJobItemDto,
 } from '../types/hangfireMonitoring.types';
 import { cn } from '@/lib/utils';
+import { applyFilterRowsClient, type FilterColumnConfig, type FilterRow } from '@/lib/advanced-filter-types';
+import { loadColumnPreferences } from '@/lib/column-preferences';
 import {
   Select,
   SelectContent,
@@ -51,6 +68,90 @@ import {
 } from '@/components/ui/select';
 
 const DEFAULT_PAGE_SIZE = 20;
+const PAGE_SIZE_OPTIONS = [10, 20, 50, 100] as const;
+const RECURRING_COLUMN_KEYS = ['id', 'jobName', 'cron', 'nextExecution', 'lastExecution', 'queue'];
+const SUCCESS_COLUMN_KEYS = ['jobId', 'jobName', 'recurringJobId', 'queue', 'durationMs', 'retryCount', 'finishedAt'];
+const FAILED_COLUMN_KEYS = ['jobId', 'jobName', 'state', 'failedAt', 'reason'];
+const DEAD_LETTER_COLUMN_KEYS = ['jobId', 'jobName', 'state', 'enqueuedAt', 'reason'];
+
+interface DataTableColumn<T extends object> {
+  key: string;
+  label: string;
+  type: FilterColumnConfig['type'];
+  className?: string;
+  render: (item: T) => ReactNode;
+  searchableValue?: (item: T) => string;
+}
+
+interface DataTableControls {
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
+  pageSize: number;
+  setPageSize: (value: number) => void;
+  showFilters: boolean;
+  setShowFilters: (value: boolean) => void;
+  draftFilterRows: FilterRow[];
+  setDraftFilterRows: (rows: FilterRow[]) => void;
+  appliedFilterRows: FilterRow[];
+  setAppliedFilterRows: (rows: FilterRow[]) => void;
+  visibleColumns: string[];
+  setVisibleColumns: (columns: string[]) => void;
+  columnOrder: string[];
+  setColumnOrder: (columns: string[]) => void;
+}
+
+function useDataTableControls(pageKey: string, defaultColumnKeys: string[], userId?: number): DataTableControls {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE);
+  const [showFilters, setShowFilters] = useState(false);
+  const [draftFilterRows, setDraftFilterRows] = useState<FilterRow[]>([]);
+  const [appliedFilterRows, setAppliedFilterRows] = useState<FilterRow[]>([]);
+  const [visibleColumns, setVisibleColumns] = useState<string[]>(() => defaultColumnKeys);
+  const [columnOrder, setColumnOrder] = useState<string[]>(() => defaultColumnKeys);
+
+  useEffect(() => {
+    const prefs = loadColumnPreferences(pageKey, userId, defaultColumnKeys, defaultColumnKeys[0]);
+    setVisibleColumns(prefs.visibleKeys);
+    setColumnOrder(prefs.order);
+  }, [defaultColumnKeys, pageKey, userId]);
+
+  return {
+    searchTerm,
+    setSearchTerm,
+    pageSize,
+    setPageSize,
+    showFilters,
+    setShowFilters,
+    draftFilterRows,
+    setDraftFilterRows,
+    appliedFilterRows,
+    setAppliedFilterRows,
+    visibleColumns,
+    setVisibleColumns,
+    columnOrder,
+    setColumnOrder,
+  };
+}
+
+function filterDataTableRows<T extends object>(
+  rows: T[],
+  columns: DataTableColumn<T>[],
+  controls: DataTableControls,
+): T[] {
+  const search = controls.searchTerm.trim().toLowerCase();
+  const searched = search
+    ? rows.filter((row) => columns.some((column) => {
+      const value = column.searchableValue ? column.searchableValue(row) : String((row as Record<string, unknown>)[column.key] ?? '');
+      return value.toLowerCase().includes(search);
+    }))
+    : rows;
+
+  return applyFilterRowsClient(searched, controls.appliedFilterRows, columns.map((column) => ({
+    value: column.key,
+    type: column.type,
+    labelKey: column.label,
+  })));
+}
 
 function formatDate(value?: string): string {
   if (!value) return '-';
@@ -68,6 +169,7 @@ function formatDuration(durationMs: number): string {
 export function HangfireMonitoringPage(): ReactElement {
   const { t } = useTranslation(['hangfire-monitoring', 'stock', 'common']);
   const { setPageTitle } = useUIStore();
+  const { user } = useAuthStore();
   const queryClient = useQueryClient();
 
   const [failedPage, setFailedPage] = useState(1);
@@ -76,10 +178,15 @@ export function HangfireMonitoringPage(): ReactElement {
   const [recurringPage, setRecurringPage] = useState(1);
   const [selectedRecurringJobId, setSelectedRecurringJobId] = useState<string>('');
 
-  const failedPageSize = DEFAULT_PAGE_SIZE;
-  const successPageSize = DEFAULT_PAGE_SIZE;
-  const deadLetterPageSize = DEFAULT_PAGE_SIZE;
-  const recurringPageSize = DEFAULT_PAGE_SIZE;
+  const recurringControls = useDataTableControls('aqua-hangfire-recurring', RECURRING_COLUMN_KEYS, user?.id);
+  const successControls = useDataTableControls('aqua-hangfire-succeeded', SUCCESS_COLUMN_KEYS, user?.id);
+  const failedControls = useDataTableControls('aqua-hangfire-failed', FAILED_COLUMN_KEYS, user?.id);
+  const deadLetterControls = useDataTableControls('aqua-hangfire-dead-letter', DEAD_LETTER_COLUMN_KEYS, user?.id);
+
+  const failedPageSize = failedControls.pageSize;
+  const successPageSize = successControls.pageSize;
+  const deadLetterPageSize = deadLetterControls.pageSize;
+  const recurringPageSize = recurringControls.pageSize;
 
   const failedFrom = failedPage;
   const successFrom = successPage;
@@ -148,7 +255,19 @@ export function HangfireMonitoringPage(): ReactElement {
 
   useEffect(() => {
     setRecurringPage(1);
-  }, [recurringTotal]);
+  }, [recurringTotal, recurringPageSize, recurringControls.searchTerm, recurringControls.appliedFilterRows]);
+
+  useEffect(() => {
+    setSuccessPage(1);
+  }, [successPageSize, successControls.searchTerm, successControls.appliedFilterRows]);
+
+  useEffect(() => {
+    setFailedPage(1);
+  }, [failedPageSize, failedControls.searchTerm, failedControls.appliedFilterRows]);
+
+  useEffect(() => {
+    setDeadLetterPage(1);
+  }, [deadLetterPageSize, deadLetterControls.searchTerm, deadLetterControls.appliedFilterRows]);
 
   const failedTotalPages = Math.max(1, Math.ceil(failedTotal / failedPageSize));
   const successTotalPages = Math.max(1, Math.ceil(successTotal / successPageSize));
@@ -158,6 +277,60 @@ export function HangfireMonitoringPage(): ReactElement {
   const recurringRows = recurringItems.slice((recurringPage - 1) * recurringPageSize, recurringPage * recurringPageSize);
 
   const headStyle = 'py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 whitespace-nowrap';
+  const recurringColumns = useMemo<DataTableColumn<HangfireRecurringJobItemDto>[]>(() => [
+    { key: 'id', label: t('recurring.table.id'), type: 'string', className: 'px-6 font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400', render: (item) => item.id },
+    {
+      key: 'jobName',
+      label: t('recurring.table.job'),
+      type: 'string',
+      className: 'min-w-[240px] max-w-[340px]',
+      render: (item) => (
+        <div className="max-w-[340px]">
+          <div className="truncate font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400" title={item.jobName}>{item.jobName}</div>
+          {item.method ? <div className="truncate text-xs text-slate-500 dark:text-slate-400" title={item.method}>{item.method}</div> : null}
+          {item.error ? <div className="truncate text-xs text-rose-500 mt-1" title={item.error}>{item.error}</div> : null}
+        </div>
+      ),
+      searchableValue: (item) => `${item.jobName} ${item.method ?? ''} ${item.error ?? ''}`,
+    },
+    { key: 'cron', label: t('recurring.table.cron'), type: 'string', render: (item) => item.cron || '-' },
+    { key: 'nextExecution', label: t('recurring.table.nextExecution'), type: 'date', render: (item) => formatDate(item.nextExecution), searchableValue: (item) => formatDate(item.nextExecution) },
+    { key: 'lastExecution', label: t('recurring.table.lastExecution'), type: 'date', render: (item) => formatDate(item.lastExecution), searchableValue: (item) => formatDate(item.lastExecution) },
+    { key: 'queue', label: t('recurring.table.queue'), type: 'string', render: (item) => item.queue || '-' },
+  ], [t]);
+
+  const successColumns = useMemo<DataTableColumn<HangfireSuccessJobItemDto>[]>(() => [
+    { key: 'jobId', label: 'ID', type: 'string', className: 'w-[80px] px-6 font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400', render: (item) => `#${item.jobId}` },
+    { key: 'jobName', label: t('table.jobName'), type: 'string', className: 'min-w-[220px] max-w-[320px] truncate font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400', render: (item) => item.jobName, searchableValue: (item) => item.jobName },
+    { key: 'recurringJobId', label: t('table.recurringJobId'), type: 'string', render: (item) => item.recurringJobId || '-' },
+    { key: 'queue', label: t('table.queue'), type: 'string', render: (item) => item.queue || '-' },
+    { key: 'durationMs', label: t('table.duration'), type: 'number', render: (item) => formatDuration(item.durationMs), searchableValue: (item) => formatDuration(item.durationMs) },
+    { key: 'retryCount', label: t('table.retryCount'), type: 'number', render: (item) => item.retryCount },
+    { key: 'finishedAt', label: t('table.time'), type: 'date', render: (item) => formatDate(item.finishedAt), searchableValue: (item) => formatDate(item.finishedAt) },
+  ], [t]);
+
+  const failedColumns = useMemo<DataTableColumn<HangfireFailedResponseDto['items'][number]>[]>(() => [
+    { key: 'jobId', label: 'ID', type: 'string', className: 'w-[80px] px-6 font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400', render: (item) => `#${item.jobId}` },
+    { key: 'jobName', label: t('table.jobName'), type: 'string', className: 'min-w-[200px] max-w-[320px] truncate font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400', render: (item) => item.jobName },
+    { key: 'state', label: t('table.state'), type: 'string', className: 'w-[120px]', render: (item) => <Badge variant="outline" className="bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20 rounded-md text-[10px] font-bold px-2 py-0">{item.state || 'Failed'}</Badge> },
+    { key: 'failedAt', label: t('table.time'), type: 'date', className: 'w-[180px]', render: (item) => formatDate(item.failedAt), searchableValue: (item) => formatDate(item.failedAt) },
+    { key: 'reason', label: t('table.reason'), type: 'string', className: 'max-w-[400px] truncate', render: (item) => item.reason || '-' },
+  ], [t]);
+
+  const deadLetterColumns = useMemo<DataTableColumn<HangfireFailedResponseDto['items'][number]>[]>(() => [
+    { key: 'jobId', label: 'ID', type: 'string', className: 'w-[80px] px-6 font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400', render: (item) => `#${item.jobId}` },
+    { key: 'jobName', label: t('table.jobName'), type: 'string', className: 'min-w-[200px] max-w-[320px] truncate font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400', render: (item) => item.jobName },
+    { key: 'state', label: t('table.state'), type: 'string', className: 'w-[120px]', render: (item) => <Badge variant="outline" className="bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-500 border-amber-200 dark:border-amber-500/20 rounded-md text-[10px] font-bold px-2 py-0">{item.state || 'Enqueued'}</Badge> },
+    { key: 'enqueuedAt', label: t('table.time'), type: 'date', className: 'w-[180px]', render: (item) => formatDate(item.enqueuedAt), searchableValue: (item) => formatDate(item.enqueuedAt) },
+    { key: 'reason', label: t('table.reason'), type: 'string', className: 'max-w-[400px] truncate', render: (item) => item.reason || '-' },
+  ], [t]);
+
+  const getVisibleColumns = <T extends object,>(columns: DataTableColumn<T>[], controls: DataTableControls): DataTableColumn<T>[] => {
+    const byKey = new Map(columns.map((column) => [column.key, column]));
+    const ordered = controls.columnOrder.map((key) => byKey.get(key)).filter((column): column is DataTableColumn<T> => Boolean(column));
+    const missing = columns.filter((column) => !controls.columnOrder.includes(column.key));
+    return [...ordered, ...missing].filter((column) => controls.visibleColumns.includes(column.key));
+  };
 
   const renderStockPaging = (
     total: number,
@@ -184,148 +357,175 @@ export function HangfireMonitoringPage(): ReactElement {
     </div>
   );
 
-  const renderPagedDataTable = ({
+  const renderPagedDataTable = <T extends object,>({
     title,
     icon,
     headerRight,
-    tableHeaders,
-    tableRows,
+    columns,
+    controls,
+    rows,
+    emptyText,
+    emptyIcon,
+    rowKey,
+    onRowClick,
+    selectedRowKey,
     total,
     page,
     totalPages,
     onPrevious,
     onNext,
+    onRefresh,
   }: {
     title: string;
     icon: ReactElement;
     headerRight?: ReactNode;
-    tableHeaders: ReactNode;
-    tableRows: ReactNode;
+    columns: DataTableColumn<T>[];
+    controls: DataTableControls;
+    rows: T[];
+    emptyText: string;
+    emptyIcon: ReactElement;
+    rowKey: (row: T) => string;
+    onRowClick?: (row: T) => void;
+    selectedRowKey?: string | null;
     total: number;
     page: number;
     totalPages: number;
     onPrevious: () => void;
     onNext: () => void;
-  }): ReactElement => (
-    <section className="space-y-3">
-      <div className="flex items-center justify-between px-1">
-        <div className="flex items-center gap-2.5 min-w-0">
-          {icon}
-          <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate">{title}</h2>
+    onRefresh: () => Promise<void>;
+  }): ReactElement => {
+    const visibleTableColumns = getVisibleColumns(columns, controls);
+    const filteredRows = filterDataTableRows(rows, columns, controls);
+    const filterColumns = columns.map((column) => ({
+      value: column.key,
+      type: column.type,
+      labelKey: column.label,
+      translatedLabel: column.label,
+    }));
+    const hasFiltersActive = controls.appliedFilterRows.some((row) => row.value.trim());
+
+    return (
+      <section className="space-y-3">
+        <div className="flex items-center justify-between px-1">
+          <div className="flex items-center gap-2.5 min-w-0">
+            {icon}
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate">{title}</h2>
+          </div>
+          {headerRight ?? null}
         </div>
-        {headerRight ?? null}
-      </div>
-      <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300 flex flex-col min-h-0">
-        <div className="overflow-x-auto min-h-[300px] custom-scrollbar">
-          <Table className="w-full text-sm">
-            <TableHeader className="bg-slate-50 dark:bg-blue-950/80 sticky top-0 z-10 backdrop-blur-sm">
-              <TableRow className="hover:bg-transparent border-b border-slate-200 dark:border-cyan-800/30">
-                {tableHeaders}
-              </TableRow>
-            </TableHeader>
-            <TableBody>{tableRows}</TableBody>
-          </Table>
+        <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl p-5 flex flex-col gap-5 shadow-sm transition-all duration-300">
+          <PageToolbar
+            searchPlaceholder={t('common:search')}
+            searchValue={controls.searchTerm}
+            onSearchChange={controls.setSearchTerm}
+            onRefresh={onRefresh}
+            rightSlot={
+              <div className="flex flex-wrap items-center gap-2">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl border transition-all duration-300 bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-cyan-800/30 hover:bg-slate-100 dark:hover:bg-blue-900/50 hover:text-slate-900 dark:hover:text-white">
+                      <span className="font-medium text-sm">{controls.pageSize}</span>
+                      <ChevronDown size={16} />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-20 bg-white dark:bg-blue-950 border border-slate-200 dark:border-cyan-800/30 shadow-2xl rounded-xl overflow-hidden p-1">
+                    {PAGE_SIZE_OPTIONS.map((size) => (
+                      <DropdownMenuItem key={size} onSelect={() => controls.setPageSize(size)} className={cn('flex items-center justify-center text-xs font-medium px-2 py-1.5 rounded-lg cursor-pointer transition-colors', controls.pageSize === size ? 'bg-cyan-50 dark:bg-cyan-800/30 text-cyan-600 dark:text-cyan-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-blue-900/50 hover:text-slate-900 dark:hover:text-white')}>
+                        {size}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                <Popover open={controls.showFilters} onOpenChange={controls.setShowFilters}>
+                  <PopoverTrigger asChild>
+                    <Button variant={hasFiltersActive ? 'default' : 'outline'} className={cn('h-10 px-3 sm:px-4 rounded-xl border transition-all duration-300', hasFiltersActive ? 'bg-cyan-50 dark:bg-cyan-800/30 text-cyan-600 dark:text-cyan-400 border-cyan-200 dark:border-cyan-700 hover:bg-cyan-100 dark:hover:bg-cyan-800/50' : 'bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-cyan-800/30 hover:bg-slate-100 dark:hover:bg-blue-900/50 hover:text-slate-900 dark:hover:text-white')}>
+                      <Filter className="sm:mr-2 h-4 w-4" />
+                      <span className="hidden sm:inline">{t('common:filters')}</span>
+                      {hasFiltersActive && <span className="ml-2 flex h-2 w-2 rounded-full bg-cyan-500 animate-pulse" />}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent side="bottom" align="start" className="w-[calc(100vw-2rem)] sm:w-[420px] p-0 bg-white dark:bg-blue-950 border border-slate-200 dark:border-cyan-800/30 shadow-2xl rounded-2xl overflow-hidden z-50">
+                    <AdvancedFilter
+                      columns={filterColumns}
+                      defaultColumn={filterColumns[0]?.value ?? ''}
+                      draftRows={controls.draftFilterRows}
+                      onDraftRowsChange={controls.setDraftFilterRows}
+                      onSearch={() => {
+                        controls.setAppliedFilterRows(controls.draftFilterRows);
+                        controls.setShowFilters(false);
+                      }}
+                      onClear={() => {
+                        controls.setDraftFilterRows([]);
+                        controls.setAppliedFilterRows([]);
+                      }}
+                      embedded
+                    />
+                  </PopoverContent>
+                </Popover>
+
+                <ColumnPreferencesPopover
+                  pageKey={`aqua-hangfire-${title}`}
+                  userId={user?.id}
+                  columns={columns.map((column) => ({ key: column.key, label: column.label }))}
+                  visibleColumns={controls.visibleColumns}
+                  columnOrder={controls.columnOrder}
+                  onVisibleColumnsChange={controls.setVisibleColumns}
+                  onColumnOrderChange={controls.setColumnOrder}
+                />
+              </div>
+            }
+          />
         </div>
-        {renderStockPaging(total, page, totalPages, onPrevious, onNext)}
-      </div>
-    </section>
-  );
-
-  const renderFailedRows = (items: HangfireFailedResponseDto['items'], emptyText: string, emptyIcon: ReactElement, timeField: 'failedAt' | 'enqueuedAt') => {
-    if (items.length === 0) {
-      return (
-        <TableRow>
-          <TableCell colSpan={5} className="text-center text-slate-500 py-20 font-medium bg-white/50 dark:bg-transparent">
-            <div className="flex flex-col items-center justify-center gap-2">
-              {emptyIcon}
-              <span>{emptyText}</span>
-            </div>
-          </TableCell>
-        </TableRow>
-      );
-    }
-
-    return items.map((item) => (
-      <TableRow key={`${timeField}-${item.jobId}-${item.reason ?? ''}`} className="group border-b border-slate-200 dark:border-cyan-800/30 last:border-0 hover:bg-slate-50 dark:hover:bg-blue-900/30 transition-colors duration-200">
-        <TableCell className="font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400 px-6">#{item.jobId}</TableCell>
-        <TableCell className="font-semibold text-sm text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 max-w-[280px] truncate" title={item.jobName}>
-          {item.jobName}
-        </TableCell>
-        <TableCell>
-          <Badge variant="outline" className="bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20 rounded-md text-[10px] font-bold px-2 py-0">
-            {item.state || 'Failed'}
-          </Badge>
-        </TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{formatDate(item[timeField])}</TableCell>
-        <TableCell className="max-w-[400px] truncate text-sm text-slate-600 dark:text-slate-300 font-medium" title={item.reason}>
-          {item.reason || '-'}
-        </TableCell>
-      </TableRow>
-    ));
-  };
-
-  const renderSuccessRows = (items: HangfireSuccessJobItemDto[]) => {
-    if (items.length === 0) {
-      return (
-        <TableRow>
-          <TableCell colSpan={7} className="text-center text-slate-500 py-20 font-medium bg-white/50 dark:bg-transparent">
-            <div className="flex flex-col items-center justify-center gap-2">
-              <CheckCircle2 className="size-10 text-emerald-500/20" />
-              <span>{t('succeeded.empty')}</span>
-            </div>
-          </TableCell>
-        </TableRow>
-      );
-    }
-
-    return items.map((item) => (
-      <TableRow key={`success-${item.jobId}-${item.finishedAt ?? ''}`} className="group border-b border-slate-200 dark:border-cyan-800/30 last:border-0 hover:bg-slate-50 dark:hover:bg-blue-900/30 transition-colors duration-200">
-        <TableCell className="font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400 px-6">#{item.jobId}</TableCell>
-        <TableCell className="font-semibold text-sm text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 max-w-[280px] truncate" title={item.jobName}>{item.jobName}</TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium">{item.recurringJobId || '-'}</TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium">{item.queue || '-'}</TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{formatDuration(item.durationMs)}</TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{item.retryCount}</TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{formatDate(item.finishedAt)}</TableCell>
-      </TableRow>
-    ));
-  };
-
-  const renderRecurringRows = (items: HangfireRecurringJobItemDto[]) => {
-    if (items.length === 0) {
-      return (
-        <TableRow>
-          <TableCell colSpan={6} className="text-center text-slate-500 py-20 font-medium bg-white/50 dark:bg-transparent">
-            <div className="flex flex-col items-center justify-center gap-2">
-              <Clock className="size-10 text-slate-400/30" />
-              <span>{t('recurring.empty')}</span>
-            </div>
-          </TableCell>
-        </TableRow>
-      );
-    }
-
-    return items.map((item) => (
-      <TableRow
-        key={item.id}
-        className={cn(
-          'group cursor-pointer border-b border-slate-200 dark:border-cyan-800/30 last:border-0 hover:bg-slate-50 dark:hover:bg-blue-900/30 transition-colors duration-200',
-          selectedRecurringJob?.id === item.id && 'bg-cyan-50/60 dark:bg-cyan-500/10',
-        )}
-        onClick={() => setSelectedRecurringJobId(item.id)}
-      >
-        <TableCell className="font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400 px-6">{item.id}</TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium">
-          <div className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400">{item.jobName}</div>
-          {item.method ? <div className="text-xs text-slate-500 dark:text-slate-400">{item.method}</div> : null}
-          {item.error ? <div className="text-xs text-rose-500 mt-1">{item.error}</div> : null}
-        </TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium">{item.cron || '-'}</TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{formatDate(item.nextExecution)}</TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{formatDate(item.lastExecution)}</TableCell>
-        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium">{item.queue || '-'}</TableCell>
-      </TableRow>
-    ));
+        <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300 flex flex-col min-h-0">
+          <div className="overflow-x-auto min-h-[300px] custom-scrollbar">
+            <Table className="w-full text-sm">
+              <TableHeader className="bg-slate-50 dark:bg-blue-950/80 sticky top-0 z-10 backdrop-blur-sm">
+                <TableRow className="hover:bg-transparent border-b border-slate-200 dark:border-cyan-800/30">
+                  {visibleTableColumns.map((column) => (
+                    <TableHead key={column.key} className={cn(headStyle, column.className?.includes('px-6') ? undefined : column.className)}>
+                      {column.label}
+                    </TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {filteredRows.length === 0 ? (
+                  <TableRow>
+                    <TableCell colSpan={Math.max(1, visibleTableColumns.length)} className="text-center text-slate-500 py-20 font-medium bg-white/50 dark:bg-transparent">
+                      <div className="flex flex-col items-center justify-center gap-2">
+                        {emptyIcon}
+                        <span>{emptyText}</span>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ) : filteredRows.map((row) => {
+                  const key = rowKey(row);
+                  return (
+                    <TableRow
+                      key={key}
+                      className={cn(
+                        'group border-b border-slate-200 dark:border-cyan-800/30 last:border-0 hover:bg-slate-50 dark:hover:bg-blue-900/30 transition-colors duration-200',
+                        onRowClick && 'cursor-pointer',
+                        selectedRowKey === key && 'bg-cyan-50/60 dark:bg-cyan-500/10',
+                      )}
+                      onClick={() => onRowClick?.(row)}
+                    >
+                      {visibleTableColumns.map((column) => (
+                        <TableCell key={column.key} className={cn('text-sm text-slate-600 dark:text-slate-300 font-medium', column.className)} title={typeof column.render(row) === 'string' ? String(column.render(row)) : undefined}>
+                          {column.render(row)}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </div>
+          {renderStockPaging(total, page, totalPages, onPrevious, onNext)}
+        </div>
+      </section>
+    );
   };
 
   return (
@@ -454,70 +654,61 @@ export function HangfireMonitoringPage(): ReactElement {
         {renderPagedDataTable({
           title: t('recurring.title'),
           icon: <Clock className="size-5 text-cyan-600 dark:text-cyan-400" />,
-          tableHeaders: (
-            <>
-              <TableHead className={cn(headStyle, 'px-6')}>{t('recurring.table.id')}</TableHead>
-              <TableHead className={cn(headStyle, 'min-w-[240px]')}>{t('recurring.table.job')}</TableHead>
-              <TableHead className={headStyle}>{t('recurring.table.cron')}</TableHead>
-              <TableHead className={headStyle}>{t('recurring.table.nextExecution')}</TableHead>
-              <TableHead className={headStyle}>{t('recurring.table.lastExecution')}</TableHead>
-              <TableHead className={headStyle}>{t('recurring.table.queue')}</TableHead>
-            </>
-          ),
-          tableRows: renderRecurringRows(recurringRows),
+          columns: recurringColumns,
+          controls: recurringControls,
+          rows: recurringRows,
+          emptyText: t('recurring.empty'),
+          emptyIcon: <Clock className="size-10 text-slate-400/30" />,
+          rowKey: (row) => row.id,
+          onRowClick: (row) => setSelectedRecurringJobId(row.id),
+          selectedRowKey: selectedRecurringJob?.id ?? null,
           total: recurringTotal,
           page: recurringPage,
           totalPages: recurringTotalPages,
           onPrevious: () => setRecurringPage((p) => Math.max(1, p - 1)),
           onNext: () => setRecurringPage((p) => Math.min(recurringTotalPages, p + 1)),
+          onRefresh: async () => {
+            await recurringJobsQuery.refetch();
+          },
         })}
       </div>
 
       {renderPagedDataTable({
         title: t('succeeded.title'),
         icon: <CheckCircle2 className="size-5 text-emerald-600 dark:text-emerald-400" />,
-        tableHeaders: (
-          <>
-            <TableHead className={cn(headStyle, 'w-[80px] px-6')}>ID</TableHead>
-            <TableHead className={cn(headStyle, 'min-w-[220px]')}>{t('table.jobName')}</TableHead>
-            <TableHead className={headStyle}>{t('table.recurringJobId')}</TableHead>
-            <TableHead className={headStyle}>{t('table.queue')}</TableHead>
-            <TableHead className={headStyle}>{t('table.duration')}</TableHead>
-            <TableHead className={headStyle}>{t('table.retryCount')}</TableHead>
-            <TableHead className={headStyle}>{t('table.time')}</TableHead>
-          </>
-        ),
-        tableRows: renderSuccessRows(successQuery.data?.items ?? []),
+        columns: successColumns,
+        controls: successControls,
+        rows: successQuery.data?.items ?? [],
+        emptyText: t('succeeded.empty'),
+        emptyIcon: <CheckCircle2 className="size-10 text-emerald-500/20" />,
+        rowKey: (row) => `success-${row.jobId}-${row.finishedAt ?? ''}`,
         total: successTotal,
         page: successPage,
         totalPages: successTotalPages,
         onPrevious: () => setSuccessPage((p) => Math.max(1, p - 1)),
         onNext: () => setSuccessPage((p) => Math.min(successTotalPages, p + 1)),
+        onRefresh: async () => {
+          await successQuery.refetch();
+        },
       })}
 
       {renderPagedDataTable({
         title: t('failed.title'),
         icon: <XCircle className="size-5 text-rose-600 dark:text-rose-500" />,
-        tableHeaders: (
-          <>
-            <TableHead className={cn(headStyle, 'w-[80px] px-6')}>ID</TableHead>
-            <TableHead className={cn(headStyle, 'min-w-[200px]')}>{t('table.jobName')}</TableHead>
-            <TableHead className={cn(headStyle, 'w-[120px]')}>{t('table.state')}</TableHead>
-            <TableHead className={cn(headStyle, 'w-[180px]')}>{t('table.time')}</TableHead>
-            <TableHead className={headStyle}>{t('table.reason')}</TableHead>
-          </>
-        ),
-        tableRows: renderFailedRows(
-          failedQuery.data?.items ?? [],
-          t('failed.empty'),
-          <CheckCircle2 className="size-10 text-emerald-500/20" />,
-          'failedAt',
-        ),
+        columns: failedColumns,
+        controls: failedControls,
+        rows: failedQuery.data?.items ?? [],
+        emptyText: t('failed.empty'),
+        emptyIcon: <CheckCircle2 className="size-10 text-emerald-500/20" />,
+        rowKey: (row) => `failed-${row.jobId}-${row.reason ?? ''}`,
         total: failedTotal,
         page: failedPage,
         totalPages: failedTotalPages,
         onPrevious: () => setFailedPage((p) => Math.max(1, p - 1)),
         onNext: () => setFailedPage((p) => Math.min(failedTotalPages, p + 1)),
+        onRefresh: async () => {
+          await failedQuery.refetch();
+        },
       })}
 
       {renderPagedDataTable({
@@ -528,26 +719,20 @@ export function HangfireMonitoringPage(): ReactElement {
             {t('deadLetter.enqueued').toUpperCase()}: {deadLetterQuery.data?.enqueued ?? 0}
           </Badge>
         ),
-        tableHeaders: (
-          <>
-            <TableHead className={cn(headStyle, 'w-[80px] px-6')}>ID</TableHead>
-            <TableHead className={cn(headStyle, 'min-w-[200px]')}>{t('table.jobName')}</TableHead>
-            <TableHead className={cn(headStyle, 'w-[120px]')}>{t('table.state')}</TableHead>
-            <TableHead className={cn(headStyle, 'w-[180px]')}>{t('table.time')}</TableHead>
-            <TableHead className={headStyle}>{t('table.reason')}</TableHead>
-          </>
-        ),
-        tableRows: renderFailedRows(
-          deadLetterQuery.data?.items ?? [],
-          t('deadLetter.empty'),
-          <CheckCircle2 className="size-10 text-emerald-500/20" />,
-          'enqueuedAt',
-        ),
+        columns: deadLetterColumns,
+        controls: deadLetterControls,
+        rows: deadLetterQuery.data?.items ?? [],
+        emptyText: t('deadLetter.empty'),
+        emptyIcon: <CheckCircle2 className="size-10 text-emerald-500/20" />,
+        rowKey: (row) => `dead-letter-${row.jobId}-${row.reason ?? ''}`,
         total: deadLetterTotal,
         page: deadLetterPage,
         totalPages: deadLetterTotalPages,
         onPrevious: () => setDeadLetterPage((p) => Math.max(1, p - 1)),
         onNext: () => setDeadLetterPage((p) => Math.min(deadLetterTotalPages, p + 1)),
+        onRefresh: async () => {
+          await deadLetterQuery.refetch();
+        },
       })}
     </div>
   );
