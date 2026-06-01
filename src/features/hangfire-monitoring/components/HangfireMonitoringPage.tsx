@@ -8,13 +8,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
   Table,
   TableBody,
   TableCell,
@@ -49,9 +42,15 @@ import type {
   HangfireSuccessJobItemDto,
 } from '../types/hangfireMonitoring.types';
 import { cn } from '@/lib/utils';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const DEFAULT_PAGE_SIZE = 20;
-const PAGE_SIZE_OPTIONS = [10, 20, 50, 100] as const;
 
 function formatDate(value?: string): string {
   if (!value) return '-';
@@ -67,19 +66,20 @@ function formatDuration(durationMs: number): string {
 }
 
 export function HangfireMonitoringPage(): ReactElement {
-  const { t } = useTranslation(['hangfire-monitoring', 'common']);
+  const { t } = useTranslation(['hangfire-monitoring', 'stock', 'common']);
   const { setPageTitle } = useUIStore();
   const queryClient = useQueryClient();
 
   const [failedPage, setFailedPage] = useState(1);
-  const [failedPageSize, setFailedPageSize] = useState<number>(DEFAULT_PAGE_SIZE);
   const [successPage, setSuccessPage] = useState(1);
-  const [successPageSize, setSuccessPageSize] = useState<number>(DEFAULT_PAGE_SIZE);
   const [deadLetterPage, setDeadLetterPage] = useState(1);
-  const [deadLetterPageSize, setDeadLetterPageSize] = useState<number>(DEFAULT_PAGE_SIZE);
   const [recurringPage, setRecurringPage] = useState(1);
-  const [recurringPageSize, setRecurringPageSize] = useState<number>(DEFAULT_PAGE_SIZE);
   const [selectedRecurringJobId, setSelectedRecurringJobId] = useState<string>('');
+
+  const failedPageSize = DEFAULT_PAGE_SIZE;
+  const successPageSize = DEFAULT_PAGE_SIZE;
+  const deadLetterPageSize = DEFAULT_PAGE_SIZE;
+  const recurringPageSize = DEFAULT_PAGE_SIZE;
 
   const failedFrom = failedPage;
   const successFrom = successPage;
@@ -156,16 +156,33 @@ export function HangfireMonitoringPage(): ReactElement {
   const recurringTotalPages = Math.max(1, Math.ceil(recurringTotal / recurringPageSize));
 
   const recurringRows = recurringItems.slice((recurringPage - 1) * recurringPageSize, recurringPage * recurringPageSize);
-  const failedRangeStart = failedTotal === 0 ? 0 : (failedPage - 1) * failedPageSize + 1;
-  const failedRangeEnd = failedTotal === 0 ? 0 : Math.min(failedPage * failedPageSize, failedTotal);
-  const successRangeStart = successTotal === 0 ? 0 : (successPage - 1) * successPageSize + 1;
-  const successRangeEnd = successTotal === 0 ? 0 : Math.min(successPage * successPageSize, successTotal);
-  const deadLetterRangeStart = deadLetterTotal === 0 ? 0 : (deadLetterPage - 1) * deadLetterPageSize + 1;
-  const deadLetterRangeEnd = deadLetterTotal === 0 ? 0 : Math.min(deadLetterPage * deadLetterPageSize, deadLetterTotal);
-  const recurringRangeStart = recurringTotal === 0 ? 0 : (recurringPage - 1) * recurringPageSize + 1;
-  const recurringRangeEnd = recurringTotal === 0 ? 0 : Math.min(recurringPage * recurringPageSize, recurringTotal);
 
   const headStyle = 'text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 py-4';
+
+  const renderStockPaging = (
+    total: number,
+    page: number,
+    totalPages: number,
+    onPrevious: () => void,
+    onNext: () => void,
+  ): ReactElement => (
+    <div className="flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 bg-slate-50 dark:bg-blue-950/50 border-t border-slate-200 dark:border-cyan-800/30 gap-4 shrink-0 rounded-b-2xl">
+      <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+        {t('stock.list.total')} {total} {t('stock.list.recordsListed')}
+      </span>
+      <div className="flex items-center gap-2">
+        <Button variant="outline" size="sm" className="h-8 px-3 rounded-lg text-xs bg-white border-slate-200 text-slate-700 hover:bg-slate-100 dark:bg-transparent dark:border-cyan-800/50 dark:text-slate-300 dark:hover:bg-blue-900/50 dark:hover:text-white disabled:opacity-50 transition-colors" onClick={onPrevious} disabled={page <= 1}>
+          <ArrowLeft className="w-3 h-3 mr-1" /> {t('common:previous')}
+        </Button>
+        <span className="text-xs font-semibold bg-white border border-slate-200 text-slate-800 dark:bg-blue-950 dark:border-cyan-800/50 px-3 py-1.5 rounded-md min-w-12 text-center dark:text-slate-200 shadow-sm">
+          {page}/{totalPages}
+        </span>
+        <Button variant="outline" size="sm" className="h-8 px-3 rounded-lg text-xs bg-white border-slate-200 text-slate-700 hover:bg-slate-100 dark:bg-transparent dark:border-cyan-800/50 dark:text-slate-300 dark:hover:bg-blue-900/50 dark:hover:text-white disabled:opacity-50 transition-colors" onClick={onNext} disabled={page >= totalPages}>
+          {t('common:next')} <ArrowRight className="w-3 h-3 ml-1" />
+        </Button>
+      </div>
+    </div>
+  );
 
   const renderFailedRows = (items: HangfireFailedResponseDto['items'], emptyText: string, emptyIcon: ReactElement, timeField: 'failedAt' | 'enqueuedAt') => {
     if (items.length === 0) {
@@ -406,34 +423,14 @@ export function HangfireMonitoringPage(): ReactElement {
               </TableHeader>
               <TableBody>{renderRecurringRows(recurringRows)}</TableBody>
             </Table>
-          <div className="flex flex-col sm:flex-row items-center justify-end px-6 py-4 bg-slate-50/80 dark:bg-blue-950/40 border-t border-slate-200 dark:border-cyan-800/30 gap-2 transition-colors">
-            <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-tight mr-auto">
-              {t('common:table.showing', { from: recurringRangeStart, to: recurringRangeEnd, total: recurringTotal })}
-            </span>
-            <Select value={String(recurringPageSize)} onValueChange={(value) => {
-              const valueAsNumber = Number(value);
-              setRecurringPageSize(valueAsNumber);
-              setRecurringPage(1);
-            }}>
-              <SelectTrigger className="h-9 w-20 rounded-xl border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-blue-950/80">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {PAGE_SIZE_OPTIONS.map((option) => (
-                  <SelectItem key={option} value={String(option)}>
-                    {option}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Button variant="outline" size="sm" disabled={recurringPage <= 1} onClick={() => setRecurringPage((p) => Math.max(1, p - 1))} className="h-9 px-4 border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl text-xs font-bold transition-all">
-              <ArrowLeft size={14} className="mr-2" /> {t('common:common.previous')}
-            </Button>
-            <Button variant="outline" size="sm" disabled={recurringPage >= recurringTotalPages} onClick={() => setRecurringPage((p) => Math.min(recurringTotalPages, p + 1))} className="h-9 px-4 border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl text-xs font-bold transition-all">
-              {t('common:common.next')} <ArrowRight size={14} className="ml-2" />
-            </Button>
           </div>
-          </div>
+          {renderStockPaging(
+            recurringTotal,
+            recurringPage,
+            recurringTotalPages,
+            () => setRecurringPage((p) => Math.max(1, p - 1)),
+            () => setRecurringPage((p) => Math.min(recurringTotalPages, p + 1)),
+          )}
         </div>
       </div>
 
@@ -458,33 +455,13 @@ export function HangfireMonitoringPage(): ReactElement {
             <TableBody>{renderSuccessRows(successQuery.data?.items ?? [])}</TableBody>
           </Table>
         </div>
-        <div className="flex flex-col sm:flex-row items-center justify-end px-6 py-4 bg-slate-50/80 dark:bg-blue-950/40 border-t border-slate-200 dark:border-cyan-800/30 gap-2 transition-colors">
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-tight mr-auto">
-            {t('common:table.showing', { from: successRangeStart, to: successRangeEnd, total: successTotal })}
-          </span>
-          <Button variant="outline" size="sm" disabled={successPage <= 1} onClick={() => setSuccessPage((p) => Math.max(1, p - 1))} className="h-9 px-4 border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl text-xs font-bold transition-all">
-            <ArrowLeft size={14} className="mr-2" /> {t('common:common.previous')}
-          </Button>
-          <Button variant="outline" size="sm" disabled={successPage >= successTotalPages} onClick={() => setSuccessPage((p) => Math.min(successTotalPages, p + 1))} className="h-9 px-4 border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl text-xs font-bold transition-all">
-            {t('common:common.next')} <ArrowRight size={14} className="ml-2" />
-          </Button>
-          <Select value={String(successPageSize)} onValueChange={(value) => {
-            const valueAsNumber = Number(value);
-            setSuccessPageSize(valueAsNumber);
-            setSuccessPage(1);
-          }}>
-            <SelectTrigger className="h-9 w-20 rounded-xl border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-blue-950/80">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {PAGE_SIZE_OPTIONS.map((option) => (
-                <SelectItem key={option} value={String(option)}>
-                  {option}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+          {renderStockPaging(
+            successTotal,
+            successPage,
+            successTotalPages,
+            () => setSuccessPage((p) => Math.max(1, p - 1)),
+            () => setSuccessPage((p) => Math.min(successTotalPages, p + 1)),
+          )}
       </div>
 
       <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
@@ -513,35 +490,13 @@ export function HangfireMonitoringPage(): ReactElement {
             </TableBody>
           </Table>
         </div>
-        <div className="flex flex-col sm:flex-row items-center justify-end px-6 py-4 bg-slate-50/80 dark:bg-blue-950/40 border-t border-slate-200 dark:border-cyan-800/30 gap-2 transition-colors">
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-tight mr-auto">
-            {t('common:table.showing', { from: failedRangeStart, to: failedRangeEnd, total: failedTotal })}
-          </span>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" disabled={failedPage <= 1} onClick={() => setFailedPage((p) => Math.max(1, p - 1))} className="h-9 px-4 border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl text-xs font-bold transition-all">
-              <ArrowLeft size={14} className="mr-2" /> {t('common:common.previous')}
-            </Button>
-            <Button variant="outline" size="sm" disabled={failedPage >= failedTotalPages} onClick={() => setFailedPage((p) => Math.min(failedTotalPages, p + 1))} className="h-9 px-4 border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl text-xs font-bold transition-all">
-              {t('common:common.next')} <ArrowRight size={14} className="ml-2" />
-            </Button>
-            <Select value={String(failedPageSize)} onValueChange={(value) => {
-              const valueAsNumber = Number(value);
-              setFailedPageSize(valueAsNumber);
-              setFailedPage(1);
-            }}>
-              <SelectTrigger className="h-9 w-20 rounded-xl border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-blue-950/80">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {PAGE_SIZE_OPTIONS.map((option) => (
-                  <SelectItem key={option} value={String(option)}>
-                    {option}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
+        {renderStockPaging(
+          failedTotal,
+          failedPage,
+          failedTotalPages,
+          () => setFailedPage((p) => Math.max(1, p - 1)),
+          () => setFailedPage((p) => Math.min(failedTotalPages, p + 1)),
+        )}
       </div>
 
       <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
@@ -575,33 +530,13 @@ export function HangfireMonitoringPage(): ReactElement {
             </TableBody>
           </Table>
         </div>
-        <div className="flex flex-col sm:flex-row items-center justify-end px-6 py-4 bg-slate-50/80 dark:bg-blue-950/40 border-t border-slate-200 dark:border-cyan-800/30 gap-2 transition-colors">
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-tight mr-auto">
-            {t('common:table.showing', { from: deadLetterRangeStart, to: deadLetterRangeEnd, total: deadLetterTotal })}
-          </span>
-          <Button variant="outline" size="sm" disabled={deadLetterPage <= 1} onClick={() => setDeadLetterPage((p) => Math.max(1, p - 1))} className="h-9 px-4 border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl text-xs font-bold transition-all">
-            <ArrowLeft size={14} className="mr-2" /> {t('common:common.previous')}
-          </Button>
-          <Button variant="outline" size="sm" disabled={deadLetterPage >= deadLetterTotalPages} onClick={() => setDeadLetterPage((p) => Math.min(deadLetterTotalPages, p + 1))} className="h-9 px-4 border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl text-xs font-bold transition-all">
-            {t('common:common.next')} <ArrowRight size={14} className="ml-2" />
-          </Button>
-          <Select value={String(deadLetterPageSize)} onValueChange={(value) => {
-            const valueAsNumber = Number(value);
-            setDeadLetterPageSize(valueAsNumber);
-            setDeadLetterPage(1);
-          }}>
-            <SelectTrigger className="h-9 w-20 rounded-xl border-slate-200 dark:border-cyan-800/30 bg-white dark:bg-blue-950/80">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {PAGE_SIZE_OPTIONS.map((option) => (
-                <SelectItem key={option} value={String(option)}>
-                  {option}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+        {renderStockPaging(
+          deadLetterTotal,
+          deadLetterPage,
+          deadLetterTotalPages,
+          () => setDeadLetterPage((p) => Math.max(1, p - 1)),
+          () => setDeadLetterPage((p) => Math.min(deadLetterTotalPages, p + 1)),
+        )}
       </div>
     </div>
   );
