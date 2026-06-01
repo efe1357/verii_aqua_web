@@ -13,17 +13,30 @@ function pick<T>(data: Record<string, unknown> | null | undefined, pascalKey: st
   return (data[pascalKey] ?? data[camelKey]) as T | undefined;
 }
 
+function unwrapResponse(data: Record<string, unknown> | null | undefined): Record<string, unknown> {
+  if (!data) return {};
+
+  const inner = pick<unknown>(data, 'Data', 'data');
+  if (inner && typeof inner === 'object' && !Array.isArray(inner)) {
+    return inner as Record<string, unknown>;
+  }
+
+  return data;
+}
+
 function normalizeStats(data: Record<string, unknown>): HangfireStatsDto {
+  const source = unwrapResponse(data);
+
   return {
-    enqueued: Number(pick<number>(data, 'Enqueued', 'enqueued') ?? 0),
-    processing: Number(pick<number>(data, 'Processing', 'processing') ?? 0),
-    scheduled: Number(pick<number>(data, 'Scheduled', 'scheduled') ?? 0),
-    succeeded: Number(pick<number>(data, 'Succeeded', 'succeeded') ?? 0),
-    failed: Number(pick<number>(data, 'Failed', 'failed') ?? 0),
-    deleted: Number(pick<number>(data, 'Deleted', 'deleted') ?? 0),
-    servers: Number(pick<number>(data, 'Servers', 'servers') ?? 0),
-    queues: Number(pick<number>(data, 'Queues', 'queues') ?? 0),
-    timestamp: String(pick<string>(data, 'Timestamp', 'timestamp') ?? new Date().toISOString()),
+    enqueued: Number(pick<number>(source, 'Enqueued', 'enqueued') ?? 0),
+    processing: Number(pick<number>(source, 'Processing', 'processing') ?? 0),
+    scheduled: Number(pick<number>(source, 'Scheduled', 'scheduled') ?? 0),
+    succeeded: Number(pick<number>(source, 'Succeeded', 'succeeded') ?? 0),
+    failed: Number(pick<number>(source, 'Failed', 'failed') ?? 0),
+    deleted: Number(pick<number>(source, 'Deleted', 'deleted') ?? 0),
+    servers: Number(pick<number>(source, 'Servers', 'servers') ?? 0),
+    queues: Number(pick<number>(source, 'Queues', 'queues') ?? 0),
+    timestamp: String(pick<string>(source, 'Timestamp', 'timestamp') ?? new Date().toISOString()),
   };
 }
 
@@ -88,49 +101,54 @@ export const hangfireMonitoringApi = {
 
   async getFailed(from = 0, count = 20): Promise<HangfireFailedResponseDto> {
     const response = await api.get<Record<string, unknown>>(`/api/hangfire/failures-from-db?from=${from}&count=${count}`);
+    const data = unwrapResponse(response);
     return {
-      items: normalizeJobs(pick<unknown>(response, 'Items', 'items')),
-      total: Number(pick<number>(response, 'Total', 'total') ?? 0),
-      timestamp: String(pick<string>(response, 'Timestamp', 'timestamp') ?? new Date().toISOString()),
+      items: normalizeJobs(pick<unknown>(data, 'Items', 'items')),
+      total: Number(pick<number>(data, 'Total', 'total') ?? 0),
+      timestamp: String(pick<string>(data, 'Timestamp', 'timestamp') ?? new Date().toISOString()),
     };
   },
 
   async getDeadLetter(from = 0, count = 20): Promise<HangfireDeadLetterResponseDto> {
     const response = await api.get<Record<string, unknown>>(`/api/hangfire/dead-letter?from=${from}&count=${count}`);
-    const total = Number(pick<number>(response, 'Enqueued', 'enqueued') ?? 0);
+    const data = unwrapResponse(response);
+    const total = Number(pick<number>(data, 'Enqueued', 'enqueued') ?? 0);
     return {
-      queue: String(pick<string>(response, 'Queue', 'queue') ?? 'dead-letter'),
+      queue: String(pick<string>(data, 'Queue', 'queue') ?? 'dead-letter'),
       enqueued: total,
       total,
-      items: normalizeJobs(pick<unknown>(response, 'Items', 'items')),
-      timestamp: String(pick<string>(response, 'Timestamp', 'timestamp') ?? new Date().toISOString()),
+      items: normalizeJobs(pick<unknown>(data, 'Items', 'items')),
+      timestamp: String(pick<string>(data, 'Timestamp', 'timestamp') ?? new Date().toISOString()),
     };
   },
 
   async getSuccesses(from = 0, count = 20): Promise<HangfireSuccessResponseDto> {
     const response = await api.get<Record<string, unknown>>(`/api/hangfire/successes-from-db?from=${from}&count=${count}`);
+    const data = unwrapResponse(response);
     return {
-      items: normalizeSuccessJobs(pick<unknown>(response, 'Items', 'items')),
-      total: Number(pick<number>(response, 'Total', 'total') ?? 0),
-      timestamp: String(pick<string>(response, 'Timestamp', 'timestamp') ?? new Date().toISOString()),
+      items: normalizeSuccessJobs(pick<unknown>(data, 'Items', 'items')),
+      total: Number(pick<number>(data, 'Total', 'total') ?? 0),
+      timestamp: String(pick<string>(data, 'Timestamp', 'timestamp') ?? new Date().toISOString()),
     };
   },
 
   async getRecurringJobs(): Promise<HangfireRecurringJobsResponseDto> {
     const response = await api.get<Record<string, unknown>>('/api/hangfire/recurring-jobs');
+    const data = unwrapResponse(response);
     return {
-      items: normalizeRecurringJobs(pick<unknown>(response, 'Items', 'items')),
-      total: Number(pick<number>(response, 'Total', 'total') ?? 0),
-      timestamp: String(pick<string>(response, 'Timestamp', 'timestamp') ?? new Date().toISOString()),
+      items: normalizeRecurringJobs(pick<unknown>(data, 'Items', 'items')),
+      total: Number(pick<number>(data, 'Total', 'total') ?? 0),
+      timestamp: String(pick<string>(data, 'Timestamp', 'timestamp') ?? new Date().toISOString()),
     };
   },
 
   async triggerRecurringJob(jobId: string): Promise<HangfireTriggerRecurringJobResponseDto> {
     const response = await api.post<Record<string, unknown>>(`/api/hangfire/recurring-jobs/${encodeURIComponent(jobId)}/trigger`);
+    const data = unwrapResponse(response);
     return {
-      jobId: String(pick<string>(response, 'JobId', 'jobId') ?? jobId),
-      triggeredAt: String(pick<string>(response, 'TriggeredAt', 'triggeredAt') ?? new Date().toISOString()),
-      message: String(pick<string>(response, 'Message', 'message') ?? 'Recurring job triggered successfully.'),
+      jobId: String(pick<string>(data, 'JobId', 'jobId') ?? jobId),
+      triggeredAt: String(pick<string>(data, 'TriggeredAt', 'triggeredAt') ?? new Date().toISOString()),
+      message: String(pick<string>(data, 'Message', 'message') ?? 'Recurring job triggered successfully.'),
     };
   },
 };
