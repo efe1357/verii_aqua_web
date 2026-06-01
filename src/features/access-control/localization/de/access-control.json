@@ -1,34 +1,34 @@
 {
   "help": {
     "permissionDefinition": {
-      "code": "Eindeutiger Schlüssel, der von Routen- und Seitenbetreuern verwendet wird. Bevorzugen Sie die stabile Snake_Case- oder Punktschreibweise.",
+      "code": "Unique key used by route and page maintainers. Prefer stable snake_case or dot notation.",
       "name": "Der Anzeigename, der Administratoren beim Verwalten von Berechtigungen angezeigt wird.",
-      "description": "Optionale interne Beschreibung für diese Berechtigung.",
-      "isActive": "Passive Berechtigungen werden bei der Berechnung des Benutzerzugriffs nicht berücksichtigt.",
-      "save": "Die Änderungen wirken sich auf Rollen- und Gruppenautorisierungsflüsse aus."
+      "description": "Optional internal description for this permission.",
+      "isActive": "Passive permissions are not taken into account when calculating user access.",
+      "save": "The changes affect role and group authorization flows."
     },
     "permissionGroup": {
-      "name": "Gruppenname zur Identifizierung bei der Zuweisung an Benutzer.",
-      "isSystemAdmin": "Mitglieder dieser Gruppe können ohne individuelle Berechtigungsprüfung auf alle Seiten und Aktionen zugreifen.",
-      "isActive": "Für neue Zugriffsentscheidungen sollten keine passiven Gruppen zugewiesen werden.",
+      "name": "Group name for identification when assigning to users.",
+      "isSystemAdmin": "Members of this group can access all pages and actions without individual permission checks.",
+      "isActive": "Passive groups should not be assigned for new access decisions.",
       "permissions": "Die gewählten Berechtigungen bestimmen, auf welche Mitglieder dieser Gruppe Zugriff zugreifen kann.",
-      "save": "Aktualisiert den aktuellen Zugriff für alle Benutzer, die dieser Gruppe zugewiesen sind."
+      "save": "Updates the current access for all users assigned to this group."
     },
     "userAssignment": {
-      "user": "Wählen Sie den Benutzer aus, dessen Zugriffsbereich Sie verwalten möchten.",
+      "user": "Select the user whose access scope you want to manage.",
       "groups": "Der Benutzer erhält kombinierte Berechtigungen von allen ausgewählten Gruppen.",
-      "save": "Zuweisungen werden sofort für die nächsten Berechtigungsprüfungen übernommen. Benutzer können ihre Sitzungen erneuern.",
-      "systemAdminNote": "Wenn der Benutzer über eine Systemadministratorgruppe verfügt, werden detaillierte Berechtigungen übersprungen."
+      "save": "Assignments are applied immediately for the next authorization checks. Users can renew their sessions.",
+      "systemAdminNote": "If the user has a system administrator group, detailed permissions are skipped."
     }
   },
   "permissionDefinitions": {
     "title": "Berechtigungsdefinitionen",
     "description": "Verwalten Sie die im System verwendeten Berechtigungscodes",
-    "add": "Beschreibung hinzufügen",
+    "add": "Add Description",
     "form": {
       "editTitle": "Berechtigungsdefinition bearbeiten",
-      "addTitle": "Berechtigungsdefinition hinzufügen",
-      "editDescription": "Informationen zur Berechtigungsdefinition aktualisieren",
+      "addTitle": "Add Permission Definition",
+      "editDescription": "Update permission definition information",
       "addDescription": "Erstellen Sie eine neue Berechtigungsdefinition",
       "code": "Code",
       "name": "Name",
@@ -38,7 +38,7 @@
       "isActive": "aktiv",
       "codePlaceholder": "Code auswählen",
       "affectedRoutes": "Betroffene Seiten",
-      "affectedRoutesNone": "Für diesen Code wurde keine passende Route gefunden",
+      "affectedRoutesNone": "No matching route found for this code",
       "codeSearchPlaceholder": "Suchen...",
       "codeEmpty": "Keine Ergebnisse gefunden"
     },
@@ -50,8 +50,8 @@
       "showing": "{{from}}-{{to}} / {{total}}"
     },
     "delete": {
-      "confirmTitle": "Berechtigungsdefinition löschen",
-      "confirmMessage": "Sind Sie sicher, dass Sie „{{name}}“ löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
+      "confirmTitle": "Delete Permission Definition",
+      "confirmMessage": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone."
     },
     "syncFromRoutes": "Von Routen synchronisieren",
     "missingCodes": "{{count}} fehlender Berechtigungscode gefunden. CRUD-Datensätze werden automatisch synchronisiert."
@@ -59,12 +59,12 @@
   "permissionGroups": {
     "title": "Berechtigungsgruppen",
     "description": "Berechtigungsgruppen und Zuweisungen verwalten",
-    "add": "Gruppe hinzufügen",
+    "add": "Add Group",
     "selectAll": "Alles auswählen",
-    "noDefinitions": "Keine Berechtigungsdefinitionen verfügbar",
+    "noDefinitions": "No permission definitions available",
     "form": {
       "editTitle": "Berechtigungsgruppe bearbeiten",
-      "addTitle": "Berechtigungsgruppe hinzufügen",
+      "addTitle": "Add Permission Group",
       "editDescription": "Berechtigungsgruppeninformationen aktualisieren",
       "addDescription": "Erstellen Sie eine neue Berechtigungsgruppe",
       "name": "Name",
@@ -85,17 +85,17 @@
     "managePermissions": "Berechtigungen verwalten",
     "permissionsPanel": {
       "title": "Gruppenberechtigungen bearbeiten",
-      "description": "Wählen Sie Berechtigungen für diese Gruppe aus",
-      "currentCodes": "Verfügbare Berechtigungscodes"
+      "description": "Select permissions for this group",
+      "currentCodes": "Available permission codes"
     },
     "delete": {
-      "confirmTitle": "Berechtigungsgruppe löschen",
-      "confirmMessage": "Sind Sie sicher, dass Sie „{{name}}“ löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
+      "confirmTitle": "Delete Permission Group",
+      "confirmMessage": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone."
     },
     "search": "Suchen...",
     "moduleTitle": "AQUA-MODUL",
-    "systemAdminLocked": "Die Berechtigungen der Systemadministratorgruppe sind gesperrt und können nicht geändert werden.",
-    "matrixDescription": "Jede Zeile stellt einen Bildschirm oder eine Ressource dar. Definieren Sie einen stärker kontrollierten Zugriff, indem Sie die Berechtigungen „Anzeigen“, „Erstellen“, „Aktualisieren“ und „Löschen“ separat auswählen.",
+    "systemAdminLocked": "System Admin group privileges are locked and cannot be changed.",
+    "matrixDescription": "Each row represents a screen or resource. Define more controlled access by selecting View, Create, Update and Delete privileges separately.",
     "sections": {
       "aquaDefinitions": "Aqua-Definitionen",
       "aquaOperations": "Aqua-Transaktionen",
@@ -118,7 +118,7 @@
     "selectUserHint": "Wählen Sie einen Benutzer aus, um Berechtigungsgruppenzuweisungen zu verwalten",
     "assignedGroups": "Zugewiesene Berechtigungsgruppen",
     "noUsers": "Benutzer nicht gefunden",
-    "noGroups": "Keine Berechtigungsgruppen verfügbar",
+    "noGroups": "No permission groups available",
     "selectAll": "Alles auswählen",
     "unsavedChanges": "Änderungen nicht gespeichert"
   },
@@ -133,8 +133,8 @@
     "yes": "Ja",
     "no": "Nein",
     "edit": "Bearbeiten",
-    "delete": "Löschen",
-    "previous": "Zurück",
+    "delete": "Delete",
+    "previous": "Previous",
     "next": "Als nächstes",
     "processing": "Verarbeitung..."
   },

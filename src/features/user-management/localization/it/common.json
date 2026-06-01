@@ -31,20 +31,20 @@
     "form": {
       "addUser": "Aggiungi nuovo utente",
       "editUser": "Modifica utente",
-      "addDescription": "Inserisci le informazioni del nuovo utente",
+      "addDescription": "Enter new user information",
       "editDescription": "Modifica le informazioni dell'utente",
       "username": "Nome utente",
-      "usernamePlaceholder": "Inserisci il nome utente",
+      "usernamePlaceholder": "Enter username",
       "email": "E-mail",
-      "emailPlaceholder": "Inserisci l'indirizzo email",
+      "emailPlaceholder": "Enter email address",
       "password": "parola d'ordine",
-      "passwordPlaceholder": "Inserisci la password (minimo 8 caratteri)",
+      "passwordPlaceholder": "If left blank, a temporary password will be created.",
       "firstName": "Nome",
-      "firstNamePlaceholder": "Inserisci il nome",
+      "firstNamePlaceholder": "Enter name",
       "lastName": "Cognome",
-      "lastNamePlaceholder": "Inserisci il cognome",
+      "lastNamePlaceholder": "Enter last name",
       "phoneNumber": "telefono",
-      "phoneNumberPlaceholder": "Inserisci il numero di telefono",
+      "phoneNumberPlaceholder": "Enter phone number",
       "role": "Ruolo",
       "rolePlaceholder": "Seleziona ruolo",
       "roleRequired": "La selezione del ruolo è obbligatoria",
@@ -65,9 +65,9 @@
       "firstName.maxLength": "Il nome può contenere fino a 50 caratteri",
       "lastName.maxLength": "Il cognome può contenere un massimo di 50 caratteri",
       "phoneNumber.maxLength": "Il numero di telefono può contenere fino a 20 caratteri",
-      "manager": "Yönetici",
-      "managerPlaceholder": "Yönetici seçin",
-      "noManager": "Yönetici yok"
+      "manager": "Manager",
+      "managerPlaceholder": "Select manager",
+      "noManager": "No manager"
     },
     "delete": {
       "confirmTitle": "Elimina utente",
@@ -75,11 +75,11 @@
     },
     "messages": {
       "createSuccess": "Utente creato con successo",
-      "createError": "Impossibile creare l'utente",
+      "createError": "Failed to create user",
       "updateSuccess": "Utente aggiornato con successo",
-      "updateError": "Impossibile aggiornare l'utente",
+      "updateError": "Failed to update user",
       "deleteSuccess": "Utente eliminato con successo",
-      "deleteError": "Impossibile eliminare l'utente"
+      "deleteError": "Failed to delete user"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "menu": "Benutzerverwaltung",
   "description": "Benutzer verwalten und organisieren",
-  "addButton": "Neuen Benutzer hinzufügen",
+  "addButton": "Add New User",
   "table": {
     "id": "ID",
     "username": "Benutzername",
@@ -18,15 +18,15 @@
     "actions": "Transaktionen",
     "noData": "Keine Daten",
     "loading": "Laden...",
-    "previous": "Zurück",
+    "previous": "Previous",
     "next": "Als nächstes",
     "edit": "Bearbeiten",
-    "delete": "Löschen",
-    "manager": "Yönetici"
+    "delete": "Delete",
+    "manager": "Manager"
   },
   "form": {
     "editUser": "Benutzer bearbeiten",
-    "addUser": "Neuen Benutzer hinzufügen",
+    "addUser": "Add New User",
     "editDescription": "Benutzerinformationen bearbeiten",
     "addDescription": "Geben Sie neue Benutzerinformationen ein",
     "username": "Benutzername",
@@ -39,7 +39,7 @@
     "firstNamePlaceholder": "Namen eingeben",
     "lastName": "Nachname",
     "lastNamePlaceholder": "Geben Sie den Nachnamen ein",
-    "phoneNumber": "Telefon",
+    "phoneNumber": "phone",
     "phoneNumberPlaceholder": "Geben Sie die Telefonnummer ein",
     "role": "Rolle",
     "rolePlaceholder": "Rolle auswählen",
@@ -55,9 +55,9 @@
     "permissionGroupsNoData": "Berechtigungsgruppe nicht gefunden",
     "generatedPasswordInfo": "Bleibt das Passwort leer, wird ein temporäres Passwort erstellt",
     "selectAll": "Alles auswählen",
-    "manager": "Yönetici",
-    "managerPlaceholder": "Yönetici seçin",
-    "noManager": "Yönetici yok"
+    "manager": "Manager",
+    "managerPlaceholder": "Select manager",
+    "noManager": "No manager"
   },
   "stats": {
     "totalUsers": "Gesamtzahl der Benutzer",
@@ -67,13 +67,13 @@
     "loading": "Laden..."
   },
   "delete": {
-    "confirmTitle": "Benutzer löschen",
-    "confirmMessage": "Sind Sie sicher, dass Sie den Benutzer {{username}} löschen möchten?"
+    "confirmTitle": "Delete User",
+    "confirmMessage": "Are you sure you want to delete user {{username}}?"
   },
   "userManagement": {
     "form": {
       "editUser": "Benutzer bearbeiten",
-      "addUser": "Neuen Benutzer hinzufügen",
+      "addUser": "Add New User",
       "editDescription": "Benutzerinformationen bearbeiten",
       "addDescription": "Geben Sie neue Benutzerinformationen ein",
       "username": "Benutzername",
@@ -86,7 +86,7 @@
       "firstNamePlaceholder": "Namen eingeben",
       "lastName": "Nachname",
       "lastNamePlaceholder": "Geben Sie den Nachnamen ein",
-      "phoneNumber": "Telefon",
+      "phoneNumber": "phone",
       "phoneNumberPlaceholder": "Geben Sie die Telefonnummer ein",
       "role": "Rolle",
       "rolePlaceholder": "Rolle auswählen",
@@ -107,6 +107,6 @@
     "detailLoadFailed": "Benutzerdetails konnten nicht geladen werden",
     "createFailed": "Benutzer konnte nicht erstellt werden",
     "updateFailed": "Benutzer konnte nicht aktualisiert werden",
-    "deleteFailed": "Benutzer konnte nicht gelöscht werden"
+    "deleteFailed": "Failed to delete user"
   }
 }

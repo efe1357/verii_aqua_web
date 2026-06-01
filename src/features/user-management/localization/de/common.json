@@ -2,7 +2,7 @@
   "userManagement": {
     "menu": "Benutzerverwaltung",
     "description": "Benutzer verwalten und organisieren",
-    "addButton": "Neuen Benutzer hinzufügen",
+    "addButton": "Add New User",
     "stats": {
       "totalUsers": "Gesamtzahl der Benutzer",
       "activeUsers": "Aktiver Benutzer",
@@ -25,11 +25,11 @@
       "page": "Seite {{current}} / {{total}}",
       "loading": "Laden...",
       "noData": "Keine Daten",
-      "previous": "Zurück",
+      "previous": "Previous",
       "next": "Als nächstes"
     },
     "form": {
-      "addUser": "Neuen Benutzer hinzufügen",
+      "addUser": "Add New User",
       "editUser": "Benutzer bearbeiten",
       "addDescription": "Geben Sie neue Benutzerinformationen ein",
       "editDescription": "Benutzerinformationen bearbeiten",
@@ -43,7 +43,7 @@
       "firstNamePlaceholder": "Namen eingeben",
       "lastName": "Nachname",
       "lastNamePlaceholder": "Geben Sie den Nachnamen ein",
-      "phoneNumber": "Telefon",
+      "phoneNumber": "phone",
       "phoneNumberPlaceholder": "Geben Sie die Telefonnummer ein",
       "role": "Rolle",
       "rolePlaceholder": "Rolle auswählen",
@@ -65,21 +65,21 @@
       "firstName.maxLength": "Der Name kann bis zu 50 Zeichen lang sein",
       "lastName.maxLength": "Der Nachname darf maximal 50 Zeichen lang sein",
       "phoneNumber.maxLength": "Die Telefonnummer kann bis zu 20 Zeichen lang sein",
-      "manager": "Yönetici",
-      "managerPlaceholder": "Yönetici seçin",
-      "noManager": "Yönetici yok"
+      "manager": "Manager",
+      "managerPlaceholder": "Select manager",
+      "noManager": "No manager"
     },
     "delete": {
-      "confirmTitle": "Benutzer löschen",
-      "confirmMessage": "Sind Sie sicher, dass Sie den Benutzer {{username}} löschen möchten?"
+      "confirmTitle": "Delete User",
+      "confirmMessage": "Are you sure you want to delete user {{username}}?"
     },
     "messages": {
       "createSuccess": "Benutzer erfolgreich erstellt",
       "createError": "Benutzer konnte nicht erstellt werden",
       "updateSuccess": "Benutzer erfolgreich aktualisiert",
       "updateError": "Benutzer konnte nicht aktualisiert werden",
-      "deleteSuccess": "Benutzer erfolgreich gelöscht",
-      "deleteError": "Benutzer konnte nicht gelöscht werden"
+      "deleteSuccess": "User deleted successfully",
+      "deleteError": "Failed to delete user"
     }
   }
 }

@@ -16,10 +16,10 @@
     "gender.female": "mujer",
     "gender.other": "Otro",
     "description": "Descripción",
-    "descriptionPlaceholder": "Introduzca la descripción...",
+    "descriptionPlaceholder": "Enter description...",
     "deletePictureTitle": "Eliminar imagen de perfil",
     "deletePictureMessage": "¿Estás seguro de que quieres eliminar la foto de perfil?",
-    "invalidFileFormat": "Formato de archivo no válido. Sólo se admiten los formatos JPG, PNG, GIF y WEBP.",
+    "invalidFileFormat": "Invalid file format. Only JPG, PNG, GIF, WEBP formats are supported.",
     "fileSizeExceeded": "El tamaño del archivo es demasiado grande. Debe tener un máximo de 5 MB.",
     "invalidUrl": "Formato de URL no válido",
     "heightMin": "El tamaño no puede ser menor que 0",
@@ -31,9 +31,9 @@
     "createError": "Se produjo un error al crear los detalles del usuario.",
     "updatedSuccessfully": "Detalles del usuario actualizados exitosamente",
     "updateError": "Se produjo un error al actualizar los detalles del usuario.",
-    "profilePictureUploadedSuccessfully": "Imagen de perfil cargada exitosamente",
+    "profilePictureUploadedSuccessfully": "Profile picture uploaded successfully",
     "profilePictureUploadError": "Se produjo un error al cargar la foto de perfil.",
-    "profilePictureDeletedSuccessfully": "Imagen de perfil eliminada exitosamente",
+    "profilePictureDeletedSuccessfully": "Profile picture deleted successfully",
     "profilePictureDeleteError": "Se produjo un error al eliminar la foto de perfil.",
     "userNotFound": "Usuario no encontrado"
   },
@@ -43,7 +43,7 @@
     "fileTypeError": "Sólo se pueden cargar archivos de imagen.",
     "saveSuccess": "Perfil actualizado",
     "backToHome": "Volver a la página de inicio",
-    "personalInfo": "Información personal",
+    "personalInfo": "Personal Information",
     "personalInfoDescription": "Actualice su información de altura, peso, sexo y biografía.",
     "height": "Altura (cm)",
     "weight": "Peso (kg)",
@@ -58,7 +58,7 @@
     "enterPhoneNumber": "+90 5XX XXX XX XX",
     "email": "Dirección de correo electrónico",
     "enterEmail": "ejemplo@empresa.com",
-    "linkedinUrl": "Perfil de LinkedIn",
+    "linkedinUrl": "LinkedIn Profile",
     "enterLinkedinUrl": "https://linkedin.com/es/...",
     "description": "Biografía",
     "enterDescription": "Cuéntanos brevemente sobre ti...",
@@ -77,12 +77,12 @@
     "createError": "Se produjo un error al crear los detalles del usuario.",
     "updateSuccess": "Detalles del usuario actualizados exitosamente",
     "updateError": "Se produjo un error al actualizar los detalles del usuario.",
-    "uploadProfilePictureSuccess": "Imagen de perfil cargada exitosamente",
+    "uploadProfilePictureSuccess": "Profile picture uploaded successfully",
     "uploadProfilePictureError": "Se produjo un error al cargar la foto de perfil.",
     "heightPlaceholder": "Ej: 175",
     "weightPlaceholder": "Ej: 70,5"
   },
   "profile": {
-    "title": "Información de perfil"
+    "title": "Profile Information"
   }
 }

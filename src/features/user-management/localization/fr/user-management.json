@@ -22,7 +22,7 @@
     "next": "Suivant",
     "edit": "Modifier",
     "delete": "Supprimer",
-    "manager": "Yönetici"
+    "manager": "Manager"
   },
   "form": {
     "editUser": "Modifier l'utilisateur",
@@ -55,9 +55,9 @@
     "permissionGroupsNoData": "Groupe d'autorisations introuvable",
     "generatedPasswordInfo": "Si le mot de passe est laissé vide, un mot de passe temporaire sera créé",
     "selectAll": "tout sélectionner",
-    "manager": "Yönetici",
-    "managerPlaceholder": "Yönetici seçin",
-    "noManager": "Yönetici yok"
+    "manager": "Manager",
+    "managerPlaceholder": "Select manager",
+    "noManager": "No manager"
   },
   "stats": {
     "totalUsers": "Nombre total d'utilisateurs",

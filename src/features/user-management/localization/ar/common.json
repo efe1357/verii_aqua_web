@@ -65,9 +65,9 @@
       "firstName.maxLength": "يمكن أن يصل الاسم إلى 50 حرفًا",
       "lastName.maxLength": "يمكن أن يصل اسم اللقب إلى 50 حرفًا كحد أقصى",
       "phoneNumber.maxLength": "يمكن أن يصل رقم الهاتف إلى 20 حرفًا",
-      "manager": "Yönetici",
-      "managerPlaceholder": "Yönetici seçin",
-      "noManager": "Yönetici yok"
+      "manager": "Manager",
+      "managerPlaceholder": "Select manager",
+      "noManager": "No manager"
     },
     "delete": {
       "confirmTitle": "حذف المستخدم",

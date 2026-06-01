@@ -29,7 +29,7 @@
     },
     "messages": {
       "createSuccess": "Groupe de rôles d'approbation créé avec succès",
-      "createError": "Impossible de créer un groupe de rôles d'approbation",
+      "createError": "Could not create approval role group",
       "updateSuccess": "Groupe de rôles d'approbation mis à jour avec succès",
       "updateError": "Le groupe de rôles d'approbation n'a pas pu être mis à jour",
       "deleteSuccess": "Groupe de rôles d'approbation supprimé avec succès",
@@ -80,7 +80,7 @@
     },
     "messages": {
       "createSuccess": "Le rôle d'utilisateur d'approbation a été créé avec succès",
-      "createError": "Impossible de créer le rôle d'utilisateur d'approbation",
+      "createError": "Could not create approval user role",
       "updateSuccess": "Le rôle d'utilisateur d'approbation a été mis à jour avec succès",
       "updateError": "Échec de la mise à jour du rôle d'utilisateur d'approbation",
       "deleteSuccess": "Le rôle d'utilisateur d'approbation a été supprimé avec succès",
@@ -136,11 +136,11 @@
     },
     "messages": {
       "createSuccess": "Rôle d'approbation créé avec succès",
-      "createError": "Impossible de créer un rôle d'approbation",
+      "createError": "Could not create approval role",
       "updateSuccess": "Rôle d'approbation mis à jour avec succès",
       "updateError": "Le rôle d'approbation n'a pas pu être mis à jour",
       "deleteSuccess": "Rôle d'approbation supprimé avec succès",
-      "deleteError": "Impossible de supprimer le rôle d'approbation"
+      "deleteError": "Could not delete approval role"
     },
     "searchPlaceholder": "Rechercher...",
     "refresh": "Actualiser",
@@ -195,7 +195,7 @@
     },
     "messages": {
       "createSuccess": "Flux d'approbation créé avec succès",
-      "createError": "Impossible de créer un flux d'approbation",
+      "createError": "Could not create approval flow",
       "updateSuccess": "Flux d'approbation mis à jour avec succès",
       "updateError": "Le flux d'approbation n'a pas pu être mis à jour",
       "deleteSuccess": "Flux d'approbation supprimé avec succès",

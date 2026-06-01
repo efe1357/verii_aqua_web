@@ -22,7 +22,7 @@
     "next": "Avanti",
     "edit": "Modifica",
     "delete": "Elimina",
-    "manager": "Yönetici"
+    "manager": "Manager"
   },
   "form": {
     "firstName": "Nome",
@@ -35,15 +35,15 @@
     "editUser": "Modifica utente",
     "addUser": "Aggiungi nuovo utente",
     "editDescription": "Modifica le informazioni dell'utente",
-    "addDescription": "Inserisci le informazioni del nuovo utente",
+    "addDescription": "Enter new user information",
     "username": "Nome utente",
-    "usernamePlaceholder": "Inserisci il nome utente",
-    "emailPlaceholder": "Inserisci l'indirizzo email",
+    "usernamePlaceholder": "Enter username",
+    "emailPlaceholder": "Enter email address",
     "passwordPlaceholder": "Se lasciato vuoto, verrà creata una password temporanea.",
-    "firstNamePlaceholder": "Inserisci il nome",
-    "lastNamePlaceholder": "Inserisci il cognome",
+    "firstNamePlaceholder": "Enter name",
+    "lastNamePlaceholder": "Enter last name",
     "phoneNumber": "telefono",
-    "phoneNumberPlaceholder": "Inserisci il numero di telefono",
+    "phoneNumberPlaceholder": "Enter phone number",
     "rolePlaceholder": "Seleziona ruolo",
     "isActive": "attivo",
     "isActiveDescription": "Stato attivo dell'utente",
@@ -55,9 +55,9 @@
     "permissionGroupsNoData": "Gruppo di autorizzazioni non trovato",
     "generatedPasswordInfo": "Se la password viene lasciata vuota, verrà creata una password temporanea",
     "selectAll": "seleziona tutto",
-    "manager": "Yönetici",
-    "managerPlaceholder": "Yönetici seçin",
-    "noManager": "Yönetici yok"
+    "manager": "Manager",
+    "managerPlaceholder": "Select manager",
+    "noManager": "No manager"
   },
   "stats": {
     "totalUsers": "Utenti totali",
@@ -75,19 +75,19 @@
       "editUser": "Modifica utente",
       "addUser": "Aggiungi nuovo utente",
       "editDescription": "Modifica le informazioni dell'utente",
-      "addDescription": "Inserisci le informazioni del nuovo utente",
+      "addDescription": "Enter new user information",
       "username": "Nome utente",
-      "usernamePlaceholder": "Inserisci il nome utente",
+      "usernamePlaceholder": "Enter username",
       "email": "E-mail",
-      "emailPlaceholder": "Inserisci l'indirizzo email",
+      "emailPlaceholder": "Enter email address",
       "password": "parola d'ordine",
       "passwordPlaceholder": "Se lasciato vuoto, verrà creata una password temporanea.",
       "firstName": "Nome",
-      "firstNamePlaceholder": "Inserisci il nome",
+      "firstNamePlaceholder": "Enter name",
       "lastName": "Cognome",
-      "lastNamePlaceholder": "Inserisci il cognome",
+      "lastNamePlaceholder": "Enter last name",
       "phoneNumber": "telefono",
-      "phoneNumberPlaceholder": "Inserisci il numero di telefono",
+      "phoneNumberPlaceholder": "Enter phone number",
       "role": "Ruolo",
       "rolePlaceholder": "Seleziona ruolo",
       "permissionGroups": "Gruppi di autorizzazione",
@@ -103,10 +103,10 @@
     }
   },
   "api": {
-    "listLoadFailed": "Impossibile caricare l'elenco degli utenti",
-    "detailLoadFailed": "Impossibile caricare i dettagli dell'utente",
-    "createFailed": "Impossibile creare l'utente",
-    "updateFailed": "Impossibile aggiornare l'utente",
-    "deleteFailed": "Impossibile eliminare l'utente"
+    "listLoadFailed": "Failed to load user list",
+    "detailLoadFailed": "Failed to load user detail",
+    "createFailed": "Failed to create user",
+    "updateFailed": "Failed to update user",
+    "deleteFailed": "Failed to delete user"
   }
 }

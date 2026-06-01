@@ -19,7 +19,7 @@
     "descriptionPlaceholder": "أدخل الوصف...",
     "deletePictureTitle": "حذف صورة الملف الشخصي",
     "deletePictureMessage": "هل أنت متأكد أنك تريد حذف الصورة الشخصية؟",
-    "invalidFileFormat": "تنسيق الملف غير صالح. يتم دعم تنسيقات JPG وPNG وGIF وWEBP فقط.",
+    "invalidFileFormat": "Invalid file format. Only JPG, PNG, GIF, WEBP formats are supported.",
     "fileSizeExceeded": "حجم الملف كبير جدًا. يجب أن يكون الحد الأقصى 5 ميغابايت.",
     "invalidUrl": "تنسيق عنوان URL غير صالح",
     "heightMin": "لا يمكن أن يكون الحجم أقل من 0",

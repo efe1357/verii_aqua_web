@@ -7,24 +7,24 @@
       "selectBranch": "Zweig auswählen",
       "branchNotFound": "Zweig nicht gefunden",
       "email": "E-Mail",
-      "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "emailPlaceholder": "Enter your e-mail address",
       "password": "Passwort",
       "passwordPlaceholder": "••••••••",
       "loginButton": "Anmelden",
       "loggingIn": "Anmelden...",
       "wrongPassword": "E-Mail oder Passwort ist falsch",
       "loginError": "Beim Anmelden ist ein Fehler aufgetreten",
-      "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.",
-      "copyright": "© 2025 VERII. Alle Rechte vorbehalten.",
+      "sessionExpired": "Your session has expired. Please log in again.",
+      "copyright": "© 2025 VERII. All rights reserved.",
       "branchPlaceholder": "Wählen Sie Zweig aus",
       "rememberMe": "Erinnere dich an mich",
       "forgotPassword": "Passwort vergessen?",
       "processing": "Anmelden...",
       "submitButton": "Anmelden",
-      "slogan": "Informationen mit <1>V3RII</1>, Management mit <2>AQUA</2>;<br/>Digitale Erfahrung in der Aquakultur.",
+      "slogan": "Information with <1>V3RII</1>, Management with <2>AQUA</2>;<br/>Digital Experience in Aquaculture.",
       "capsLockOn": "Die Feststelltaste ist aktiviert",
       "animationOff": "Animation schließen",
-      "animationOn": "Animation öffnen"
+      "animationOn": "Open Animation"
     },
     "logout": "Ausgang",
     "changePassword": {
@@ -32,9 +32,9 @@
       "success": "erfolgreich"
     },
     "resetPassword": {
-      "successRedirect": "Ihr Passwort wurde erfolgreich zurückgesetzt. Sie werden zur Anmeldeseite weitergeleitet...",
-      "failed": "Das Zurücksetzen des Passworts ist fehlgeschlagen",
-      "error": "Beim Zurücksetzen des Passworts ist ein Fehler aufgetreten"
+      "successRedirect": "Your password has been successfully reset. You are directed to the login page...",
+      "failed": "Password reset failed",
+      "error": "An error occurred during the password reset process"
     }
   }
 }
