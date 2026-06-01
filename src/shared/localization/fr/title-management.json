@@ -1,49 +1,122 @@
 {
-  "loading": "Chargement...",
-  "noData": "Aucune donnée trouvée",
-  "search": "Rechercher...",
-  "refresh": "Actualiser",
-  "previous": "Précédent",
-  "next": "Suivant",
-  "cancel": "Annuler",
-  "save": "Enregistrer",
-  "saving": "Enregistrement...",
-  "delete": {
-    "confirmTitle": "Supprimer le titre",
-    "confirmMessage": "Êtes-vous sûr de vouloir supprimer le titre {{titleName}} ?",
-    "button": "Supprimer"
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "search": "Ara...",
+  "refresh": "Yenile",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "advancedFilter": {
+    "columnTitleName": "Ünvan Adı",
+    "columnCode": "Kod"
   },
-  "deleting": "Suppression...",
-  "actions": "Opérations",
-  "edit": "Modifier",
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
+  "delete": {
+    "confirmTitle": "Ünvanı Sil",
+    "confirmMessage": "{{titleName}} ünvanını silmek istediğinizden emin misiniz?",
+    "button": "Sil"
+  },
+  "deleting": "Siliniyor...",
+  "actions": "İşlemler",
+  "edit": "Düzenle",
   "header": {
-    "title": "Gestion des titres",
-    "description": "Vous pouvez gérer les définitions de titres ici."
+    "title": "Ünvan Yönetimi",
+    "description": "Ünvan tanımlarını buradan yönetebilirsiniz."
   },
   "table": {
     "id": "ID",
-    "name": "Nom du titre",
-    "code": "Coder",
-    "createdDate": "Date de création",
-    "createdBy": "Créé par l'utilisateur",
-    "showing": "Affichage de {{from}}-{{to}} / {{total}}",
-    "page": "Pages {{current}} / {{total}}"
+    "name": "Ünvan Adı",
+    "code": "Kod",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan Kullanıcı",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "form": {
-    "addTitle": "Ajouter un nouveau titre",
-    "editTitle": "Modifier le titre",
-    "addDescription": "Entrez les nouvelles informations sur le titre",
-    "editDescription": "Modifier les informations du titre",
-    "titleName": "Nom du titre",
-    "titleNamePlaceholder": "Entrez le nom du titre",
-    "titleCode": "Code du titre",
-    "codePlaceholder": "Entrez le code (facultatif)",
-    "cancel": "Annuler",
-    "save": "Enregistrer",
-    "saving": "Enregistrement..."
+    "addTitle": "Yeni Ünvan Ekle",
+    "editTitle": "Ünvan Düzenle",
+    "addDescription": "Yeni ünvan bilgilerini girin",
+    "editDescription": "Ünvan bilgilerini düzenleyin",
+    "titleName": "Ünvan Adı",
+    "titleNamePlaceholder": "Ünvan adını girin",
+    "titleCode": "Ünvan Kodu",
+    "codePlaceholder": "Kod girin (opsiyonel)",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor..."
   },
-  "advancedFilter": {
-    "columnTitleName": "Nom du titre",
-    "columnCode": "Coder"
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clients Netsis",
+      "netsisMirrorStocks": "Stocks Netsis",
+      "netsisMirrorWarehouses": "Entrepôts Netsis",
+      "netsisMirrorBranches": "Succursales Netsis",
+      "aquaCageWarehouseMappings": "Appariement Cage-Dépôt",
+      "aquaOpeningImport": "Importation d'ouverture",
+      "aquaWarehouseTransfers": "Transferts d'entrepôt",
+      "aquaCageWarehouseTransfers": "Transferts Cage vers Entrepôt",
+      "aquaWarehouseCageTransfers": "Transferts Entrepôt vers Cage",
+      "aquaWarehouseTransferLines": "Lignes de transfert d'entrepôt",
+      "aquaCageWarehouseTransferLines": "Lignes de transfert Cage vers Entrepôt",
+      "aquaWarehouseCageTransferLines": "Lignes de transfert Entrepôt vers Cage"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Aucune opération quotidienne n'est encore disponible pour cette cage.",
+      "dailyFlowEmptyDescription": "Les opérations quotidiennes comme l'alimentation, la mortalité, les transferts, les expéditions, la météo et d'autres écritures apparaitront ici jour par jour.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Le filtre projet est verrouillé tant que le tri par cage est actif."
+      },
+      "projectSelector": {
+        "loadingApply": "Chargement des projets..."
+      },
+      "stats": {
+        "cageFishStock": "Stock de poissons en cage",
+        "warehouseFishStock": "Stock de poissons en entrepôt",
+        "totalSystemFishStock": "Stock total de poissons",
+        "cageBiomass": "Biomasse en cage",
+        "warehouseBiomass": "Biomasse en entrepôt"
+      },
+      "projectDialog": {
+        "subtitle": "Résumé du projet et données de cage"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Nombre de mortalités",
+        "totalDeadKg": "Kg mortalité",
+        "totalShipmentCount": "Nombre de livraisons",
+        "totalShipmentKg": "Kg expédiés",
+        "measurementGram": "Base de mesure",
+        "fcr": "FCR",
+        "activeCage": "cage",
+        "cageFish": "Poisson en cage",
+        "warehouseFish": "Poisson en entrepôt",
+        "totalFish": "Total poissons"
+      },
+      "cageCard": {
+        "totalDeadCount": "Nombre de mortalités",
+        "shipmentCount": "Nombre de livraisons",
+        "stockCount": "Quantité en stock",
+        "totalDeadKg": "Kg mortalité",
+        "shipmentKg": "Kg expédiés",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramme mesurée",
+        "feedKg": "Kg nourrissant",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Détail",
+        "cageSortFilterLockedHint": "Le filtre projet ne peut pas être modifié tant que le tri par cage est actif."
+      },
+      "listTable": {
+        "shipment": "Expédition",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Gramme mesurée",
+        "feedKg": "Kg nourrissant",
+        "fcr": "FCR"
+      }
+    }
   }
 }

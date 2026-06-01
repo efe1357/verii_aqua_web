@@ -1,51 +1,124 @@
 {
-  "menu": "Amministrazione distrettuale",
-  "description": "Gestire e organizzare i distretti",
-  "addButton": "Aggiungi nuovo distretto",
-  "listTitle": "Elenco dei distretti",
-  "listDescription": "Puoi gestire tutti i distretti registrati nel sistema qui.",
-  "loading": "Caricamento...",
-  "noData": "Nessun dato",
-  "actions": "Transazioni",
-  "previous": "Precedente",
-  "next": "Avanti",
-  "cancel": "Annulla",
-  "delete": "Elimina",
-  "save": "Salva",
-  "saving": "Registrazione...",
+  "menu": "İlçe Yönetimi",
+  "description": "İlçeleri yönetin ve düzenleyin",
+  "addButton": "Yeni İlçe Ekle",
+  "listTitle": "İlçe Listesi",
+  "listDescription": "Sistemdeki kayıtlı tüm ilçeleri buradan yönetebilirsiniz.",
+  "loading": "Yükleniyor...",
+  "noData": "Veri yok",
+  "actions": "İşlemler",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "cancel": "İptal",
+  "delete": "Sil",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
   "table": {
     "id": "ID",
-    "name": "Nome del distretto",
-    "erpCode": "ERP Codice",
-    "cityName": "Nome della città",
-    "createdDate": "Data di creazione",
-    "createdBy": "Creato da",
-    "showing": "Mostrando {{from}}-{{to}} / {{total}}",
-    "page": "Pagina {{current}} / {{total}}"
+    "name": "İlçe Adı",
+    "erpCode": "ERP Kodu",
+    "cityName": "Şehir Adı",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "deleteConfirm": {
-    "confirmTitle": "Elimina distretto",
-    "confirmMessage": "Vuoi eliminare il distretto {{name}}?"
+    "confirmTitle": "İlçeyi Sil",
+    "confirmMessage": "{{name}} ilçesini silmek istediğinizden emin misiniz?"
   },
   "form": {
-    "editDistrict": "Modifica distretto",
-    "addDistrict": "Aggiungi nuovo distretto",
-    "editDescription": "Modifica le informazioni sul distretto",
-    "addDescription": "Inserisci le informazioni sul nuovo distretto",
-    "name": "Nome del distretto",
-    "namePlaceholder": "Inserisci il nome del distretto",
-    "city": "città",
-    "selectCity": "Seleziona città",
-    "erpCode": "ERP Codice",
-    "erpCodePlaceholder": "Inserisci il codice ERP (facoltativo)",
-    "nameRequired": "Il nome del distretto è obbligatorio",
-    "nameMaxLength": "Il nome del distretto può contenere un massimo di 100 caratteri",
-    "erpCodeMaxLength": "Il codice ERP può contenere un massimo di 10 caratteri",
-    "cityRequired": "La selezione della città è obbligatoria"
+    "editDistrict": "İlçe Düzenle",
+    "addDistrict": "Yeni İlçe Ekle",
+    "editDescription": "İlçe bilgilerini düzenleyin",
+    "addDescription": "Yeni ilçe bilgilerini girin",
+    "name": "İlçe Adı",
+    "namePlaceholder": "İlçe adını girin",
+    "city": "Şehir",
+    "selectCity": "Şehir seçin",
+    "erpCode": "ERP Kodu",
+    "erpCodePlaceholder": "ERP kodunu girin (opsiyonel)",
+    "nameRequired": "İlçe adı zorunludur",
+    "nameMaxLength": "İlçe adı en fazla 100 karakter olabilir",
+    "erpCodeMaxLength": "ERP kodu en fazla 10 karakter olabilir",
+    "cityRequired": "Şehir seçimi zorunludur"
   },
   "stats": {
-    "totalDistricts": "DISTRETTO TOTALE",
-    "activeDistricts": "QUARTIERE ATTIVO",
-    "newThisMonth": "NOVITÀ QUESTO MESE"
+    "totalDistricts": "TOPLAM İLÇE",
+    "activeDistricts": "AKTİF İLÇE",
+    "newThisMonth": "BU AY YENİ"
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clienti Netsis",
+      "netsisMirrorStocks": "Stock Netsis",
+      "netsisMirrorWarehouses": "Magazzini Netsis",
+      "netsisMirrorBranches": "Filiali Netsis",
+      "aquaCageWarehouseMappings": "Mappatura Gabbia-Magazzino",
+      "aquaOpeningImport": "Importazione di apertura",
+      "aquaWarehouseTransfers": "Trasferimenti di magazzino",
+      "aquaCageWarehouseTransfers": "Trasferimenti da Gabbia a Magazzino",
+      "aquaWarehouseCageTransfers": "Trasferimenti da Magazzino a Gabbia",
+      "aquaWarehouseTransferLines": "Righe trasferimento magazzino",
+      "aquaCageWarehouseTransferLines": "Righe trasferimento Gabbia-Magazzino",
+      "aquaWarehouseCageTransferLines": "Righe trasferimento Magazzino-Gabbia"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Non ci sono ancora movimenti giornalieri per questa gabbia.",
+      "dailyFlowEmptyDescription": "Alimentazione, mortalità, trasferimenti, spedizioni, meteo e altre operazioni quotidiane verranno mostrate qui giorno per giorno dopo l'inserimento.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Il filtro progetto è bloccato durante l'ordinamento per gabbia."
+      },
+      "projectSelector": {
+        "loadingApply": "Caricamento progetti..."
+      },
+      "stats": {
+        "cageFishStock": "Scorta pesce in gabbia",
+        "warehouseFishStock": "Scorta pesce in magazzino",
+        "totalSystemFishStock": "Scorta totale pesce",
+        "cageBiomass": "Biomassa in gabbia",
+        "warehouseBiomass": "Biomassa in magazzino"
+      },
+      "projectDialog": {
+        "subtitle": "Riepilogo progetto e dati gabbia"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Quantità di mortalità",
+        "totalDeadKg": "Kg mortalità",
+        "totalShipmentCount": "Quantità spedizioni",
+        "totalShipmentKg": "Kg spediti",
+        "measurementGram": "Base di misurazione",
+        "fcr": "FCR",
+        "activeCage": "gabbia",
+        "cageFish": "Pesce in gabbia",
+        "warehouseFish": "Pesce in magazzino",
+        "totalFish": "Totale pesce"
+      },
+      "cageCard": {
+        "totalDeadCount": "Quantità di mortalità",
+        "shipmentCount": "Quantità spedizioni",
+        "stockCount": "Quantità a stock",
+        "totalDeadKg": "Kg mortalità",
+        "shipmentKg": "Kg spediti",
+        "stockKg": "Kg in stock",
+        "measurementGram": "Gramo misurato",
+        "feedKg": "Kg mangime",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Dettaglio",
+        "cageSortFilterLockedHint": "Il filtro progetto non può essere modificato durante l'ordinamento delle gabbie attivo."
+      },
+      "listTable": {
+        "shipment": "Spedizione",
+        "stockKg": "Kg stock",
+        "measurementGram": "Gramo misurato",
+        "feedKg": "Kg mangime",
+        "fcr": "FCR"
+      }
+    }
   }
 }

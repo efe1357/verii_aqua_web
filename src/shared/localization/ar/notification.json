@@ -1,18 +1,81 @@
 {
-  "title": "إشعارات",
-  "markAllAsRead": "وضع علامة على الكل مقروءة",
-  "viewAll": "عرض الكل",
-  "empty": "ليس لديك إشعارات",
-  "new": "جديد",
-  "ago": "منذ {{time}}",
-  "types": {
-    "info": "معلومات",
-    "success": "نجاح",
-    "warning": "تحذير",
-    "error": "خطأ"
+  "title": "Bildirimler",
+  "loading": "Yükleniyor",
+  "noNotifications": "Bildirim bulunamadı",
+  "markAllAsRead": "Tümünü Okundu İşaretle",
+  "close": "Kapat",
+  "unread": "Okunmadı",
+  "common": {
+    "sidebar": {
+      "netsisMirror": "مرآة نتسيس",
+      "netsisMirrorCustomers": "عملاء نِتسِس",
+      "netsisMirrorStocks": "مخزون نِتسِس",
+      "netsisMirrorWarehouses": "مستودعات نِتسِس",
+      "netsisMirrorBranches": "فروع نِتسِس",
+      "aquaCageWarehouseMappings": "ربط القفص بالمستودع",
+      "aquaOpeningImport": "استيراد البداية",
+      "aquaWarehouseTransfers": "تحويلات المستودع",
+      "aquaCageWarehouseTransfers": "تحويلات من القفص إلى المستودع",
+      "aquaWarehouseCageTransfers": "تحويلات من المستودع إلى القفص",
+      "aquaWarehouseTransferLines": "بنود تحويل المستودع",
+      "aquaCageWarehouseTransferLines": "بنود تحويل من القفص إلى المستودع",
+      "aquaWarehouseCageTransferLines": "بنود تحويل من المستودع إلى القفص"
+    }
   },
-  "loading": "تحميل",
-  "noNotifications": "لم يتم العثور على الإخطار",
-  "close": "يغلق",
-  "unread": "لا تقرأ"
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "لا توجد حركة يومية لهذه القفص بعد.",
+      "dailyFlowEmptyDescription": "عند إدخال التغذية أو النفوق أو التحويلات أو الشحن أو الطقس أو أي عمليات يومية أخرى، ستظهر هنا بشكل يومي.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "عامل التصفية بالمشروع مغلق أثناء تفعيل ترتيب الأقفاص."
+      },
+      "projectSelector": {
+        "loadingApply": "جاري تحميل المشاريع..."
+      },
+      "stats": {
+        "cageFishStock": "مخزون الأسماك في القفص",
+        "warehouseFishStock": "مخزون الأسماك في المستودع",
+        "totalSystemFishStock": "إجمالي مخزون الأسماك",
+        "cageBiomass": "الكتلة الحيوية في القفص",
+        "warehouseBiomass": "الكتلة الحيوية في المستودع"
+      },
+      "projectDialog": {
+        "subtitle": "ملخص المشروع وبيانات القفص"
+      },
+      "projectSummary": {
+        "totalDeadCount": "عدد النفوق",
+        "totalDeadKg": "كمية النفوق (كجم)",
+        "totalShipmentCount": "عدد الشحنات",
+        "totalShipmentKg": "كمية الشحنات (كجم)",
+        "measurementGram": "مرجع القياس",
+        "fcr": "FCR",
+        "activeCage": "قفص",
+        "cageFish": "سمكة القفص",
+        "warehouseFish": "سمكة المخزن",
+        "totalFish": "إجمالي الأسماك"
+      },
+      "cageCard": {
+        "totalDeadCount": "عدد النفوق",
+        "shipmentCount": "عدد الشحنات",
+        "stockCount": "كمية المخزون",
+        "totalDeadKg": "كمية النفوق (كجم)",
+        "shipmentKg": "كمية الشحنات (كجم)",
+        "stockKg": "كمية المخزون (كجم)",
+        "measurementGram": "الجرام المقاس",
+        "feedKg": "كمية العلف (كجم)",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "تفاصيل",
+        "cageSortFilterLockedHint": "لا يمكن تغيير مرشح المشروع أثناء تفعيل ترتيب الأقفاص."
+      },
+      "listTable": {
+        "shipment": "شحنة",
+        "stockKg": "المخزون (كجم)",
+        "measurementGram": "الجرام المقاس",
+        "feedKg": "العلف (كجم)",
+        "fcr": "FCR"
+      }
+    }
+  }
 }

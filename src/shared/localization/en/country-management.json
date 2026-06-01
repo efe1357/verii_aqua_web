@@ -1,57 +1,130 @@
 {
-  "menu": "Country Management",
-  "description": "Manage and regulate countries",
-  "addButton": "Add New Country",
-  "search": "Search...",
-  "loading": "Loading...",
-  "noData": "No data found",
-  "actions": "Transactions",
-  "previous": "Previous",
-  "next": "Next",
-  "deleteConfirmTitle": "Deletion Confirmation",
-  "cancel": "Cancel",
-  "deleting": "Deleting...",
-  "delete": "Delete",
-  "saving": "Recording...",
-  "save": "Save",
+  "menu": "Ülke Yönetimi",
+  "description": "Ülkeleri yönetin ve düzenleyin",
+  "addButton": "Yeni Ülke Ekle",
+  "search": "Ara...",
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "actions": "İşlemler",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "deleteConfirmTitle": "Silme Onayı",
+  "cancel": "İptal",
+  "deleting": "Siliniyor...",
+  "delete": "Sil",
+  "saving": "Kaydediliyor...",
+  "save": "Kaydet",
   "stats": {
-    "totalCountries": "Total Country",
-    "activeCountries": "Active Country",
-    "newThisMonth": "New This Month"
+    "totalCountries": "Toplam Ülke",
+    "activeCountries": "Aktif Ülke",
+    "newThisMonth": "Bu Ay Yeni"
   },
   "table": {
     "id": "ID",
-    "name": "Country Name",
-    "code": "Code",
-    "erpCode": "ERP Code",
-    "createdDate": "Creation Date",
-    "createdBy": "Created by",
-    "showing": "Showing {{from}}-{{to}} / {{total}}",
-    "page": "Page {{current}} / {{total}}"
-  },
-  "form": {
-    "addCountry": "Add New Country",
-    "editCountry": "Edit Country",
-    "addDescription": "Enter new country information",
-    "editDescription": "Edit country information",
-    "name": "Country Name",
-    "namePlaceholder": "Enter country name",
-    "code": "Country Code",
-    "codePlaceholder": "Enter the country code (ex: TR, US)",
-    "erpCode": "ERP Code",
-    "erpCodePlaceholder": "Enter code ERP (optional)",
-    "nameRequired": "Country name is required",
-    "nameMaxLength": "Country name can be up to 100 characters",
-    "codeMinLength": "Country code must be at least 2 characters",
-    "codeMaxLength": "Country code can be up to 5 characters",
-    "erpCodeMaxLength": "The code ERP can be a maximum of 10 characters"
-  },
-  "deleteConfirm": {
-    "confirmMessage": "Are you sure you want to delete country {{name}}?"
+    "name": "Ülke Adı",
+    "code": "Kod",
+    "erpCode": "ERP Kodu",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "advancedFilter": {
-    "columnName": "Country Name",
-    "columnCode": "Country Code",
-    "columnErpCode": "ERP Code"
+    "columnName": "Ülke Adı",
+    "columnCode": "Ülke Kodu",
+    "columnErpCode": "ERP Kodu"
+  },
+  "form": {
+    "addCountry": "Yeni Ülke Ekle",
+    "editCountry": "Ülke Düzenle",
+    "addDescription": "Yeni ülke bilgilerini girin",
+    "editDescription": "Ülke bilgilerini düzenleyin",
+    "name": "Ülke Adı",
+    "namePlaceholder": "Ülke adını girin",
+    "code": "Ülke Kodu",
+    "codePlaceholder": "Ülke kodunu girin (örn: TR, US)",
+    "erpCode": "ERP Kodu",
+    "erpCodePlaceholder": "ERP kodunu girin (opsiyonel)",
+    "nameRequired": "Ülke adı zorunludur",
+    "nameMaxLength": "Ülke adı en fazla 100 karakter olabilir",
+    "codeMinLength": "Ülke kodu en az 2 karakter olmalıdır",
+    "codeMaxLength": "Ülke kodu en fazla 5 karakter olabilir",
+    "erpCodeMaxLength": "ERP kodu en fazla 10 karakter olabilir"
+  },
+  "deleteConfirm": {
+    "confirmMessage": "{{name}} ülkesini silmek istediğinizden emin misiniz?"
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Netsis Customers",
+      "netsisMirrorStocks": "Netsis Stocks",
+      "netsisMirrorWarehouses": "Netsis Warehouses",
+      "netsisMirrorBranches": "Netsis Branches",
+      "aquaCageWarehouseMappings": "Cage-Warehouse Mapping",
+      "aquaOpeningImport": "Opening Import",
+      "aquaWarehouseTransfers": "Warehouse Transfers",
+      "aquaCageWarehouseTransfers": "Cage to Warehouse Transfers",
+      "aquaWarehouseCageTransfers": "Warehouse to Cage Transfers",
+      "aquaWarehouseTransferLines": "Warehouse Transfer Lines",
+      "aquaCageWarehouseTransferLines": "Cage to Warehouse Transfer Lines",
+      "aquaWarehouseCageTransferLines": "Warehouse to Cage Transfer Lines"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "No daily movement is available for this cage yet.",
+      "dailyFlowEmptyDescription": "Feeding, mortality, transfers, shipments, weather and other daily transactions will appear here once they are entered day by day.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Project filter is locked while cage sorting mode is enabled."
+      },
+      "projectSelector": {
+        "loadingApply": "Loading projects..."
+      },
+      "stats": {
+        "cageFishStock": "Cage Fish Stock",
+        "warehouseFishStock": "Warehouse Fish Stock",
+        "totalSystemFishStock": "Total Fish Stock",
+        "cageBiomass": "Cage Biomass",
+        "warehouseBiomass": "Warehouse Biomass"
+      },
+      "projectDialog": {
+        "subtitle": "Project summary and cage data"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Mortality Count",
+        "totalDeadKg": "Mortality Kg",
+        "totalShipmentCount": "Shipment Count",
+        "totalShipmentKg": "Shipment Kg",
+        "measurementGram": "Feed Conversion Basis",
+        "fcr": "FCR",
+        "activeCage": "cage",
+        "cageFish": "Cage Fish",
+        "warehouseFish": "Warehouse Fish",
+        "totalFish": "Total Fish"
+      },
+      "cageCard": {
+        "totalDeadCount": "Mortality Count",
+        "shipmentCount": "Shipment Count",
+        "stockCount": "Stock Count",
+        "totalDeadKg": "Mortality Kg",
+        "shipmentKg": "Shipment Kg",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Measured Gram",
+        "feedKg": "Feed Kg",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detail",
+        "cageSortFilterLockedHint": "Project filter cannot be changed while cage sort mode is active."
+      },
+      "listTable": {
+        "shipment": "Shipment",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Measured Gram",
+        "feedKg": "Feed Kg",
+        "fcr": "FCR"
+      }
+    }
   }
 }

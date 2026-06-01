@@ -1,70 +1,122 @@
 {
-  "menu": "Gestión de Títulos",
-  "title": "Gestión de Títulos",
-  "description": "Gestionar y editar títulos",
-  "addButton": "Añadir Nuevo Título",
-  "deleteTitle": "Eliminar Título",
-  "deleteMessage": "¿Estás seguro de que deseas eliminar este título?",
-  "deleteSuccess": "Título eliminado con éxito",
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "search": "Ara...",
+  "refresh": "Yenile",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "advancedFilter": {
+    "columnTitleName": "Ünvan Adı",
+    "columnCode": "Kod"
+  },
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
+  "delete": {
+    "confirmTitle": "Ünvanı Sil",
+    "confirmMessage": "{{titleName}} ünvanını silmek istediğinizden emin misiniz?",
+    "button": "Sil"
+  },
+  "deleting": "Siliniyor...",
+  "actions": "İşlemler",
+  "edit": "Düzenle",
+  "header": {
+    "title": "Ünvan Yönetimi",
+    "description": "Ünvan tanımlarını buradan yönetebilirsiniz."
+  },
   "table": {
-    "name": "Nombre del título",
-    "code": "Código",
-    "description": "Descripción",
-    "status": "Estado",
-    "actions": "Acciones",
-    "searchPlaceholder": "Buscar títulos...",
-    "showing": "Mostrando {{from}}-{{to}} / {{total}}",
-    "page": "Página {{current}} / {{total}}",
-    "rowsPerPage": "Filas por página",
     "id": "ID",
-    "createdDate": "Fecha de creación",
-    "createdBy": "Creado por el usuario"
+    "name": "Ünvan Adı",
+    "code": "Kod",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan Kullanıcı",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "form": {
-    "addTitle": "Agregar nuevo título",
-    "editTitle": "Editar título",
-    "name": "Título",
-    "code": "Código",
-    "description": "Descripción",
-    "status": "Estado",
-    "active": "Activo",
-    "passive": "Pasivo",
-    "cancel": "Cancelar",
-    "save": "Guardar",
-    "required": "Requerido",
-    "successAdd": "Título añadido con éxito",
-    "successUpdate": "Título actualizado con éxito",
-    "addDescription": "Ingrese la información del nuevo título",
-    "editDescription": "Editar información del título",
-    "titleName": "Nombre del título",
-    "titleNamePlaceholder": "Introduzca el nombre del título",
-    "titleCode": "Código de título",
-    "codePlaceholder": "Introduce el código (opcional)",
-    "saving": "Grabando..."
+    "addTitle": "Yeni Ünvan Ekle",
+    "editTitle": "Ünvan Düzenle",
+    "addDescription": "Yeni ünvan bilgilerini girin",
+    "editDescription": "Ünvan bilgilerini düzenleyin",
+    "titleName": "Ünvan Adı",
+    "titleNamePlaceholder": "Ünvan adını girin",
+    "titleCode": "Ünvan Kodu",
+    "codePlaceholder": "Kod girin (opsiyonel)",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor..."
   },
-  "loading": "Cargando...",
-  "noData": "No se encontraron datos",
-  "search": "Buscar...",
-  "refresh": "Actualizar",
-  "previous": "Anterior",
-  "next": "Siguiente",
-  "cancel": "Cancelar",
-  "save": "Guardar",
-  "saving": "Grabando...",
-  "delete": {
-    "confirmTitle": "Eliminar título",
-    "confirmMessage": "¿Está seguro de que desea eliminar el título {{titleName}}?",
-    "button": "Eliminar"
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clientes Netsis",
+      "netsisMirrorStocks": "Stocks Netsis",
+      "netsisMirrorWarehouses": "Almacenes Netsis",
+      "netsisMirrorBranches": "Sucursales Netsis",
+      "aquaCageWarehouseMappings": "Mapeo Jaula-Almacén",
+      "aquaOpeningImport": "Importación de Apertura",
+      "aquaWarehouseTransfers": "Transferencias de almacén",
+      "aquaCageWarehouseTransfers": "Transferencias de Jaula a Almacén",
+      "aquaWarehouseCageTransfers": "Transferencias de Almacén a Jaula",
+      "aquaWarehouseTransferLines": "Líneas de transferencia de almacén",
+      "aquaCageWarehouseTransferLines": "Líneas de transferencia de Jaula a Almacén",
+      "aquaWarehouseCageTransferLines": "Líneas de transferencia de Almacén a Jaula"
+    }
   },
-  "deleting": "Eliminando...",
-  "actions": "Transacciones",
-  "edit": "Editar",
-  "header": {
-    "title": "Gestión de títulos",
-    "description": "Puede gestionar las definiciones de títulos aquí."
-  },
-  "advancedFilter": {
-    "columnTitleName": "Nombre del título",
-    "columnCode": "Código"
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Aún no hay datos diarios para esta jaula.",
+      "dailyFlowEmptyDescription": "La alimentación, mortalidad, transferencias, envíos, clima y otras operaciones diarias aparecerán aquí día a día tras su registro.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "El filtro de proyecto está bloqueado mientras el orden de jaulas está habilitado."
+      },
+      "projectSelector": {
+        "loadingApply": "Cargando proyectos..."
+      },
+      "stats": {
+        "cageFishStock": "Stock de peces en jaula",
+        "warehouseFishStock": "Stock de peces en almacén",
+        "totalSystemFishStock": "Stock total de peces",
+        "cageBiomass": "Biomasa de jaula",
+        "warehouseBiomass": "Biomasa de almacén"
+      },
+      "projectDialog": {
+        "subtitle": "Resumen de proyecto y datos de jaula"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Cantidad de mortalidad",
+        "totalDeadKg": "Kg de mortalidad",
+        "totalShipmentCount": "Cantidad de envíos",
+        "totalShipmentKg": "Kg enviados",
+        "measurementGram": "Base de medición",
+        "fcr": "FCR",
+        "activeCage": "jaula",
+        "cageFish": "Pez en jaula",
+        "warehouseFish": "Pez en almacén",
+        "totalFish": "Total de peces"
+      },
+      "cageCard": {
+        "totalDeadCount": "Cantidad de mortalidad",
+        "shipmentCount": "Cantidad de envíos",
+        "stockCount": "Cantidad en stock",
+        "totalDeadKg": "Kg de mortalidad",
+        "shipmentKg": "Kg enviados",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramo medido",
+        "feedKg": "Kg de alimento",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detalle",
+        "cageSortFilterLockedHint": "El filtro de proyecto no se puede cambiar mientras el orden por jaula está activo."
+      },
+      "listTable": {
+        "shipment": "Envío",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramo medido",
+        "feedKg": "Kg de alimento",
+        "fcr": "FCR"
+      }
+    }
   }
 }

@@ -180,6 +180,21 @@
         "queryFailed": "Sorgu alınamadı",
         "postFailed": "Kayıt post edilemedi"
       }
+    },
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Netsis Cariler",
+      "netsisMirrorStocks": "Netsis Stoklar",
+      "netsisMirrorWarehouses": "Netsis Depoları",
+      "netsisMirrorBranches": "Netsis Şubeler",
+      "aquaCageWarehouseMappings": "Kafes Depo Eşlemeleri",
+      "aquaOpeningImport": "Açılış Girişi",
+      "aquaWarehouseTransfers": "Depo Transferleri",
+      "aquaCageWarehouseTransfers": "Kafes-Depo Transferleri",
+      "aquaWarehouseCageTransfers": "Depo-Kafes Transferleri",
+      "aquaWarehouseTransferLines": "Depo Transfer Satırları",
+      "aquaCageWarehouseTransferLines": "Kafes-Depo Transfer Satırları",
+      "aquaWarehouseCageTransferLines": "Depo-Kafes Transfer Satırları"
     }
   },
   "navbar": {
@@ -589,7 +604,61 @@
         "threeDaysAgo": "3 Gün önce"
       }
     },
-    "user": "Kullanıcı"
+    "user": "Kullanıcı",
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Günlük akışta veri bulunamadı",
+      "dailyFlowEmptyDescription": "Bu tarihte veya bu filtrelerle gösterilecek bir kayıt bulunmuyor.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Kafes sıralaması kilitli ise otomatik sıralama uygulanamaz."
+      },
+      "projectSelector": {
+        "loadingApply": "Uygulanıyor..."
+      },
+      "stats": {
+        "cageFishStock": "Kafes Balık Stoğu",
+        "warehouseFishStock": "Depo Balık Stoğu",
+        "totalSystemFishStock": "Toplam Sistem Balık Stoğu",
+        "cageBiomass": "Kafes Biyokütle",
+        "warehouseBiomass": "Depo Biyokütle"
+      },
+      "projectDialog": {
+        "subtitle": "Proje özeti ve akış detayını bu ekrandan görün."
+      },
+      "projectSummary": {
+        "totalDeadCount": "Toplam Ölü Sayısı",
+        "totalDeadKg": "Toplam Ölü Kg",
+        "totalShipmentCount": "Toplam Sevkiyat Sayısı",
+        "totalShipmentKg": "Toplam Sevkiyat Kg",
+        "measurementGram": "Ölçüm (g)",
+        "fcr": "FCR",
+        "activeCage": "Aktif Kafes",
+        "cageFish": "Kafes Balık Stoğu",
+        "warehouseFish": "Depo Balık Stoğu",
+        "totalFish": "Toplam Balık"
+      },
+      "cageCard": {
+        "totalDeadCount": "Toplam Ölü Sayısı",
+        "shipmentCount": "Sevkiyat Sayısı",
+        "stockCount": "Stok Sayısı",
+        "totalDeadKg": "Toplam Ölü Kg",
+        "shipmentKg": "Toplam Sevkiyat Kg",
+        "stockKg": "Toplam Stok Kg",
+        "measurementGram": "Ölçüm (g)",
+        "feedKg": "Yem Kg",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detay",
+        "cageSortFilterLockedHint": "Kafes sıralama filtresi kilitliyse sıralama değiştirilemez."
+      },
+      "listTable": {
+        "shipment": "Sevkiyat",
+        "stockKg": "Stok Kg",
+        "measurementGram": "Ölçüm (g)",
+        "feedKg": "Yem Kg",
+        "fcr": "FCR"
+      }
+    }
   },
   "customer360": {
     "title": "Müşteri 360",

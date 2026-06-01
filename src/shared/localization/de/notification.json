@@ -1,8 +1,81 @@
 {
-  "title": "Benachrichtigungen",
-  "loading": "Laden",
-  "noNotifications": "Benachrichtigung nicht gefunden",
-  "markAllAsRead": "Alle als gelesen markieren",
-  "close": "Schließen",
-  "unread": "Nicht gelesen"
+  "title": "Bildirimler",
+  "loading": "Yükleniyor",
+  "noNotifications": "Bildirim bulunamadı",
+  "markAllAsRead": "Tümünü Okundu İşaretle",
+  "close": "Kapat",
+  "unread": "Okunmadı",
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Netsis Kunden",
+      "netsisMirrorStocks": "Netsis Bestände",
+      "netsisMirrorWarehouses": "Netsis Lager",
+      "netsisMirrorBranches": "Netsis Filialen",
+      "aquaCageWarehouseMappings": "Käfig-Lager Zuordnung",
+      "aquaOpeningImport": "Erstübergabe",
+      "aquaWarehouseTransfers": "Lagertransfers",
+      "aquaCageWarehouseTransfers": "Käfig-zu-Lager Transfers",
+      "aquaWarehouseCageTransfers": "Lager-zu-Käfig Transfers",
+      "aquaWarehouseTransferLines": "Lagertransferpositionen",
+      "aquaCageWarehouseTransferLines": "Käfig-zu-Lager Transferzeilen",
+      "aquaWarehouseCageTransferLines": "Lager-zu-Käfig Transferzeilen"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Für diese Gitterbox ist noch kein täglicher Datensatz vorhanden.",
+      "dailyFlowEmptyDescription": "Fütterung, Mortalität, Transfers, Versand, Wetter und andere tägliche Buchungen werden nach Eingabe hier täglich angezeigt.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Der Projektfilter ist gesperrt, wenn die Käfigsortierung aktiv ist."
+      },
+      "projectSelector": {
+        "loadingApply": "Projekte werden geladen..."
+      },
+      "stats": {
+        "cageFishStock": "Käfig-Fischbestand",
+        "warehouseFishStock": "Lagerfischbestand",
+        "totalSystemFishStock": "Gesamtfischbestand",
+        "cageBiomass": "Käfigbiomasse",
+        "warehouseBiomass": "Lagerbiomasse"
+      },
+      "projectDialog": {
+        "subtitle": "Projektübersicht und Käfigdaten"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Mortalitätsmenge",
+        "totalDeadKg": "Mortalitätskg",
+        "totalShipmentCount": "Liefermenge",
+        "totalShipmentKg": "Lieferungs-Kg",
+        "measurementGram": "Futterbasis",
+        "fcr": "FCR",
+        "activeCage": "Käfig",
+        "cageFish": "Käfigfisch",
+        "warehouseFish": "Lagerfisch",
+        "totalFish": "Gesamtfische"
+      },
+      "cageCard": {
+        "totalDeadCount": "Mortalitätsmenge",
+        "shipmentCount": "Liefermengen",
+        "stockCount": "Lagerbestand Menge",
+        "totalDeadKg": "Mortalitätskg",
+        "shipmentKg": "Lieferungs-Kg",
+        "stockKg": "Lagerbestand Kg",
+        "measurementGram": "Messgramm",
+        "feedKg": "Futter-Kg",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detail",
+        "cageSortFilterLockedHint": "Projektfilter kann während der Käfigsortierung nicht geändert werden."
+      },
+      "listTable": {
+        "shipment": "Lieferung",
+        "stockKg": "Bestands-Kg",
+        "measurementGram": "Messgramm",
+        "feedKg": "Futter-Kg",
+        "fcr": "FCR"
+      }
+    }
+  }
 }

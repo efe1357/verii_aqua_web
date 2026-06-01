@@ -1,42 +1,113 @@
 {
-  "menu": "Genehmigungsrollengruppenverwaltung",
-  "description": "Genehmigungsrollengruppen verwalten und bearbeiten",
-  "addButton": "Neue Gruppe hinzufügen",
-  "refresh": "Aktualisieren",
-  "searchPlaceholder": "Suchen...",
-  "loading": "Laden...",
-  "noData": "Keine Daten gefunden",
-  "noDataDescription": "Es wurden keine Datensätze gefunden, die Ihren Suchkriterien entsprechen, oder es wurden noch keine Datensätze hinzugefügt.",
+  "advancedFilter": {
+    "columnName": "Grup Adı",
+    "columnCreatedBy": "Oluşturan"
+  },
+  "menu": "Onay Rol Grubu Yönetimi",
+  "description": "Onay rol gruplarını yönetin ve düzenleyin",
+  "addButton": "Yeni Grup Ekle",
+  "refresh": "Yenile",
+  "searchPlaceholder": "Ara...",
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "noDataDescription": "Arama kriterlerinize uygun kayıt bulunamadı veya henüz hiç kayıt eklenmemiş.",
   "table": {
     "id": "ID",
-    "name": "Gruppenname",
-    "createdDate": "Erstellungsdatum",
-    "createdBy": "Erstellt vom Benutzer",
-    "actions": "Transaktionen",
-    "showing": "Gesamt {{total}} aus dem Datensatz mit {{from}}-{{to}}"
+    "name": "Grup Adı",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan Kullanıcı",
+    "actions": "İşlemler",
+    "showing": "Toplam {{total}} kayıttan {{from}}-{{to}} arası gösteriliyor"
   },
   "delete": {
-    "confirmTitle": "Löschbestätigung",
-    "confirmMessage": "Diese Aktion kann nicht rückgängig gemacht werden. Möchten Sie fortfahren?"
+    "confirmTitle": "Silme Onayı",
+    "confirmMessage": "Bu işlem geri alınamaz. Devam etmek istiyor musunuz?"
   },
-  "cancel": "Abbrechen",
-  "save": "Speichern",
-  "saving": "Aufnahme...",
-  "deleteButton": "Löschen",
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
+  "deleteButton": "Sil",
   "form": {
-    "editTitle": "Bearbeiten Sie die Genehmigungsrollengruppe",
-    "addTitle": "Neue Genehmigungsrollengruppe hinzufügen",
-    "editDescription": "Bearbeiten Sie die Informationen zur Genehmigungsrollengruppe",
-    "addDescription": "Geben Sie neue Informationen zur Genehmigungsrollengruppe ein",
-    "name": "Gruppenname",
-    "namePlaceholder": "Geben Sie den Gruppennamen ein",
-    "name.required": "Gruppenname ist erforderlich",
-    "name.maxLength": "Gruppenname darf höchstens 100 Zeichen lang sein",
-    "nameRequired": "Gruppenname ist erforderlich",
-    "nameMaxLength": "Der Gruppenname kann bis zu 100 Zeichen lang sein"
+    "editTitle": "Onay Rol Grubu Düzenle",
+    "addTitle": "Yeni Onay Rol Grubu Ekle",
+    "editDescription": "Onay rol grubu bilgilerini düzenleyin",
+    "addDescription": "Yeni onay rol grubu bilgilerini girin",
+    "name": "Grup Adı",
+    "namePlaceholder": "Grup adını girin",
+    "nameRequired": "Grup adı zorunludur",
+    "nameMaxLength": "Grup adı en fazla 100 karakter olabilir"
   },
-  "advancedFilter": {
-    "columnName": "Gruppenname",
-    "columnCreatedBy": "Erstellt von"
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Netsis Kunden",
+      "netsisMirrorStocks": "Netsis Bestände",
+      "netsisMirrorWarehouses": "Netsis Lager",
+      "netsisMirrorBranches": "Netsis Filialen",
+      "aquaCageWarehouseMappings": "Käfig-Lager Zuordnung",
+      "aquaOpeningImport": "Erstübergabe",
+      "aquaWarehouseTransfers": "Lagertransfers",
+      "aquaCageWarehouseTransfers": "Käfig-zu-Lager Transfers",
+      "aquaWarehouseCageTransfers": "Lager-zu-Käfig Transfers",
+      "aquaWarehouseTransferLines": "Lagertransferpositionen",
+      "aquaCageWarehouseTransferLines": "Käfig-zu-Lager Transferzeilen",
+      "aquaWarehouseCageTransferLines": "Lager-zu-Käfig Transferzeilen"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Für diese Gitterbox ist noch kein täglicher Datensatz vorhanden.",
+      "dailyFlowEmptyDescription": "Fütterung, Mortalität, Transfers, Versand, Wetter und andere tägliche Buchungen werden nach Eingabe hier täglich angezeigt.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Der Projektfilter ist gesperrt, wenn die Käfigsortierung aktiv ist."
+      },
+      "projectSelector": {
+        "loadingApply": "Projekte werden geladen..."
+      },
+      "stats": {
+        "cageFishStock": "Käfig-Fischbestand",
+        "warehouseFishStock": "Lagerfischbestand",
+        "totalSystemFishStock": "Gesamtfischbestand",
+        "cageBiomass": "Käfigbiomasse",
+        "warehouseBiomass": "Lagerbiomasse"
+      },
+      "projectDialog": {
+        "subtitle": "Projektübersicht und Käfigdaten"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Mortalitätsmenge",
+        "totalDeadKg": "Mortalitätskg",
+        "totalShipmentCount": "Liefermenge",
+        "totalShipmentKg": "Lieferungs-Kg",
+        "measurementGram": "Futterbasis",
+        "fcr": "FCR",
+        "activeCage": "Käfig",
+        "cageFish": "Käfigfisch",
+        "warehouseFish": "Lagerfisch",
+        "totalFish": "Gesamtfische"
+      },
+      "cageCard": {
+        "totalDeadCount": "Mortalitätsmenge",
+        "shipmentCount": "Liefermengen",
+        "stockCount": "Lagerbestand Menge",
+        "totalDeadKg": "Mortalitätskg",
+        "shipmentKg": "Lieferungs-Kg",
+        "stockKg": "Lagerbestand Kg",
+        "measurementGram": "Messgramm",
+        "feedKg": "Futter-Kg",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detail",
+        "cageSortFilterLockedHint": "Projektfilter kann während der Käfigsortierung nicht geändert werden."
+      },
+      "listTable": {
+        "shipment": "Lieferung",
+        "stockKg": "Bestands-Kg",
+        "measurementGram": "Messgramm",
+        "feedKg": "Futter-Kg",
+        "fcr": "FCR"
+      }
+    }
   }
 }

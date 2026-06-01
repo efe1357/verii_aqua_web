@@ -1,70 +1,130 @@
 {
-  "menu": "Ländermanagement",
-  "description": "Länder verwalten und regulieren",
-  "addButton": "Neues Land hinzufügen",
-  "search": "Suchen...",
-  "loading": "Laden...",
-  "noData": "Keine Daten gefunden",
-  "actions": "Transaktionen",
-  "previous": "Zurück",
-  "next": "Als nächstes",
-  "deleteConfirmTitle": "Löschbestätigung",
-  "cancel": "Abbrechen",
-  "deleting": "Löschen...",
-  "delete": "Löschen",
-  "saving": "Aufnahme...",
-  "save": "Speichern",
+  "menu": "Ülke Yönetimi",
+  "description": "Ülkeleri yönetin ve düzenleyin",
+  "addButton": "Yeni Ülke Ekle",
+  "search": "Ara...",
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "actions": "İşlemler",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "deleteConfirmTitle": "Silme Onayı",
+  "cancel": "İptal",
+  "deleting": "Siliniyor...",
+  "delete": "Sil",
+  "saving": "Kaydediliyor...",
+  "save": "Kaydet",
   "stats": {
-    "totalCountries": "Gesamtes Land",
-    "activeCountries": "Aktives Land",
-    "newThisMonth": "Neu in diesem Monat"
+    "totalCountries": "Toplam Ülke",
+    "activeCountries": "Aktif Ülke",
+    "newThisMonth": "Bu Ay Yeni"
   },
   "table": {
     "id": "ID",
-    "name": "Ländername",
-    "code": "Code",
-    "erpCode": "ERP Code",
-    "createdDate": "Erstellungsdatum",
-    "createdBy": "Erstellt von",
-    "showing": "Angezeigt werden {{from}}-{{to}} / {{total}}",
-    "page": "Seite {{current}} / {{total}}"
-  },
-  "form": {
-    "addCountry": "Neues Land hinzufügen",
-    "editCountry": "Land bearbeiten",
-    "addDescription": "Geben Sie neue Länderinformationen ein",
-    "editDescription": "Länderinformationen bearbeiten",
-    "name": "Ländername",
-    "namePlaceholder": "Geben Sie den Ländernamen ein",
-    "code": "Ländercode",
-    "codePlaceholder": "Geben Sie den Ländercode ein (z. B. TR, US)",
-    "erpCode": "ERP Code",
-    "erpCodePlaceholder": "Geben Sie den Code ERP ein (optional)",
-    "validation": {
-      "name": {
-        "required": "Ländername ist erforderlich",
-        "maxLength": "Ländername darf 100 Zeichen nicht überschreiten"
-      },
-      "code": {
-        "minLength": "Ländercode muss mindestens 2 Zeichen lang sein",
-        "maxLength": "Ländercode darf 5 Zeichen nicht überschreiten"
-      },
-      "erpCode": {
-        "maxLength": "ERP-Code darf 10 Zeichen nicht überschreiten"
-      }
-    },
-    "nameRequired": "Ländername ist erforderlich",
-    "nameMaxLength": "Der Ländername kann bis zu 100 Zeichen lang sein",
-    "codeMinLength": "Der Ländercode muss mindestens 2 Zeichen lang sein",
-    "codeMaxLength": "Der Ländercode kann bis zu 5 Zeichen lang sein",
-    "erpCodeMaxLength": "Der Code ERP kann maximal 10 Zeichen lang sein"
-  },
-  "deleteConfirm": {
-    "confirmMessage": "Sind Sie sicher, dass Sie das Land {{name}} löschen möchten?"
+    "name": "Ülke Adı",
+    "code": "Kod",
+    "erpCode": "ERP Kodu",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "advancedFilter": {
-    "columnName": "Ländername",
-    "columnCode": "Ländercode",
-    "columnErpCode": "ERP Code"
+    "columnName": "Ülke Adı",
+    "columnCode": "Ülke Kodu",
+    "columnErpCode": "ERP Kodu"
+  },
+  "form": {
+    "addCountry": "Yeni Ülke Ekle",
+    "editCountry": "Ülke Düzenle",
+    "addDescription": "Yeni ülke bilgilerini girin",
+    "editDescription": "Ülke bilgilerini düzenleyin",
+    "name": "Ülke Adı",
+    "namePlaceholder": "Ülke adını girin",
+    "code": "Ülke Kodu",
+    "codePlaceholder": "Ülke kodunu girin (örn: TR, US)",
+    "erpCode": "ERP Kodu",
+    "erpCodePlaceholder": "ERP kodunu girin (opsiyonel)",
+    "nameRequired": "Ülke adı zorunludur",
+    "nameMaxLength": "Ülke adı en fazla 100 karakter olabilir",
+    "codeMinLength": "Ülke kodu en az 2 karakter olmalıdır",
+    "codeMaxLength": "Ülke kodu en fazla 5 karakter olabilir",
+    "erpCodeMaxLength": "ERP kodu en fazla 10 karakter olabilir"
+  },
+  "deleteConfirm": {
+    "confirmMessage": "{{name}} ülkesini silmek istediğinizden emin misiniz?"
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Netsis Kunden",
+      "netsisMirrorStocks": "Netsis Bestände",
+      "netsisMirrorWarehouses": "Netsis Lager",
+      "netsisMirrorBranches": "Netsis Filialen",
+      "aquaCageWarehouseMappings": "Käfig-Lager Zuordnung",
+      "aquaOpeningImport": "Erstübergabe",
+      "aquaWarehouseTransfers": "Lagertransfers",
+      "aquaCageWarehouseTransfers": "Käfig-zu-Lager Transfers",
+      "aquaWarehouseCageTransfers": "Lager-zu-Käfig Transfers",
+      "aquaWarehouseTransferLines": "Lagertransferpositionen",
+      "aquaCageWarehouseTransferLines": "Käfig-zu-Lager Transferzeilen",
+      "aquaWarehouseCageTransferLines": "Lager-zu-Käfig Transferzeilen"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Für diese Gitterbox ist noch kein täglicher Datensatz vorhanden.",
+      "dailyFlowEmptyDescription": "Fütterung, Mortalität, Transfers, Versand, Wetter und andere tägliche Buchungen werden nach Eingabe hier täglich angezeigt.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Der Projektfilter ist gesperrt, wenn die Käfigsortierung aktiv ist."
+      },
+      "projectSelector": {
+        "loadingApply": "Projekte werden geladen..."
+      },
+      "stats": {
+        "cageFishStock": "Käfig-Fischbestand",
+        "warehouseFishStock": "Lagerfischbestand",
+        "totalSystemFishStock": "Gesamtfischbestand",
+        "cageBiomass": "Käfigbiomasse",
+        "warehouseBiomass": "Lagerbiomasse"
+      },
+      "projectDialog": {
+        "subtitle": "Projektübersicht und Käfigdaten"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Mortalitätsmenge",
+        "totalDeadKg": "Mortalitätskg",
+        "totalShipmentCount": "Liefermenge",
+        "totalShipmentKg": "Lieferungs-Kg",
+        "measurementGram": "Futterbasis",
+        "fcr": "FCR",
+        "activeCage": "Käfig",
+        "cageFish": "Käfigfisch",
+        "warehouseFish": "Lagerfisch",
+        "totalFish": "Gesamtfische"
+      },
+      "cageCard": {
+        "totalDeadCount": "Mortalitätsmenge",
+        "shipmentCount": "Liefermengen",
+        "stockCount": "Lagerbestand Menge",
+        "totalDeadKg": "Mortalitätskg",
+        "shipmentKg": "Lieferungs-Kg",
+        "stockKg": "Lagerbestand Kg",
+        "measurementGram": "Messgramm",
+        "feedKg": "Futter-Kg",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detail",
+        "cageSortFilterLockedHint": "Projektfilter kann während der Käfigsortierung nicht geändert werden."
+      },
+      "listTable": {
+        "shipment": "Lieferung",
+        "stockKg": "Bestands-Kg",
+        "measurementGram": "Messgramm",
+        "feedKg": "Futter-Kg",
+        "fcr": "FCR"
+      }
+    }
   }
 }

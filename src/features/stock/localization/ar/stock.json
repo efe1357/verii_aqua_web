@@ -1,33 +1,4 @@
 {
-  "title": "إدارة المخزون",
-  "description": "تتبع وإدارة مستويات المخزون",
-  "filter": {
-    "search": "بحث",
-    "warehouse": "المستودع",
-    "product": "المنتج",
-    "category": "الفئة"
-  },
-  "table": {
-    "productCode": "رمز المنتج",
-    "productName": "اسم المنتج",
-    "warehouse": "المستودع",
-    "quantity": "الكمية",
-    "unit": "الوحدة",
-    "status": "الحالة",
-    "lastUpdated": "آخر تحديث"
-  },
-  "status": {
-    "inStock": "متوفر",
-    "lowStock": "مخزون منخفض",
-    "outOfStock": "نفد المخزون"
-  },
-  "movements": {
-    "title": "حركات المخزون",
-    "in": "دخول",
-    "out": "خروج",
-    "transfer": "نقل",
-    "adjustment": "تعديل"
-  },
   "list": {
     "title": "إدارة المخزون",
     "description": "عرض وإدارة الأسهم",

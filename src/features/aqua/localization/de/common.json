@@ -523,7 +523,9 @@
       "confirmBulkDelete": "Sind Sie sicher, dass Sie den ausgewählten {{count}}-Datensatz löschen möchten?",
       "bulkDeleteSuccess": "Der Datensatz {{count}} wurde erfolgreich gelöscht.",
       "bulkDeleteError": "Beim Massenlöschvorgang sind einige Fehler aufgetreten.",
-      "deleting": "Löschen..."
+      "deleting": "Löschen...",
+      "active": "Aktif",
+      "passive": "Pasif"
     },
     "toast": {
       "created": "Datensatz erstellt",
@@ -661,6 +663,34 @@
       "fishBatches": {
         "title": "Fischchargen",
         "description": "Aufzeichnungen zu Biologie, Herkunft und Erntezielen der Fischchargen."
+      },
+      "cageWarehouseMappings": {
+        "title": "Kafes-Depo Eşleştirme",
+        "description": "Kafes kodlarını senkronize Netsis depoları ile eşleştirin."
+      },
+      "warehouseTransfers": {
+        "title": "Depo Transferi",
+        "description": "Depo transfer başlık kayıtları."
+      },
+      "cageWarehouseTransfers": {
+        "title": "Kafesten Depoya Transfer",
+        "description": "Kafesten depoya transfer başlık kayıtları."
+      },
+      "warehouseCageTransfers": {
+        "title": "Depodan Kafese Transfer",
+        "description": "Depodan kafese transfer başlık kayıtları."
+      },
+      "warehouseTransferLines": {
+        "title": "Depo Transfer Satırları",
+        "description": "Depo transfer satır kayıtları."
+      },
+      "cageWarehouseTransferLines": {
+        "title": "Kafesten Depoya Transfer Satırları",
+        "description": "Kafesten depoya transfer satır kayıtları."
+      },
+      "warehouseCageTransferLines": {
+        "title": "Depodan Kafese Transfer Satırları",
+        "description": "Depodan kafese transfer satır kayıtları."
       }
     },
     "fields": {
@@ -795,7 +825,18 @@
       "targetHarvestAverageGram": "Ziel-Erntedurchschnittsgramm",
       "targetHarvestDate": "Geplantes Erntedatum",
       "targetHarvestClass": "Ziel-Ernteklasse",
-      "qualityGrade": "Qualitätsklasse"
+      "qualityGrade": "Qualitätsklasse",
+      "netsisWarehouseId": "Netsis Deposu",
+      "erpWarehouseCode": "Netsis Depo Kodu",
+      "warehouseName": "Depo Adı",
+      "isActive": "Aktif",
+      "warehouseTransferId": "Depo Transfer ID",
+      "cageWarehouseTransferId": "Kafesten Depoya Transfer ID",
+      "warehouseCageTransferId": "Depodan Kafese Transfer ID",
+      "fromWarehouseId": "Kaynak Depo",
+      "fromWarehouseCode": "Kaynak Depo Kodu",
+      "toWarehouseId": "Hedef Depo",
+      "toWarehouseCode": "Hedef Depo Kodu"
     },
     "quickSetup": {
       "pageTitle": "Schnelle Einrichtung",
@@ -855,7 +896,9 @@
       "selectAvailableCage": "Wählen Sie einen freien Käfig aus",
       "addCage": "+ Netz hinzufügen",
       "noAvailableCages": "Für dieses Projekt wurden keine verfügbaren Käfige gefunden.",
-      "pageDescription": "Führen Sie die Schritte zur schnellen Einrichtung aus."
+      "pageDescription": "Führen Sie die Schritte zur schnellen Einrichtung aus.",
+      "warehouse": "Depo",
+      "selectWarehouse": "Depo seçin"
     },
     "quickDailyEntry": {
       "pageTitle": "Täglicher Login",
@@ -875,8 +918,7 @@
         "feedStock": "Futtermittelbestand",
         "selectStock": "Lager auswählen",
         "qty": "Menge",
-        "save": "Speichern",
-        "gramPerUnit": "Gramm pro Einheit"
+        "save": "Speichern"
       },
       "mortality": {
         "title": "Mortalität",
@@ -954,7 +996,15 @@
         "partialTransferToOccupiedCageNotAllowed": "Ein teilweiser Transfer in einen vollen Käfig ist nicht möglich.",
         "partialTransferToOccupiedCageOnlySameBatchAllowed": "Ein teilweiser Transfer in den vollen Käfig ist nur für dieselbe Charge möglich.",
         "shipmentCountTooHigh": "Die Anzahl der Sendungen darf die Anzahl der Tiere im Käfig nicht überschreiten.",
-        "shipmentSaved": "Versand erfasst."
+        "shipmentSaved": "Versand erfasst.",
+        "cageWarehouseTransferCountTooHigh": "Kafesten depoya aktarım adedi, kafesteki canlı adedini aşamaz.",
+        "cageWarehouseTransferSaved": "Kafesten depoya transfer kaydedildi.",
+        "sameWarehouseTransferNotAllowed": "Kaynak ve hedef depo aynı olamaz.",
+        "noActiveBatchForWarehouse": "Seçili depo için aktif batch bulunamadı.",
+        "warehouseTransferCountTooHigh": "Depo transfer adedi, seçili batch stok adedini aşamaz.",
+        "warehouseTransferSaved": "Depo transferi kaydedildi.",
+        "warehouseCageTransferCountTooHigh": "Depodan kafese aktarım adedi, seçili batch stok adedini aşamaz.",
+        "warehouseCageTransferSaved": "Depodan kafese transfer kaydedildi."
       },
       "pageDescription": "Nehmen Sie Ihre täglichen Betriebseingaben schnell über einen einzigen Bildschirm vor.",
       "tabTransfer": "Käfigaustausch",
@@ -982,6 +1032,36 @@
       "transferLine": {
         "fullTransferInfo": "Alle Transfers sind obligatorisch und offen. Die Menge für diese Zeile ist auf {{count}} festgelegt.",
         "fullTransferRequired": "Alle Transfers sind obligatorisch und offen. In dieser Zeile sollte {{count}} stehen."
+      },
+      "tabCageWarehouseTransfer": "Kafesten Depoya",
+      "tabWarehouseTransfer": "Depodan Depoya",
+      "tabWarehouseCageTransfer": "Depodan Kafese",
+      "cageWarehouseTransfer": {
+        "title": "Kafesten Depoya Transfer",
+        "sourceInfo": "Kaynak batch #{{fishBatchId}} - Canlı: {{liveCount}}",
+        "targetWarehouse": "Hedef Depo",
+        "fishCount": "Adet",
+        "description": "Açıklama",
+        "save": "Kaydet"
+      },
+      "warehouseTransfer": {
+        "title": "Depo Transferi",
+        "sourceInfo": "Kaynak batch #{{fishBatchId}} - Canlı: {{liveCount}}",
+        "sourceWarehouse": "Kaynak Depo",
+        "targetWarehouse": "Hedef Depo",
+        "sourceBatch": "Kaynak Batch",
+        "fishCount": "Adet",
+        "description": "Açıklama",
+        "save": "Kaydet"
+      },
+      "warehouseCageTransfer": {
+        "title": "Depodan Kafese Transfer",
+        "sourceInfo": "Kaynak batch #{{fishBatchId}} - Canlı: {{liveCount}}",
+        "sourceWarehouse": "Kaynak Depo",
+        "sourceBatch": "Kaynak Batch",
+        "fishCount": "Adet",
+        "description": "Açıklama",
+        "save": "Kaydet"
       }
     },
     "goodsReceiptItemType": {
@@ -1063,7 +1143,13 @@
       "totalShipmentBiomass": "Gesamte versandte Biomasse (Gramm)",
       "lastShipmentDate": "Letztes Versanddatum",
       "mainSummaryTitle": "Hauptdetail (Sofortstatus)",
-      "mainSummaryDescription": "Gesamter aktueller Status der aktiven Netze im Projekt."
+      "mainSummaryDescription": "Gesamter aktueller Status der aktiven Netze im Projekt.",
+      "activeWarehouses": "Aktif Depo",
+      "cageFishStock": "Kafes Stoku",
+      "warehouseFishStock": "Depo Stoku",
+      "totalSystemFishStock": "Toplam Sistem Stoku",
+      "cageBiomassTotal": "Kafes Biyokütlesi (g)",
+      "warehouseBiomassTotal": "Depo Biyokütlesi (g)"
     },
     "crud": {
       "reorderTitle": "Ändern Sie die Reihenfolge per Drag & Drop",
@@ -1093,7 +1179,13 @@
         "adgGramPerDay": "ADG (g/Tag)",
         "sgrPctPerDay": "SGR (%/Tag)",
         "densityPct": "Dichte %",
-        "forecastBiomassKg30d": "Geschätzte Biomasse nach 30 Tagen"
+        "forecastBiomassKg30d": "Geschätzte Biomasse nach 30 Tagen",
+        "cageFishStock": "Kafes Stoku",
+        "warehouseFishStock": "Depo Stoku",
+        "totalSystemFishStock": "Toplam Sistem Stoku",
+        "cageBiomassKg": "Kafes Biyokütlesi",
+        "warehouseBiomassKg": "Depo Biyokütlesi",
+        "totalSystemBiomassKg": "Toplam Sistem Biyokütlesi"
       },
       "columns": {
         "cage": "Käfig",
@@ -1289,7 +1381,6 @@
         "ProjectCode": "Project Code",
         "ProjectName": "Project Name",
         "StartDate": "Start Date",
-        "Status": "Status",
         "Note": "Note",
         "CageCode": "Cage Code",
         "CageName": "Cage Name",
@@ -1336,7 +1427,8 @@
         "createdShipmentLines": "Created Shipment Lines",
         "appliedCageRows": "Rows Applied to Cages",
         "appliedWarehouseRows": "Rows Applied to Warehouses",
-        "skippedRows": "Skipped Rows"
+        "skippedRows": "Skipped Rows",
+        "createdCageWarehouseMappings": "Oluşturulan Kafes-Depo Eşleme"
       },
       "toast": {
         "fileParsed": "Excel file parsed successfully.",
@@ -1346,7 +1438,90 @@
         "commitSuccessful": "Initial load imported successfully.",
         "commitFailed": "Import failed."
       },
-      "noPermission": "You do not have permission to view this screen."
+      "noPermission": "You do not have permission to view this screen.",
+      "guide": {
+        "title": "Açılış şablonları ne işe yarar?",
+        "description": "Kurulum ekibinin kafası karışmasın diye her açılış sheetinin hangi iş senaryosu için kullanıldığını burada özetledik. Aynı rehber Excel şablonunun ilk sayfasında da bulunur.",
+        "sheetName": "Kullanım Rehberi",
+        "exportSection": "Bölüm",
+        "exportWhen": "Ne zaman kullanılır?",
+        "exportRule": "Doldurma kuralı",
+        "cards": {
+          "openingStock": {
+            "title": "Açılış Stoku",
+            "body": "Bugün Aqua kullanmaya başlarken elinizdeki net balık adedi ve ortalama gramdır. Geçmiş belge detayı yoksa yalnızca bu sheet ile canlı stok başlatılır."
+          },
+          "openingGoodsReceipts": {
+            "title": "Açılış Mal Kabul",
+            "body": "Balığın sisteme başlamadan önce hangi giriş hareketleriyle geldiğini özet belge olarak taşır. Bir projede tek mal kabul oluşur; başlık ilk satırda yazılır, aynı batch alt satırlarda kafeslere dağıtılır."
+          },
+          "openingShipments": {
+            "title": "Açılış Sevkiyat",
+            "body": "Sistem açılmadan önce satılmış ya da çıkışı yapılmış balıkları taşır. Satış fiyatı girilirse gelir, marj ve Business KPI tarafı geçmiş satışları da hesaba katar."
+          },
+          "cageWarehouse": {
+            "title": "Kafes-Depo Eşleştirme",
+            "body": "Cages sheetindeki WarehouseCode opsiyoneldir. Doldurulursa kafes aktif ERP/Netsis deposuna bağlanır; B2 gibi kafes adı artık otomatik depo kabul edilmez."
+          },
+          "openingMortalityFeedings": {
+            "title": "Açılış Fire ve Yemleme",
+            "body": "Geçmiş fire ve yem tüketimi FCR, yaşam oranı ve üretim raporlarında görünsün isteniyorsa doldurulur. Detay bilinmiyorsa boş bırakılabilir."
+          },
+          "recommendedPath": {
+            "title": "Önerilen En Basit Yol",
+            "body": "Sadece canlı başlangıç yapılacaksa Projects, Cages ve OpeningStock yeterlidir. Geçmiş hareket analizi isteniyorsa ilgili özet sheetler ayrıca doldurulur."
+          },
+          "dateFormat": {
+            "title": "Tarih Formatı",
+            "body": "Tüm tarih alanlarında önerilen format 2026-01-31 şeklindedir. 31.01.2026 gibi Türk formatı ve Excel seri tarihleri de desteklenir."
+          }
+        },
+        "rows": {
+          "0": {
+            "title": "Projeler",
+            "when": "Aqua içinde açılacak projenin ana bilgisidir. Her ilk geçiş dosyasında proje kodu ve proje adı net olmalıdır.",
+            "rule": "ProjectCode benzersiz olmalıdır. Aynı proje daha önce kurulduysa import tekrar çalıştırılmaz ve kullanıcı uyarılır."
+          },
+          "1": {
+            "title": "Kafesler",
+            "when": "Projeye bağlı kafesleri tanımlar. Kafes B2 gibi bir isim taşıyabilir; bu isim artık otomatik olarak Netsis deposu kabul edilmez.",
+            "rule": "WarehouseCode opsiyoneldir. Doldurulursa bu kafes ilgili ERP/Netsis deposuna aktif olarak eşlenir."
+          },
+          "2": {
+            "title": "Açılış Stoku",
+            "when": "Sisteme bugün başlarken eldeki net canlı stok ve biyokütleyi girmek için kullanılır.",
+            "rule": "Geçmiş detay bilinmiyorsa en güvenli başlangıç burasıdır. Belge üretmez; açılış bakiyesi oluşturur."
+          },
+          "3": {
+            "title": "Açılış Mal Kabul",
+            "when": "Sistem başlamadan önce tesise/projeye girmiş balık hareketlerini özet belge olarak taşımak için kullanılır.",
+            "rule": "Her proje için tek mal kabul başlığı oluşur; Mal Kabul No ve Tarihi ilk satırda yazılıp devam dağıtım satırlarında boş bırakılabilir. Aynı BatchCode farklı kafeslerde tekrar ediyorsa adetlerin toplamı tek batch kalemidir. Farklı ürün veya ortalama gram için farklı BatchCode kullanılır."
+          },
+          "4": {
+            "title": "Açılış Sevkiyat",
+            "when": "Sistem başlamadan önce satılmış veya çıkışı yapılmış balıkları özet sevkiyat olarak taşımak için kullanılır.",
+            "rule": "Business KPI, gelir/marj ve geçmiş satış adedi/kg takibi için fiyat varsa UnitPrice doldurulur; yoksa 0 kabul edilir."
+          },
+          "5": {
+            "title": "Açılış Fire ve Yemleme",
+            "when": "Geçmiş fire ve yem tüketimi raporlarda görünsün, FCR/yaşam oranı başlangıçtan itibaren anlamlı hesaplansın diye kullanılır.",
+            "rule": "Geçmiş detay yoksa boş bırakılabilir. Doldurulursa ilgili batch, stok ve kafes bilgileriyle eşleşmelidir."
+          },
+          "6": {
+            "title": "Tarih Formatı",
+            "when": "Başlangıç, atama, bakiye, mal kabul, fire, yemleme ve sevkiyat tarihleri için geçerlidir.",
+            "rule": "Önerilen format yyyy-MM-dd örn. 2026-01-31. Kullanıcı isterse gg.aa.yyyy örn. 31.01.2026 veya Excel seri tarihi de kullanılabilir."
+          }
+        }
+      },
+      "cleanupSoftDeleted": {
+        "title": "Silinmiş test kaydı bulundu",
+        "description": "Bu kodlar daha önce test sırasında açılıp silinmiş. İstersen sistem bu önizlemede görünen silinmiş proje/kafes kayıtlarını kalıcı temizlemeyi denesin; ilişkili hareket varsa işlem güvenlik için durur.",
+        "action": "Silinmiş test kayıtlarını temizle",
+        "confirm": "Bu işlem yalnızca bu önizlemede yakalanan silinmiş test proje/kafes kayıtlarını kalıcı temizlemeyi dener. İlişkili hareket varsa işlem durdurulur. Devam edilsin mi?",
+        "success": "{{projects}} proje ve {{cages}} kafes test kaydı temizlendi. Önizlemeyi yeniden çalıştırın.",
+        "failed": "Silinmiş test kayıtları temizlenemedi."
+      }
     }
   },
   "projectMerge": {

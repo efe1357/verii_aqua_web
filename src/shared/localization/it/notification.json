@@ -1,18 +1,81 @@
 {
-  "title": "Notifiche",
-  "markAllAsRead": "Segna tutto come letto",
-  "viewAll": "Vedi tutte",
-  "empty": "Non hai notifiche",
-  "new": "Nuova",
-  "ago": "{{time}} fa",
-  "types": {
-    "info": "Informazione",
-    "success": "Successo",
-    "warning": "Attenzione",
-    "error": "Errore"
+  "title": "Bildirimler",
+  "loading": "Yükleniyor",
+  "noNotifications": "Bildirim bulunamadı",
+  "markAllAsRead": "Tümünü Okundu İşaretle",
+  "close": "Kapat",
+  "unread": "Okunmadı",
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clienti Netsis",
+      "netsisMirrorStocks": "Stock Netsis",
+      "netsisMirrorWarehouses": "Magazzini Netsis",
+      "netsisMirrorBranches": "Filiali Netsis",
+      "aquaCageWarehouseMappings": "Mappatura Gabbia-Magazzino",
+      "aquaOpeningImport": "Importazione di apertura",
+      "aquaWarehouseTransfers": "Trasferimenti di magazzino",
+      "aquaCageWarehouseTransfers": "Trasferimenti da Gabbia a Magazzino",
+      "aquaWarehouseCageTransfers": "Trasferimenti da Magazzino a Gabbia",
+      "aquaWarehouseTransferLines": "Righe trasferimento magazzino",
+      "aquaCageWarehouseTransferLines": "Righe trasferimento Gabbia-Magazzino",
+      "aquaWarehouseCageTransferLines": "Righe trasferimento Magazzino-Gabbia"
+    }
   },
-  "loading": "caricamento",
-  "noNotifications": "Notifica non trovata",
-  "close": "Chiudi",
-  "unread": "Non leggere"
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Non ci sono ancora movimenti giornalieri per questa gabbia.",
+      "dailyFlowEmptyDescription": "Alimentazione, mortalità, trasferimenti, spedizioni, meteo e altre operazioni quotidiane verranno mostrate qui giorno per giorno dopo l'inserimento.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Il filtro progetto è bloccato durante l'ordinamento per gabbia."
+      },
+      "projectSelector": {
+        "loadingApply": "Caricamento progetti..."
+      },
+      "stats": {
+        "cageFishStock": "Scorta pesce in gabbia",
+        "warehouseFishStock": "Scorta pesce in magazzino",
+        "totalSystemFishStock": "Scorta totale pesce",
+        "cageBiomass": "Biomassa in gabbia",
+        "warehouseBiomass": "Biomassa in magazzino"
+      },
+      "projectDialog": {
+        "subtitle": "Riepilogo progetto e dati gabbia"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Quantità di mortalità",
+        "totalDeadKg": "Kg mortalità",
+        "totalShipmentCount": "Quantità spedizioni",
+        "totalShipmentKg": "Kg spediti",
+        "measurementGram": "Base di misurazione",
+        "fcr": "FCR",
+        "activeCage": "gabbia",
+        "cageFish": "Pesce in gabbia",
+        "warehouseFish": "Pesce in magazzino",
+        "totalFish": "Totale pesce"
+      },
+      "cageCard": {
+        "totalDeadCount": "Quantità di mortalità",
+        "shipmentCount": "Quantità spedizioni",
+        "stockCount": "Quantità a stock",
+        "totalDeadKg": "Kg mortalità",
+        "shipmentKg": "Kg spediti",
+        "stockKg": "Kg in stock",
+        "measurementGram": "Gramo misurato",
+        "feedKg": "Kg mangime",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Dettaglio",
+        "cageSortFilterLockedHint": "Il filtro progetto non può essere modificato durante l'ordinamento delle gabbie attivo."
+      },
+      "listTable": {
+        "shipment": "Spedizione",
+        "stockKg": "Kg stock",
+        "measurementGram": "Gramo misurato",
+        "feedKg": "Kg mangime",
+        "fcr": "FCR"
+      }
+    }
+  }
 }

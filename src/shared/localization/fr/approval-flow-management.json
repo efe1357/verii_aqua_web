@@ -1,85 +1,155 @@
 {
   "approvalFlow": {
-    "menu": "Gestion du flux d'approbation",
-    "description": "Gérer et rationaliser les flux d’approbation",
-    "addButton": "Ajouter un nouveau flux d'approbation",
+    "advancedFilter": {
+      "columnDocumentType": "Belge Tipi",
+      "columnDescription": "Açıklama",
+      "columnIsActive": "Aktif",
+      "columnCreatedBy": "Oluşturan"
+    },
+    "menu": "Onay Akışı Yönetimi",
+    "description": "Onay akışlarını yönetin ve düzenleyin",
+    "addButton": "Yeni Onay Akışı Ekle",
     "table": {
       "id": "ID",
-      "documentType": "Type de document",
-      "description": "Descriptif",
-      "isActive": "actif",
-      "createdDate": "Date de création",
-      "createdBy": "Créé par l'utilisateur",
-      "actions": "Opérations",
-      "showing": "Affichage de {{from}}-{{to}} / {{total}}",
-      "page": "Pages {{current}} / {{total}}"
+      "documentType": "Belge Tipi",
+      "description": "Açıklama",
+      "isActive": "Aktif",
+      "createdDate": "Oluşturulma Tarihi",
+      "createdBy": "Oluşturan Kullanıcı",
+      "actions": "İşlemler",
+      "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+      "page": "Sayfa {{current}} / {{total}}"
     },
     "form": {
-      "addTitle": "Ajouter un nouveau flux d'approbation",
-      "editTitle": "Modifier le flux d'approbation",
-      "addDescription": "Saisir les nouvelles informations sur le processus d'approbation",
-      "editDescription": "Modifier les informations du processus d'approbation",
-      "documentType": "Type de document",
-      "selectDocumentType": "Sélectionnez le type de document",
-      "noDocumentTypeSelected": "Type de document non sélectionné",
-      "description": "Descriptif",
-      "descriptionPlaceholder": "Entrez une description (facultatif)",
-      "isActive": "actif",
-      "isActiveDescription": "Statut actif du flux d'approbation",
-      "cancel": "Annuler",
-      "save": "Enregistrer",
-      "saving": "Enregistrement...",
-      "documentTypeRequired": "La sélection du type de document est obligatoire",
-      "descriptionMaxLength": "La description peut contenir jusqu'à 200 caractères"
+      "addTitle": "Yeni Onay Akışı Ekle",
+      "editTitle": "Onay Akışı Düzenle",
+      "addDescription": "Yeni onay akışı bilgilerini girin",
+      "editDescription": "Onay akışı bilgilerini düzenleyin",
+      "documentType": "Belge Tipi",
+      "selectDocumentType": "Belge tipi seçin",
+      "noDocumentTypeSelected": "Belge tipi seçilmedi",
+      "documentTypeRequired": "Belge tipi seçimi zorunludur",
+      "description": "Açıklama",
+      "descriptionPlaceholder": "Açıklama girin (opsiyonel)",
+      "descriptionMaxLength": "Açıklama en fazla 200 karakter olabilir",
+      "isActive": "Aktif",
+      "isActiveDescription": "Onay akışının aktif durumu",
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "saving": "Kaydediliyor..."
     },
-    "loading": "Chargement...",
-    "noData": "Aucune donnée",
-    "active": "actif",
-    "inactive": "passif",
-    "previous": "Précédent",
-    "next": "Suivant",
+    "loading": "Yükleniyor...",
+    "noData": "Veri yok",
+    "active": "Aktif",
+    "inactive": "Pasif",
+    "previous": "Önceki",
+    "next": "Sonraki",
     "delete": {
-      "action": "Supprimer",
-      "cancel": "Annuler",
-      "confirmTitle": "Supprimer le flux d'approbation",
-      "confirmMessage": "Êtes-vous sûr de vouloir supprimer ce flux de confirmation ?"
+      "action": "Sil",
+      "cancel": "İptal",
+      "confirmTitle": "Onay Akışını Sil",
+      "confirmMessage": "Bu onay akışını silmek istediğinizden emin misiniz?"
     },
     "documentType": {
-      "offer": "Offre",
-      "request": "Demande",
-      "order": "Commande"
-    },
-    "advancedFilter": {
-      "columnDocumentType": "Type de document",
-      "columnDescription": "Descriptif",
-      "columnIsActive": "actif",
-      "columnCreatedBy": "Créé par"
+      "offer": "Teklif",
+      "request": "Talep",
+      "order": "Sipariş"
     }
   },
   "approvalFlowStep": {
-    "title": "Étapes du flux",
-    "addButton": "Ajouter une étape",
-    "empty": "Aucune étape ajoutée pour l'instant",
-    "unknownRoleGroup": "Aucun groupe de rôles",
-    "stepDescription": "Ordonnance d’approbation : {{order}}",
+    "title": "Akış Adımları",
+    "addButton": "Adım Ekle",
+    "empty": "Henüz adım eklenmemiş",
+    "unknownRoleGroup": "Rol Grubu Yok",
+    "stepDescription": "Onay Sırası: {{order}}",
     "form": {
-      "addTitle": "Ajouter une nouvelle étape",
-      "editTitle": "Modifier l'étape",
-      "addDescription": "Ajouter une nouvelle étape de flux",
-      "editDescription": "Modifier les informations sur les étapes du flux",
-      "approvalRoleGroup": "Groupe de rôles",
-      "selectRoleGroup": "Sélectionnez un groupe de rôles",
-      "noRoleGroupSelected": "Groupe de rôles non sélectionné",
-      "approvalRoleGroupId": {
-        "required": "La sélection du groupe de rôle est requise"
-      },
-      "approvalRoleGroupIdRequired": "La sélection du groupe de rôles est obligatoire",
-      "cancel": "Annuler",
-      "save": "Enregistrer",
-      "saving": "Enregistrement..."
+      "addTitle": "Yeni Adım Ekle",
+      "editTitle": "Adım Düzenle",
+      "addDescription": "Yeni akış adımı ekleyin",
+      "editDescription": "Akış adımı bilgilerini düzenleyin",
+      "approvalRoleGroup": "Rol Grubu",
+      "selectRoleGroup": "Rol grubu seçin",
+      "noRoleGroupSelected": "Rol grubu seçilmedi",
+      "approvalRoleGroupIdRequired": "Rol grubu seçimi zorunludur",
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "saving": "Kaydediliyor..."
     },
     "messages": {
-      "deleteConfirm": "Êtes-vous sûr de vouloir supprimer cette étape ?"
+      "deleteConfirm": "Bu adımı silmek istediğinizden emin misiniz?"
+    }
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clients Netsis",
+      "netsisMirrorStocks": "Stocks Netsis",
+      "netsisMirrorWarehouses": "Entrepôts Netsis",
+      "netsisMirrorBranches": "Succursales Netsis",
+      "aquaCageWarehouseMappings": "Appariement Cage-Dépôt",
+      "aquaOpeningImport": "Importation d'ouverture",
+      "aquaWarehouseTransfers": "Transferts d'entrepôt",
+      "aquaCageWarehouseTransfers": "Transferts Cage vers Entrepôt",
+      "aquaWarehouseCageTransfers": "Transferts Entrepôt vers Cage",
+      "aquaWarehouseTransferLines": "Lignes de transfert d'entrepôt",
+      "aquaCageWarehouseTransferLines": "Lignes de transfert Cage vers Entrepôt",
+      "aquaWarehouseCageTransferLines": "Lignes de transfert Entrepôt vers Cage"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Aucune opération quotidienne n'est encore disponible pour cette cage.",
+      "dailyFlowEmptyDescription": "Les opérations quotidiennes comme l'alimentation, la mortalité, les transferts, les expéditions, la météo et d'autres écritures apparaitront ici jour par jour.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Le filtre projet est verrouillé tant que le tri par cage est actif."
+      },
+      "projectSelector": {
+        "loadingApply": "Chargement des projets..."
+      },
+      "stats": {
+        "cageFishStock": "Stock de poissons en cage",
+        "warehouseFishStock": "Stock de poissons en entrepôt",
+        "totalSystemFishStock": "Stock total de poissons",
+        "cageBiomass": "Biomasse en cage",
+        "warehouseBiomass": "Biomasse en entrepôt"
+      },
+      "projectDialog": {
+        "subtitle": "Résumé du projet et données de cage"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Nombre de mortalités",
+        "totalDeadKg": "Kg mortalité",
+        "totalShipmentCount": "Nombre de livraisons",
+        "totalShipmentKg": "Kg expédiés",
+        "measurementGram": "Base de mesure",
+        "fcr": "FCR",
+        "activeCage": "cage",
+        "cageFish": "Poisson en cage",
+        "warehouseFish": "Poisson en entrepôt",
+        "totalFish": "Total poissons"
+      },
+      "cageCard": {
+        "totalDeadCount": "Nombre de mortalités",
+        "shipmentCount": "Nombre de livraisons",
+        "stockCount": "Quantité en stock",
+        "totalDeadKg": "Kg mortalité",
+        "shipmentKg": "Kg expédiés",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramme mesurée",
+        "feedKg": "Kg nourrissant",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Détail",
+        "cageSortFilterLockedHint": "Le filtre projet ne peut pas être modifié tant que le tri par cage est actif."
+      },
+      "listTable": {
+        "shipment": "Expédition",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Gramme mesurée",
+        "feedKg": "Kg nourrissant",
+        "fcr": "FCR"
+      }
     }
   }
 }

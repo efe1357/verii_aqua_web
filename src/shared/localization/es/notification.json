@@ -1,18 +1,81 @@
 {
-  "title": "Notificaciones",
-  "markAllAsRead": "Marcar todo como leído",
-  "viewAll": "Ver todas",
-  "empty": "No tienes notificaciones",
-  "new": "Nueva",
-  "ago": "hace {{time}}",
-  "types": {
-    "info": "Información",
-    "success": "Éxito",
-    "warning": "Advertencia",
-    "error": "Error"
+  "title": "Bildirimler",
+  "loading": "Yükleniyor",
+  "noNotifications": "Bildirim bulunamadı",
+  "markAllAsRead": "Tümünü Okundu İşaretle",
+  "close": "Kapat",
+  "unread": "Okunmadı",
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clientes Netsis",
+      "netsisMirrorStocks": "Stocks Netsis",
+      "netsisMirrorWarehouses": "Almacenes Netsis",
+      "netsisMirrorBranches": "Sucursales Netsis",
+      "aquaCageWarehouseMappings": "Mapeo Jaula-Almacén",
+      "aquaOpeningImport": "Importación de Apertura",
+      "aquaWarehouseTransfers": "Transferencias de almacén",
+      "aquaCageWarehouseTransfers": "Transferencias de Jaula a Almacén",
+      "aquaWarehouseCageTransfers": "Transferencias de Almacén a Jaula",
+      "aquaWarehouseTransferLines": "Líneas de transferencia de almacén",
+      "aquaCageWarehouseTransferLines": "Líneas de transferencia de Jaula a Almacén",
+      "aquaWarehouseCageTransferLines": "Líneas de transferencia de Almacén a Jaula"
+    }
   },
-  "loading": "cargando",
-  "noNotifications": "Notificación no encontrada",
-  "close": "Cerrar",
-  "unread": "no leer"
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Aún no hay datos diarios para esta jaula.",
+      "dailyFlowEmptyDescription": "La alimentación, mortalidad, transferencias, envíos, clima y otras operaciones diarias aparecerán aquí día a día tras su registro.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "El filtro de proyecto está bloqueado mientras el orden de jaulas está habilitado."
+      },
+      "projectSelector": {
+        "loadingApply": "Cargando proyectos..."
+      },
+      "stats": {
+        "cageFishStock": "Stock de peces en jaula",
+        "warehouseFishStock": "Stock de peces en almacén",
+        "totalSystemFishStock": "Stock total de peces",
+        "cageBiomass": "Biomasa de jaula",
+        "warehouseBiomass": "Biomasa de almacén"
+      },
+      "projectDialog": {
+        "subtitle": "Resumen de proyecto y datos de jaula"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Cantidad de mortalidad",
+        "totalDeadKg": "Kg de mortalidad",
+        "totalShipmentCount": "Cantidad de envíos",
+        "totalShipmentKg": "Kg enviados",
+        "measurementGram": "Base de medición",
+        "fcr": "FCR",
+        "activeCage": "jaula",
+        "cageFish": "Pez en jaula",
+        "warehouseFish": "Pez en almacén",
+        "totalFish": "Total de peces"
+      },
+      "cageCard": {
+        "totalDeadCount": "Cantidad de mortalidad",
+        "shipmentCount": "Cantidad de envíos",
+        "stockCount": "Cantidad en stock",
+        "totalDeadKg": "Kg de mortalidad",
+        "shipmentKg": "Kg enviados",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramo medido",
+        "feedKg": "Kg de alimento",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detalle",
+        "cageSortFilterLockedHint": "El filtro de proyecto no se puede cambiar mientras el orden por jaula está activo."
+      },
+      "listTable": {
+        "shipment": "Envío",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramo medido",
+        "feedKg": "Kg de alimento",
+        "fcr": "FCR"
+      }
+    }
+  }
 }

@@ -1,55 +1,124 @@
 {
-  "menu": "Administration de district",
-  "description": "Gérer et organiser les quartiers",
-  "addButton": "Ajouter un nouveau quartier",
-  "listTitle": "Liste des districts",
-  "listDescription": "Vous pouvez gérer ici toutes les circonscriptions enregistrées dans le système.",
-  "loading": "Chargement...",
-  "noData": "Aucune donnée",
-  "actions": "Opérations",
-  "previous": "Précédent",
-  "next": "Suivant",
-  "cancel": "Annuler",
-  "delete": "Supprimer",
-  "save": "Enregistrer",
-  "saving": "Enregistrement...",
+  "menu": "İlçe Yönetimi",
+  "description": "İlçeleri yönetin ve düzenleyin",
+  "addButton": "Yeni İlçe Ekle",
+  "listTitle": "İlçe Listesi",
+  "listDescription": "Sistemdeki kayıtlı tüm ilçeleri buradan yönetebilirsiniz.",
+  "loading": "Yükleniyor...",
+  "noData": "Veri yok",
+  "actions": "İşlemler",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "cancel": "İptal",
+  "delete": "Sil",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
   "table": {
     "id": "ID",
-    "name": "Nom du district",
-    "erpCode": "ERPCode",
-    "cityName": "Nom de la ville",
-    "createdDate": "Date de création",
-    "createdBy": "Créé par",
-    "showing": "Affichage de {{from}}-{{to}} / {{total}}",
-    "page": "Pages {{current}} / {{total}}"
-  },
-  "form": {
-    "editDistrict": "Modifier le quartier",
-    "addDistrict": "Ajouter un nouveau quartier",
-    "editDescription": "Modifier les informations du district",
-    "addDescription": "Entrez les nouvelles informations du district",
-    "name": "Nom du district",
-    "namePlaceholder": "Entrez le nom du district",
-    "city": "ville",
-    "selectCity": "Sélectionnez la ville",
-    "erpCode": "ERPCode",
-    "erpCodePlaceholder": "Entrez le code ERP (facultatif)",
-    "name.required": "Le nom du district est requis",
-    "name.maxLength": "Le nom du district ne peut pas dépasser 100 caractères",
-    "erpCode.maxLength": "Le code ERP ne peut pas dépasser 10 caractères",
-    "city.required": "La sélection de la ville est requise",
-    "nameRequired": "Le nom du district est requis",
-    "nameMaxLength": "Le nom du district peut comporter un maximum de 100 caractères",
-    "erpCodeMaxLength": "Le code ERP peut comporter un maximum de 10 caractères",
-    "cityRequired": "La sélection de la ville est obligatoire"
+    "name": "İlçe Adı",
+    "erpCode": "ERP Kodu",
+    "cityName": "Şehir Adı",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "deleteConfirm": {
-    "confirmTitle": "Supprimer le quartier",
-    "confirmMessage": "Êtes-vous sûr de vouloir supprimer le district {{name}} ?"
+    "confirmTitle": "İlçeyi Sil",
+    "confirmMessage": "{{name}} ilçesini silmek istediğinizden emin misiniz?"
+  },
+  "form": {
+    "editDistrict": "İlçe Düzenle",
+    "addDistrict": "Yeni İlçe Ekle",
+    "editDescription": "İlçe bilgilerini düzenleyin",
+    "addDescription": "Yeni ilçe bilgilerini girin",
+    "name": "İlçe Adı",
+    "namePlaceholder": "İlçe adını girin",
+    "city": "Şehir",
+    "selectCity": "Şehir seçin",
+    "erpCode": "ERP Kodu",
+    "erpCodePlaceholder": "ERP kodunu girin (opsiyonel)",
+    "nameRequired": "İlçe adı zorunludur",
+    "nameMaxLength": "İlçe adı en fazla 100 karakter olabilir",
+    "erpCodeMaxLength": "ERP kodu en fazla 10 karakter olabilir",
+    "cityRequired": "Şehir seçimi zorunludur"
   },
   "stats": {
-    "totalDistricts": "QUARTIER TOTAL",
-    "activeDistricts": "QUARTIER ACTIF",
-    "newThisMonth": "NOUVEAU CE MOIS"
+    "totalDistricts": "TOPLAM İLÇE",
+    "activeDistricts": "AKTİF İLÇE",
+    "newThisMonth": "BU AY YENİ"
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clients Netsis",
+      "netsisMirrorStocks": "Stocks Netsis",
+      "netsisMirrorWarehouses": "Entrepôts Netsis",
+      "netsisMirrorBranches": "Succursales Netsis",
+      "aquaCageWarehouseMappings": "Appariement Cage-Dépôt",
+      "aquaOpeningImport": "Importation d'ouverture",
+      "aquaWarehouseTransfers": "Transferts d'entrepôt",
+      "aquaCageWarehouseTransfers": "Transferts Cage vers Entrepôt",
+      "aquaWarehouseCageTransfers": "Transferts Entrepôt vers Cage",
+      "aquaWarehouseTransferLines": "Lignes de transfert d'entrepôt",
+      "aquaCageWarehouseTransferLines": "Lignes de transfert Cage vers Entrepôt",
+      "aquaWarehouseCageTransferLines": "Lignes de transfert Entrepôt vers Cage"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Aucune opération quotidienne n'est encore disponible pour cette cage.",
+      "dailyFlowEmptyDescription": "Les opérations quotidiennes comme l'alimentation, la mortalité, les transferts, les expéditions, la météo et d'autres écritures apparaitront ici jour par jour.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Le filtre projet est verrouillé tant que le tri par cage est actif."
+      },
+      "projectSelector": {
+        "loadingApply": "Chargement des projets..."
+      },
+      "stats": {
+        "cageFishStock": "Stock de poissons en cage",
+        "warehouseFishStock": "Stock de poissons en entrepôt",
+        "totalSystemFishStock": "Stock total de poissons",
+        "cageBiomass": "Biomasse en cage",
+        "warehouseBiomass": "Biomasse en entrepôt"
+      },
+      "projectDialog": {
+        "subtitle": "Résumé du projet et données de cage"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Nombre de mortalités",
+        "totalDeadKg": "Kg mortalité",
+        "totalShipmentCount": "Nombre de livraisons",
+        "totalShipmentKg": "Kg expédiés",
+        "measurementGram": "Base de mesure",
+        "fcr": "FCR",
+        "activeCage": "cage",
+        "cageFish": "Poisson en cage",
+        "warehouseFish": "Poisson en entrepôt",
+        "totalFish": "Total poissons"
+      },
+      "cageCard": {
+        "totalDeadCount": "Nombre de mortalités",
+        "shipmentCount": "Nombre de livraisons",
+        "stockCount": "Quantité en stock",
+        "totalDeadKg": "Kg mortalité",
+        "shipmentKg": "Kg expédiés",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramme mesurée",
+        "feedKg": "Kg nourrissant",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Détail",
+        "cageSortFilterLockedHint": "Le filtre projet ne peut pas être modifié tant que le tri par cage est actif."
+      },
+      "listTable": {
+        "shipment": "Expédition",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Gramme mesurée",
+        "feedKg": "Kg nourrissant",
+        "fcr": "FCR"
+      }
+    }
   }
 }

@@ -1,51 +1,124 @@
 {
-  "menu": "District Administration",
-  "description": "Manage and organize districts",
-  "addButton": "Add New District",
-  "listTitle": "District List",
-  "listDescription": "You can manage all registered districts in the system here.",
-  "loading": "Loading...",
-  "noData": "No data",
-  "actions": "Transactions",
-  "previous": "Previous",
-  "next": "Next",
-  "cancel": "Cancel",
-  "delete": "Delete",
-  "save": "Save",
-  "saving": "Recording...",
+  "menu": "İlçe Yönetimi",
+  "description": "İlçeleri yönetin ve düzenleyin",
+  "addButton": "Yeni İlçe Ekle",
+  "listTitle": "İlçe Listesi",
+  "listDescription": "Sistemdeki kayıtlı tüm ilçeleri buradan yönetebilirsiniz.",
+  "loading": "Yükleniyor...",
+  "noData": "Veri yok",
+  "actions": "İşlemler",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "cancel": "İptal",
+  "delete": "Sil",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
   "table": {
     "id": "ID",
-    "name": "District Name",
-    "erpCode": "ERP Code",
-    "cityName": "City Name",
-    "createdDate": "Creation Date",
-    "createdBy": "Created by",
-    "showing": "Showing {{from}}-{{to}} / {{total}}",
-    "page": "Page {{current}} / {{total}}"
+    "name": "İlçe Adı",
+    "erpCode": "ERP Kodu",
+    "cityName": "Şehir Adı",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "deleteConfirm": {
-    "confirmTitle": "Delete District",
-    "confirmMessage": "Are you sure you want to delete the {{name}} district?"
+    "confirmTitle": "İlçeyi Sil",
+    "confirmMessage": "{{name}} ilçesini silmek istediğinizden emin misiniz?"
   },
   "form": {
-    "editDistrict": "Edit District",
-    "addDistrict": "Add New District",
-    "editDescription": "Edit district information",
-    "addDescription": "Enter new district information",
-    "name": "District Name",
-    "namePlaceholder": "Enter district name",
-    "city": "city",
-    "selectCity": "Select city",
-    "erpCode": "ERP Code",
-    "erpCodePlaceholder": "Enter code ERP (optional)",
-    "nameRequired": "District name is required",
-    "nameMaxLength": "District name can be a maximum of 100 characters",
-    "erpCodeMaxLength": "The code ERP can be a maximum of 10 characters",
-    "cityRequired": "City selection is mandatory"
+    "editDistrict": "İlçe Düzenle",
+    "addDistrict": "Yeni İlçe Ekle",
+    "editDescription": "İlçe bilgilerini düzenleyin",
+    "addDescription": "Yeni ilçe bilgilerini girin",
+    "name": "İlçe Adı",
+    "namePlaceholder": "İlçe adını girin",
+    "city": "Şehir",
+    "selectCity": "Şehir seçin",
+    "erpCode": "ERP Kodu",
+    "erpCodePlaceholder": "ERP kodunu girin (opsiyonel)",
+    "nameRequired": "İlçe adı zorunludur",
+    "nameMaxLength": "İlçe adı en fazla 100 karakter olabilir",
+    "erpCodeMaxLength": "ERP kodu en fazla 10 karakter olabilir",
+    "cityRequired": "Şehir seçimi zorunludur"
   },
   "stats": {
-    "totalDistricts": "TOTAL DISTRICT",
-    "activeDistricts": "ACTIVE DISTRICT",
-    "newThisMonth": "NEW THIS MONTH"
+    "totalDistricts": "TOPLAM İLÇE",
+    "activeDistricts": "AKTİF İLÇE",
+    "newThisMonth": "BU AY YENİ"
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Netsis Customers",
+      "netsisMirrorStocks": "Netsis Stocks",
+      "netsisMirrorWarehouses": "Netsis Warehouses",
+      "netsisMirrorBranches": "Netsis Branches",
+      "aquaCageWarehouseMappings": "Cage-Warehouse Mapping",
+      "aquaOpeningImport": "Opening Import",
+      "aquaWarehouseTransfers": "Warehouse Transfers",
+      "aquaCageWarehouseTransfers": "Cage to Warehouse Transfers",
+      "aquaWarehouseCageTransfers": "Warehouse to Cage Transfers",
+      "aquaWarehouseTransferLines": "Warehouse Transfer Lines",
+      "aquaCageWarehouseTransferLines": "Cage to Warehouse Transfer Lines",
+      "aquaWarehouseCageTransferLines": "Warehouse to Cage Transfer Lines"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "No daily movement is available for this cage yet.",
+      "dailyFlowEmptyDescription": "Feeding, mortality, transfers, shipments, weather and other daily transactions will appear here once they are entered day by day.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Project filter is locked while cage sorting mode is enabled."
+      },
+      "projectSelector": {
+        "loadingApply": "Loading projects..."
+      },
+      "stats": {
+        "cageFishStock": "Cage Fish Stock",
+        "warehouseFishStock": "Warehouse Fish Stock",
+        "totalSystemFishStock": "Total Fish Stock",
+        "cageBiomass": "Cage Biomass",
+        "warehouseBiomass": "Warehouse Biomass"
+      },
+      "projectDialog": {
+        "subtitle": "Project summary and cage data"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Mortality Count",
+        "totalDeadKg": "Mortality Kg",
+        "totalShipmentCount": "Shipment Count",
+        "totalShipmentKg": "Shipment Kg",
+        "measurementGram": "Feed Conversion Basis",
+        "fcr": "FCR",
+        "activeCage": "cage",
+        "cageFish": "Cage Fish",
+        "warehouseFish": "Warehouse Fish",
+        "totalFish": "Total Fish"
+      },
+      "cageCard": {
+        "totalDeadCount": "Mortality Count",
+        "shipmentCount": "Shipment Count",
+        "stockCount": "Stock Count",
+        "totalDeadKg": "Mortality Kg",
+        "shipmentKg": "Shipment Kg",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Measured Gram",
+        "feedKg": "Feed Kg",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detail",
+        "cageSortFilterLockedHint": "Project filter cannot be changed while cage sort mode is active."
+      },
+      "listTable": {
+        "shipment": "Shipment",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Measured Gram",
+        "feedKg": "Feed Kg",
+        "fcr": "FCR"
+      }
+    }
   }
 }

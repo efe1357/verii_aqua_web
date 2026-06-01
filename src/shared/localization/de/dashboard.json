@@ -1,218 +1,320 @@
 {
-  "title": "Armaturenbrett",
-  "loading": "Laden...",
+  "title": "Gösterge Paneli",
+  "loading": "Yükleniyor...",
+  "greeting": {
+    "morning": "Günaydın",
+    "afternoon": "İyi Günler",
+    "evening": "İyi Akşamlar"
+  },
+  "refresh": "Yenile",
+  "refreshing": "Yenileniyor...",
+  "refreshed": "Veriler güncellendi",
+  "refreshError": "Güncelleme başarısız",
+  "user": "Kullanıcı",
+  "noSalesData": "Henüz satış verisi oluşmadı",
+  "noActivities": "Henüz aktivite bulunmuyor",
+  "selectFormat": "Format Seçiniz",
+  "reportPreparing": "Rapor hazırlanıyor...",
+  "reportDownloaded": "Rapor indirildi.",
+  "reportError": "Rapor alınamadı.",
   "stats": {
-    "totalRevenue": "Gesamtumsatz",
-    "activeOpportunities": "Aktive Möglichkeiten",
-    "newLeads": "Neue Kandidaten",
-    "pendingOrders": "Ausstehende Bestellungen"
+    "totalRevenue": "Toplam Ciro",
+    "activeOpportunities": "Aktif Fırsatlar",
+    "newLeads": "Yeni Adaylar",
+    "pendingOrders": "Bekleyen Siparişler"
   },
-  "salesAnalysis": "Verkaufsanalyse",
-  "targetVsActual": "Ziel vs. erreicht",
-  "latestActivities": "Neueste Aktivitäten",
-  "viewAll": "Alle anzeigen",
-  "reportDownload": "Bericht herunterladen",
-  "quickAction": "Schnelle Transaktion",
+  "salesAnalysis": "Satış Analizi",
+  "targetVsActual": "Hedef vs Gerçekleşen",
+  "latestActivities": "Son Aktiviteler",
+  "viewAll": "Tümünü Gör",
+  "reportDownload": "Rapor İndir",
+  "quickAction": "Hızlı İşlem",
   "activityType": {
-    "meeting": "Treffen",
-    "call": "Suchen",
-    "email": "E-Mail",
-    "general": "Allgemein"
+    "meeting": "Toplantı",
+    "call": "Arama",
+    "email": "E-posta",
+    "general": "Genel"
   },
+  "noDate": "Tarih yok",
+  "unnamedActivity": "İsimsiz Aktivite",
   "monthsShort": {
-    "jan": "Januar",
-    "feb": "Feb",
-    "mar": "März",
-    "apr": "Apr",
-    "may": "Mai",
-    "jun": "Vergnügen",
-    "jul": "Juli",
-    "aug": "Aug",
-    "sep": "Sept",
-    "oct": "Okt",
-    "nov": "Muskel",
-    "dec": "Suchen"
+    "jan": "Oca",
+    "feb": "Şub",
+    "mar": "Mar",
+    "apr": "Nis",
+    "may": "May",
+    "jun": "Haz",
+    "jul": "Tem",
+    "aug": "Ağu",
+    "sep": "Eyl",
+    "oct": "Eki",
+    "nov": "Kas",
+    "dec": "Ara"
   },
   "quickStats": {
-    "pendingTasks": "Ausstehende Aufgaben",
-    "pendingTasksDescription": "12 Aufgaben zu erledigen",
-    "openQuotations": "Offene Angebote",
-    "openQuotationsDescription": "5 Angebote warten auf Genehmigung",
-    "criticalStock": "Kritischer Bestand",
-    "criticalStockDescription": "3 Produkte unter kritischem Niveau",
-    "checkTasks": "Überprüfen Sie die Aufgabenliste",
-    "reviewQuotations": "Schauen Sie sich die Angebote an",
-    "stockStatus": "Siehe Lagerstatus"
+    "pendingTasks": "Bekleyen Görevler",
+    "checkTasks": "Görev listesini kontrol et",
+    "openQuotations": "Açık Teklifler",
+    "reviewQuotations": "Teklifleri incele",
+    "criticalStock": "Kritik Stok",
+    "stockStatus": "Stok durumunu gör"
   },
-  "noDate": "kein Datum",
-  "unnamedActivity": "Anonyme Aktivität",
-  "greeting": {
-    "morning": "Guten Morgen",
-    "afternoon": "Guten Tag",
-    "evening": "Guten Abend"
-  },
-  "refresh": "Aktualisieren",
-  "refreshing": "Es wird erneuert...",
-  "refreshed": "Daten aktualisiert",
-  "refreshError": "Update fehlgeschlagen",
-  "user": "Benutzer",
-  "noSalesData": "Noch keine Verkaufsdaten",
-  "noActivities": "Noch keine Aktivität",
-  "selectFormat": "Wählen Sie Format",
-  "reportPreparing": "Der Bericht ist in Vorbereitung...",
-  "reportDownloaded": "Der Bericht wurde heruntergeladen.",
-  "reportError": "Der Bericht konnte nicht empfangen werden.",
   "sidebar": {
-    "customers": "Kunden",
-    "customerManagement": "Kundenmanagement",
-    "salesManagement": "Verkaufstrichter",
-    "demandCreateWizard": "Neue Anfrage erstellen",
-    "quotationCreateWizard": "Neues Angebot erstellen",
-    "orderCreateWizard": "Neue Bestellung erstellen",
-    "activities": "Planung",
-    "activityManagement": "Aktivitätsmanagement"
+    "customers": "Müşteriler",
+    "customerManagement": "Müşteri Yönetimi",
+    "salesManagement": "Satış Hunisi",
+    "demandCreateWizard": "Yeni Talep Oluştur",
+    "quotationCreateWizard": "Yeni Teklif Oluştur",
+    "orderCreateWizard": "Yeni Sipariş Oluştur",
+    "activities": "Planlama",
+    "activityManagement": "Aktivite Yönetimi"
   },
   "errors": {
-    "listLoadFailed": "Liste konnte nicht abgerufen werden",
-    "pathListLoadFailed": "Routenliste konnte nicht abgerufen werden",
-    "projectNotFound": "Projekt nicht gefunden"
+    "listLoadFailed": "Liste alınamadı",
+    "pathListLoadFailed": "Yol listesi alınamadı",
+    "projectNotFound": "Proje bulunamadı"
   },
   "aquaDashboard": {
-    "title": "Aqua-Dashboard",
-    "description": "Allgemeiner Produktions- und Projektstatus Ihrer Anlage.",
-    "selectedProject": "Angezeigtes Projekt",
-    "selectProjectPlaceholder": "Wählen Sie aus allen Projekten...",
-    "facilitySummary": "Übersicht über die Einrichtung",
-    "projectDetail": "Projektdetails",
-    "dataLoadFailed": "Daten konnten nicht abgerufen werden.",
-    "detailReportButton": "Detailbericht",
-    "selectProjectHint": "Bitte wählen Sie oben ein Projekt aus, um dessen Details anzuzeigen.",
-    "dailyFlow": "Täglicher Datenstrom",
+    "title": "Aqua Dashboard",
+    "description": "Tesisinizin genel üretim ve proje durumları.",
+    "selectedProject": "Görüntülenen Proje",
+    "selectProjectPlaceholder": "Tüm projeler arasından seçin...",
+    "facilitySummary": "Tesis Genel Özeti",
+    "projectDetail": "Proje Detayı",
+    "dataLoadFailed": "Veriler alınamadı.",
+    "detailReportButton": "Detay Raporu",
+    "selectProjectHint": "Lütfen detaylarını görmek için yukarıdan bir proje seçiniz.",
+    "dailyFlow": "Günlük Veri Akışı",
+    "dailyFlowEmptyTitle": "Bu kafes için henüz günlük işlem kaydı yok.",
+    "dailyFlowEmptyDescription": "Yemleme, mortalite, transfer, sevkiyat, hava, ağ veya diğer günlük işlemler girildiğinde burada gün gün görünecektir.",
     "activeProjectFilters": {
-      "title": "Aktive Projektfilter",
-      "description": "Die von Ihnen ausgewählten Projekte filtern die Karten und Listen unten."
-    },
-    "projectSelector": {
-      "title": "Projektauswahl",
-      "description": "Filtern Sie die Dashboard-Ansicht, indem Sie ein oder mehrere Projekte auswählen.",
-      "searchPlaceholder": "Nach Projektcode oder Name suchen...",
-      "selectedCount": "Ausgewählt: {{count}}",
-      "emptySelection": "Noch kein Projekt ausgewählt",
-      "activeBadge": "aktiv",
-      "noResults": "Es wurde kein Projekt gefunden, das Ihrer Suche entspricht.",
-      "apply": "Bewerben",
-      "openButton": "Wählen Sie Projekt aus",
-      "closeButton": "Schließen",
-      "clearButton": "klar",
-      "applyButton": "Bewerben",
-      "cancelButton": "Abbrechen",
-      "resetButton": "zurückgesetzt"
-    },
-    "stats": {
-      "activeCages": "Aktiver Käfig",
-      "liveFish": "Lebender Fisch",
-      "totalBiomass": "Gesamtbiomasse",
-      "totalFeed": "Gesamtfutter"
-    },
-    "detailTypes": {
-      "feeding": "Fütterungsdetails",
-      "netOperation": "Netzwerkbetrieb",
-      "transfer": "Übertragen",
-      "stockConvert": "Aktienumwandlung",
-      "shipment": "Versand"
-    },
-    "detailDialog": {
-      "date": "Datum: {{date}}"
-    },
-    "dailyTable": {
-      "date": "Datum",
-      "feedGram": "Futter (g)",
-      "stock": "Lager",
-      "dead": "Fischfeuer",
-      "delta": "Delta",
-      "biomassDelta": "Bio-Delta",
-      "weather": "Wetter",
-      "net": "Netzwerk",
-      "transfer": "Übertragen",
-      "shipment": "Versand",
-      "status": "Status",
-      "stockCount": "{{count}} Lagerbestand",
-      "operationCount": "{{count}} Transaktion",
-      "fed": "gefüttert",
-      "notFed": "nicht gefüttert",
-      "criticalDay": "Kritischer Tag",
-      "netOperation": "Netzwerkverarbeitung",
-      "shipmentOperation": "Versandprozess",
-      "netOperationCount": "{{count}} Netzwerkverarbeitung",
-      "shipmentCount": "{{count}} Versandtransaktion",
-      "stockConvertCount": "{{count}} Konvertierungsprozess",
-      "transferQty": "{{count}} Menge"
-    },
-    "dailyCards": {
-      "feed": "Köder",
-      "dead": "Fischfeuer",
-      "delta": "Delta",
-      "biomass": "Biomasse"
-    },
-    "dailySections": {
-      "feedStocks": "Futtermittelvorräte",
-      "net": "Netzwerk",
-      "transfer": "Übertragen",
-      "shipment": "Versand",
-      "netOperation": "Netzwerkverarbeitung",
-      "transferQty": "Anzahl der Überweisungen",
-      "shipmentOperation": "Versandprozess"
-    },
-    "projectDialog": {
-      "fish": "Fische",
-      "dead": "Fischfeuer",
-      "feedGram": "Futter (g)",
-      "cages": "Käfig",
-      "cagePools": "Käfigpools",
-      "clickForDailyDetail": "Klicken Sie hier für tägliche Details"
-    },
-    "cageCard": {
-      "fishUnit": "Fisch",
-      "totalDead": "Fischfeuer",
-      "feed": "Köder",
-      "biomass": "Biomasse",
-      "survivalRate": "Überlebensrate",
-      "quickDailyEntry": "Täglicher Login",
-      "expandFullscreen": "Auf Vollbild erweitern",
-      "closeHint": "zum Schließen"
-    },
-    "controls": {
-      "viewAndProject": "Auftritt und Projekt",
-      "projectCountAndView": "{{count}} Projekt • {{view}}",
-      "cardView": "Karte",
-      "listView": "Liste",
-      "viewType": "Aussehen",
-      "projectSelection": "Projektauswahl",
-      "selectAll": "Wählen Sie „Alle“ aus",
-      "clear": "klar",
-      "close": "Schließen",
-      "cageSortToggle": "Käfig-Reihenfolge",
-      "cageSortToggleHint": "Schaltet alle Projekte automatisch ein und zeigt alle Käfige nach Käfigcode sortiert."
-    },
-    "cageSortSection": {
-      "title": "Nach Käfigcode sortiert",
-      "description": "{{projectCount}} Projekte, {{cageCount}} Käfige; Sortierung nach Käfigcode."
-    },
-    "selectedProjects": "Ausgewählte Projekte",
-    "listTable": {
-      "cage": "Käfig",
-      "project": "Projekt",
-      "fish": "Fische",
-      "dead": "Fischfeuer",
-      "feed": "Köder",
-      "biomass": "Biomasse",
-      "survivalRate": "Überlebensrate",
-      "action": "Transaktion",
-      "dailyFlowButton": "Täglicher Stream"
+      "title": "Aktif Proje Filtreleri",
+      "description": "Seçtiğin projeler aşağıdaki kartları ve listeleri filtreler.",
+      "cageSortLockedHint": "Kafes sırası açıkken proje filtresi kilitlidir."
     },
     "yesterdayAlert": {
-      "title": "Die Einträge von gestern fehlen",
-      "description": "Für Datum {{date}} wurden keine Journaleinträge gefunden. Kontrollieren Sie Fütterung, Wetter, Netz, Transfer und andere tägliche Vorgänge."
+      "title": "Dünün girişleri eksik",
+      "description": "{{date}} tarihine ait günlük giriş bulunamadı. Yemleme, hava, ağ, transfer ve diğer günlük işlemleri kontrol edin."
+    },
+    "projectSelector": {
+      "title": "Proje Seçimi",
+      "description": "Bir veya birden fazla proje seçerek dashboard görünümünü filtrele.",
+      "searchPlaceholder": "Proje kodu veya adı ara...",
+      "selectedCount": "Seçili: {{count}}",
+      "emptySelection": "Henüz proje seçilmedi",
+      "activeBadge": "Aktif",
+      "noResults": "Aramana uygun proje bulunamadı.",
+      "loadingApply": "Projeler yükleniyor...",
+      "apply": "Uygula",
+      "openButton": "Proje Seç",
+      "closeButton": "Kapat",
+      "clearButton": "Temizle",
+      "applyButton": "Uygula",
+      "cancelButton": "Vazgeç",
+      "resetButton": "Sıfırla"
+    },
+    "stats": {
+      "activeCages": "Aktif Kafes",
+      "liveFish": "Canlı Balık",
+      "cageFishStock": "Kafes Stoku",
+      "warehouseFishStock": "Depo Stoku",
+      "totalSystemFishStock": "Toplam Sistem Stoku",
+      "cageBiomass": "Kafes Biyokütlesi",
+      "warehouseBiomass": "Depo Biyokütlesi",
+      "totalBiomass": "Toplam Biyokütle",
+      "totalFeed": "Toplam Yem"
+    },
+    "detailTypes": {
+      "feeding": "Yemleme Detayı",
+      "netOperation": "Ağ İşlemi",
+      "transfer": "Transfer",
+      "stockConvert": "Stok Dönüşüm",
+      "shipment": "Sevkiyat"
+    },
+    "detailDialog": {
+      "date": "Tarih: {{date}}"
+    },
+    "dailyTable": {
+      "date": "Tarih",
+      "feedGram": "Yem (g)",
+      "stock": "Stok",
+      "dead": "Fire",
+      "delta": "Delta",
+      "biomassDelta": "Biyo Delta",
+      "weather": "Hava",
+      "net": "Ağ",
+      "netOperation": "Ağ İşlem",
+      "transfer": "Transfer",
+      "shipment": "Sevkiyat",
+      "shipmentOperation": "Sevkiyat İşlem",
+      "status": "Durum",
+      "stockCount": "{{count}} stok",
+      "operationCount": "{{count}} işlem",
+      "netOperationCount": "{{count}} ağ işlem",
+      "shipmentCount": "{{count}} sevkiyat işlem",
+      "stockConvertCount": "{{count}} dönüşüm işlem",
+      "transferQty": "{{count}} adet",
+      "fed": "Beslendi",
+      "notFed": "Beslenmedi",
+      "criticalDay": "Kritik Gün"
+    },
+    "dailyCards": {
+      "feed": "Yem",
+      "dead": "Fire",
+      "delta": "Delta",
+      "biomass": "Biyokütle"
+    },
+    "dailySections": {
+      "feedStocks": "Yem Stokları",
+      "net": "Ağ",
+      "netOperation": "Ağ İşlem",
+      "transfer": "Transfer",
+      "transferQty": "Transfer Adedi",
+      "shipment": "Sevkiyat",
+      "shipmentOperation": "Sevkiyat İşlem"
+    },
+    "projectDialog": {
+      "fish": "Balık",
+      "dead": "Fire",
+      "feedGram": "Yem",
+      "cages": "Kafes",
+      "cagePools": "Kafes Havuzları",
+      "clickForDailyDetail": "Günlük detay için tıklayın",
+      "subtitle": "Proje özet ve kafes verileri"
+    },
+    "projectSummary": {
+      "totalDeadCount": "Fire Adet",
+      "totalDeadKg": "Fire Kg",
+      "totalShipmentCount": "Satış Adet",
+      "totalShipmentKg": "Satış Kg",
+      "measurementGram": "Ölçüm Gramajı",
+      "fcr": "FCR",
+      "activeCage": "kafes",
+      "cageFish": "kafes balık",
+      "warehouseFish": "depo balık",
+      "totalFish": "toplam balık"
+    },
+    "cageCard": {
+      "totalDeadCount": "Fire Adet",
+      "shipmentCount": "Satış Adet",
+      "stockCount": "Stok Adet",
+      "totalDeadKg": "Fire Kg",
+      "shipmentKg": "Satış Kg",
+      "stockKg": "Stok Kg",
+      "measurementGram": "Ölçüm Gramajı",
+      "feedKg": "Yedirilen Yem Kg",
+      "fcr": "FCR",
+      "survivalRate": "Yaşam Oranı",
+      "quickDailyEntry": "Günlük Giriş",
+      "expandFullscreen": "Tam ekranda büyüt",
+      "closeHint": "ile kapat"
+    },
+    "controls": {
+      "viewAndProject": "Görünüm ve Proje",
+      "projectCountAndView": "{{count}} Proje • {{view}}",
+      "cardView": "Kart",
+      "listView": "Liste",
+      "viewType": "Görünüm Şekli",
+      "projectSelection": "Proje Seçimi",
+      "selectAll": "Tümünü Seç",
+      "clear": "Temizle",
+      "close": "Kapat",
+      "detail": "Detay",
+      "cageSortToggle": "Kafes sırası",
+      "cageSortToggleHint": "Açıldığında tüm projeleri otomatik seçer ve kafesleri kafes koduna göre tek listede gösterir. Tekrar basınca kapatır ve proje seçimini temizler.",
+      "cageSortFilterLockedHint": "Kafes sırası açıkken proje filtresi değiştirilemez."
+    },
+    "cageSortSection": {
+      "title": "Kafes koduna göre görünüm",
+      "description": "{{projectCount}} projede toplam {{cageCount}} kafes; sıra kafes koduna göre (aynı kodda proje kodu ile)."
+    },
+    "selectedProjects": "Seçili Projeler",
+    "listTable": {
+      "cage": "Kafes",
+      "project": "Proje",
+      "fish": "Balık",
+      "dead": "Fire",
+      "shipment": "Satış",
+      "stockKg": "Stok Kg",
+      "measurementGram": "Ölçüm Gram",
+      "feedKg": "Yem Kg",
+      "fcr": "FCR",
+      "survivalRate": "Yaşam Oranı",
+      "action": "İşlem",
+      "dailyFlowButton": "Günlük Akış"
+    }
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Netsis Kunden",
+      "netsisMirrorStocks": "Netsis Bestände",
+      "netsisMirrorWarehouses": "Netsis Lager",
+      "netsisMirrorBranches": "Netsis Filialen",
+      "aquaCageWarehouseMappings": "Käfig-Lager Zuordnung",
+      "aquaOpeningImport": "Erstübergabe",
+      "aquaWarehouseTransfers": "Lagertransfers",
+      "aquaCageWarehouseTransfers": "Käfig-zu-Lager Transfers",
+      "aquaWarehouseCageTransfers": "Lager-zu-Käfig Transfers",
+      "aquaWarehouseTransferLines": "Lagertransferpositionen",
+      "aquaCageWarehouseTransferLines": "Käfig-zu-Lager Transferzeilen",
+      "aquaWarehouseCageTransferLines": "Lager-zu-Käfig Transferzeilen"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Für diese Gitterbox ist noch kein täglicher Datensatz vorhanden.",
+      "dailyFlowEmptyDescription": "Fütterung, Mortalität, Transfers, Versand, Wetter und andere tägliche Buchungen werden nach Eingabe hier täglich angezeigt.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Der Projektfilter ist gesperrt, wenn die Käfigsortierung aktiv ist."
+      },
+      "projectSelector": {
+        "loadingApply": "Projekte werden geladen..."
+      },
+      "stats": {
+        "cageFishStock": "Käfig-Fischbestand",
+        "warehouseFishStock": "Lagerfischbestand",
+        "totalSystemFishStock": "Gesamtfischbestand",
+        "cageBiomass": "Käfigbiomasse",
+        "warehouseBiomass": "Lagerbiomasse"
+      },
+      "projectDialog": {
+        "subtitle": "Projektübersicht und Käfigdaten"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Mortalitätsmenge",
+        "totalDeadKg": "Mortalitätskg",
+        "totalShipmentCount": "Liefermenge",
+        "totalShipmentKg": "Lieferungs-Kg",
+        "measurementGram": "Futterbasis",
+        "fcr": "FCR",
+        "activeCage": "Käfig",
+        "cageFish": "Käfigfisch",
+        "warehouseFish": "Lagerfisch",
+        "totalFish": "Gesamtfische"
+      },
+      "cageCard": {
+        "totalDeadCount": "Mortalitätsmenge",
+        "shipmentCount": "Liefermengen",
+        "stockCount": "Lagerbestand Menge",
+        "totalDeadKg": "Mortalitätskg",
+        "shipmentKg": "Lieferungs-Kg",
+        "stockKg": "Lagerbestand Kg",
+        "measurementGram": "Messgramm",
+        "feedKg": "Futter-Kg",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detail",
+        "cageSortFilterLockedHint": "Projektfilter kann während der Käfigsortierung nicht geändert werden."
+      },
+      "listTable": {
+        "shipment": "Lieferung",
+        "stockKg": "Bestands-Kg",
+        "measurementGram": "Messgramm",
+        "feedKg": "Futter-Kg",
+        "fcr": "FCR"
+      }
     }
   }
 }

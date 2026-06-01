@@ -64,7 +64,10 @@
       "password.maxLength": "La contraseña puede tener hasta 100 caracteres.",
       "firstName.maxLength": "El nombre puede tener hasta 50 caracteres.",
       "lastName.maxLength": "El apellido puede tener un máximo de 50 caracteres.",
-      "phoneNumber.maxLength": "El número de teléfono puede tener hasta 20 caracteres."
+      "phoneNumber.maxLength": "El número de teléfono puede tener hasta 20 caracteres.",
+      "manager": "Yönetici",
+      "managerPlaceholder": "Yönetici seçin",
+      "noManager": "Yönetici yok"
     },
     "delete": {
       "confirmTitle": "Eliminar usuario",

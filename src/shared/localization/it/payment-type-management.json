@@ -1,68 +1,128 @@
 {
-  "title": "Gestione delle tipologie di pagamento",
-  "description": "Descrizione",
-  "create": "Nuovo tipo di pagamento",
-  "edit": "Modifica tipo di pagamento",
-  "delete": "Elimina",
+  "title": "Ödeme Tipi Yönetimi",
+  "headerDescription": "Ödeme tiplerini yönetin ve düzenleyin",
+  "create": "Yeni Ödeme Tipi",
+  "edit": "Ödeme Tipi Düzenle",
+  "editDescription": "Ödeme tipi bilgilerini düzenleyin",
+  "createDescription": "Yeni ödeme tipi bilgilerini girin",
+  "delete": "Sil",
+  "deleteTitle": "Ödeme Tipini Sil",
+  "name": "Ad",
+  "namePlaceholder": "Ödeme tipi adını girin",
+  "description": "Açıklama",
+  "descriptionPlaceholder": "Açıklama girin (opsiyonel)",
+  "createdDate": "Oluşturulma Tarihi",
+  "updatedDate": "Güncellenme Tarihi",
+  "actions": "İşlemler",
+  "search": "Ara",
+  "refresh": "Yenile",
+  "loading": "Yükleniyor...",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "advancedFilter": {
+    "columnName": "Ad",
+    "columnDescription": "Açıklama"
+  },
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
+  "noData": "Veri bulunamadı",
+  "confirmDelete": "Bu ödeme tipini silmek istediğinizden emin misiniz?",
+  "createSuccess": "Ödeme tipi başarıyla oluşturuldu",
+  "updateSuccess": "Ödeme tipi başarıyla güncellendi",
+  "deleteSuccess": "Ödeme tipi başarıyla silindi",
+  "createError": "Ödeme tipi oluşturulurken bir hata oluştu",
+  "updateError": "Ödeme tipi güncellenirken bir hata oluştu",
+  "deleteError": "Ödeme tipi silinirken bir hata oluştu",
   "table": {
     "id": "ID",
-    "name": "Nome",
-    "code": "Codice",
-    "description": "Descrizione",
-    "isActive": "Attivo",
-    "actions": "Azioni",
-    "createdDate": "Data di creazione",
-    "updatedDate": "Data aggiornata",
-    "showing": "Mostrando {{from}}-{{to}} / {{total}}",
-    "page": "Pagina {{current}} / {{total}}"
+    "name": "Ad",
+    "description": "Açıklama",
+    "createdDate": "Oluşturulma Tarihi",
+    "updatedDate": "Güncellenme Tarihi",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "form": {
     "name": {
-      "required": "Il nome è obbligatorio",
-      "maxLength": "Il nome può contenere fino a 100 caratteri"
+      "required": "Ad zorunludur",
+      "maxLength": "Ad en fazla 100 karakter olabilir"
     },
-    "code": "Codice",
     "description": {
-      "maxLength": "La descrizione può contenere fino a 500 caratteri"
-    },
-    "isActive": "Attivo",
-    "nameRequired": "Il nome è obbligatorio",
-    "codeRequired": "Il codice è obbligatorio"
+      "maxLength": "Açıklama en fazla 500 karakter olabilir"
+    }
   },
-  "messages": {
-    "createSuccess": "Tipo di pagamento creato con successo",
-    "updateSuccess": "Tipo di pagamento aggiornato con successo",
-    "deleteSuccess": "Tipo di pagamento eliminato con successo",
-    "confirmDelete": "Sei sicuro di voler eliminare questo tipo di pagamento?"
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clienti Netsis",
+      "netsisMirrorStocks": "Stock Netsis",
+      "netsisMirrorWarehouses": "Magazzini Netsis",
+      "netsisMirrorBranches": "Filiali Netsis",
+      "aquaCageWarehouseMappings": "Mappatura Gabbia-Magazzino",
+      "aquaOpeningImport": "Importazione di apertura",
+      "aquaWarehouseTransfers": "Trasferimenti di magazzino",
+      "aquaCageWarehouseTransfers": "Trasferimenti da Gabbia a Magazzino",
+      "aquaWarehouseCageTransfers": "Trasferimenti da Magazzino a Gabbia",
+      "aquaWarehouseTransferLines": "Righe trasferimento magazzino",
+      "aquaCageWarehouseTransferLines": "Righe trasferimento Gabbia-Magazzino",
+      "aquaWarehouseCageTransferLines": "Righe trasferimento Magazzino-Gabbia"
+    }
   },
-  "headerDescription": "Gestisci e modifica i tipi di pagamento",
-  "editDescription": "Modifica le informazioni sul tipo di pagamento",
-  "createDescription": "Inserisci le informazioni sul nuovo tipo di pagamento",
-  "deleteTitle": "Elimina tipo di pagamento",
-  "name": "Nome",
-  "namePlaceholder": "Inserisci il nome del tipo di pagamento",
-  "descriptionPlaceholder": "Inserisci una descrizione (facoltativo)",
-  "createdDate": "Data di creazione",
-  "updatedDate": "Data aggiornata",
-  "actions": "Transazioni",
-  "search": "Cerca",
-  "refresh": "Aggiorna",
-  "loading": "Caricamento...",
-  "previous": "Precedente",
-  "next": "Avanti",
-  "cancel": "Annulla",
-  "save": "Salva",
-  "saving": "Registrazione...",
-  "noData": "Nessun dato trovato",
-  "confirmDelete": "Sei sicuro di voler eliminare questo tipo di pagamento?",
-  "createSuccess": "Tipo di pagamento creato correttamente",
-  "updateSuccess": "Tipo di pagamento aggiornato correttamente",
-  "deleteSuccess": "Tipo di pagamento eliminato con successo",
-  "createError": "Si è verificato un errore durante la creazione del tipo di pagamento",
-  "updateError": "Si è verificato un errore durante l'aggiornamento del tipo di pagamento",
-  "deleteError": "Si è verificato un errore durante l'eliminazione del tipo di pagamento",
-  "advancedFilter": {
-    "columnName": "Nome",
-    "columnDescription": "Descrizione"
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Non ci sono ancora movimenti giornalieri per questa gabbia.",
+      "dailyFlowEmptyDescription": "Alimentazione, mortalità, trasferimenti, spedizioni, meteo e altre operazioni quotidiane verranno mostrate qui giorno per giorno dopo l'inserimento.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Il filtro progetto è bloccato durante l'ordinamento per gabbia."
+      },
+      "projectSelector": {
+        "loadingApply": "Caricamento progetti..."
+      },
+      "stats": {
+        "cageFishStock": "Scorta pesce in gabbia",
+        "warehouseFishStock": "Scorta pesce in magazzino",
+        "totalSystemFishStock": "Scorta totale pesce",
+        "cageBiomass": "Biomassa in gabbia",
+        "warehouseBiomass": "Biomassa in magazzino"
+      },
+      "projectDialog": {
+        "subtitle": "Riepilogo progetto e dati gabbia"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Quantità di mortalità",
+        "totalDeadKg": "Kg mortalità",
+        "totalShipmentCount": "Quantità spedizioni",
+        "totalShipmentKg": "Kg spediti",
+        "measurementGram": "Base di misurazione",
+        "fcr": "FCR",
+        "activeCage": "gabbia",
+        "cageFish": "Pesce in gabbia",
+        "warehouseFish": "Pesce in magazzino",
+        "totalFish": "Totale pesce"
+      },
+      "cageCard": {
+        "totalDeadCount": "Quantità di mortalità",
+        "shipmentCount": "Quantità spedizioni",
+        "stockCount": "Quantità a stock",
+        "totalDeadKg": "Kg mortalità",
+        "shipmentKg": "Kg spediti",
+        "stockKg": "Kg in stock",
+        "measurementGram": "Gramo misurato",
+        "feedKg": "Kg mangime",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Dettaglio",
+        "cageSortFilterLockedHint": "Il filtro progetto non può essere modificato durante l'ordinamento delle gabbie attivo."
+      },
+      "listTable": {
+        "shipment": "Spedizione",
+        "stockKg": "Kg stock",
+        "measurementGram": "Gramo misurato",
+        "feedKg": "Kg mangime",
+        "fcr": "FCR"
+      }
+    }
   }
 }

@@ -1,28 +1,6 @@
 {
   "title": "Dettagli utente",
   "description": "Modifica le informazioni del tuo profilo",
-  "sections": {
-    "personalInfo": "Informazioni Personali",
-    "accountSettings": "Impostazioni Account",
-    "preferences": "Preferenze"
-  },
-  "fields": {
-    "firstName": "Nome",
-    "lastName": "Cognome",
-    "email": "Email",
-    "phone": "Telefono",
-    "language": "Lingua",
-    "timezone": "Fuso Orario"
-  },
-  "actions": {
-    "save": "Salva Modifiche",
-    "cancel": "Annulla",
-    "changePassword": "Cambia Password"
-  },
-  "messages": {
-    "successUpdate": "Dettagli utente aggiornati con successo",
-    "errorUpdate": "Errore durante l'aggiornamento dei dettagli utente"
-  },
   "profilePicture": "Immagine del profilo",
   "height": "Altezza (cm)",
   "weight": "Peso (kg)",

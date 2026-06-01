@@ -1,33 +1,4 @@
 {
-  "title": "Gestión de Stock",
-  "description": "Seguimiento y gestión de niveles de stock",
-  "filter": {
-    "search": "Buscar",
-    "warehouse": "Almacén",
-    "product": "Producto",
-    "category": "Categoría"
-  },
-  "table": {
-    "productCode": "Código de Producto",
-    "productName": "Nombre de Producto",
-    "warehouse": "Almacén",
-    "quantity": "Cantidad",
-    "unit": "Unidad",
-    "status": "Estado",
-    "lastUpdated": "Última Actualización"
-  },
-  "status": {
-    "inStock": "En Stock",
-    "lowStock": "Stock Bajo",
-    "outOfStock": "Sin Stock"
-  },
-  "movements": {
-    "title": "Movimientos de Stock",
-    "in": "Entrada",
-    "out": "Salida",
-    "transfer": "Transferencia",
-    "adjustment": "Ajuste"
-  },
   "list": {
     "title": "Gestión de stock",
     "description": "Ver y gestionar acciones",

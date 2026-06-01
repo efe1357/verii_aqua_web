@@ -1,0 +1,59 @@
+{
+  "pages": {
+    "customers": {
+      "title": "Mirror Customers",
+      "description": "Shows Netsis/ERP customer records in a paged read-only view. Use it to verify the source data consumed by sync jobs.",
+      "badge": "Customer",
+      "searchPlaceholder": "Search by customer code, name, phone, city or tax number..."
+    },
+    "stocks": {
+      "title": "Mirror Stocks",
+      "description": "Shows Netsis/ERP stock cards in a paged read-only view. Use it to verify product code, name, unit and group fields synced into Aqua.",
+      "badge": "Stock",
+      "searchPlaceholder": "Search by stock code, name, group or producer code..."
+    },
+    "warehouses": {
+      "title": "Mirror Warehouses",
+      "description": "Shows Netsis/ERP warehouse definitions in a paged read-only view. Use these warehouse codes while mapping cages to ERP warehouses.",
+      "badge": "Warehouse",
+      "searchPlaceholder": "Search by warehouse code, name, customer code or branch..."
+    },
+    "branches": {
+      "title": "Mirror Branches",
+      "description": "Shows Netsis/ERP branches in a paged read-only view. Use it to verify branch codes used by headers and sync operations.",
+      "badge": "Branch",
+      "searchPlaceholder": "Search by branch code or title..."
+    }
+  },
+  "actions": {
+    "refresh": "Refresh"
+  },
+  "table": {
+    "title": "Mirror Data",
+    "loading": "Loading data...",
+    "empty": "No records found.",
+    "error": "Data could not be loaded.",
+    "range": "{{from}} - {{to}} / {{total}} records",
+    "page": "Page {{page}} / {{totalPages}}"
+  },
+  "columns": {
+    "customerCode": "Customer Code",
+    "customerName": "Customer Name",
+    "phone": "Phone",
+    "city": "City",
+    "district": "District",
+    "taxNumber": "Tax No",
+    "stockCode": "Stock Code",
+    "stockName": "Stock Name",
+    "unit": "Unit",
+    "groupCode": "Group Code",
+    "groupName": "Group Name",
+    "producerCode": "Producer Code",
+    "warehouseCode": "Warehouse Code",
+    "warehouseName": "Warehouse Name",
+    "branchCode": "Branch Code",
+    "branchName": "Branch Title",
+    "locked": "Locked",
+    "negativeBalance": "Negative Balance"
+  }
+}

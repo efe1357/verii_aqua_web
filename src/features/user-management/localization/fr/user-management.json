@@ -21,7 +21,8 @@
     "previous": "Précédent",
     "next": "Suivant",
     "edit": "Modifier",
-    "delete": "Supprimer"
+    "delete": "Supprimer",
+    "manager": "Yönetici"
   },
   "form": {
     "editUser": "Modifier l'utilisateur",
@@ -53,7 +54,10 @@
     "permissionGroupsHelp": "Groupes d'autorisations auxquels l'utilisateur sera affecté",
     "permissionGroupsNoData": "Groupe d'autorisations introuvable",
     "generatedPasswordInfo": "Si le mot de passe est laissé vide, un mot de passe temporaire sera créé",
-    "selectAll": "tout sélectionner"
+    "selectAll": "tout sélectionner",
+    "manager": "Yönetici",
+    "managerPlaceholder": "Yönetici seçin",
+    "noManager": "Yönetici yok"
   },
   "stats": {
     "totalUsers": "Nombre total d'utilisateurs",

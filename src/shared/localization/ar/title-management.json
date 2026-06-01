@@ -1,70 +1,122 @@
 {
-  "menu": "إدارة الألقاب",
-  "title": "إدارة الألقاب",
-  "description": "إدارة وتعديل الألقاب",
-  "addButton": "إضافة لقب جديد",
-  "deleteTitle": "حذف اللقب",
-  "deleteMessage": "هل أنت متأكد أنك تريد حذف هذا اللقب؟",
-  "deleteSuccess": "تم حذف اللقب بنجاح",
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "search": "Ara...",
+  "refresh": "Yenile",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "advancedFilter": {
+    "columnTitleName": "Ünvan Adı",
+    "columnCode": "Kod"
+  },
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
+  "delete": {
+    "confirmTitle": "Ünvanı Sil",
+    "confirmMessage": "{{titleName}} ünvanını silmek istediğinizden emin misiniz?",
+    "button": "Sil"
+  },
+  "deleting": "Siliniyor...",
+  "actions": "İşlemler",
+  "edit": "Düzenle",
+  "header": {
+    "title": "Ünvan Yönetimi",
+    "description": "Ünvan tanımlarını buradan yönetebilirsiniz."
+  },
   "table": {
-    "name": "اسم العنوان",
-    "code": "شفرة",
-    "description": "الوصف",
-    "status": "الحالة",
-    "actions": "إجراءات",
-    "searchPlaceholder": "البحث في الألقاب...",
-    "showing": "عرض {{from}}-{{to}} / {{total}}",
-    "page": "الصفحة {{current}} / {{total}}",
-    "rowsPerPage": "الصفوف لكل صفحة",
     "id": "ID",
-    "createdDate": "تاريخ الإنشاء",
-    "createdBy": "تم إنشاؤها بواسطة المستخدم"
+    "name": "Ünvan Adı",
+    "code": "Kod",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan Kullanıcı",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "form": {
-    "addTitle": "إضافة عنوان جديد",
-    "editTitle": "تحرير العنوان",
-    "name": "اللقب",
-    "code": "الرمز",
-    "description": "الوصف",
-    "status": "الحالة",
-    "active": "نشط",
-    "passive": "غير نشط",
-    "cancel": "يلغي",
-    "save": "يحفظ",
-    "required": "مطلوب",
-    "successAdd": "تم إضافة اللقب بنجاح",
-    "successUpdate": "تم تحديث اللقب بنجاح",
-    "addDescription": "أدخل معلومات العنوان الجديد",
-    "editDescription": "تحرير معلومات العنوان",
-    "titleName": "اسم العنوان",
-    "titleNamePlaceholder": "أدخل اسم العنوان",
-    "titleCode": "رمز العنوان",
-    "codePlaceholder": "أدخل الرمز (اختياري)",
-    "saving": "تسجيل..."
+    "addTitle": "Yeni Ünvan Ekle",
+    "editTitle": "Ünvan Düzenle",
+    "addDescription": "Yeni ünvan bilgilerini girin",
+    "editDescription": "Ünvan bilgilerini düzenleyin",
+    "titleName": "Ünvan Adı",
+    "titleNamePlaceholder": "Ünvan adını girin",
+    "titleCode": "Ünvan Kodu",
+    "codePlaceholder": "Kod girin (opsiyonel)",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor..."
   },
-  "loading": "تحميل...",
-  "noData": "لم يتم العثور على بيانات",
-  "search": "يبحث...",
-  "refresh": "ينعش",
-  "previous": "سابق",
-  "next": "التالي",
-  "cancel": "يلغي",
-  "save": "يحفظ",
-  "saving": "تسجيل...",
-  "delete": {
-    "confirmTitle": "حذف العنوان",
-    "confirmMessage": "هل أنت متأكد أنك تريد حذف العنوان {{titleName}}؟",
-    "button": "يمسح"
+  "common": {
+    "sidebar": {
+      "netsisMirror": "مرآة نتسيس",
+      "netsisMirrorCustomers": "عملاء نِتسِس",
+      "netsisMirrorStocks": "مخزون نِتسِس",
+      "netsisMirrorWarehouses": "مستودعات نِتسِس",
+      "netsisMirrorBranches": "فروع نِتسِس",
+      "aquaCageWarehouseMappings": "ربط القفص بالمستودع",
+      "aquaOpeningImport": "استيراد البداية",
+      "aquaWarehouseTransfers": "تحويلات المستودع",
+      "aquaCageWarehouseTransfers": "تحويلات من القفص إلى المستودع",
+      "aquaWarehouseCageTransfers": "تحويلات من المستودع إلى القفص",
+      "aquaWarehouseTransferLines": "بنود تحويل المستودع",
+      "aquaCageWarehouseTransferLines": "بنود تحويل من القفص إلى المستودع",
+      "aquaWarehouseCageTransferLines": "بنود تحويل من المستودع إلى القفص"
+    }
   },
-  "deleting": "جارٍ الحذف...",
-  "actions": "المعاملات",
-  "edit": "يحرر",
-  "header": {
-    "title": "إدارة العنوان",
-    "description": "يمكنك إدارة تعريفات العنوان هنا."
-  },
-  "advancedFilter": {
-    "columnTitleName": "اسم العنوان",
-    "columnCode": "شفرة"
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "لا توجد حركة يومية لهذه القفص بعد.",
+      "dailyFlowEmptyDescription": "عند إدخال التغذية أو النفوق أو التحويلات أو الشحن أو الطقس أو أي عمليات يومية أخرى، ستظهر هنا بشكل يومي.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "عامل التصفية بالمشروع مغلق أثناء تفعيل ترتيب الأقفاص."
+      },
+      "projectSelector": {
+        "loadingApply": "جاري تحميل المشاريع..."
+      },
+      "stats": {
+        "cageFishStock": "مخزون الأسماك في القفص",
+        "warehouseFishStock": "مخزون الأسماك في المستودع",
+        "totalSystemFishStock": "إجمالي مخزون الأسماك",
+        "cageBiomass": "الكتلة الحيوية في القفص",
+        "warehouseBiomass": "الكتلة الحيوية في المستودع"
+      },
+      "projectDialog": {
+        "subtitle": "ملخص المشروع وبيانات القفص"
+      },
+      "projectSummary": {
+        "totalDeadCount": "عدد النفوق",
+        "totalDeadKg": "كمية النفوق (كجم)",
+        "totalShipmentCount": "عدد الشحنات",
+        "totalShipmentKg": "كمية الشحنات (كجم)",
+        "measurementGram": "مرجع القياس",
+        "fcr": "FCR",
+        "activeCage": "قفص",
+        "cageFish": "سمكة القفص",
+        "warehouseFish": "سمكة المخزن",
+        "totalFish": "إجمالي الأسماك"
+      },
+      "cageCard": {
+        "totalDeadCount": "عدد النفوق",
+        "shipmentCount": "عدد الشحنات",
+        "stockCount": "كمية المخزون",
+        "totalDeadKg": "كمية النفوق (كجم)",
+        "shipmentKg": "كمية الشحنات (كجم)",
+        "stockKg": "كمية المخزون (كجم)",
+        "measurementGram": "الجرام المقاس",
+        "feedKg": "كمية العلف (كجم)",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "تفاصيل",
+        "cageSortFilterLockedHint": "لا يمكن تغيير مرشح المشروع أثناء تفعيل ترتيب الأقفاص."
+      },
+      "listTable": {
+        "shipment": "شحنة",
+        "stockKg": "المخزون (كجم)",
+        "measurementGram": "الجرام المقاس",
+        "feedKg": "العلف (كجم)",
+        "fcr": "FCR"
+      }
+    }
   }
 }

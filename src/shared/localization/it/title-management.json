@@ -1,70 +1,122 @@
 {
-  "menu": "Gestione Titoli",
-  "title": "Gestione Titoli",
-  "description": "Gestisci e modifica i titoli",
-  "addButton": "Aggiungi Nuovo Titolo",
-  "deleteTitle": "Elimina Titolo",
-  "deleteMessage": "Sei sicuro di voler eliminare questo titolo?",
-  "deleteSuccess": "Titolo eliminato con successo",
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "search": "Ara...",
+  "refresh": "Yenile",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "advancedFilter": {
+    "columnTitleName": "Ünvan Adı",
+    "columnCode": "Kod"
+  },
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
+  "delete": {
+    "confirmTitle": "Ünvanı Sil",
+    "confirmMessage": "{{titleName}} ünvanını silmek istediğinizden emin misiniz?",
+    "button": "Sil"
+  },
+  "deleting": "Siliniyor...",
+  "actions": "İşlemler",
+  "edit": "Düzenle",
+  "header": {
+    "title": "Ünvan Yönetimi",
+    "description": "Ünvan tanımlarını buradan yönetebilirsiniz."
+  },
   "table": {
-    "name": "Nome del titolo",
-    "code": "Codice",
-    "description": "Descrizione",
-    "status": "Stato",
-    "actions": "Azioni",
-    "searchPlaceholder": "Cerca titoli...",
-    "showing": "Mostrando {{from}}-{{to}} / {{total}}",
-    "page": "Pagina {{current}} / {{total}}",
-    "rowsPerPage": "Righe per pagina",
     "id": "ID",
-    "createdDate": "Data di creazione",
-    "createdBy": "Creato dall'utente"
+    "name": "Ünvan Adı",
+    "code": "Kod",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan Kullanıcı",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "form": {
-    "addTitle": "Aggiungi nuovo titolo",
-    "editTitle": "Modifica titolo",
-    "name": "Titolo",
-    "code": "Codice",
-    "description": "Descrizione",
-    "status": "Stato",
-    "active": "Attivo",
-    "passive": "Passivo",
-    "cancel": "Annulla",
-    "save": "Salva",
-    "required": "Obbligatorio",
-    "successAdd": "Titolo aggiunto con successo",
-    "successUpdate": "Titolo aggiornato con successo",
-    "addDescription": "Inserisci le nuove informazioni sul titolo",
-    "editDescription": "Modifica le informazioni sul titolo",
-    "titleName": "Nome del titolo",
-    "titleNamePlaceholder": "Inserisci il nome del titolo",
-    "titleCode": "Codice del titolo",
-    "codePlaceholder": "Inserisci il codice (facoltativo)",
-    "saving": "Registrazione..."
+    "addTitle": "Yeni Ünvan Ekle",
+    "editTitle": "Ünvan Düzenle",
+    "addDescription": "Yeni ünvan bilgilerini girin",
+    "editDescription": "Ünvan bilgilerini düzenleyin",
+    "titleName": "Ünvan Adı",
+    "titleNamePlaceholder": "Ünvan adını girin",
+    "titleCode": "Ünvan Kodu",
+    "codePlaceholder": "Kod girin (opsiyonel)",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor..."
   },
-  "loading": "Caricamento...",
-  "noData": "Nessun dato trovato",
-  "search": "Cerca...",
-  "refresh": "Aggiorna",
-  "previous": "Precedente",
-  "next": "Avanti",
-  "cancel": "Annulla",
-  "save": "Salva",
-  "saving": "Registrazione...",
-  "delete": {
-    "confirmTitle": "Elimina titolo",
-    "confirmMessage": "Sei sicuro di voler eliminare il titolo {{titleName}}?",
-    "button": "Elimina"
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clienti Netsis",
+      "netsisMirrorStocks": "Stock Netsis",
+      "netsisMirrorWarehouses": "Magazzini Netsis",
+      "netsisMirrorBranches": "Filiali Netsis",
+      "aquaCageWarehouseMappings": "Mappatura Gabbia-Magazzino",
+      "aquaOpeningImport": "Importazione di apertura",
+      "aquaWarehouseTransfers": "Trasferimenti di magazzino",
+      "aquaCageWarehouseTransfers": "Trasferimenti da Gabbia a Magazzino",
+      "aquaWarehouseCageTransfers": "Trasferimenti da Magazzino a Gabbia",
+      "aquaWarehouseTransferLines": "Righe trasferimento magazzino",
+      "aquaCageWarehouseTransferLines": "Righe trasferimento Gabbia-Magazzino",
+      "aquaWarehouseCageTransferLines": "Righe trasferimento Magazzino-Gabbia"
+    }
   },
-  "deleting": "Eliminazione...",
-  "actions": "Transazioni",
-  "edit": "Modifica",
-  "header": {
-    "title": "Gestione dei titoli",
-    "description": "Puoi gestire le definizioni dei titoli qui."
-  },
-  "advancedFilter": {
-    "columnTitleName": "Nome del titolo",
-    "columnCode": "Codice"
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Non ci sono ancora movimenti giornalieri per questa gabbia.",
+      "dailyFlowEmptyDescription": "Alimentazione, mortalità, trasferimenti, spedizioni, meteo e altre operazioni quotidiane verranno mostrate qui giorno per giorno dopo l'inserimento.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Il filtro progetto è bloccato durante l'ordinamento per gabbia."
+      },
+      "projectSelector": {
+        "loadingApply": "Caricamento progetti..."
+      },
+      "stats": {
+        "cageFishStock": "Scorta pesce in gabbia",
+        "warehouseFishStock": "Scorta pesce in magazzino",
+        "totalSystemFishStock": "Scorta totale pesce",
+        "cageBiomass": "Biomassa in gabbia",
+        "warehouseBiomass": "Biomassa in magazzino"
+      },
+      "projectDialog": {
+        "subtitle": "Riepilogo progetto e dati gabbia"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Quantità di mortalità",
+        "totalDeadKg": "Kg mortalità",
+        "totalShipmentCount": "Quantità spedizioni",
+        "totalShipmentKg": "Kg spediti",
+        "measurementGram": "Base di misurazione",
+        "fcr": "FCR",
+        "activeCage": "gabbia",
+        "cageFish": "Pesce in gabbia",
+        "warehouseFish": "Pesce in magazzino",
+        "totalFish": "Totale pesce"
+      },
+      "cageCard": {
+        "totalDeadCount": "Quantità di mortalità",
+        "shipmentCount": "Quantità spedizioni",
+        "stockCount": "Quantità a stock",
+        "totalDeadKg": "Kg mortalità",
+        "shipmentKg": "Kg spediti",
+        "stockKg": "Kg in stock",
+        "measurementGram": "Gramo misurato",
+        "feedKg": "Kg mangime",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Dettaglio",
+        "cageSortFilterLockedHint": "Il filtro progetto non può essere modificato durante l'ordinamento delle gabbie attivo."
+      },
+      "listTable": {
+        "shipment": "Spedizione",
+        "stockKg": "Kg stock",
+        "measurementGram": "Gramo misurato",
+        "feedKg": "Kg mangime",
+        "fcr": "FCR"
+      }
+    }
   }
 }

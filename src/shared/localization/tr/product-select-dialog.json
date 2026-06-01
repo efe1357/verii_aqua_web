@@ -6,5 +6,16 @@
   "noResults": "Arama sonucu bulunamadı",
   "searchPlaceholder": "Ürün kodu veya adı ile ara...",
   "voiceSearch": "Sesli arama",
-  "loading": "Yükleniyor"
+  "loading": "Yükleniyor",
+  "select": "Seç",
+  "cancel": "İptal",
+  "columns": {
+    "code": "Kod",
+    "name": "Ad",
+    "description": "Açıklama",
+    "price": "Fiyat",
+    "currency": "Para Birimi",
+    "stock": "Stok"
+  },
+  "noData": "Kayıt bulunamadı"
 }

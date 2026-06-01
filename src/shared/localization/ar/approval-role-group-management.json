@@ -1,40 +1,113 @@
 {
-  "menu": "إدارة مجموعة دور الموافقة",
-  "description": "إدارة وتحرير مجموعات أدوار الموافقة",
-  "addButton": "إضافة مجموعة جديدة",
-  "refresh": "ينعش",
-  "searchPlaceholder": "يبحث...",
-  "loading": "تحميل...",
-  "noData": "لم يتم العثور على بيانات",
-  "noDataDescription": "لم يتم العثور على سجلات تطابق معايير البحث الخاصة بك أو لم تتم إضافة أي سجلات حتى الآن.",
+  "advancedFilter": {
+    "columnName": "Grup Adı",
+    "columnCreatedBy": "Oluşturan"
+  },
+  "menu": "Onay Rol Grubu Yönetimi",
+  "description": "Onay rol gruplarını yönetin ve düzenleyin",
+  "addButton": "Yeni Grup Ekle",
+  "refresh": "Yenile",
+  "searchPlaceholder": "Ara...",
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "noDataDescription": "Arama kriterlerinize uygun kayıt bulunamadı veya henüz hiç kayıt eklenmemiş.",
   "table": {
     "id": "ID",
-    "name": "اسم المجموعة",
-    "createdDate": "تاريخ الإنشاء",
-    "createdBy": "تم إنشاؤها بواسطة المستخدم",
-    "actions": "المعاملات",
-    "showing": "إجمالي {{total}} من السجل الذي يظهر {{from}}-{{to}}"
+    "name": "Grup Adı",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan Kullanıcı",
+    "actions": "İşlemler",
+    "showing": "Toplam {{total}} kayıttan {{from}}-{{to}} arası gösteriliyor"
   },
   "delete": {
-    "confirmTitle": "تأكيد الحذف",
-    "confirmMessage": "لا يمكن التراجع عن هذا الإجراء. هل تريد الاستمرار؟"
+    "confirmTitle": "Silme Onayı",
+    "confirmMessage": "Bu işlem geri alınamaz. Devam etmek istiyor musunuz?"
   },
-  "cancel": "يلغي",
-  "save": "يحفظ",
-  "saving": "تسجيل...",
-  "deleteButton": "يمسح",
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
+  "deleteButton": "Sil",
   "form": {
-    "editTitle": "تحرير مجموعة دور الموافقة",
-    "addTitle": "إضافة مجموعة دور الموافقة الجديدة",
-    "editDescription": "تحرير معلومات مجموعة دور الموافقة",
-    "addDescription": "أدخل معلومات مجموعة أدوار الموافقة الجديدة",
-    "name": "اسم المجموعة",
-    "namePlaceholder": "أدخل اسم المجموعة",
-    "nameRequired": "اسم المجموعة مطلوب",
-    "nameMaxLength": "يمكن أن يصل اسم المجموعة إلى 100 حرف"
+    "editTitle": "Onay Rol Grubu Düzenle",
+    "addTitle": "Yeni Onay Rol Grubu Ekle",
+    "editDescription": "Onay rol grubu bilgilerini düzenleyin",
+    "addDescription": "Yeni onay rol grubu bilgilerini girin",
+    "name": "Grup Adı",
+    "namePlaceholder": "Grup adını girin",
+    "nameRequired": "Grup adı zorunludur",
+    "nameMaxLength": "Grup adı en fazla 100 karakter olabilir"
   },
-  "advancedFilter": {
-    "columnName": "اسم المجموعة",
-    "columnCreatedBy": "تم إنشاؤها بواسطة"
+  "common": {
+    "sidebar": {
+      "netsisMirror": "مرآة نتسيس",
+      "netsisMirrorCustomers": "عملاء نِتسِس",
+      "netsisMirrorStocks": "مخزون نِتسِس",
+      "netsisMirrorWarehouses": "مستودعات نِتسِس",
+      "netsisMirrorBranches": "فروع نِتسِس",
+      "aquaCageWarehouseMappings": "ربط القفص بالمستودع",
+      "aquaOpeningImport": "استيراد البداية",
+      "aquaWarehouseTransfers": "تحويلات المستودع",
+      "aquaCageWarehouseTransfers": "تحويلات من القفص إلى المستودع",
+      "aquaWarehouseCageTransfers": "تحويلات من المستودع إلى القفص",
+      "aquaWarehouseTransferLines": "بنود تحويل المستودع",
+      "aquaCageWarehouseTransferLines": "بنود تحويل من القفص إلى المستودع",
+      "aquaWarehouseCageTransferLines": "بنود تحويل من المستودع إلى القفص"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "لا توجد حركة يومية لهذه القفص بعد.",
+      "dailyFlowEmptyDescription": "عند إدخال التغذية أو النفوق أو التحويلات أو الشحن أو الطقس أو أي عمليات يومية أخرى، ستظهر هنا بشكل يومي.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "عامل التصفية بالمشروع مغلق أثناء تفعيل ترتيب الأقفاص."
+      },
+      "projectSelector": {
+        "loadingApply": "جاري تحميل المشاريع..."
+      },
+      "stats": {
+        "cageFishStock": "مخزون الأسماك في القفص",
+        "warehouseFishStock": "مخزون الأسماك في المستودع",
+        "totalSystemFishStock": "إجمالي مخزون الأسماك",
+        "cageBiomass": "الكتلة الحيوية في القفص",
+        "warehouseBiomass": "الكتلة الحيوية في المستودع"
+      },
+      "projectDialog": {
+        "subtitle": "ملخص المشروع وبيانات القفص"
+      },
+      "projectSummary": {
+        "totalDeadCount": "عدد النفوق",
+        "totalDeadKg": "كمية النفوق (كجم)",
+        "totalShipmentCount": "عدد الشحنات",
+        "totalShipmentKg": "كمية الشحنات (كجم)",
+        "measurementGram": "مرجع القياس",
+        "fcr": "FCR",
+        "activeCage": "قفص",
+        "cageFish": "سمكة القفص",
+        "warehouseFish": "سمكة المخزن",
+        "totalFish": "إجمالي الأسماك"
+      },
+      "cageCard": {
+        "totalDeadCount": "عدد النفوق",
+        "shipmentCount": "عدد الشحنات",
+        "stockCount": "كمية المخزون",
+        "totalDeadKg": "كمية النفوق (كجم)",
+        "shipmentKg": "كمية الشحنات (كجم)",
+        "stockKg": "كمية المخزون (كجم)",
+        "measurementGram": "الجرام المقاس",
+        "feedKg": "كمية العلف (كجم)",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "تفاصيل",
+        "cageSortFilterLockedHint": "لا يمكن تغيير مرشح المشروع أثناء تفعيل ترتيب الأقفاص."
+      },
+      "listTable": {
+        "shipment": "شحنة",
+        "stockKg": "المخزون (كجم)",
+        "measurementGram": "الجرام المقاس",
+        "feedKg": "العلف (كجم)",
+        "fcr": "FCR"
+      }
+    }
   }
 }

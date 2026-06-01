@@ -1,13 +1,86 @@
 {
-  "title": "Sélectionnez les actions affiliées",
-  "description": "Sélectionnez les stocks subsidiaires que vous souhaitez ajouter avec le stock principal. Les stocks obligatoires sont automatiquement sélectionnés.",
-  "mandatoryStocks": "Stocks obligatoires",
-  "optionalStocks": "Actions facultatives",
-  "unknownStock": "Stock inconnu",
-  "quantity": "quantité",
-  "mandatory": "obligatoire",
-  "noRelatedStocks": "Stock lié introuvable",
-  "cancel": "Annuler",
-  "add": "Ajouter",
-  "calculating": "Calcul..."
+  "title": "Bağlı Stokları Seçin",
+  "description": "Ana stok ile birlikte eklemek istediğiniz bağlı stokları seçin. Zorunlu stoklar otomatik olarak seçilidir.",
+  "mandatoryStocks": "Zorunlu Stoklar",
+  "optionalStocks": "Opsiyonel Stoklar",
+  "unknownStock": "Bilinmeyen Stok",
+  "quantity": "Miktar",
+  "mandatory": "Zorunlu",
+  "noRelatedStocks": "Bağlı stok bulunamadı",
+  "cancel": "İptal",
+  "add": "Ekle",
+  "calculating": "Hesaplanıyor...",
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clients Netsis",
+      "netsisMirrorStocks": "Stocks Netsis",
+      "netsisMirrorWarehouses": "Entrepôts Netsis",
+      "netsisMirrorBranches": "Succursales Netsis",
+      "aquaCageWarehouseMappings": "Appariement Cage-Dépôt",
+      "aquaOpeningImport": "Importation d'ouverture",
+      "aquaWarehouseTransfers": "Transferts d'entrepôt",
+      "aquaCageWarehouseTransfers": "Transferts Cage vers Entrepôt",
+      "aquaWarehouseCageTransfers": "Transferts Entrepôt vers Cage",
+      "aquaWarehouseTransferLines": "Lignes de transfert d'entrepôt",
+      "aquaCageWarehouseTransferLines": "Lignes de transfert Cage vers Entrepôt",
+      "aquaWarehouseCageTransferLines": "Lignes de transfert Entrepôt vers Cage"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Aucune opération quotidienne n'est encore disponible pour cette cage.",
+      "dailyFlowEmptyDescription": "Les opérations quotidiennes comme l'alimentation, la mortalité, les transferts, les expéditions, la météo et d'autres écritures apparaitront ici jour par jour.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Le filtre projet est verrouillé tant que le tri par cage est actif."
+      },
+      "projectSelector": {
+        "loadingApply": "Chargement des projets..."
+      },
+      "stats": {
+        "cageFishStock": "Stock de poissons en cage",
+        "warehouseFishStock": "Stock de poissons en entrepôt",
+        "totalSystemFishStock": "Stock total de poissons",
+        "cageBiomass": "Biomasse en cage",
+        "warehouseBiomass": "Biomasse en entrepôt"
+      },
+      "projectDialog": {
+        "subtitle": "Résumé du projet et données de cage"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Nombre de mortalités",
+        "totalDeadKg": "Kg mortalité",
+        "totalShipmentCount": "Nombre de livraisons",
+        "totalShipmentKg": "Kg expédiés",
+        "measurementGram": "Base de mesure",
+        "fcr": "FCR",
+        "activeCage": "cage",
+        "cageFish": "Poisson en cage",
+        "warehouseFish": "Poisson en entrepôt",
+        "totalFish": "Total poissons"
+      },
+      "cageCard": {
+        "totalDeadCount": "Nombre de mortalités",
+        "shipmentCount": "Nombre de livraisons",
+        "stockCount": "Quantité en stock",
+        "totalDeadKg": "Kg mortalité",
+        "shipmentKg": "Kg expédiés",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramme mesurée",
+        "feedKg": "Kg nourrissant",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Détail",
+        "cageSortFilterLockedHint": "Le filtre projet ne peut pas être modifié tant que le tri par cage est actif."
+      },
+      "listTable": {
+        "shipment": "Expédition",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Gramme mesurée",
+        "feedKg": "Kg nourrissant",
+        "fcr": "FCR"
+      }
+    }
+  }
 }

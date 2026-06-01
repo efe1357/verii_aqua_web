@@ -1,49 +1,122 @@
 {
-  "loading": "Loading...",
-  "noData": "No data found",
-  "search": "Search...",
-  "refresh": "Refresh",
-  "previous": "Previous",
-  "next": "Next",
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "search": "Ara...",
+  "refresh": "Yenile",
+  "previous": "Önceki",
+  "next": "Sonraki",
   "advancedFilter": {
-    "columnTitleName": "Title Name",
-    "columnCode": "Code"
+    "columnTitleName": "Ünvan Adı",
+    "columnCode": "Kod"
   },
-  "cancel": "Cancel",
-  "save": "Save",
-  "saving": "Recording...",
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
   "delete": {
-    "confirmTitle": "Delete Title",
-    "confirmMessage": "Are you sure you want to delete the title {{titleName}}?",
-    "button": "Delete"
+    "confirmTitle": "Ünvanı Sil",
+    "confirmMessage": "{{titleName}} ünvanını silmek istediğinizden emin misiniz?",
+    "button": "Sil"
   },
-  "deleting": "Deleting...",
-  "actions": "Transactions",
-  "edit": "Edit",
+  "deleting": "Siliniyor...",
+  "actions": "İşlemler",
+  "edit": "Düzenle",
   "header": {
-    "title": "Title Management",
-    "description": "You can manage title definitions here."
+    "title": "Ünvan Yönetimi",
+    "description": "Ünvan tanımlarını buradan yönetebilirsiniz."
   },
   "table": {
     "id": "ID",
-    "name": "Title Name",
-    "code": "Code",
-    "createdDate": "Creation Date",
-    "createdBy": "Created by User",
-    "showing": "Showing {{from}}-{{to}} / {{total}}",
-    "page": "Page {{current}} / {{total}}"
+    "name": "Ünvan Adı",
+    "code": "Kod",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan Kullanıcı",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "form": {
-    "addTitle": "Add New Title",
-    "editTitle": "Edit Title",
-    "addDescription": "Enter new title information",
-    "editDescription": "Edit title information",
-    "titleName": "Title Name",
-    "titleNamePlaceholder": "Enter title name",
-    "titleCode": "Title Code",
-    "codePlaceholder": "Enter code (optional)",
-    "cancel": "Cancel",
-    "save": "Save",
-    "saving": "Recording..."
+    "addTitle": "Yeni Ünvan Ekle",
+    "editTitle": "Ünvan Düzenle",
+    "addDescription": "Yeni ünvan bilgilerini girin",
+    "editDescription": "Ünvan bilgilerini düzenleyin",
+    "titleName": "Ünvan Adı",
+    "titleNamePlaceholder": "Ünvan adını girin",
+    "titleCode": "Ünvan Kodu",
+    "codePlaceholder": "Kod girin (opsiyonel)",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor..."
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Netsis Customers",
+      "netsisMirrorStocks": "Netsis Stocks",
+      "netsisMirrorWarehouses": "Netsis Warehouses",
+      "netsisMirrorBranches": "Netsis Branches",
+      "aquaCageWarehouseMappings": "Cage-Warehouse Mapping",
+      "aquaOpeningImport": "Opening Import",
+      "aquaWarehouseTransfers": "Warehouse Transfers",
+      "aquaCageWarehouseTransfers": "Cage to Warehouse Transfers",
+      "aquaWarehouseCageTransfers": "Warehouse to Cage Transfers",
+      "aquaWarehouseTransferLines": "Warehouse Transfer Lines",
+      "aquaCageWarehouseTransferLines": "Cage to Warehouse Transfer Lines",
+      "aquaWarehouseCageTransferLines": "Warehouse to Cage Transfer Lines"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "No daily movement is available for this cage yet.",
+      "dailyFlowEmptyDescription": "Feeding, mortality, transfers, shipments, weather and other daily transactions will appear here once they are entered day by day.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Project filter is locked while cage sorting mode is enabled."
+      },
+      "projectSelector": {
+        "loadingApply": "Loading projects..."
+      },
+      "stats": {
+        "cageFishStock": "Cage Fish Stock",
+        "warehouseFishStock": "Warehouse Fish Stock",
+        "totalSystemFishStock": "Total Fish Stock",
+        "cageBiomass": "Cage Biomass",
+        "warehouseBiomass": "Warehouse Biomass"
+      },
+      "projectDialog": {
+        "subtitle": "Project summary and cage data"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Mortality Count",
+        "totalDeadKg": "Mortality Kg",
+        "totalShipmentCount": "Shipment Count",
+        "totalShipmentKg": "Shipment Kg",
+        "measurementGram": "Feed Conversion Basis",
+        "fcr": "FCR",
+        "activeCage": "cage",
+        "cageFish": "Cage Fish",
+        "warehouseFish": "Warehouse Fish",
+        "totalFish": "Total Fish"
+      },
+      "cageCard": {
+        "totalDeadCount": "Mortality Count",
+        "shipmentCount": "Shipment Count",
+        "stockCount": "Stock Count",
+        "totalDeadKg": "Mortality Kg",
+        "shipmentKg": "Shipment Kg",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Measured Gram",
+        "feedKg": "Feed Kg",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detail",
+        "cageSortFilterLockedHint": "Project filter cannot be changed while cage sort mode is active."
+      },
+      "listTable": {
+        "shipment": "Shipment",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Measured Gram",
+        "feedKg": "Feed Kg",
+        "fcr": "FCR"
+      }
+    }
   }
 }

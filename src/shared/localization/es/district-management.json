@@ -1,51 +1,124 @@
 {
-  "menu": "Administración del distrito",
-  "description": "Gestionar y organizar distritos.",
-  "addButton": "Agregar nuevo distrito",
-  "listTitle": "Lista de distritos",
-  "listDescription": "Puede gestionar todos los distritos registrados en el sistema aquí.",
-  "loading": "Cargando...",
-  "noData": "Sin datos",
-  "actions": "Transacciones",
-  "previous": "Anterior",
-  "next": "Siguiente",
-  "cancel": "Cancelar",
-  "delete": "Eliminar",
-  "save": "Guardar",
-  "saving": "Grabando...",
+  "menu": "İlçe Yönetimi",
+  "description": "İlçeleri yönetin ve düzenleyin",
+  "addButton": "Yeni İlçe Ekle",
+  "listTitle": "İlçe Listesi",
+  "listDescription": "Sistemdeki kayıtlı tüm ilçeleri buradan yönetebilirsiniz.",
+  "loading": "Yükleniyor...",
+  "noData": "Veri yok",
+  "actions": "İşlemler",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "cancel": "İptal",
+  "delete": "Sil",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
   "table": {
     "id": "ID",
-    "name": "Nombre del distrito",
-    "erpCode": "ERP Código",
-    "cityName": "Nombre de la ciudad",
-    "createdDate": "Fecha de creación",
-    "createdBy": "Creado por",
-    "showing": "Mostrando {{from}}-{{to}} / {{total}}",
-    "page": "Página {{current}} / {{total}}"
+    "name": "İlçe Adı",
+    "erpCode": "ERP Kodu",
+    "cityName": "Şehir Adı",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "deleteConfirm": {
-    "confirmTitle": "Eliminar distrito",
-    "confirmMessage": "¿Está seguro de que desea eliminar el distrito {{name}}?"
+    "confirmTitle": "İlçeyi Sil",
+    "confirmMessage": "{{name}} ilçesini silmek istediğinizden emin misiniz?"
   },
   "form": {
-    "editDistrict": "Editar distrito",
-    "addDistrict": "Agregar nuevo distrito",
-    "editDescription": "Editar información del distrito",
-    "addDescription": "Ingrese la nueva información del distrito",
-    "name": "Nombre del distrito",
-    "namePlaceholder": "Ingrese el nombre del distrito",
-    "city": "ciudad",
-    "selectCity": "Selecciona ciudad",
-    "erpCode": "ERP Código",
-    "erpCodePlaceholder": "Ingrese el código ERP (opcional)",
-    "nameRequired": "Se requiere el nombre del distrito",
-    "nameMaxLength": "El nombre del distrito puede tener un máximo de 100 caracteres.",
-    "erpCodeMaxLength": "El código ERP puede tener un máximo de 10 caracteres",
-    "cityRequired": "La selección de la ciudad es obligatoria."
+    "editDistrict": "İlçe Düzenle",
+    "addDistrict": "Yeni İlçe Ekle",
+    "editDescription": "İlçe bilgilerini düzenleyin",
+    "addDescription": "Yeni ilçe bilgilerini girin",
+    "name": "İlçe Adı",
+    "namePlaceholder": "İlçe adını girin",
+    "city": "Şehir",
+    "selectCity": "Şehir seçin",
+    "erpCode": "ERP Kodu",
+    "erpCodePlaceholder": "ERP kodunu girin (opsiyonel)",
+    "nameRequired": "İlçe adı zorunludur",
+    "nameMaxLength": "İlçe adı en fazla 100 karakter olabilir",
+    "erpCodeMaxLength": "ERP kodu en fazla 10 karakter olabilir",
+    "cityRequired": "Şehir seçimi zorunludur"
   },
   "stats": {
-    "totalDistricts": "DISTRITO TOTAL",
-    "activeDistricts": "DISTRITO ACTIVO",
-    "newThisMonth": "NUEVO ESTE MES"
+    "totalDistricts": "TOPLAM İLÇE",
+    "activeDistricts": "AKTİF İLÇE",
+    "newThisMonth": "BU AY YENİ"
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clientes Netsis",
+      "netsisMirrorStocks": "Stocks Netsis",
+      "netsisMirrorWarehouses": "Almacenes Netsis",
+      "netsisMirrorBranches": "Sucursales Netsis",
+      "aquaCageWarehouseMappings": "Mapeo Jaula-Almacén",
+      "aquaOpeningImport": "Importación de Apertura",
+      "aquaWarehouseTransfers": "Transferencias de almacén",
+      "aquaCageWarehouseTransfers": "Transferencias de Jaula a Almacén",
+      "aquaWarehouseCageTransfers": "Transferencias de Almacén a Jaula",
+      "aquaWarehouseTransferLines": "Líneas de transferencia de almacén",
+      "aquaCageWarehouseTransferLines": "Líneas de transferencia de Jaula a Almacén",
+      "aquaWarehouseCageTransferLines": "Líneas de transferencia de Almacén a Jaula"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Aún no hay datos diarios para esta jaula.",
+      "dailyFlowEmptyDescription": "La alimentación, mortalidad, transferencias, envíos, clima y otras operaciones diarias aparecerán aquí día a día tras su registro.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "El filtro de proyecto está bloqueado mientras el orden de jaulas está habilitado."
+      },
+      "projectSelector": {
+        "loadingApply": "Cargando proyectos..."
+      },
+      "stats": {
+        "cageFishStock": "Stock de peces en jaula",
+        "warehouseFishStock": "Stock de peces en almacén",
+        "totalSystemFishStock": "Stock total de peces",
+        "cageBiomass": "Biomasa de jaula",
+        "warehouseBiomass": "Biomasa de almacén"
+      },
+      "projectDialog": {
+        "subtitle": "Resumen de proyecto y datos de jaula"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Cantidad de mortalidad",
+        "totalDeadKg": "Kg de mortalidad",
+        "totalShipmentCount": "Cantidad de envíos",
+        "totalShipmentKg": "Kg enviados",
+        "measurementGram": "Base de medición",
+        "fcr": "FCR",
+        "activeCage": "jaula",
+        "cageFish": "Pez en jaula",
+        "warehouseFish": "Pez en almacén",
+        "totalFish": "Total de peces"
+      },
+      "cageCard": {
+        "totalDeadCount": "Cantidad de mortalidad",
+        "shipmentCount": "Cantidad de envíos",
+        "stockCount": "Cantidad en stock",
+        "totalDeadKg": "Kg de mortalidad",
+        "shipmentKg": "Kg enviados",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramo medido",
+        "feedKg": "Kg de alimento",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detalle",
+        "cageSortFilterLockedHint": "El filtro de proyecto no se puede cambiar mientras el orden por jaula está activo."
+      },
+      "listTable": {
+        "shipment": "Envío",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramo medido",
+        "feedKg": "Kg de alimento",
+        "fcr": "FCR"
+      }
+    }
   }
 }

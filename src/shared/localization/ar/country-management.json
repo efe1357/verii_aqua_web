@@ -1,57 +1,130 @@
 {
-  "menu": "إدارة البلاد",
-  "description": "إدارة وتنظيم الدول",
-  "addButton": "إضافة دولة جديدة",
-  "search": "يبحث...",
-  "loading": "تحميل...",
-  "noData": "لم يتم العثور على بيانات",
-  "actions": "المعاملات",
-  "previous": "سابق",
-  "next": "التالي",
-  "deleteConfirmTitle": "تأكيد الحذف",
-  "cancel": "يلغي",
-  "deleting": "جارٍ الحذف...",
-  "delete": "يمسح",
-  "saving": "تسجيل...",
-  "save": "يحفظ",
+  "menu": "Ülke Yönetimi",
+  "description": "Ülkeleri yönetin ve düzenleyin",
+  "addButton": "Yeni Ülke Ekle",
+  "search": "Ara...",
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "actions": "İşlemler",
+  "previous": "Önceki",
+  "next": "Sonraki",
+  "deleteConfirmTitle": "Silme Onayı",
+  "cancel": "İptal",
+  "deleting": "Siliniyor...",
+  "delete": "Sil",
+  "saving": "Kaydediliyor...",
+  "save": "Kaydet",
   "stats": {
-    "totalCountries": "إجمالي البلد",
-    "activeCountries": "دولة نشطة",
-    "newThisMonth": "جديد هذا الشهر"
+    "totalCountries": "Toplam Ülke",
+    "activeCountries": "Aktif Ülke",
+    "newThisMonth": "Bu Ay Yeni"
   },
   "table": {
     "id": "ID",
-    "name": "اسم البلد",
-    "code": "شفرة",
-    "erpCode": "ERP الكود",
-    "createdDate": "تاريخ الإنشاء",
-    "createdBy": "تم إنشاؤها بواسطة",
-    "showing": "عرض {{from}}-{{to}} / {{total}}",
-    "page": "الصفحة {{current}} / {{total}}"
-  },
-  "form": {
-    "addCountry": "إضافة دولة جديدة",
-    "editCountry": "تحرير البلد",
-    "addDescription": "أدخل معلومات الدولة الجديدة",
-    "editDescription": "تحرير معلومات البلد",
-    "name": "اسم البلد",
-    "namePlaceholder": "أدخل اسم البلد",
-    "code": "رمز البلد",
-    "codePlaceholder": "أدخل رمز البلد (على سبيل المثال: TR، US)",
-    "erpCode": "ERP الكود",
-    "erpCodePlaceholder": "أدخل الرمز ERP (اختياري)",
-    "nameRequired": "اسم البلد مطلوب",
-    "nameMaxLength": "يمكن أن يصل اسم البلد إلى 100 حرف",
-    "codeMinLength": "يجب أن يتكون رمز البلد من حرفين على الأقل",
-    "codeMaxLength": "يمكن أن يصل رمز البلد إلى 5 أحرف",
-    "erpCodeMaxLength": "يمكن أن يتكون الرمز ERP من 10 أحرف كحد أقصى"
-  },
-  "deleteConfirm": {
-    "confirmMessage": "هل أنت متأكد أنك تريد حذف البلد {{name}}؟"
+    "name": "Ülke Adı",
+    "code": "Kod",
+    "erpCode": "ERP Kodu",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan",
+    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+    "page": "Sayfa {{current}} / {{total}}"
   },
   "advancedFilter": {
-    "columnName": "اسم البلد",
-    "columnCode": "رمز البلد",
-    "columnErpCode": "ERP الكود"
+    "columnName": "Ülke Adı",
+    "columnCode": "Ülke Kodu",
+    "columnErpCode": "ERP Kodu"
+  },
+  "form": {
+    "addCountry": "Yeni Ülke Ekle",
+    "editCountry": "Ülke Düzenle",
+    "addDescription": "Yeni ülke bilgilerini girin",
+    "editDescription": "Ülke bilgilerini düzenleyin",
+    "name": "Ülke Adı",
+    "namePlaceholder": "Ülke adını girin",
+    "code": "Ülke Kodu",
+    "codePlaceholder": "Ülke kodunu girin (örn: TR, US)",
+    "erpCode": "ERP Kodu",
+    "erpCodePlaceholder": "ERP kodunu girin (opsiyonel)",
+    "nameRequired": "Ülke adı zorunludur",
+    "nameMaxLength": "Ülke adı en fazla 100 karakter olabilir",
+    "codeMinLength": "Ülke kodu en az 2 karakter olmalıdır",
+    "codeMaxLength": "Ülke kodu en fazla 5 karakter olabilir",
+    "erpCodeMaxLength": "ERP kodu en fazla 10 karakter olabilir"
+  },
+  "deleteConfirm": {
+    "confirmMessage": "{{name}} ülkesini silmek istediğinizden emin misiniz?"
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "مرآة نتسيس",
+      "netsisMirrorCustomers": "عملاء نِتسِس",
+      "netsisMirrorStocks": "مخزون نِتسِس",
+      "netsisMirrorWarehouses": "مستودعات نِتسِس",
+      "netsisMirrorBranches": "فروع نِتسِس",
+      "aquaCageWarehouseMappings": "ربط القفص بالمستودع",
+      "aquaOpeningImport": "استيراد البداية",
+      "aquaWarehouseTransfers": "تحويلات المستودع",
+      "aquaCageWarehouseTransfers": "تحويلات من القفص إلى المستودع",
+      "aquaWarehouseCageTransfers": "تحويلات من المستودع إلى القفص",
+      "aquaWarehouseTransferLines": "بنود تحويل المستودع",
+      "aquaCageWarehouseTransferLines": "بنود تحويل من القفص إلى المستودع",
+      "aquaWarehouseCageTransferLines": "بنود تحويل من المستودع إلى القفص"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "لا توجد حركة يومية لهذه القفص بعد.",
+      "dailyFlowEmptyDescription": "عند إدخال التغذية أو النفوق أو التحويلات أو الشحن أو الطقس أو أي عمليات يومية أخرى، ستظهر هنا بشكل يومي.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "عامل التصفية بالمشروع مغلق أثناء تفعيل ترتيب الأقفاص."
+      },
+      "projectSelector": {
+        "loadingApply": "جاري تحميل المشاريع..."
+      },
+      "stats": {
+        "cageFishStock": "مخزون الأسماك في القفص",
+        "warehouseFishStock": "مخزون الأسماك في المستودع",
+        "totalSystemFishStock": "إجمالي مخزون الأسماك",
+        "cageBiomass": "الكتلة الحيوية في القفص",
+        "warehouseBiomass": "الكتلة الحيوية في المستودع"
+      },
+      "projectDialog": {
+        "subtitle": "ملخص المشروع وبيانات القفص"
+      },
+      "projectSummary": {
+        "totalDeadCount": "عدد النفوق",
+        "totalDeadKg": "كمية النفوق (كجم)",
+        "totalShipmentCount": "عدد الشحنات",
+        "totalShipmentKg": "كمية الشحنات (كجم)",
+        "measurementGram": "مرجع القياس",
+        "fcr": "FCR",
+        "activeCage": "قفص",
+        "cageFish": "سمكة القفص",
+        "warehouseFish": "سمكة المخزن",
+        "totalFish": "إجمالي الأسماك"
+      },
+      "cageCard": {
+        "totalDeadCount": "عدد النفوق",
+        "shipmentCount": "عدد الشحنات",
+        "stockCount": "كمية المخزون",
+        "totalDeadKg": "كمية النفوق (كجم)",
+        "shipmentKg": "كمية الشحنات (كجم)",
+        "stockKg": "كمية المخزون (كجم)",
+        "measurementGram": "الجرام المقاس",
+        "feedKg": "كمية العلف (كجم)",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "تفاصيل",
+        "cageSortFilterLockedHint": "لا يمكن تغيير مرشح المشروع أثناء تفعيل ترتيب الأقفاص."
+      },
+      "listTable": {
+        "shipment": "شحنة",
+        "stockKg": "المخزون (كجم)",
+        "measurementGram": "الجرام المقاس",
+        "feedKg": "العلف (كجم)",
+        "fcr": "FCR"
+      }
+    }
   }
 }

@@ -1,82 +1,155 @@
 {
   "approvalFlow": {
-    "menu": "Approval Flow Management",
-    "description": "Manage and streamline approval flows",
-    "addButton": "Add New Approval Flow",
+    "advancedFilter": {
+      "columnDocumentType": "Belge Tipi",
+      "columnDescription": "Açıklama",
+      "columnIsActive": "Aktif",
+      "columnCreatedBy": "Oluşturan"
+    },
+    "menu": "Onay Akışı Yönetimi",
+    "description": "Onay akışlarını yönetin ve düzenleyin",
+    "addButton": "Yeni Onay Akışı Ekle",
     "table": {
       "id": "ID",
-      "documentType": "Document Type",
-      "description": "Description",
-      "isActive": "active",
-      "createdDate": "Creation Date",
-      "createdBy": "Created by User",
-      "actions": "Transactions",
-      "showing": "Showing {{from}}-{{to}} / {{total}}",
-      "page": "Page {{current}} / {{total}}"
+      "documentType": "Belge Tipi",
+      "description": "Açıklama",
+      "isActive": "Aktif",
+      "createdDate": "Oluşturulma Tarihi",
+      "createdBy": "Oluşturan Kullanıcı",
+      "actions": "İşlemler",
+      "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+      "page": "Sayfa {{current}} / {{total}}"
     },
     "form": {
-      "addTitle": "Add New Approval Flow",
-      "editTitle": "Edit Approval Flow",
-      "addDescription": "Enter new approval flow information",
-      "editDescription": "Edit approval flow information",
-      "documentType": "Document Type",
-      "selectDocumentType": "Select document type",
-      "noDocumentTypeSelected": "Document type not selected",
-      "documentTypeRequired": "Document type selection is mandatory",
-      "description": "Description",
-      "descriptionPlaceholder": "Enter a description (optional)",
-      "descriptionMaxLength": "Description can be up to 200 characters",
-      "isActive": "active",
-      "isActiveDescription": "Active status of approval flow",
-      "cancel": "Cancel",
-      "save": "Save",
-      "saving": "Recording..."
+      "addTitle": "Yeni Onay Akışı Ekle",
+      "editTitle": "Onay Akışı Düzenle",
+      "addDescription": "Yeni onay akışı bilgilerini girin",
+      "editDescription": "Onay akışı bilgilerini düzenleyin",
+      "documentType": "Belge Tipi",
+      "selectDocumentType": "Belge tipi seçin",
+      "noDocumentTypeSelected": "Belge tipi seçilmedi",
+      "documentTypeRequired": "Belge tipi seçimi zorunludur",
+      "description": "Açıklama",
+      "descriptionPlaceholder": "Açıklama girin (opsiyonel)",
+      "descriptionMaxLength": "Açıklama en fazla 200 karakter olabilir",
+      "isActive": "Aktif",
+      "isActiveDescription": "Onay akışının aktif durumu",
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "saving": "Kaydediliyor..."
     },
-    "loading": "Loading...",
-    "noData": "No data",
-    "active": "active",
-    "inactive": "passive",
-    "previous": "Previous",
-    "next": "Next",
+    "loading": "Yükleniyor...",
+    "noData": "Veri yok",
+    "active": "Aktif",
+    "inactive": "Pasif",
+    "previous": "Önceki",
+    "next": "Sonraki",
     "delete": {
-      "action": "Delete",
-      "cancel": "Cancel",
-      "confirmTitle": "Delete Approval Flow",
-      "confirmMessage": "Are you sure you want to delete this confirmation flow?"
+      "action": "Sil",
+      "cancel": "İptal",
+      "confirmTitle": "Onay Akışını Sil",
+      "confirmMessage": "Bu onay akışını silmek istediğinizden emin misiniz?"
     },
     "documentType": {
-      "offer": "Offer",
-      "request": "Request",
-      "order": "Order"
-    },
-    "advancedFilter": {
-      "columnDocumentType": "Document Type",
-      "columnDescription": "Description",
-      "columnIsActive": "active",
-      "columnCreatedBy": "Created by"
+      "offer": "Teklif",
+      "request": "Talep",
+      "order": "Sipariş"
     }
   },
   "approvalFlowStep": {
-    "title": "Flow Steps",
-    "addButton": "Add Step",
-    "empty": "No steps added yet",
-    "unknownRoleGroup": "No Role Group",
-    "stepDescription": "Approval Order: {{order}}",
+    "title": "Akış Adımları",
+    "addButton": "Adım Ekle",
+    "empty": "Henüz adım eklenmemiş",
+    "unknownRoleGroup": "Rol Grubu Yok",
+    "stepDescription": "Onay Sırası: {{order}}",
     "form": {
-      "addTitle": "Add New Step",
-      "editTitle": "Edit Step",
-      "addDescription": "Add new flow step",
-      "editDescription": "Edit flow step information",
-      "approvalRoleGroup": "Role Group",
-      "selectRoleGroup": "Select role group",
-      "noRoleGroupSelected": "Role group not selected",
-      "approvalRoleGroupIdRequired": "Role group selection is mandatory",
-      "cancel": "Cancel",
-      "save": "Save",
-      "saving": "Recording..."
+      "addTitle": "Yeni Adım Ekle",
+      "editTitle": "Adım Düzenle",
+      "addDescription": "Yeni akış adımı ekleyin",
+      "editDescription": "Akış adımı bilgilerini düzenleyin",
+      "approvalRoleGroup": "Rol Grubu",
+      "selectRoleGroup": "Rol grubu seçin",
+      "noRoleGroupSelected": "Rol grubu seçilmedi",
+      "approvalRoleGroupIdRequired": "Rol grubu seçimi zorunludur",
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "saving": "Kaydediliyor..."
     },
     "messages": {
-      "deleteConfirm": "Are you sure you want to delete this step?"
+      "deleteConfirm": "Bu adımı silmek istediğinizden emin misiniz?"
+    }
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Netsis Customers",
+      "netsisMirrorStocks": "Netsis Stocks",
+      "netsisMirrorWarehouses": "Netsis Warehouses",
+      "netsisMirrorBranches": "Netsis Branches",
+      "aquaCageWarehouseMappings": "Cage-Warehouse Mapping",
+      "aquaOpeningImport": "Opening Import",
+      "aquaWarehouseTransfers": "Warehouse Transfers",
+      "aquaCageWarehouseTransfers": "Cage to Warehouse Transfers",
+      "aquaWarehouseCageTransfers": "Warehouse to Cage Transfers",
+      "aquaWarehouseTransferLines": "Warehouse Transfer Lines",
+      "aquaCageWarehouseTransferLines": "Cage to Warehouse Transfer Lines",
+      "aquaWarehouseCageTransferLines": "Warehouse to Cage Transfer Lines"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "No daily movement is available for this cage yet.",
+      "dailyFlowEmptyDescription": "Feeding, mortality, transfers, shipments, weather and other daily transactions will appear here once they are entered day by day.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Project filter is locked while cage sorting mode is enabled."
+      },
+      "projectSelector": {
+        "loadingApply": "Loading projects..."
+      },
+      "stats": {
+        "cageFishStock": "Cage Fish Stock",
+        "warehouseFishStock": "Warehouse Fish Stock",
+        "totalSystemFishStock": "Total Fish Stock",
+        "cageBiomass": "Cage Biomass",
+        "warehouseBiomass": "Warehouse Biomass"
+      },
+      "projectDialog": {
+        "subtitle": "Project summary and cage data"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Mortality Count",
+        "totalDeadKg": "Mortality Kg",
+        "totalShipmentCount": "Shipment Count",
+        "totalShipmentKg": "Shipment Kg",
+        "measurementGram": "Feed Conversion Basis",
+        "fcr": "FCR",
+        "activeCage": "cage",
+        "cageFish": "Cage Fish",
+        "warehouseFish": "Warehouse Fish",
+        "totalFish": "Total Fish"
+      },
+      "cageCard": {
+        "totalDeadCount": "Mortality Count",
+        "shipmentCount": "Shipment Count",
+        "stockCount": "Stock Count",
+        "totalDeadKg": "Mortality Kg",
+        "shipmentKg": "Shipment Kg",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Measured Gram",
+        "feedKg": "Feed Kg",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Detail",
+        "cageSortFilterLockedHint": "Project filter cannot be changed while cage sort mode is active."
+      },
+      "listTable": {
+        "shipment": "Shipment",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Measured Gram",
+        "feedKg": "Feed Kg",
+        "fcr": "FCR"
+      }
     }
   }
 }

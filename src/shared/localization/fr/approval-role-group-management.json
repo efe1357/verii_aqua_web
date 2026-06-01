@@ -1,42 +1,113 @@
 {
-  "menu": "Gestion des groupes de rôles d'approbation",
-  "description": "Gérer et modifier les groupes de rôles d'approbation",
-  "addButton": "Ajouter un nouveau groupe",
-  "refresh": "Actualiser",
-  "searchPlaceholder": "Rechercher...",
-  "loading": "Chargement...",
-  "noData": "Aucune donnée trouvée",
-  "noDataDescription": "Aucun enregistrement correspondant à vos critères de recherche n'a été trouvé ou aucun enregistrement n'a encore été ajouté.",
+  "advancedFilter": {
+    "columnName": "Grup Adı",
+    "columnCreatedBy": "Oluşturan"
+  },
+  "menu": "Onay Rol Grubu Yönetimi",
+  "description": "Onay rol gruplarını yönetin ve düzenleyin",
+  "addButton": "Yeni Grup Ekle",
+  "refresh": "Yenile",
+  "searchPlaceholder": "Ara...",
+  "loading": "Yükleniyor...",
+  "noData": "Veri bulunamadı",
+  "noDataDescription": "Arama kriterlerinize uygun kayıt bulunamadı veya henüz hiç kayıt eklenmemiş.",
   "table": {
     "id": "ID",
-    "name": "Nom du groupe",
-    "createdDate": "Date de création",
-    "createdBy": "Créé par l'utilisateur",
-    "actions": "Opérations",
-    "showing": "Total {{total}} de l'enregistrement indiquant {{from}}-{{to}}"
+    "name": "Grup Adı",
+    "createdDate": "Oluşturulma Tarihi",
+    "createdBy": "Oluşturan Kullanıcı",
+    "actions": "İşlemler",
+    "showing": "Toplam {{total}} kayıttan {{from}}-{{to}} arası gösteriliyor"
   },
   "delete": {
-    "confirmTitle": "Confirmation de suppression",
-    "confirmMessage": "Cette action ne peut pas être annulée. Voulez-vous continuer ?"
+    "confirmTitle": "Silme Onayı",
+    "confirmMessage": "Bu işlem geri alınamaz. Devam etmek istiyor musunuz?"
   },
-  "cancel": "Annuler",
-  "save": "Enregistrer",
-  "saving": "Enregistrement...",
-  "deleteButton": "Supprimer",
+  "cancel": "İptal",
+  "save": "Kaydet",
+  "saving": "Kaydediliyor...",
+  "deleteButton": "Sil",
   "form": {
-    "editTitle": "Modifier le groupe de rôles d'approbation",
-    "addTitle": "Ajouter un nouveau groupe de rôles d'approbation",
-    "editDescription": "Modifier les informations du groupe de rôles d'approbation",
-    "addDescription": "Saisir les informations du nouveau groupe de rôles d'approbation",
-    "name": "Nom du groupe",
-    "namePlaceholder": "Entrez le nom du groupe",
-    "name.required": "Le nom du groupe est requis",
-    "name.maxLength": "Le nom du groupe peut contenir au maximum 100 caractères",
-    "nameRequired": "Le nom du groupe est obligatoire",
-    "nameMaxLength": "Le nom du groupe peut contenir jusqu'à 100 caractères"
+    "editTitle": "Onay Rol Grubu Düzenle",
+    "addTitle": "Yeni Onay Rol Grubu Ekle",
+    "editDescription": "Onay rol grubu bilgilerini düzenleyin",
+    "addDescription": "Yeni onay rol grubu bilgilerini girin",
+    "name": "Grup Adı",
+    "namePlaceholder": "Grup adını girin",
+    "nameRequired": "Grup adı zorunludur",
+    "nameMaxLength": "Grup adı en fazla 100 karakter olabilir"
   },
-  "advancedFilter": {
-    "columnName": "Nom du groupe",
-    "columnCreatedBy": "Créé par"
+  "common": {
+    "sidebar": {
+      "netsisMirror": "Netsis Mirror",
+      "netsisMirrorCustomers": "Clients Netsis",
+      "netsisMirrorStocks": "Stocks Netsis",
+      "netsisMirrorWarehouses": "Entrepôts Netsis",
+      "netsisMirrorBranches": "Succursales Netsis",
+      "aquaCageWarehouseMappings": "Appariement Cage-Dépôt",
+      "aquaOpeningImport": "Importation d'ouverture",
+      "aquaWarehouseTransfers": "Transferts d'entrepôt",
+      "aquaCageWarehouseTransfers": "Transferts Cage vers Entrepôt",
+      "aquaWarehouseCageTransfers": "Transferts Entrepôt vers Cage",
+      "aquaWarehouseTransferLines": "Lignes de transfert d'entrepôt",
+      "aquaCageWarehouseTransferLines": "Lignes de transfert Cage vers Entrepôt",
+      "aquaWarehouseCageTransferLines": "Lignes de transfert Entrepôt vers Cage"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "Aucune opération quotidienne n'est encore disponible pour cette cage.",
+      "dailyFlowEmptyDescription": "Les opérations quotidiennes comme l'alimentation, la mortalité, les transferts, les expéditions, la météo et d'autres écritures apparaitront ici jour par jour.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "Le filtre projet est verrouillé tant que le tri par cage est actif."
+      },
+      "projectSelector": {
+        "loadingApply": "Chargement des projets..."
+      },
+      "stats": {
+        "cageFishStock": "Stock de poissons en cage",
+        "warehouseFishStock": "Stock de poissons en entrepôt",
+        "totalSystemFishStock": "Stock total de poissons",
+        "cageBiomass": "Biomasse en cage",
+        "warehouseBiomass": "Biomasse en entrepôt"
+      },
+      "projectDialog": {
+        "subtitle": "Résumé du projet et données de cage"
+      },
+      "projectSummary": {
+        "totalDeadCount": "Nombre de mortalités",
+        "totalDeadKg": "Kg mortalité",
+        "totalShipmentCount": "Nombre de livraisons",
+        "totalShipmentKg": "Kg expédiés",
+        "measurementGram": "Base de mesure",
+        "fcr": "FCR",
+        "activeCage": "cage",
+        "cageFish": "Poisson en cage",
+        "warehouseFish": "Poisson en entrepôt",
+        "totalFish": "Total poissons"
+      },
+      "cageCard": {
+        "totalDeadCount": "Nombre de mortalités",
+        "shipmentCount": "Nombre de livraisons",
+        "stockCount": "Quantité en stock",
+        "totalDeadKg": "Kg mortalité",
+        "shipmentKg": "Kg expédiés",
+        "stockKg": "Kg en stock",
+        "measurementGram": "Gramme mesurée",
+        "feedKg": "Kg nourrissant",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "Détail",
+        "cageSortFilterLockedHint": "Le filtre projet ne peut pas être modifié tant que le tri par cage est actif."
+      },
+      "listTable": {
+        "shipment": "Expédition",
+        "stockKg": "Stock Kg",
+        "measurementGram": "Gramme mesurée",
+        "feedKg": "Kg nourrissant",
+        "fcr": "FCR"
+      }
+    }
   }
 }

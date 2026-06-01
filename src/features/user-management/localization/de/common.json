@@ -64,7 +64,10 @@
       "password.maxLength": "Das Passwort kann bis zu 100 Zeichen lang sein",
       "firstName.maxLength": "Der Name kann bis zu 50 Zeichen lang sein",
       "lastName.maxLength": "Der Nachname darf maximal 50 Zeichen lang sein",
-      "phoneNumber.maxLength": "Die Telefonnummer kann bis zu 20 Zeichen lang sein"
+      "phoneNumber.maxLength": "Die Telefonnummer kann bis zu 20 Zeichen lang sein",
+      "manager": "Yönetici",
+      "managerPlaceholder": "Yönetici seçin",
+      "noManager": "Yönetici yok"
     },
     "delete": {
       "confirmTitle": "Benutzer löschen",

@@ -1,82 +1,155 @@
 {
   "approvalFlow": {
-    "menu": "إدارة تدفق الموافقة",
-    "description": "إدارة وتبسيط تدفقات الموافقة",
-    "addButton": "إضافة تدفق موافقة جديد",
+    "advancedFilter": {
+      "columnDocumentType": "Belge Tipi",
+      "columnDescription": "Açıklama",
+      "columnIsActive": "Aktif",
+      "columnCreatedBy": "Oluşturan"
+    },
+    "menu": "Onay Akışı Yönetimi",
+    "description": "Onay akışlarını yönetin ve düzenleyin",
+    "addButton": "Yeni Onay Akışı Ekle",
     "table": {
       "id": "ID",
-      "documentType": "نوع الوثيقة",
-      "description": "توضيح",
-      "isActive": "نشيط",
-      "createdDate": "تاريخ الإنشاء",
-      "createdBy": "تم إنشاؤها بواسطة المستخدم",
-      "actions": "المعاملات",
-      "showing": "عرض {{from}}-{{to}} / {{total}}",
-      "page": "الصفحة {{current}} / {{total}}"
+      "documentType": "Belge Tipi",
+      "description": "Açıklama",
+      "isActive": "Aktif",
+      "createdDate": "Oluşturulma Tarihi",
+      "createdBy": "Oluşturan Kullanıcı",
+      "actions": "İşlemler",
+      "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
+      "page": "Sayfa {{current}} / {{total}}"
     },
     "form": {
-      "addTitle": "إضافة تدفق موافقة جديد",
-      "editTitle": "تحرير تدفق الموافقة",
-      "addDescription": "أدخل معلومات تدفق الموافقة الجديدة",
-      "editDescription": "تحرير معلومات تدفق الموافقة",
-      "documentType": "نوع الوثيقة",
-      "selectDocumentType": "حدد نوع المستند",
-      "noDocumentTypeSelected": "لم يتم تحديد نوع المستند",
-      "documentTypeRequired": "اختيار نوع الوثيقة إلزامي",
-      "description": "توضيح",
-      "descriptionPlaceholder": "أدخل وصفًا (اختياري)",
-      "descriptionMaxLength": "يمكن أن يصل الوصف إلى 200 حرف",
-      "isActive": "نشيط",
-      "isActiveDescription": "الحالة النشطة لتدفق الموافقة",
-      "cancel": "يلغي",
-      "save": "يحفظ",
-      "saving": "تسجيل..."
+      "addTitle": "Yeni Onay Akışı Ekle",
+      "editTitle": "Onay Akışı Düzenle",
+      "addDescription": "Yeni onay akışı bilgilerini girin",
+      "editDescription": "Onay akışı bilgilerini düzenleyin",
+      "documentType": "Belge Tipi",
+      "selectDocumentType": "Belge tipi seçin",
+      "noDocumentTypeSelected": "Belge tipi seçilmedi",
+      "documentTypeRequired": "Belge tipi seçimi zorunludur",
+      "description": "Açıklama",
+      "descriptionPlaceholder": "Açıklama girin (opsiyonel)",
+      "descriptionMaxLength": "Açıklama en fazla 200 karakter olabilir",
+      "isActive": "Aktif",
+      "isActiveDescription": "Onay akışının aktif durumu",
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "saving": "Kaydediliyor..."
     },
-    "loading": "تحميل...",
-    "noData": "لا توجد بيانات",
-    "active": "نشيط",
-    "inactive": "سلبي",
-    "previous": "سابق",
-    "next": "التالي",
+    "loading": "Yükleniyor...",
+    "noData": "Veri yok",
+    "active": "Aktif",
+    "inactive": "Pasif",
+    "previous": "Önceki",
+    "next": "Sonraki",
     "delete": {
-      "action": "يمسح",
-      "cancel": "يلغي",
-      "confirmTitle": "حذف تدفق الموافقة",
-      "confirmMessage": "هل أنت متأكد أنك تريد حذف عملية التأكيد هذه؟"
+      "action": "Sil",
+      "cancel": "İptal",
+      "confirmTitle": "Onay Akışını Sil",
+      "confirmMessage": "Bu onay akışını silmek istediğinizden emin misiniz?"
     },
     "documentType": {
-      "offer": "يعرض",
-      "request": "طلب",
-      "order": "طلب"
-    },
-    "advancedFilter": {
-      "columnDocumentType": "نوع الوثيقة",
-      "columnDescription": "توضيح",
-      "columnIsActive": "نشيط",
-      "columnCreatedBy": "تم إنشاؤها بواسطة"
+      "offer": "Teklif",
+      "request": "Talep",
+      "order": "Sipariş"
     }
   },
   "approvalFlowStep": {
-    "title": "خطوات التدفق",
-    "addButton": "أضف خطوة",
-    "empty": "لم تتم إضافة أي خطوات حتى الآن",
-    "unknownRoleGroup": "لا توجد مجموعة دور",
-    "stepDescription": "أمر الموافقة: {{order}}",
+    "title": "Akış Adımları",
+    "addButton": "Adım Ekle",
+    "empty": "Henüz adım eklenmemiş",
+    "unknownRoleGroup": "Rol Grubu Yok",
+    "stepDescription": "Onay Sırası: {{order}}",
     "form": {
-      "addTitle": "أضف خطوة جديدة",
-      "editTitle": "تحرير الخطوة",
-      "addDescription": "إضافة خطوة تدفق جديدة",
-      "editDescription": "تحرير معلومات خطوة التدفق",
-      "approvalRoleGroup": "مجموعة الدور",
-      "selectRoleGroup": "حدد مجموعة الدور",
-      "noRoleGroupSelected": "لم يتم تحديد مجموعة الدور",
-      "approvalRoleGroupIdRequired": "اختيار مجموعة الدور إلزامي",
-      "cancel": "يلغي",
-      "save": "يحفظ",
-      "saving": "تسجيل..."
+      "addTitle": "Yeni Adım Ekle",
+      "editTitle": "Adım Düzenle",
+      "addDescription": "Yeni akış adımı ekleyin",
+      "editDescription": "Akış adımı bilgilerini düzenleyin",
+      "approvalRoleGroup": "Rol Grubu",
+      "selectRoleGroup": "Rol grubu seçin",
+      "noRoleGroupSelected": "Rol grubu seçilmedi",
+      "approvalRoleGroupIdRequired": "Rol grubu seçimi zorunludur",
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "saving": "Kaydediliyor..."
     },
     "messages": {
-      "deleteConfirm": "هل أنت متأكد أنك تريد حذف هذه الخطوة؟"
+      "deleteConfirm": "Bu adımı silmek istediğinizden emin misiniz?"
+    }
+  },
+  "common": {
+    "sidebar": {
+      "netsisMirror": "مرآة نتسيس",
+      "netsisMirrorCustomers": "عملاء نِتسِس",
+      "netsisMirrorStocks": "مخزون نِتسِس",
+      "netsisMirrorWarehouses": "مستودعات نِتسِس",
+      "netsisMirrorBranches": "فروع نِتسِس",
+      "aquaCageWarehouseMappings": "ربط القفص بالمستودع",
+      "aquaOpeningImport": "استيراد البداية",
+      "aquaWarehouseTransfers": "تحويلات المستودع",
+      "aquaCageWarehouseTransfers": "تحويلات من القفص إلى المستودع",
+      "aquaWarehouseCageTransfers": "تحويلات من المستودع إلى القفص",
+      "aquaWarehouseTransferLines": "بنود تحويل المستودع",
+      "aquaCageWarehouseTransferLines": "بنود تحويل من القفص إلى المستودع",
+      "aquaWarehouseCageTransferLines": "بنود تحويل من المستودع إلى القفص"
+    }
+  },
+  "dashboard": {
+    "aquaDashboard": {
+      "dailyFlowEmptyTitle": "لا توجد حركة يومية لهذه القفص بعد.",
+      "dailyFlowEmptyDescription": "عند إدخال التغذية أو النفوق أو التحويلات أو الشحن أو الطقس أو أي عمليات يومية أخرى، ستظهر هنا بشكل يومي.",
+      "activeProjectFilters": {
+        "cageSortLockedHint": "عامل التصفية بالمشروع مغلق أثناء تفعيل ترتيب الأقفاص."
+      },
+      "projectSelector": {
+        "loadingApply": "جاري تحميل المشاريع..."
+      },
+      "stats": {
+        "cageFishStock": "مخزون الأسماك في القفص",
+        "warehouseFishStock": "مخزون الأسماك في المستودع",
+        "totalSystemFishStock": "إجمالي مخزون الأسماك",
+        "cageBiomass": "الكتلة الحيوية في القفص",
+        "warehouseBiomass": "الكتلة الحيوية في المستودع"
+      },
+      "projectDialog": {
+        "subtitle": "ملخص المشروع وبيانات القفص"
+      },
+      "projectSummary": {
+        "totalDeadCount": "عدد النفوق",
+        "totalDeadKg": "كمية النفوق (كجم)",
+        "totalShipmentCount": "عدد الشحنات",
+        "totalShipmentKg": "كمية الشحنات (كجم)",
+        "measurementGram": "مرجع القياس",
+        "fcr": "FCR",
+        "activeCage": "قفص",
+        "cageFish": "سمكة القفص",
+        "warehouseFish": "سمكة المخزن",
+        "totalFish": "إجمالي الأسماك"
+      },
+      "cageCard": {
+        "totalDeadCount": "عدد النفوق",
+        "shipmentCount": "عدد الشحنات",
+        "stockCount": "كمية المخزون",
+        "totalDeadKg": "كمية النفوق (كجم)",
+        "shipmentKg": "كمية الشحنات (كجم)",
+        "stockKg": "كمية المخزون (كجم)",
+        "measurementGram": "الجرام المقاس",
+        "feedKg": "كمية العلف (كجم)",
+        "fcr": "FCR"
+      },
+      "controls": {
+        "detail": "تفاصيل",
+        "cageSortFilterLockedHint": "لا يمكن تغيير مرشح المشروع أثناء تفعيل ترتيب الأقفاص."
+      },
+      "listTable": {
+        "shipment": "شحنة",
+        "stockKg": "المخزون (كجم)",
+        "measurementGram": "الجرام المقاس",
+        "feedKg": "العلف (كجم)",
+        "fcr": "FCR"
+      }
     }
   }
 }

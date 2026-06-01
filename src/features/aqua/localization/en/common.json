@@ -1025,8 +1025,7 @@
         "feedStock": "Feed Stock",
         "selectStock": "select stock",
         "qty": "quantity",
-        "save": "Save",
-        "gramPerUnit": "Gram per Unit"
+        "save": "Save"
       },
       "mortality": {
         "title": "Wastage",

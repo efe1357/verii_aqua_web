@@ -1,33 +1,4 @@
 {
-  "title": "Gestione Magazzino",
-  "description": "Tracciamento e gestione dei livelli di magazzino",
-  "filter": {
-    "search": "Cerca",
-    "warehouse": "Magazzino",
-    "product": "Prodotto",
-    "category": "Categoria"
-  },
-  "table": {
-    "productCode": "Codice Prodotto",
-    "productName": "Nome Prodotto",
-    "warehouse": "Magazzino",
-    "quantity": "Quantità",
-    "unit": "Unità",
-    "status": "Stato",
-    "lastUpdated": "Ultimo Aggiornamento"
-  },
-  "status": {
-    "inStock": "Disponibile",
-    "lowStock": "Scorta Bassa",
-    "outOfStock": "Esaurito"
-  },
-  "movements": {
-    "title": "Movimenti di Magazzino",
-    "in": "Entrata",
-    "out": "Uscita",
-    "transfer": "Trasferimento",
-    "adjustment": "Rettifica"
-  },
   "list": {
     "title": "Gestione delle scorte",
     "description": "Visualizza e gestisci le azioni",

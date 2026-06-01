@@ -1,28 +1,6 @@
 {
   "title": "تفاصيل المستخدم",
   "description": "قم بتحرير معلومات ملفك الشخصي",
-  "sections": {
-    "personalInfo": "المعلومات الشخصية",
-    "accountSettings": "إعدادات الحساب",
-    "preferences": "تفضيلات"
-  },
-  "fields": {
-    "firstName": "الاسم الأول",
-    "lastName": "الاسم الأخير",
-    "email": "البريد الإلكتروني",
-    "phone": "الهاتف",
-    "language": "اللغة",
-    "timezone": "المنطقة الزمنية"
-  },
-  "actions": {
-    "save": "حفظ التغييرات",
-    "cancel": "إلغاء",
-    "changePassword": "تغيير كلمة المرور"
-  },
-  "messages": {
-    "successUpdate": "تم تحديث تفاصيل المستخدم بنجاح",
-    "errorUpdate": "فشل تحديث تفاصيل المستخدم"
-  },
   "profilePicture": "صورة الملف الشخصي",
   "height": "الارتفاع (سم)",
   "weight": "الوزن (kg)",
