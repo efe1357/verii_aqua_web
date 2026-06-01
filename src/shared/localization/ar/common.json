@@ -302,8 +302,8 @@
     "paymentTypeManagement": "Payment Type Management",
     "userDiscountLimitManagement": "User Discount Limit Management",
     "mailSettings": "Mail Settings",
-    "hangfireMonitoring": "Hangfire Monitoring",
-    "netsisMirror": "Netsis Mirror",
+    "hangfireMonitoring": "مراقبة Hangfire",
+    "netsisMirror": "مرآة Netsis",
     "netsisMirrorCustomers": "Mirror Customers",
     "netsisMirrorStocks": "Mirror Stocks",
     "netsisMirrorWarehouses": "Mirror Warehouses",
@@ -1603,7 +1603,7 @@
     "searchPlaceholder": "البحث حسب اسم العملة أو الرمز...",
     "loading": "جاري التحميل...",
     "noResults": "لم يتم العثور على نتائج",
-    "currencyFallback": "Döviz {{code}}"
+    "currencyFallback": "العملة {{code}}"
   },
   "customerSelectDialog": {
     "loading": "جاري التحميل...",
