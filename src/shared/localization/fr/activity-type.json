@@ -14,7 +14,7 @@
   "next": "Suivant",
   "form": {
     "addTitle": "Ajouter un nouveau type d'activité",
-    "editTitle": "Type d'activité Modifier",
+    "editTitle": "Modifier le type d'activité",
     "addDescription": "Saisir les nouvelles informations sur le type d'activité",
     "editDescription": "Modifier les informations sur le type d'activité",
     "name": "Nom du type d'activité",
@@ -32,11 +32,11 @@
     "createdDate": "Date de création",
     "createdBy": "Créé par l'utilisateur",
     "showing": "Affichage de {{from}}-{{to}} / {{total}}",
-    "page": "Pages {{current}} / {{total}}"
+    "page": "Page {{current}} / {{total}}"
   },
   "stats": {
-    "totalActivityTypes": "Type d'activité totale",
-    "activeActivityTypes": "Type d'activité active",
+    "totalActivityTypes": "Total des types d'activité",
+    "activeActivityTypes": "Types d'activité actifs",
     "newThisMonth": "Nouveau ce mois-ci"
   },
   "messages": {

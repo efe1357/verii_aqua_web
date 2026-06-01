@@ -9,12 +9,12 @@
   "deleteButton": "Elimina",
   "cancel": "Annulla",
   "save": "Salva",
-  "saving": "Registrazione...",
+  "saving": "Salvataggio...",
   "previous": "Precedente",
   "next": "Avanti",
   "form": {
     "addTitle": "Aggiungi nuovo tipo di attività",
-    "editTitle": "Tipo di attività Modifica",
+    "editTitle": "Modifica tipo di attività",
     "addDescription": "Inserisci le informazioni sul nuovo tipo di attività",
     "editDescription": "Modifica le informazioni sul tipo di attività",
     "name": "Nome del tipo di attività",
@@ -35,9 +35,9 @@
     "page": "Pagina {{current}} / {{total}}"
   },
   "stats": {
-    "totalActivityTypes": "Tipo di attività totale",
-    "activeActivityTypes": "Tipo di attività attiva",
-    "newThisMonth": "Novità questo mese"
+    "totalActivityTypes": "Totale tipi di attività",
+    "activeActivityTypes": "Tipi di attività attivi",
+    "newThisMonth": "Nuovo questo mese"
   },
   "messages": {
     "createSuccess": "Tipo di attività creato correttamente",

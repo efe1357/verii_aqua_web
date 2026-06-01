@@ -4,7 +4,7 @@
   "addButton": "Agregar nuevo tipo de actividad",
   "loading": "Cargando...",
   "noData": "Sin datos",
-  "actions": "Transacciones",
+  "actions": "Acciones",
   "edit": "Editar",
   "deleteButton": "Eliminar",
   "cancel": "Cancelar",
@@ -14,7 +14,7 @@
   "next": "Siguiente",
   "form": {
     "addTitle": "Agregar nuevo tipo de actividad",
-    "editTitle": "Tipo de actividad Editar",
+    "editTitle": "Editar tipo de actividad",
     "addDescription": "Ingrese nueva información del tipo de actividad",
     "editDescription": "Editar información del tipo de actividad",
     "name": "Nombre del tipo de actividad",
@@ -35,8 +35,8 @@
     "page": "Página {{current}} / {{total}}"
   },
   "stats": {
-    "totalActivityTypes": "Tipo de actividad total",
-    "activeActivityTypes": "Tipo de actividad activa",
+    "totalActivityTypes": "Total tipos de actividad",
+    "activeActivityTypes": "Tipos de actividad activos",
     "newThisMonth": "Nuevo este mes"
   },
   "messages": {

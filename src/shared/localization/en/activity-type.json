@@ -4,12 +4,12 @@
   "addButton": "Add New Activity Type",
   "loading": "Loading...",
   "noData": "No data",
-  "actions": "Transactions",
+  "actions": "Actions",
   "edit": "Edit",
   "deleteButton": "Delete",
   "cancel": "Cancel",
   "save": "Save",
-  "saving": "Recording...",
+  "saving": "Saving...",
   "previous": "Previous",
   "next": "Next",
   "advancedFilter": {
@@ -19,7 +19,7 @@
   },
   "form": {
     "addTitle": "Add New Activity Type",
-    "editTitle": "Activity Type Edit",
+    "editTitle": "Edit Activity Type",
     "addDescription": "Enter new activity type information",
     "editDescription": "Edit activity type information",
     "name": "Activity Type Name",
@@ -40,8 +40,8 @@
     "page": "Page {{current}} / {{total}}"
   },
   "stats": {
-    "totalActivityTypes": "Total Activity Type",
-    "activeActivityTypes": "Active Activity Type",
+    "totalActivityTypes": "Total Activity Types",
+    "activeActivityTypes": "Active Activity Types",
     "newThisMonth": "New This Month"
   },
   "messages": {

@@ -9,9 +9,9 @@
   "deleteButton": "Löschen",
   "cancel": "Abbrechen",
   "save": "Speichern",
-  "saving": "Aufnahme...",
+  "saving": "Wird gespeichert...",
   "previous": "Zurück",
-  "next": "Als nächstes",
+  "next": "Weiter",
   "form": {
     "addTitle": "Neuen Aktivitätstyp hinzufügen",
     "editTitle": "Aktivitätstyp bearbeiten",
@@ -35,8 +35,8 @@
     "page": "Seite {{current}} / {{total}}"
   },
   "stats": {
-    "totalActivityTypes": "Gesamtaktivitätstyp",
-    "activeActivityTypes": "Aktiver Aktivitätstyp",
+    "totalActivityTypes": "Gesamte Aktivitätstypen",
+    "activeActivityTypes": "Aktive Aktivitätstypen",
     "newThisMonth": "Neu in diesem Monat"
   },
   "messages": {
