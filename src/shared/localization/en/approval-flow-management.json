@@ -1,82 +1,82 @@
 {
   "approvalFlow": {
     "advancedFilter": {
-      "columnDocumentType": "Belge Tipi",
-      "columnDescription": "Açıklama",
-      "columnIsActive": "Aktif",
-      "columnCreatedBy": "Oluşturan"
+      "columnDocumentType": "Document Type",
+      "columnDescription": "Description",
+      "columnIsActive": "Active",
+      "columnCreatedBy": "Created By"
     },
-    "menu": "Onay Akışı Yönetimi",
-    "description": "Onay akışlarını yönetin ve düzenleyin",
-    "addButton": "Yeni Onay Akışı Ekle",
+    "menu": "Approval Flow Management",
+    "description": "Manage and organize approval flows",
+    "addButton": "Add New Approval Flow",
     "table": {
       "id": "ID",
-      "documentType": "Belge Tipi",
-      "description": "Açıklama",
-      "isActive": "Aktif",
-      "createdDate": "Oluşturulma Tarihi",
-      "createdBy": "Oluşturan Kullanıcı",
-      "actions": "İşlemler",
-      "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
-      "page": "Sayfa {{current}} / {{total}}"
+      "documentType": "Document Type",
+      "description": "Description",
+      "isActive": "Active",
+      "createdDate": "Created Date",
+      "createdBy": "Created By",
+      "actions": "Actions",
+      "showing": "Showing {{from}}-{{to}} / {{total}}",
+      "page": "Page {{current}} / {{total}}"
     },
     "form": {
-      "addTitle": "Yeni Onay Akışı Ekle",
-      "editTitle": "Onay Akışı Düzenle",
-      "addDescription": "Yeni onay akışı bilgilerini girin",
-      "editDescription": "Onay akışı bilgilerini düzenleyin",
-      "documentType": "Belge Tipi",
-      "selectDocumentType": "Belge tipi seçin",
-      "noDocumentTypeSelected": "Belge tipi seçilmedi",
-      "documentTypeRequired": "Belge tipi seçimi zorunludur",
-      "description": "Açıklama",
-      "descriptionPlaceholder": "Açıklama girin (opsiyonel)",
-      "descriptionMaxLength": "Açıklama en fazla 200 karakter olabilir",
-      "isActive": "Aktif",
-      "isActiveDescription": "Onay akışının aktif durumu",
-      "cancel": "İptal",
-      "save": "Kaydet",
-      "saving": "Kaydediliyor..."
+      "addTitle": "Add New Approval Flow",
+      "editTitle": "Edit Approval Flow",
+      "addDescription": "Enter new approval flow information",
+      "editDescription": "Edit approval flow information",
+      "documentType": "Document Type",
+      "selectDocumentType": "Select document type",
+      "noDocumentTypeSelected": "No document type selected",
+      "documentTypeRequired": "Document type selection is required",
+      "description": "Description",
+      "descriptionPlaceholder": "Enter description (optional)",
+      "descriptionMaxLength": "Description can be at most 200 characters",
+      "isActive": "Active",
+      "isActiveDescription": "Active status of the approval flow",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving..."
     },
-    "loading": "Yükleniyor...",
-    "noData": "Veri yok",
-    "active": "Aktif",
-    "inactive": "Pasif",
-    "previous": "Önceki",
-    "next": "Sonraki",
+    "loading": "Loading...",
+    "noData": "No data",
+    "active": "Active",
+    "inactive": "Inactive",
+    "previous": "Previous",
+    "next": "Next",
     "delete": {
-      "action": "Sil",
-      "cancel": "İptal",
-      "confirmTitle": "Onay Akışını Sil",
-      "confirmMessage": "Bu onay akışını silmek istediğinizden emin misiniz?"
+      "action": "Delete",
+      "cancel": "Cancel",
+      "confirmTitle": "Delete Approval Flow",
+      "confirmMessage": "Are you sure you want to delete this approval flow?"
     },
     "documentType": {
-      "offer": "Teklif",
-      "request": "Talep",
-      "order": "Sipariş"
+      "offer": "Offer",
+      "request": "Request",
+      "order": "Order"
     }
   },
   "approvalFlowStep": {
-    "title": "Akış Adımları",
-    "addButton": "Adım Ekle",
-    "empty": "Henüz adım eklenmemiş",
-    "unknownRoleGroup": "Rol Grubu Yok",
-    "stepDescription": "Onay Sırası: {{order}}",
+    "title": "Flow Steps",
+    "addButton": "Add Step",
+    "empty": "No steps added yet",
+    "unknownRoleGroup": "No Role Group",
+    "stepDescription": "Approval Order: {{order}}",
     "form": {
-      "addTitle": "Yeni Adım Ekle",
-      "editTitle": "Adım Düzenle",
-      "addDescription": "Yeni akış adımı ekleyin",
-      "editDescription": "Akış adımı bilgilerini düzenleyin",
-      "approvalRoleGroup": "Rol Grubu",
-      "selectRoleGroup": "Rol grubu seçin",
-      "noRoleGroupSelected": "Rol grubu seçilmedi",
-      "approvalRoleGroupIdRequired": "Rol grubu seçimi zorunludur",
-      "cancel": "İptal",
-      "save": "Kaydet",
-      "saving": "Kaydediliyor..."
+      "addTitle": "Add New Step",
+      "editTitle": "Edit Step",
+      "addDescription": "Add new flow step",
+      "editDescription": "Edit flow step information",
+      "approvalRoleGroup": "Role Group",
+      "selectRoleGroup": "Select role group",
+      "noRoleGroupSelected": "No role group selected",
+      "approvalRoleGroupIdRequired": "Role group selection is required",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving..."
     },
     "messages": {
-      "deleteConfirm": "Bu adımı silmek istediğinizden emin misiniz?"
+      "deleteConfirm": "Are you sure you want to delete this step?"
     }
   },
   "common": {
