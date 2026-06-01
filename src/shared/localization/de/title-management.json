@@ -1,50 +1,50 @@
 {
-  "loading": "Yükleniyor...",
-  "noData": "Veri bulunamadı",
-  "search": "Ara...",
-  "refresh": "Yenile",
-  "previous": "Önceki",
-  "next": "Sonraki",
+  "loading": "Wird geladen...",
+  "noData": "Keine Daten gefunden",
+  "search": "Suchen...",
+  "refresh": "Aktualisieren",
+  "previous": "Vorherige",
+  "next": "Nächste",
   "advancedFilter": {
-    "columnTitleName": "Ünvan Adı",
-    "columnCode": "Kod"
+    "columnTitleName": "Titelname",
+    "columnCode": "Code"
   },
-  "cancel": "İptal",
-  "save": "Kaydet",
-  "saving": "Kaydediliyor...",
+  "cancel": "Abbrechen",
+  "save": "Speichern",
+  "saving": "Wird gespeichert...",
   "delete": {
-    "confirmTitle": "Ünvanı Sil",
-    "confirmMessage": "{{titleName}} ünvanını silmek istediğinizden emin misiniz?",
-    "button": "Sil"
+    "confirmTitle": "Titel löschen",
+    "confirmMessage": "Sind Sie sicher, dass Sie {{titleName}} löschen möchten?",
+    "button": "Löschen"
   },
-  "deleting": "Siliniyor...",
-  "actions": "İşlemler",
-  "edit": "Düzenle",
+  "deleting": "Wird gelöscht...",
+  "actions": "Aktionen",
+  "edit": "Bearbeiten",
   "header": {
-    "title": "Ünvan Yönetimi",
-    "description": "Ünvan tanımlarını buradan yönetebilirsiniz."
+    "title": "Titelverwaltung",
+    "description": "Sie können die Titeldefinitionen hier verwalten."
   },
   "table": {
     "id": "ID",
-    "name": "Ünvan Adı",
-    "code": "Kod",
-    "createdDate": "Oluşturulma Tarihi",
-    "createdBy": "Oluşturan Kullanıcı",
-    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
-    "page": "Sayfa {{current}} / {{total}}"
+    "name": "Titelname",
+    "code": "Code",
+    "createdDate": "Erstellungsdatum",
+    "createdBy": "Erstellt von",
+    "showing": "{{from}}-{{to}} / {{total}} angezeigt",
+    "page": "Seite {{current}} / {{total}}"
   },
   "form": {
-    "addTitle": "Yeni Ünvan Ekle",
-    "editTitle": "Ünvan Düzenle",
-    "addDescription": "Yeni ünvan bilgilerini girin",
-    "editDescription": "Ünvan bilgilerini düzenleyin",
-    "titleName": "Ünvan Adı",
-    "titleNamePlaceholder": "Ünvan adını girin",
-    "titleCode": "Ünvan Kodu",
-    "codePlaceholder": "Kod girin (opsiyonel)",
-    "cancel": "İptal",
-    "save": "Kaydet",
-    "saving": "Kaydediliyor..."
+    "addTitle": "Neuen Titel hinzufügen",
+    "editTitle": "Titel bearbeiten",
+    "addDescription": "Neue Titelinformationen eingeben",
+    "editDescription": "Titeldaten bearbeiten",
+    "titleName": "Titelname",
+    "titleNamePlaceholder": "Titelname eingeben",
+    "titleCode": "Titelcode",
+    "codePlaceholder": "Code eingeben (optional)",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "saving": "Wird gespeichert..."
   },
   "common": {
     "sidebar": {

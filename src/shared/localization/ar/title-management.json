@@ -1,50 +1,50 @@
 {
-  "loading": "Yükleniyor...",
-  "noData": "Veri bulunamadı",
-  "search": "Ara...",
-  "refresh": "Yenile",
-  "previous": "Önceki",
-  "next": "Sonraki",
+  "loading": "جاري التحميل...",
+  "noData": "لا توجد بيانات",
+  "search": "بحث",
+  "refresh": "تحديث",
+  "previous": "السابق",
+  "next": "التالي",
   "advancedFilter": {
-    "columnTitleName": "Ünvan Adı",
-    "columnCode": "Kod"
+    "columnTitleName": "اسم المسمى الوظيفي",
+    "columnCode": "الرمز"
   },
-  "cancel": "İptal",
-  "save": "Kaydet",
-  "saving": "Kaydediliyor...",
+  "cancel": "إلغاء",
+  "save": "حفظ",
+  "saving": "جاري الحفظ...",
   "delete": {
-    "confirmTitle": "Ünvanı Sil",
-    "confirmMessage": "{{titleName}} ünvanını silmek istediğinizden emin misiniz?",
-    "button": "Sil"
+    "confirmTitle": "حذف المسمى الوظيفي",
+    "confirmMessage": "هل أنت متأكد من رغبتك في حذف {{titleName}}؟",
+    "button": "حذف"
   },
-  "deleting": "Siliniyor...",
-  "actions": "İşlemler",
-  "edit": "Düzenle",
+  "deleting": "جاري الحذف...",
+  "actions": "الإجراءات",
+  "edit": "تعديل",
   "header": {
-    "title": "Ünvan Yönetimi",
-    "description": "Ünvan tanımlarını buradan yönetebilirsiniz."
+    "title": "إدارة المسمى الوظيفي",
+    "description": "يمكنك إدارة تعريفات المسمى الوظيفي من هنا."
   },
   "table": {
     "id": "ID",
-    "name": "Ünvan Adı",
-    "code": "Kod",
-    "createdDate": "Oluşturulma Tarihi",
-    "createdBy": "Oluşturan Kullanıcı",
-    "showing": "{{from}}-{{to}} / {{total}} gösteriliyor",
-    "page": "Sayfa {{current}} / {{total}}"
+    "name": "اسم المسمى الوظيفي",
+    "code": "الرمز",
+    "createdDate": "تاريخ الإنشاء",
+    "createdBy": "أنشئ بواسطة",
+    "showing": "{{from}}-{{to}} / {{total}} معروض",
+    "page": "الصفحة {{current}} / {{total}}"
   },
   "form": {
-    "addTitle": "Yeni Ünvan Ekle",
-    "editTitle": "Ünvan Düzenle",
-    "addDescription": "Yeni ünvan bilgilerini girin",
-    "editDescription": "Ünvan bilgilerini düzenleyin",
-    "titleName": "Ünvan Adı",
-    "titleNamePlaceholder": "Ünvan adını girin",
-    "titleCode": "Ünvan Kodu",
-    "codePlaceholder": "Kod girin (opsiyonel)",
-    "cancel": "İptal",
-    "save": "Kaydet",
-    "saving": "Kaydediliyor..."
+    "addTitle": "إضافة مسمى وظيفي جديد",
+    "editTitle": "تعديل المسمى الوظيفي",
+    "addDescription": "أدخل معلومات المسمى الوظيفي الجديدة",
+    "editDescription": "تعديل معلومات المسمى الوظيفي",
+    "titleName": "اسم المسمى الوظيفي",
+    "titleNamePlaceholder": "أدخل اسم المسمى الوظيفي",
+    "titleCode": "رمز المسمى الوظيفي",
+    "codePlaceholder": "أدخل الرمز (اختياري)",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "saving": "جاري الحفظ..."
   },
   "common": {
     "sidebar": {
