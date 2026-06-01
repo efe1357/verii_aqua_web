@@ -1,41 +1,41 @@
 {
   "advancedFilter": {
-    "columnName": "Grup Adı",
-    "columnCreatedBy": "Oluşturan"
+    "columnName": "Group Name",
+    "columnCreatedBy": "Created By"
   },
-  "menu": "Onay Rol Grubu Yönetimi",
-  "description": "Onay rol gruplarını yönetin ve düzenleyin",
-  "addButton": "Yeni Grup Ekle",
-  "refresh": "Yenile",
-  "searchPlaceholder": "Ara...",
-  "loading": "Yükleniyor...",
-  "noData": "Veri bulunamadı",
-  "noDataDescription": "Arama kriterlerinize uygun kayıt bulunamadı veya henüz hiç kayıt eklenmemiş.",
+  "menu": "Approval Role Group Management",
+  "description": "Manage and edit approval role groups",
+  "addButton": "Add New Group",
+  "refresh": "Refresh",
+  "searchPlaceholder": "Search...",
+  "loading": "Loading...",
+  "noData": "No data found",
+  "noDataDescription": "No records match your search criteria or no record has been added yet.",
   "table": {
     "id": "ID",
-    "name": "Grup Adı",
-    "createdDate": "Oluşturulma Tarihi",
-    "createdBy": "Oluşturan Kullanıcı",
-    "actions": "İşlemler",
-    "showing": "Toplam {{total}} kayıttan {{from}}-{{to}} arası gösteriliyor"
+    "name": "Group Name",
+    "createdDate": "Created Date",
+    "createdBy": "Created By",
+    "actions": "Actions",
+    "showing": "Showing {{from}}-{{to}} of {{total}} entries"
   },
   "delete": {
-    "confirmTitle": "Silme Onayı",
-    "confirmMessage": "Bu işlem geri alınamaz. Devam etmek istiyor musunuz?"
+    "confirmTitle": "Delete Confirmation",
+    "confirmMessage": "This action cannot be undone. Do you want to continue?"
   },
-  "cancel": "İptal",
-  "save": "Kaydet",
-  "saving": "Kaydediliyor...",
-  "deleteButton": "Sil",
+  "cancel": "Cancel",
+  "save": "Save",
+  "saving": "Saving...",
+  "deleteButton": "Delete",
   "form": {
-    "editTitle": "Onay Rol Grubu Düzenle",
-    "addTitle": "Yeni Onay Rol Grubu Ekle",
-    "editDescription": "Onay rol grubu bilgilerini düzenleyin",
-    "addDescription": "Yeni onay rol grubu bilgilerini girin",
-    "name": "Grup Adı",
-    "namePlaceholder": "Grup adını girin",
-    "nameRequired": "Grup adı zorunludur",
-    "nameMaxLength": "Grup adı en fazla 100 karakter olabilir"
+    "editTitle": "Edit Approval Role Group",
+    "addTitle": "Add Approval Role Group",
+    "editDescription": "Edit approval role group information",
+    "addDescription": "Enter new approval role group information",
+    "name": "Group Name",
+    "namePlaceholder": "Enter group name",
+    "nameRequired": "Group name is required",
+    "nameMaxLength": "Group name can be at most 100 characters"
   },
   "common": {
     "sidebar": {
@@ -45,7 +45,7 @@
       "netsisMirrorWarehouses": "Netsis Lager",
       "netsisMirrorBranches": "Netsis Filialen",
       "aquaCageWarehouseMappings": "Käfig-Lager Zuordnung",
-      "aquaOpeningImport": "Erstübergabe",
+      "aquaOpeningImport": "Opening Import",
       "aquaWarehouseTransfers": "Lagertransfers",
       "aquaCageWarehouseTransfers": "Käfig-zu-Lager Transfers",
       "aquaWarehouseCageTransfers": "Lager-zu-Käfig Transfers",
@@ -56,8 +56,8 @@
   },
   "dashboard": {
     "aquaDashboard": {
-      "dailyFlowEmptyTitle": "Für diese Gitterbox ist noch kein täglicher Datensatz vorhanden.",
-      "dailyFlowEmptyDescription": "Fütterung, Mortalität, Transfers, Versand, Wetter und andere tägliche Buchungen werden nach Eingabe hier täglich angezeigt.",
+      "dailyFlowEmptyTitle": "No daily movement is available for this cage yet.",
+      "dailyFlowEmptyDescription": "Feeding, mortality, transfers, shipments, weather and other daily transactions will appear here once they are entered day by day.",
       "activeProjectFilters": {
         "cageSortLockedHint": "Der Projektfilter ist gesperrt, wenn die Käfigsortierung aktiv ist."
       },
@@ -72,7 +72,7 @@
         "warehouseBiomass": "Lagerbiomasse"
       },
       "projectDialog": {
-        "subtitle": "Projektübersicht und Käfigdaten"
+        "subtitle": "Project summary and cage data"
       },
       "projectSummary": {
         "totalDeadCount": "Mortalitätsmenge",
