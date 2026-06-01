@@ -7,15 +7,15 @@
   "searchPlaceholder": "Rechercher par code produit ou par nom...",
   "voiceSearch": "recherche vocale",
   "loading": "chargement",
-  "select": "Seç",
-  "cancel": "İptal",
+  "select": "Sélectionner",
+  "cancel": "Annuler",
   "columns": {
-    "code": "Kod",
-    "name": "Ad",
-    "description": "Açıklama",
-    "price": "Fiyat",
-    "currency": "Para Birimi",
-    "stock": "Stok"
+    "code": "Code",
+    "name": "Nom",
+    "description": "Description",
+    "price": "Prix",
+    "currency": "Devise",
+    "stock": "Stock"
   },
-  "noData": "Kayıt bulunamadı"
+  "noData": "Aucun enregistrement trouvé"
 }

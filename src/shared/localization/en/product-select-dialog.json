@@ -5,17 +5,17 @@
   "noProducts": "Product not found",
   "noResults": "Search results not found",
   "searchPlaceholder": "Search by product code or name...",
-  "voiceSearch": "voice search",
-  "loading": "loading",
-  "select": "Seç",
-  "cancel": "İptal",
+  "voiceSearch": "Voice search",
+  "loading": "Loading",
+  "select": "Select",
+  "cancel": "Cancel",
   "columns": {
-    "code": "Kod",
-    "name": "Ad",
-    "description": "Açıklama",
-    "price": "Fiyat",
-    "currency": "Para Birimi",
-    "stock": "Stok"
+    "code": "Code",
+    "name": "Name",
+    "description": "Description",
+    "price": "Price",
+    "currency": "Currency",
+    "stock": "Stock"
   },
-  "noData": "Kayıt bulunamadı"
+  "noData": "No records found"
 }
