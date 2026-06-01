@@ -13,9 +13,9 @@
       "approvalRoleName": "Rôle d'approbation",
       "createdDate": "Date de création",
       "createdBy": "Créé par l'utilisateur",
-      "actions": "Opérations",
+      "actions": "Actions",
       "showing": "Affichage de {{from}}-{{to}} / {{total}}",
-      "page": "Pages {{current}} / {{total}}",
+      "page": "Page {{current}} / {{total}}",
       "previous": "Précédent",
       "next": "Suivant"
     },

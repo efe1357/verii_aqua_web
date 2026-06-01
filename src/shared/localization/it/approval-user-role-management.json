@@ -13,7 +13,7 @@
       "approvalRoleName": "Ruolo di approvazione",
       "createdDate": "Data di creazione",
       "createdBy": "Creato dall'utente",
-      "actions": "Transazioni",
+      "actions": "Azioni",
       "showing": "Mostrando {{from}}-{{to}} / {{total}}",
       "page": "Pagina {{current}} / {{total}}",
       "previous": "Precedente",
@@ -39,7 +39,7 @@
       "userIdRequired": "La selezione dell'utente è obbligatoria",
       "approvalRoleIdRequired": "È richiesta la selezione del ruolo di approvazione",
       "save": "Salva",
-      "saving": "Registrazione...",
+      "saving": "Salvataggio...",
       "cancel": "Annulla"
     },
     "advancedFilter": {

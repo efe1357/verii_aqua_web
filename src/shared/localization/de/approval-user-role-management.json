@@ -13,11 +13,11 @@
       "approvalRoleName": "Genehmigungsrolle",
       "createdDate": "Erstellungsdatum",
       "createdBy": "Erstellt vom Benutzer",
-      "actions": "Transaktionen",
+      "actions": "Aktionen",
       "showing": "Angezeigt werden {{from}}-{{to}} / {{total}}",
       "page": "Seite {{current}} / {{total}}",
       "previous": "Zurück",
-      "next": "Als nächstes"
+      "next": "Weiter"
     },
     "delete": {
       "title": "Rolle löschen",
@@ -37,7 +37,7 @@
       "selectApprovalRole": "Wählen Sie Genehmigungsrolle aus",
       "noApprovalRoleSelected": "Genehmigungsrolle nicht ausgewählt",
       "save": "Speichern",
-      "saving": "Aufnahme...",
+      "saving": "Wird gespeichert...",
       "cancel": "Abbrechen",
       "userIdRequired": "Eine Benutzerauswahl ist erforderlich",
       "approvalRoleIdRequired": "Die Auswahl einer Genehmigungsrolle ist erforderlich"
