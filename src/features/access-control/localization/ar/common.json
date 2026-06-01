@@ -104,7 +104,7 @@
       "page": "الصفحة {{current}} / {{total}}",
       "maxAmount": "الحد الأقصى للمبلغ",
       "actions": "المعاملات",
-      "totalRecords": "الإجمالي <فئة الامتداد=",
+      "totalRecords": "الإجمالي {{from}}-{{to}} / {{total}}",
       "previous": "سابق",
       "next": "التالي"
     },

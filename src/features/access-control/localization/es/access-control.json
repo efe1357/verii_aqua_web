@@ -24,7 +24,7 @@
   "permissionDefinitions": {
     "title": "Definiciones de permisos",
     "description": "Administrar códigos de permiso utilizados en el sistema.",
-    "add": "Agregar descripción",
+    "add": "Agregar definición de permiso",
     "form": {
       "editTitle": "Editar definición de permiso",
       "addTitle": "Agregar definición de permiso",

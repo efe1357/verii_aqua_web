@@ -104,7 +104,7 @@
       "page": "Pages {{current}} / {{total}}",
       "maxAmount": "Montant maximum",
       "actions": "Opérations",
-      "totalRecords": "Total <classe de durée=",
+      "totalRecords": "Total {{from}}-{{to}} / {{total}}",
       "previous": "Précédent",
       "next": "Suivant"
     },

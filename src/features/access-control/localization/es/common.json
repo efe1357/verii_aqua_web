@@ -104,7 +104,7 @@
       "page": "Página {{current}} / {{total}}",
       "maxAmount": "Monto Máximo",
       "actions": "Transacciones",
-      "totalRecords": "Total <clase abarcada=",
+      "totalRecords": "Total {{from}}-{{to}} / {{total}}",
       "previous": "Anterior",
       "next": "Siguiente"
     },

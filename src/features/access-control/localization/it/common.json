@@ -104,7 +104,7 @@
       "page": "Pagina {{current}} / {{total}}",
       "maxAmount": "Importo massimo",
       "actions": "Transazioni",
-      "totalRecords": "Totale <span class=",
+      "totalRecords": "Totale {{from}}-{{to}} / {{total}}",
       "previous": "Precedente",
       "next": "Avanti"
     },

@@ -104,7 +104,7 @@
       "page": "Sayfa {{current}} / {{total}}",
       "maxAmount": "Maksimum Tutar",
       "actions": "İşlemler",
-      "totalRecords": "Toplam <span class=",
+      "totalRecords": "Toplam {{from}}-{{to}} / {{total}}",
       "previous": "Önceki",
       "next": "Sonraki"
     },

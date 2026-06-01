@@ -104,7 +104,7 @@
       "page": "Page {{current}} / {{total}}",
       "maxAmount": "Maximum Amount",
       "actions": "Transactions",
-      "totalRecords": "Total <span class=",
+      "totalRecords": "Total {{from}}-{{to}} / {{total}}",
       "previous": "Previous",
       "next": "Next"
     },

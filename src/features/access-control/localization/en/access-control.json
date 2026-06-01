@@ -24,7 +24,7 @@
   "permissionDefinitions": {
     "title": "Permission Definitions",
     "description": "Manage permission codes used in the system",
-    "add": "Add Description",
+    "add": "Add Permission Definition",
     "form": {
       "editTitle": "Edit Permission Definition",
       "addTitle": "Add Permission Definition",

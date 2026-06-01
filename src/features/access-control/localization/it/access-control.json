@@ -24,7 +24,7 @@
   "permissionDefinitions": {
     "title": "Definizioni dei permessi",
     "description": "Gestire i codici di autorizzazione utilizzati nel sistema",
-    "add": "Aggiungi descrizione",
+    "add": "Aggiungi definizione di autorizzazione",
     "form": {
       "editTitle": "Modifica definizione autorizzazione",
       "addTitle": "Aggiungi la definizione di autorizzazione",
