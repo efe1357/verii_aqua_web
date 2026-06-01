@@ -1,26 +1,26 @@
 {
   "list": {
     "title": "Approbations en attente",
-    "description": "Vous pouvez afficher et approuver ou rejeter les offres qui vous sont assignées",
+    "description": "Vous pouvez afficher les offres qui vous sont attribuées et les approuver ou les rejeter.",
     "empty": "Il n'y a aucune approbation en attente",
-    "error": "Une erreur s'est produite lors du chargement des confirmations"
+    "error": "Une erreur est survenue lors du chargement des approbations en attente"
   },
   "yes": "Oui",
   "no": "non",
   "processing": "Traitement...",
   "detail": {
     "title": "Détail de l'offre",
-    "description": "Descriptif",
+    "description": "Afficher les détails de l'offre et agir",
     "tabs": {
       "detail": "Détail",
-      "history": "passé",
-      "action": "opération"
+      "history": "Historique",
+      "action": "Action"
     },
     "notFound": "Aucune offre trouvée",
     "quotationInfo": "Informations sur l'offre",
     "offerNo": "Offre No",
-    "customer": "client",
-    "representative": "représentant",
+    "customer": "Client",
+    "representative": "Représentant",
     "currency": "Devise",
     "offerDate": "Date de l'offre",
     "deliveryDate": "Date de livraison",
@@ -34,21 +34,21 @@
     "lineTotal": "Total de la ligne",
     "lineGrandTotal": "Total général de la ligne",
     "exchangeRates": "Taux de change",
-    "exchangeRate": "Installer",
+    "exchangeRate": "Taux",
     "exchangeRateDate": "Date du taux de change",
-    "isOfficial": "Installer officiel",
+    "isOfficial": "Taux officiel",
     "subtitle": "Afficher les détails de l'offre et agir"
   },
   "actions": {
     "view": "Voir",
     "approve": "Confirmer",
-    "reject": "rejeter"
+    "reject": "Rejeter"
   },
   "status": {
     "notRequired": "Non requis",
-    "waiting": "en attente",
+    "waiting": "En attente",
     "approved": "Approuvé",
-    "rejected": "rejeté",
+    "rejected": "Rejeté",
     "closed": "Fermé"
   },
   "closedReason": "Ce dossier a été fermé car un autre dossier portant le même numéro d'offre a été approuvé.",
@@ -58,22 +58,22 @@
     "regionalManager": "Directeur régional",
     "finance": "Finances",
     "generalManager": "Directeur général",
-    "unknown": "inconnu"
+    "unknown": "Inconnu"
   },
   "note": {
-    "label": "remarque",
+    "label": "Remarque",
     "placeholder": "Vous pouvez ajouter une note d'approbation/rejet (facultatif)",
     "maxLength": "La note peut contenir jusqu'à 500 caractères"
   },
   "approve": {
     "success": "Approuvé",
     "successMessage": "Offre approuvée avec succès",
-    "error": "Erreur d'assertion",
+    "error": "Erreur d'approbation",
     "errorMessage": "Une erreur s'est produite lors de l'approbation de l'offre"
   },
   "reject": {
-    "success": "rejeté",
-    "successMessage": "offre rejetée",
+    "success": "Rejeté",
+    "successMessage": "Offre rejetée",
     "error": "Erreur de rejet",
     "errorMessage": "Une erreur s'est produite lors du rejet de l'offre"
   },

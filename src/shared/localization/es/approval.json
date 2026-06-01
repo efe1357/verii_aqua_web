@@ -1,54 +1,54 @@
 {
   "list": {
     "title": "Aprobaciones pendientes",
-    "description": "Puede ver y aprobar o rechazar las ofertas que se le asignaron",
+    "description": "Puede revisar las ofertas asignadas y aprobarlas o rechazarlas.",
     "empty": "No hay aprobaciones pendientes",
-    "error": "Se produjo un error al cargar las confirmaciones."
+    "error": "Se produjo un error al cargar las aprobaciones pendientes."
   },
   "yes": "si",
-  "no": "no",
+  "no": "No",
   "processing": "Procesando...",
   "detail": {
     "title": "Detalle de la oferta",
     "subtitle": "Ver detalles de la oferta y tomar medidas",
     "tabs": {
       "detail": "Detalle",
-      "history": "pasado",
-      "action": "transacción"
+      "history": "Historial",
+      "action": "Acción"
     },
-    "notFound": "No offer found",
+    "notFound": "No se encontró ninguna oferta",
     "quotationInfo": "Información de la oferta",
     "offerNo": "Oferta No",
-    "customer": "cliente",
-    "representative": "representante",
+    "customer": "Cliente",
+    "representative": "Representante",
     "currency": "Moneda",
     "offerDate": "Fecha de oferta",
     "deliveryDate": "Fecha de entrega",
-    "total": "totales",
+    "total": "Total",
     "grandTotal": "Total general",
     "description": "Descripción",
-    "lines": "Líneas de cotización",
+    "lines": "Líneas de oferta",
     "productCode": "Código de producto",
     "productName": "Nombre del producto",
-    "quantity": "cantidad",
+    "quantity": "Cantidad",
     "unitPrice": "Precio unitario",
     "lineTotal": "Total de filas",
     "lineGrandTotal": "Total general de fila",
     "exchangeRates": "Tipos de cambio",
-    "exchangeRate": "Instalar",
+    "exchangeRate": "Tasa",
     "exchangeRateDate": "Fecha del tipo de cambio",
-    "isOfficial": "Instalar oficial"
+    "isOfficial": "Tipo oficial"
   },
   "actions": {
     "view": "Ver",
     "approve": "Confirmar",
-    "reject": "rechazar"
+    "reject": "Rechazar"
   },
   "status": {
     "notRequired": "No requerido",
-    "waiting": "esperando",
+    "waiting": "Esperando",
     "approved": "Aprobado",
-    "rejected": "rechazado",
+    "rejected": "Rechazado",
     "closed": "Cerrado"
   },
   "closedReason": "Este registro se cerró porque se aprobó otro registro con el mismo número de oferta.",
@@ -58,22 +58,22 @@
     "regionalManager": "Gerente Regional",
     "finance": "Finanzas",
     "generalManager": "Gerente General",
-    "unknown": "desconocido"
+    "unknown": "Desconocido"
   },
   "note": {
-    "label": "nota",
+    "label": "Nota",
     "placeholder": "Puede agregar una nota de aprobación/rechazo (opcional)",
     "maxLength": "La nota puede tener hasta 500 caracteres."
   },
   "approve": {
     "success": "Aprobado",
     "successMessage": "Oferta aprobada con éxito",
-    "error": "Error de afirmación",
+    "error": "Error de aprobación",
     "errorMessage": "Se produjo un error al aprobar la oferta."
   },
   "reject": {
-    "success": "rechazado",
-    "successMessage": "oferta rechazada",
+    "success": "Rechazado",
+    "successMessage": "Oferta rechazada",
     "error": "Error de rechazo",
     "errorMessage": "Se produjo un error al rechazar la oferta."
   },

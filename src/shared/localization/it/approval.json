@@ -1,9 +1,9 @@
 {
   "list": {
     "title": "Approvazioni in sospeso",
-    "description": "Puoi visualizzare e approvare o rifiutare le offerte che ti sono state assegnate",
+    "description": "Puoi visualizzare le offerte assegnate e approvarle o rifiutarle.",
     "empty": "Non ci sono approvazioni in sospeso",
-    "error": "Si è verificato un errore durante il caricamento delle conferme"
+    "error": "Si è verificato un errore durante il caricamento delle approvazioni in sospeso."
   },
   "yes": "Sì",
   "no": "no",
@@ -13,42 +13,42 @@
     "subtitle": "Visualizza i dettagli dell'offerta e agisci",
     "tabs": {
       "detail": "Dettaglio",
-      "history": "passato",
-      "action": "transazione"
+      "history": "Cronologia",
+      "action": "Azione"
     },
     "notFound": "Nessuna offerta trovata",
     "quotationInfo": "Informazioni sull'offerta",
     "offerNo": "Offerta No",
-    "customer": "cliente",
-    "representative": "rappresentante",
+    "customer": "Cliente",
+    "representative": "Rappresentante",
     "currency": "Valuta",
     "offerDate": "Data dell'offerta",
     "deliveryDate": "Data di consegna",
     "total": "Totale",
     "grandTotal": "Totale generale",
     "description": "Descrizione",
-    "lines": "Righe di citazione",
+    "lines": "Righe offerta",
     "productCode": "Codice prodotto",
     "productName": "Nome del prodotto",
-    "quantity": "quantità",
+    "quantity": "Quantità",
     "unitPrice": "Prezzo unitario",
     "lineTotal": "Totale riga",
     "lineGrandTotal": "Totale complessivo della riga",
     "exchangeRates": "Tassi di cambio",
-    "exchangeRate": "Installa",
+    "exchangeRate": "Valuta",
     "exchangeRateDate": "Data del tasso di cambio",
-    "isOfficial": "Installa ufficiale"
+    "isOfficial": "Tasso ufficiale"
   },
   "actions": {
     "view": "Visualizza",
     "approve": "Conferma",
-    "reject": "rifiutare"
+    "reject": "Rifiuta"
   },
   "status": {
     "notRequired": "Non richiesto",
-    "waiting": "aspettando",
+    "waiting": "In attesa",
     "approved": "Approvato",
-    "rejected": "rifiutato",
+    "rejected": "Rifiutato",
     "closed": "Chiuso"
   },
   "closedReason": "Questo record è stato chiuso perché è stato approvato un altro record con lo stesso numero di offerta.",
@@ -58,22 +58,22 @@
     "regionalManager": "Direttore Regionale",
     "finance": "Finanza",
     "generalManager": "Direttore Generale",
-    "unknown": "sconosciuto"
+    "unknown": "Sconosciuto"
   },
   "note": {
-    "label": "nota",
+    "label": "Nota",
     "placeholder": "Puoi aggiungere una nota di approvazione/rifiuto (facoltativo)",
     "maxLength": "La nota può contenere fino a 500 caratteri"
   },
   "approve": {
     "success": "Approvato",
     "successMessage": "Offerta approvata con successo",
-    "error": "Errore di asserzione",
+    "error": "Errore di approvazione",
     "errorMessage": "Si è verificato un errore durante l'approvazione dell'offerta"
   },
   "reject": {
-    "success": "rifiutato",
-    "successMessage": "offerta respinta",
+    "success": "Rifiutato",
+    "successMessage": "Offerta respinta",
     "error": "Errore di rifiuto",
     "errorMessage": "Si è verificato un errore durante il rifiuto dell'offerta"
   },

@@ -1,20 +1,20 @@
 {
   "list": {
     "title": "Ausstehende Genehmigungen",
-    "description": "Sie können Ihnen zugewiesene Angebote einsehen und genehmigen oder ablehnen",
+    "description": "Sie können Ihnen zugewiesene Angebote prüfen und genehmigen oder ablehnen.",
     "empty": "Es liegen keine ausstehenden Genehmigungen vor",
-    "error": "Beim Laden der Bestätigungen ist ein Fehler aufgetreten"
+    "error": "Beim Laden der offenen Genehmigungen ist ein Fehler aufgetreten"
   },
   "yes": "Ja",
   "no": "Nein",
   "processing": "Verarbeitung...",
   "detail": {
     "title": "Angebotsdetails",
-    "description": "Beschreibung",
+    "description": "Angebotsdetails anzeigen und bearbeiten",
     "tabs": {
-      "detail": "Detailliert",
-      "history": "Vergangenheit",
-      "action": "Transaktion"
+      "detail": "Details",
+      "history": "Verlauf",
+      "action": "Aktion"
     },
     "notFound": "Kein Angebot gefunden",
     "quotationInfo": "Angebotsinformationen",
@@ -26,7 +26,7 @@
     "deliveryDate": "Liefertermin",
     "total": "Insgesamt",
     "grandTotal": "Gesamtsumme",
-    "lines": "Angebotszeilen",
+    "lines": "Angebotspositionen",
     "productCode": "Produktcode",
     "productName": "Produktname",
     "quantity": "Menge",
@@ -34,21 +34,21 @@
     "lineTotal": "Zeilensumme",
     "lineGrandTotal": "Gesamtsumme der Zeile",
     "exchangeRates": "Wechselkurse",
-    "exchangeRate": "Installieren",
+    "exchangeRate": "Kurs",
     "exchangeRateDate": "Wechselkursdatum",
-    "isOfficial": "Installieren Sie offiziell",
-    "subtitle": "Angebotsdetails anzeigen und Maßnahmen ergreifen"
+    "isOfficial": "Offizieller Kurs",
+    "subtitle": "Angebotsdetails anzeigen und bearbeiten"
   },
   "actions": {
     "view": "Ansicht",
     "approve": "Bestätigen",
-    "reject": "ablehnen"
+    "reject": "Ablehnen"
   },
   "status": {
     "notRequired": "Nicht erforderlich",
-    "waiting": "warten",
+    "waiting": "Warten",
     "approved": "Genehmigt",
-    "rejected": "abgelehnt",
+    "rejected": "Abgelehnt",
     "closed": "Geschlossen"
   },
   "closedReason": "Dieser Datensatz wurde geschlossen, da ein anderer Datensatz mit derselben Angebotsnummer genehmigt wurde.",
@@ -58,7 +58,7 @@
     "regionalManager": "Regionalleiter",
     "finance": "Finanzen",
     "generalManager": "Generaldirektor",
-    "unknown": "unbekannt"
+    "unknown": "Unbekannt"
   },
   "note": {
     "label": "Hinweis",
@@ -68,7 +68,7 @@
   "approve": {
     "success": "Genehmigt",
     "successMessage": "Angebot erfolgreich angenommen",
-    "error": "Behauptungsfehler",
+    "error": "Bestätigungsfehler",
     "errorMessage": "Beim Genehmigen des Angebots ist ein Fehler aufgetreten"
   },
   "reject": {

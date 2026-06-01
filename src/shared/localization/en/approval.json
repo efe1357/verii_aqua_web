@@ -1,54 +1,54 @@
 {
   "list": {
     "title": "Pending Approvals",
-    "description": "You can view and approve or reject offers assigned to you",
+    "description": "You can review offers assigned to you and approve or reject them.",
     "empty": "There are no pending approvals",
-    "error": "An error occurred while loading confirmations"
+    "error": "An error occurred while loading pending approvals"
   },
   "yes": "Yes",
-  "no": "no",
+  "no": "No",
   "processing": "Processing...",
   "detail": {
     "title": "Offer Detail",
     "subtitle": "View offer details and take action",
     "tabs": {
       "detail": "Detail",
-      "history": "past",
-      "action": "transaction"
+      "history": "History",
+      "action": "Action"
     },
     "notFound": "No offer found",
     "quotationInfo": "Offer Information",
     "offerNo": "Offer No",
-    "customer": "customer",
-    "representative": "representative",
+    "customer": "Customer",
+    "representative": "Representative",
     "currency": "Currency",
     "offerDate": "Offer Date",
     "deliveryDate": "Delivery Date",
     "total": "Total",
     "grandTotal": "Grand Total",
     "description": "Description",
-    "lines": "Quote Lines",
+    "lines": "Offer Lines",
     "productCode": "Product Code",
     "productName": "Product Name",
-    "quantity": "quantity",
+    "quantity": "Quantity",
     "unitPrice": "Unit Price",
     "lineTotal": "Row Total",
     "lineGrandTotal": "Row Grand Total",
     "exchangeRates": "Exchange Rates",
-    "exchangeRate": "Install",
+    "exchangeRate": "Rate",
     "exchangeRateDate": "Exchange Rate Date",
-    "isOfficial": "Install Official"
+    "isOfficial": "Official Rate"
   },
   "actions": {
     "view": "View",
     "approve": "Confirm",
-    "reject": "reject"
+    "reject": "Reject"
   },
   "status": {
     "notRequired": "Not Required",
-    "waiting": "waiting",
+    "waiting": "Waiting",
     "approved": "Approved",
-    "rejected": "rejected",
+    "rejected": "Rejected",
     "closed": "Closed"
   },
   "closedReason": "This record was closed because another record with the same offer number was approved.",
@@ -61,7 +61,7 @@
     "unknown": "unknown"
   },
   "note": {
-    "label": "note",
+    "label": "Note",
     "placeholder": "You can add an approval/rejection note (optional)",
     "maxLength": "Note can be up to 500 characters"
   },
@@ -72,8 +72,8 @@
     "errorMessage": "An error occurred while approving the offer"
   },
   "reject": {
-    "success": "rejected",
-    "successMessage": "offer rejected",
+    "success": "Rejected",
+    "successMessage": "Offer rejected",
     "error": "Rejection Error",
     "errorMessage": "An error occurred while rejecting the offer"
   },
