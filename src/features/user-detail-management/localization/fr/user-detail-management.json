@@ -44,7 +44,7 @@
   "changePasswordButton": "Changer le mot de passe",
   "contactInfo": "Coordonnées",
   "contactInfoDescription": "Gérez vos comptes de messagerie, de téléphone et de réseaux sociaux.",
-  "linkedinUrl": "LinkedIn Profile",
+  "linkedinUrl": "Profil LinkedIn",
   "phoneNumber": "Numéro de téléphone",
   "email": "Adresse e-mail",
   "enterLinkedinUrl": "https://linkedin.com/in/...",
@@ -56,7 +56,7 @@
   "api": {
     "listLoadFailed": "Échec du chargement de la liste des détails de l'utilisateur",
     "detailLoadFailed": "Échec du chargement des détails de l'utilisateur",
-    "createFailed": "Could not create user detail",
+    "createFailed": "Impossible de créer le détail de l'utilisateur",
     "updateFailed": "Les détails de l'utilisateur n'ont pas pu être mis à jour",
     "deleteFailed": "Échec de la suppression des détails de l'utilisateur",
     "uploadFailed": "Échec du chargement du fichier"
