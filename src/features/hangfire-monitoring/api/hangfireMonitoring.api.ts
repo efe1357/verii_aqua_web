@@ -99,8 +99,10 @@ export const hangfireMonitoringApi = {
     return normalizeStats(response ?? {});
   },
 
-  async getFailed(from = 0, count = 20): Promise<HangfireFailedResponseDto> {
-    const response = await api.get<Record<string, unknown>>(`/api/hangfire/failures-from-db?from=${from}&count=${count}`);
+  async getFailed(pageNumber = 1, pageSize = 20): Promise<HangfireFailedResponseDto> {
+    const from = Math.max(0, (pageNumber - 1) * pageSize);
+    const count = Math.max(1, pageSize);
+    const response = await api.get<Record<string, unknown>>(`/api/hangfire/failures-from-db?from=${from}&count=${count}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
     const data = unwrapResponse(response);
     return {
       items: normalizeJobs(pick<unknown>(data, 'Items', 'items')),
@@ -109,8 +111,10 @@ export const hangfireMonitoringApi = {
     };
   },
 
-  async getDeadLetter(from = 0, count = 20): Promise<HangfireDeadLetterResponseDto> {
-    const response = await api.get<Record<string, unknown>>(`/api/hangfire/dead-letter?from=${from}&count=${count}`);
+  async getDeadLetter(pageNumber = 1, pageSize = 20): Promise<HangfireDeadLetterResponseDto> {
+    const from = Math.max(0, (pageNumber - 1) * pageSize);
+    const count = Math.max(1, pageSize);
+    const response = await api.get<Record<string, unknown>>(`/api/hangfire/dead-letter?from=${from}&count=${count}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
     const data = unwrapResponse(response);
     const total = Number(pick<number>(data, 'Enqueued', 'enqueued') ?? 0);
     return {
@@ -122,8 +126,10 @@ export const hangfireMonitoringApi = {
     };
   },
 
-  async getSuccesses(from = 0, count = 20): Promise<HangfireSuccessResponseDto> {
-    const response = await api.get<Record<string, unknown>>(`/api/hangfire/successes-from-db?from=${from}&count=${count}`);
+  async getSuccesses(pageNumber = 1, pageSize = 20): Promise<HangfireSuccessResponseDto> {
+    const from = Math.max(0, (pageNumber - 1) * pageSize);
+    const count = Math.max(1, pageSize);
+    const response = await api.get<Record<string, unknown>>(`/api/hangfire/successes-from-db?from=${from}&count=${count}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
     const data = unwrapResponse(response);
     return {
       items: normalizeSuccessJobs(pick<unknown>(data, 'Items', 'items')),

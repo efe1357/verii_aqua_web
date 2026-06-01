@@ -20,29 +20,29 @@ export function useHangfireStatsQuery() {
   });
 }
 
-export function useHangfireFailedJobsQuery(from: number, count: number) {
+export function useHangfireFailedJobsQuery(pageNumber: number, pageSize: number) {
   return useQuery({
-    queryKey: HANGFIRE_QUERY_KEYS.FAILED(from, count),
-    queryFn: () => hangfireMonitoringApi.getFailed(from, count),
+    queryKey: HANGFIRE_QUERY_KEYS.FAILED(pageNumber, pageSize),
+    queryFn: () => hangfireMonitoringApi.getFailed(pageNumber, pageSize),
     refetchInterval: REFRESH_INTERVAL_MS,
     refetchIntervalInBackground: false,
   });
 }
 
-export function useHangfireSuccessJobsQuery(from: number, count: number) {
+export function useHangfireSuccessJobsQuery(pageNumber: number, pageSize: number) {
   return useQuery({
-    queryKey: HANGFIRE_QUERY_KEYS.SUCCEEDED(from, count),
-    queryFn: () => hangfireMonitoringApi.getSuccesses(from, count),
+    queryKey: HANGFIRE_QUERY_KEYS.SUCCEEDED(pageNumber, pageSize),
+    queryFn: () => hangfireMonitoringApi.getSuccesses(pageNumber, pageSize),
     refetchInterval: REFRESH_INTERVAL_MS,
     refetchIntervalInBackground: false,
   });
 }
 
-export function useHangfireDeadLetterQuery(from: number, count: number) {
+export function useHangfireDeadLetterQuery(pageNumber: number, pageSize: number) {
   return useQuery({
-    queryKey: HANGFIRE_QUERY_KEYS.DEAD_LETTER(from, count),
+    queryKey: HANGFIRE_QUERY_KEYS.DEAD_LETTER(pageNumber, pageSize),
     refetchInterval: REFRESH_INTERVAL_MS,
-    queryFn: () => hangfireMonitoringApi.getDeadLetter(from, count),
+    queryFn: () => hangfireMonitoringApi.getDeadLetter(pageNumber, pageSize),
     refetchIntervalInBackground: false,
   });
 }
