@@ -46,7 +46,7 @@ export function UserProfileModal({
   onOpenChange,
   onOpenProfileDetails
 }: UserProfileModalProps): ReactElement {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation('common');
   const { theme, setTheme } = useTheme();
   const { user, logout, branch } = useAuthStore();
   const navigate = useNavigate();
@@ -72,9 +72,9 @@ export function UserProfileModal({
     if (target === normalizedLang) return;
     setIsChangingLanguage(true);
     try {
+      if (typeof window !== 'undefined') window.localStorage.setItem('i18nextLng', target);
       await loadLanguage(target);
       await i18n.changeLanguage(target);
-      if (typeof window !== 'undefined') window.localStorage.setItem('i18nextLng', target);
     } finally {
       setIsChangingLanguage(false);
     }
@@ -97,7 +97,7 @@ export function UserProfileModal({
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
 
-        <DialogTitle className="sr-only">{t('sidebar.settings', { ns: 'common' })}</DialogTitle>
+        <DialogTitle className="sr-only">{t('sidebar.settings')}</DialogTitle>
 
         <div className="flex flex-col md:flex-row w-full h-full overflow-y-auto md:overflow-hidden">
           
@@ -154,7 +154,7 @@ export function UserProfileModal({
           <div className="flex-1 p-6 md:p-10 lg:p-12 flex flex-col min-h-0 relative">
             <div className="flex items-center gap-3 mb-6 md:mb-8 shrink-0">
               <div className="w-1.5 h-6 bg-cyan-500 rounded-full" />
-              <h3 className="text-xl md:text-2xl font-black tracking-widest uppercase text-slate-900 dark:text-white">{t('sidebar.settings', { ns: 'common' })}</h3>
+              <h3 className="text-xl md:text-2xl font-black tracking-widest uppercase text-slate-900 dark:text-white">{t('sidebar.settings')}</h3>
             </div>
 
             <div className={cn(
@@ -174,7 +174,7 @@ export function UserProfileModal({
                   </div>
                   <div className="text-left">
                     <p className="font-bold text-sm text-slate-800 dark:text-slate-200">{t('profile.title')}</p>
-                    <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">{t('customerManagement.form.editDescription')}</p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">{t('profile.description')}</p>
                   </div>
                 </div>
                 <ArrowRight01Icon size={18} className="text-slate-400 group-hover:text-cyan-500 group-hover:translate-x-1 transition-transform" />

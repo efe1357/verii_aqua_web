@@ -3159,9 +3159,13 @@
     "updateSuccess": "Sevk adresi başarıyla güncellendi",
     "updateError": "Sevk adresi güncellenirken bir hata oluştu"
   },
-  "language_choice": "Dil Seçeneği",
-  "appearance": "Görünüm Modu",
-  "logout": "ÇIKIŞ YAP",
+  "language_choice": "Idioma",
+  "appearance": "Modo de apariencia",
+  "logout": "CERRAR SESIÓN",
+  "profile": {
+    "title": "Información del perfil",
+    "description": "Actualice la información de su cuenta"
+  },
   "userDiscountLimitManagement": {
     "alreadyExists": "Bu satış temsilcisi ve ürün grubu kombinasyonu için zaten bir iskonto limiti mevcut",
     "edit": "İskonto Limiti Düzenle",
