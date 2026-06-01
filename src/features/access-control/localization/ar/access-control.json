@@ -47,7 +47,7 @@
       "name": "اسم",
       "isActive": "نشيط",
       "updatedDate": "تم التحديث",
-      "showing": "{{from}}-{{to}} / {{total}}"
+      "showing": "عرض {{from}}-{{to}} / {{total}}"
     },
     "delete": {
       "confirmTitle": "حذف تعريف الإذن",
@@ -80,7 +80,7 @@
       "isSystemAdmin": "مسؤول النظام",
       "isActive": "نشيط",
       "permissionCount": "الأذونات",
-      "showing": "{{from}}-{{to}} / {{total}}"
+      "showing": "عرض {{from}}-{{to}} / {{total}}"
     },
     "managePermissions": "إدارة الأذونات",
     "permissionsPanel": {

@@ -47,7 +47,7 @@
       "name": "Nombre",
       "isActive": "activo",
       "updatedDate": "Actualizado",
-      "showing": "{{from}}-{{to}} / {{total}}"
+      "showing": "Mostrando {{from}}-{{to}} de {{total}}"
     },
     "delete": {
       "confirmTitle": "Eliminar definición de permiso",
@@ -80,7 +80,7 @@
       "isSystemAdmin": "Administrador del sistema",
       "isActive": "activo",
       "permissionCount": "Permisos",
-      "showing": "{{from}}-{{to}} / {{total}}"
+      "showing": "Mostrando {{from}}-{{to}} de {{total}}"
     },
     "managePermissions": "Administrar permisos",
     "permissionsPanel": {
@@ -93,13 +93,13 @@
       "confirmMessage": "¿Está seguro de que desea eliminar \"{{name}}\"? Esta acción no se puede deshacer."
     },
     "search": "Buscar...",
-    "moduleTitle": "AQUA MODULE",
+    "moduleTitle": "MÓDULO AQUA",
     "systemAdminLocked": "Los privilegios del grupo de administración del sistema están bloqueados y no se pueden cambiar.",
     "matrixDescription": "Cada fila representa una pantalla o recurso. Defina un acceso más controlado seleccionando los privilegios Ver, Crear, Actualizar y Eliminar por separado.",
     "sections": {
       "aquaDefinitions": "Definiciones de agua",
       "aquaOperations": "Transacciones acuáticas",
-      "aquaReports": "Aqua Reports",
+      "aquaReports": "Informes Aqua",
       "accessControl": "Control de acceso",
       "stock": "Gestión de stock",
       "users": "Usuario y perfil",

@@ -47,7 +47,7 @@
       "name": "Nom",
       "isActive": "actif",
       "updatedDate": "Mis à jour",
-      "showing": "{{from}}-{{to}} / {{total}}"
+      "showing": "Affichage {{from}}-{{to}} / {{total}}"
     },
     "delete": {
       "confirmTitle": "Supprimer la définition d'autorisation",
@@ -80,7 +80,7 @@
       "isSystemAdmin": "Administrateur système",
       "isActive": "actif",
       "permissionCount": "Autorisations",
-      "showing": "{{from}}-{{to}} / {{total}}"
+      "showing": "Affichage {{from}}-{{to}} / {{total}}"
     },
     "managePermissions": "Gérer les autorisations",
     "permissionsPanel": {
@@ -93,7 +93,7 @@
       "confirmMessage": "Êtes-vous sûr de vouloir supprimer « {{name}} » ? Cette action ne peut pas être annulée."
     },
     "search": "Rechercher...",
-    "moduleTitle": "AQUA MODULE",
+    "moduleTitle": "MODULE AQUA",
     "systemAdminLocked": "Les privilèges du groupe Administrateur système sont verrouillés et ne peuvent pas être modifiés.",
     "matrixDescription": "Chaque ligne représente un écran ou une ressource. Définissez un accès plus contrôlé en sélectionnant séparément les privilèges Afficher, Créer, Mettre à jour et Supprimer.",
     "sections": {

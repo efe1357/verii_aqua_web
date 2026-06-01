@@ -15,10 +15,10 @@
     "form": {
       "addTitle": "Aggiungi nuovo gruppo di ruoli di approvazione",
       "editTitle": "Modifica gruppo di ruoli di approvazione",
-      "addDescription": "Enter new approval role group information",
+      "addDescription": "Inserisci le informazioni del nuovo gruppo di ruoli di approvazione",
       "editDescription": "Modifica le informazioni sul gruppo di ruoli di approvazione",
       "name": "Nome del gruppo",
-      "namePlaceholder": "Enter group name",
+      "namePlaceholder": "Inserisci il nome del gruppo",
       "name.required": "Il nome del gruppo è obbligatorio",
       "name.maxLength": "Il nome del gruppo può contenere fino a 100 caratteri"
     },
@@ -28,12 +28,12 @@
       "title": "Elimina gruppo di ruoli"
     },
     "messages": {
-      "createSuccess": "Approval role group created successfully",
-      "createError": "Could not create approval role group",
+      "createSuccess": "Gruppo di ruoli di approvazione creato correttamente",
+      "createError": "Impossibile creare il gruppo di ruoli di approvazione",
       "updateSuccess": "Gruppo di ruoli di approvazione aggiornato correttamente",
-      "updateError": "Approval role group could not be updated",
+      "updateError": "Impossibile aggiornare il gruppo di ruoli di approvazione",
       "deleteSuccess": "Gruppo di ruoli di approvazione eliminato correttamente",
-      "deleteError": "Failed to delete approval role group"
+      "deleteError": "Impossibile eliminare il gruppo di ruoli di approvazione"
     },
     "cancel": "Annulla",
     "saving": "Registrazione...",
@@ -59,7 +59,7 @@
     "form": {
       "addTitle": "Aggiungi nuovo ruolo utente di approvazione",
       "editTitle": "Modifica ruolo utente di approvazione",
-      "addDescription": "Enter new approval user role information",
+      "addDescription": "Inserisci le informazioni del nuovo ruolo utente di approvazione",
       "editDescription": "Modifica le informazioni sul ruolo utente di approvazione",
       "userId": "Utente",
       "selectUser": "Seleziona Utente",
@@ -80,11 +80,11 @@
     },
     "messages": {
       "createSuccess": "Ruolo utente di approvazione creato correttamente",
-      "createError": "Could not create approval user role",
+      "createError": "Impossibile creare il ruolo utente di approvazione",
       "updateSuccess": "Ruolo utente di approvazione aggiornato correttamente",
-      "updateError": "Failed to update approval user role",
+      "updateError": "Impossibile aggiornare il ruolo utente di approvazione",
       "deleteSuccess": "Ruolo utente di approvazione eliminato correttamente",
-      "deleteError": "Failed to delete approval user role"
+      "deleteError": "Impossibile eliminare il ruolo utente di approvazione"
     },
     "searchPlaceholder": "Cerca...",
     "refresh": "Aggiorna",
@@ -102,7 +102,7 @@
       "createdBy": "Creato dall'utente",
       "showing": "Mostrando {{from}}-{{to}} / {{total}}",
       "page": "Pagina {{current}} / {{total}}",
-      "maxAmount": "Maximum Amount",
+      "maxAmount": "Importo massimo",
       "actions": "Transazioni",
       "totalRecords": "Totale <span class=",
       "previous": "Precedente",
@@ -111,18 +111,18 @@
     "form": {
       "addTitle": "Aggiungi nuovo ruolo di approvazione",
       "editTitle": "Modifica ruolo di approvazione",
-      "addDescription": "Enter new approval role information",
+      "addDescription": "Inserisci le informazioni del nuovo ruolo di approvazione",
       "editDescription": "Modifica le informazioni sul ruolo di approvazione",
       "approvalRoleGroupId": "Gruppo di ruoli di approvazione",
       "selectApprovalRoleGroup": "Selezionare Gruppo di ruoli di approvazione",
       "noApprovalRoleGroupSelected": "Gruppo di ruoli di approvazione non selezionato",
       "approvalRoleGroupId.required": "La selezione del gruppo di ruoli di approvazione è obbligatoria",
       "name": "Nome del ruolo",
-      "namePlaceholder": "Enter the role name",
+      "namePlaceholder": "Inserisci il nome del ruolo",
       "name.required": "Il nome del ruolo è obbligatorio",
       "name.maxLength": "Il nome del ruolo può contenere fino a 100 caratteri",
-      "maxAmount": "Maximum Amount",
-      "maxAmountPlaceholder": "Enter the maximum amount",
+      "maxAmount": "Importo massimo",
+      "maxAmountPlaceholder": "Inserisci l'importo massimo",
       "cancel": "Annulla",
       "saving": "Registrazione...",
       "save": "Salva"
@@ -136,11 +136,11 @@
     },
     "messages": {
       "createSuccess": "Ruolo di approvazione creato correttamente",
-      "createError": "Could not create approval role",
+      "createError": "Impossibile creare il ruolo di approvazione",
       "updateSuccess": "Ruolo di approvazione aggiornato correttamente",
-      "updateError": "Approval role could not be updated",
+      "updateError": "Impossibile aggiornare il ruolo di approvazione",
       "deleteSuccess": "Ruolo di approvazione eliminato correttamente",
-      "deleteError": "Could not delete approval role"
+      "deleteError": "Impossibile eliminare il ruolo di approvazione"
     },
     "searchPlaceholder": "Cerca...",
     "refresh": "Aggiorna",
@@ -172,14 +172,14 @@
     "form": {
       "addTitle": "Aggiungi nuovo flusso di approvazione",
       "editTitle": "Modifica flusso di approvazione",
-      "addDescription": "Enter new approval flow information",
+      "addDescription": "Inserisci le informazioni del nuovo flusso di approvazione",
       "editDescription": "Modifica le informazioni sul flusso di approvazione",
       "documentType": "Tipo di documento",
       "selectDocumentType": "Seleziona il tipo di documento",
       "noDocumentTypeSelected": "Tipo di documento non selezionato",
       "documentType.required": "La selezione del tipo di documento è obbligatoria",
       "description": "Descrizione",
-      "descriptionPlaceholder": "Enter a description (optional)",
+      "descriptionPlaceholder": "Inserisci una descrizione (facoltativa)",
       "description.maxLength": "La descrizione può contenere fino a 200 caratteri",
       "isActive": "attivo",
       "isActiveDescription": "Stato attivo del flusso di approvazione",
@@ -195,11 +195,11 @@
     },
     "messages": {
       "createSuccess": "Flusso di approvazione creato correttamente",
-      "createError": "Could not create approval flow",
+      "createError": "Impossibile creare il flusso di approvazione",
       "updateSuccess": "Flusso di approvazione aggiornato correttamente",
-      "updateError": "Approval flow could not be updated",
+      "updateError": "Impossibile aggiornare il flusso di approvazione",
       "deleteSuccess": "Flusso di approvazione eliminato con successo",
-      "deleteError": "Failed to delete approval flow"
+      "deleteError": "Impossibile eliminare il flusso di approvazione"
     },
     "active": "attivo",
     "inactive": "passivo",
@@ -213,11 +213,11 @@
     "messages": {
       "deleteConfirm": "Sei sicuro di voler eliminare questo passaggio?",
       "createSuccess": "Passaggio del flusso aggiunto correttamente",
-      "createError": "Failed to add flow step",
+      "createError": "Impossibile aggiungere il passaggio del flusso",
       "deleteSuccess": "Passaggio del flusso eliminato correttamente",
-      "deleteError": "Failed to delete flow step",
+      "deleteError": "Impossibile eliminare il passaggio del flusso",
       "updateSuccess": "Passaggio del flusso aggiornato correttamente",
-      "updateError": "Failed to update flow step"
+      "updateError": "Impossibile aggiornare il passaggio del flusso"
     },
     "title": "Passaggi del flusso",
     "addButton": "Aggiungi passaggio",

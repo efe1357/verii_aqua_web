@@ -2,15 +2,15 @@
   "help": {
     "permissionDefinition": {
       "code": "Chiave univoca utilizzata dai manutentori del percorso e della pagina. Preferisci la notazione stabile snake_case o dot.",
-      "name": "The display name shown to administrators when managing permissions.",
+      "name": "Nome visualizzato agli amministratori quando si gestiscono le autorizzazioni.",
       "description": "Descrizione interna facoltativa per questa autorizzazione.",
       "isActive": "Le autorizzazioni passive non vengono prese in considerazione nel calcolo dell'accesso utente.",
       "save": "Le modifiche influiscono sui flussi di autorizzazione dei ruoli e dei gruppi."
     },
     "permissionGroup": {
       "name": "Nome del gruppo per l'identificazione durante l'assegnazione agli utenti.",
-      "isSystemAdmin": "Members of this group can access all pages and actions without individual permission checks.",
-      "isActive": "Passive groups should not be assigned for new access decisions.",
+      "isSystemAdmin": "I membri di questo gruppo possono accedere a tutte le pagine e azioni senza verifiche autorizzative individuali.",
+      "isActive": "I gruppi inattivi non devono essere assegnati per nuove decisioni di accesso.",
       "permissions": "Le autorizzazioni scelte determinano a quali membri di questo gruppo possono accedere.",
       "save": "Aggiorna l'accesso corrente per tutti gli utenti assegnati a questo gruppo."
     },
@@ -47,14 +47,14 @@
       "name": "Nome",
       "isActive": "attivo",
       "updatedDate": "Aggiornato",
-      "showing": "{{from}}-{{to}} / {{total}}"
+      "showing": "{{from}}-{{to}} / {{total}} visualizzati"
     },
     "delete": {
       "confirmTitle": "Elimina definizione autorizzazione",
       "confirmMessage": "Vuoi eliminare \"{{name}}\"? Questa azione non può essere annullata."
     },
     "syncFromRoutes": "Sincronizzazione dai percorsi",
-    "missingCodes": "{{count}} missing permission code found. CRUD records are automatically synchronized."
+    "missingCodes": "Trovato {{count}} codice autorizzazione mancante. I record CRUD vengono sincronizzati automaticamente."
   },
   "permissionGroups": {
     "title": "Gruppi di autorizzazione",
@@ -80,7 +80,7 @@
       "isSystemAdmin": "Amministratore di sistema",
       "isActive": "attivo",
       "permissionCount": "Autorizzazioni",
-      "showing": "{{from}}-{{to}} / {{total}}"
+      "showing": "{{from}}-{{to}} / {{total}} visualizzati"
     },
     "managePermissions": "Gestisci le autorizzazioni",
     "permissionsPanel": {
@@ -94,7 +94,7 @@
     },
     "search": "Cerca...",
     "moduleTitle": "MODULO ACQUA",
-    "systemAdminLocked": "System Admin group privileges are locked and cannot be changed.",
+    "systemAdminLocked": "I privilegi del gruppo System Admin sono bloccati e non possono essere modificati.",
     "matrixDescription": "Ogni riga rappresenta una schermata o una risorsa. Definisci un accesso più controllato selezionando i privilegi Visualizza, Crea, Aggiorna ed Elimina separatamente.",
     "sections": {
       "aquaDefinitions": "Definizioni dell'acqua",
@@ -131,7 +131,7 @@
     "noData": "Nessun dato",
     "actions": "Transazioni",
     "yes": "Sì",
-    "no": "no",
+    "no": "No",
     "edit": "Modifica",
     "delete": "Elimina",
     "previous": "Precedente",
@@ -145,6 +145,6 @@
     "userGroupAssignments": "Assegnazioni dei gruppi di utenti"
   },
   "assignments": {
-    "userListLoadFailed": "Failed to load user list"
+    "userListLoadFailed": "Impossibile caricare l'elenco utenti"
   }
 }

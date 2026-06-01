@@ -2,7 +2,7 @@
   "approvalRoleGroup": {
     "menu": "Genehmigungsrollengruppenverwaltung",
     "description": "Genehmigungsrollengruppen verwalten und bearbeiten",
-    "addButton": "Add New Approval Role Group",
+    "addButton": "Neue Genehmigungsrollengruppe hinzufügen",
     "table": {
       "id": "ID",
       "name": "Gruppenname",
@@ -13,27 +13,27 @@
       "actions": "Transaktionen"
     },
     "form": {
-      "addTitle": "Add New Approval Role Group",
+    "addTitle": "Neue Genehmigungsrollengruppe hinzufügen",
       "editTitle": "Bearbeiten Sie die Genehmigungsrollengruppe",
-      "addDescription": "Enter new approval role group information",
-      "editDescription": "Edit approval role group information",
+      "addDescription": "Neue Genehmigungsrollengruppe erstellen",
+      "editDescription": "Genehmigungsrollengruppendaten bearbeiten",
       "name": "Gruppenname",
       "namePlaceholder": "Geben Sie den Gruppennamen ein",
       "name.required": "Gruppenname ist erforderlich",
       "name.maxLength": "Der Gruppenname kann bis zu 100 Zeichen lang sein"
     },
     "delete": {
-      "confirmTitle": "Delete Approval Role Group",
-      "confirmMessage": "Are you sure you want to delete the {{name}} approval role group?",
-      "title": "Delete Role Group"
+      "confirmTitle": "Genehmigungsrollengruppe löschen",
+      "confirmMessage": "Möchten Sie die Genehmigungsrollengruppe \"{{name}}\" wirklich löschen?",
+      "title": "Rollengruppe löschen"
     },
     "messages": {
       "createSuccess": "Die Genehmigungsrollengruppe wurde erfolgreich erstellt",
       "createError": "Die Genehmigungsrollengruppe konnte nicht erstellt werden",
       "updateSuccess": "Die Genehmigungsrollengruppe wurde erfolgreich aktualisiert",
       "updateError": "Die Genehmigungsrollengruppe konnte nicht aktualisiert werden",
-      "deleteSuccess": "Approval role group deleted successfully",
-      "deleteError": "Failed to delete approval role group"
+      "deleteSuccess": "Genehmigungsrollengruppe erfolgreich gelöscht",
+      "deleteError": "Genehmigungsrollengruppe konnte nicht gelöscht werden"
     },
     "cancel": "Abbrechen",
     "saving": "Aufnahme...",
@@ -45,7 +45,7 @@
   "approvalUserRole": {
     "menu": "Verwaltung von Genehmigungsbenutzerrollen",
     "description": "Verwalten und bearbeiten Sie Genehmigungsbenutzerrollen",
-    "addButton": "Add New Approval User Role",
+    "addButton": "Neue Genehmigungsbenutzerrolle hinzufügen",
     "table": {
       "id": "ID",
       "userFullName": "Benutzer",
@@ -57,9 +57,9 @@
       "actions": "Transaktionen"
     },
     "form": {
-      "addTitle": "Add New Approval User Role",
+    "addTitle": "Neue Genehmigungsbenutzerrolle hinzufügen",
       "editTitle": "Bearbeiten Sie die Rolle des Genehmigungsbenutzers",
-      "addDescription": "Enter new approval user role information",
+      "addDescription": "Neue Genehmigungsbenutzerrolle erstellen",
       "editDescription": "Bearbeiten Sie die Rolleninformationen des Genehmigungsbenutzers",
       "userId": "Benutzer",
       "selectUser": "Wählen Sie Benutzer aus",
@@ -74,17 +74,17 @@
       "save": "Speichern"
     },
     "delete": {
-      "confirmTitle": "Delete Approval User Role",
-      "confirmMessage": "Are you sure you want to delete this approval user role?",
-      "title": "Delete Role"
+      "confirmTitle": "Genehmigungsbenutzerrolle löschen",
+      "confirmMessage": "Möchten Sie diese Genehmigungsbenutzerrolle wirklich löschen?",
+      "title": "Rolle löschen"
     },
     "messages": {
       "createSuccess": "Die Genehmigungsbenutzerrolle wurde erfolgreich erstellt",
       "createError": "Die Genehmigungsbenutzerrolle konnte nicht erstellt werden",
       "updateSuccess": "Die Genehmigungsbenutzerrolle wurde erfolgreich aktualisiert",
       "updateError": "Die Genehmigungsbenutzerrolle konnte nicht aktualisiert werden",
-      "deleteSuccess": "Approval user role deleted successfully",
-      "deleteError": "Failed to delete approval user role"
+      "deleteSuccess": "Genehmigungsbenutzerrolle erfolgreich gelöscht",
+      "deleteError": "Genehmigungsbenutzerrolle konnte nicht gelöscht werden"
     },
     "searchPlaceholder": "Suchen...",
     "refresh": "Aktualisieren",
@@ -93,7 +93,7 @@
   "approvalRole": {
     "menu": "Genehmigungsrollenmanagement",
     "description": "Genehmigungsrollen verwalten und bearbeiten",
-    "addButton": "Add New Approval Role",
+    "addButton": "Neue Genehmigungsrolle hinzufügen",
     "table": {
       "id": "ID",
       "approvalRoleGroupName": "Rollengruppe",
@@ -102,17 +102,17 @@
       "createdBy": "Erstellt vom Benutzer",
       "showing": "Angezeigt werden {{from}}-{{to}} / {{total}}",
       "page": "Seite {{current}} / {{total}}",
-      "maxAmount": "Maximum Amount",
+      "maxAmount": "Höchstbetrag",
       "actions": "Transaktionen",
-      "totalRecords": "Total <span class=",
-      "previous": "Previous",
+      "totalRecords": "Gesamt {{from}}-{{to}} / {{total}}",
+      "previous": "Zurück",
       "next": "Als nächstes"
     },
     "form": {
-      "addTitle": "Add New Approval Role",
+      "addTitle": "Neue Genehmigungsrolle hinzufügen",
       "editTitle": "Genehmigungsrolle bearbeiten",
-      "addDescription": "Enter new approval role information",
-      "editDescription": "Edit approval role information",
+      "addDescription": "Neue Genehmigungsrolle erstellen",
+      "editDescription": "Genehmigungsrolle bearbeiten",
       "approvalRoleGroupId": "Genehmigungsrollengruppe",
       "selectApprovalRoleGroup": "Wählen Sie Genehmigungsrollengruppe aus",
       "noApprovalRoleGroupSelected": "Genehmigungsrollengruppe nicht ausgewählt",
@@ -121,26 +121,26 @@
       "namePlaceholder": "Geben Sie den Rollennamen ein",
       "name.required": "Rollenname ist erforderlich",
       "name.maxLength": "Der Rollenname kann bis zu 100 Zeichen lang sein",
-      "maxAmount": "Maximum Amount",
-      "maxAmountPlaceholder": "Enter the maximum amount",
+      "maxAmount": "Höchstbetrag",
+      "maxAmountPlaceholder": "Geben Sie den Höchstbetrag ein",
       "cancel": "Abbrechen",
       "saving": "Aufnahme...",
       "save": "Speichern"
     },
     "delete": {
-      "confirmTitle": "Delete Approval Role",
-      "confirmMessage": "Are you sure you want to delete the approval role {{name}}?",
+      "confirmTitle": "Genehmigungsrolle löschen",
+      "confirmMessage": "Möchten Sie die Genehmigungsrolle \"{{name}}\" wirklich löschen?",
       "cancelButton": "Abbrechen",
-      "deleting": "Deleting...",
-      "confirmButton": "Yes, Delete"
+      "deleting": "Wird gelöscht...",
+      "confirmButton": "Ja, Löschen"
     },
     "messages": {
       "createSuccess": "Genehmigungsrolle erfolgreich erstellt",
       "createError": "Die Genehmigungsrolle konnte nicht erstellt werden",
       "updateSuccess": "Die Genehmigungsrolle wurde erfolgreich aktualisiert",
       "updateError": "Die Genehmigungsrolle konnte nicht aktualisiert werden",
-      "deleteSuccess": "Approval role deleted successfully",
-      "deleteError": "Could not delete approval role"
+      "deleteSuccess": "Genehmigungsrolle erfolgreich gelöscht",
+      "deleteError": "Genehmigungsrolle konnte nicht gelöscht werden"
     },
     "searchPlaceholder": "Suchen...",
     "refresh": "Aktualisieren",
@@ -150,7 +150,7 @@
   "approvalFlow": {
     "menu": "Genehmigungsflussmanagement",
     "description": "Genehmigungsabläufe verwalten und optimieren",
-    "addButton": "Add New Approval Flow",
+    "addButton": "Neuen Genehmigungsfluss hinzufügen",
     "documentType": {
       "offer": "Angebot",
       "request": "Anfrage",
@@ -170,10 +170,10 @@
       "actions": "Transaktionen"
     },
     "form": {
-      "addTitle": "Add New Approval Flow",
+      "addTitle": "Neuen Genehmigungsfluss hinzufügen",
       "editTitle": "Genehmigungsablauf bearbeiten",
-      "addDescription": "Enter new approval flow information",
-      "editDescription": "Edit approval flow information",
+      "addDescription": "Neuen Genehmigungsfluss erstellen",
+      "editDescription": "Genehmigungsfluss bearbeiten",
       "documentType": "Dokumenttyp",
       "selectDocumentType": "Wählen Sie den Dokumenttyp aus",
       "noDocumentTypeSelected": "Dokumenttyp nicht ausgewählt",
@@ -188,18 +188,18 @@
       "save": "Speichern"
     },
     "delete": {
-      "confirmTitle": "Delete Approval Flow",
-      "confirmMessage": "Are you sure you want to delete this confirmation flow?",
-      "title": "Delete Approval Flow",
-      "confirm": "Are you sure you want to delete this confirmation flow? This action cannot be undone."
+      "confirmTitle": "Genehmigungsfluss löschen",
+      "confirmMessage": "Möchten Sie diesen Bestätigungsfluss wirklich löschen?",
+      "title": "Genehmigungsfluss löschen",
+      "confirm": "Möchten Sie diesen Bestätigungsfluss wirklich löschen? Dieser Vorgang kann nicht rückgängig gemacht werden."
     },
     "messages": {
       "createSuccess": "Genehmigungsablauf erfolgreich erstellt",
       "createError": "Der Genehmigungsablauf konnte nicht erstellt werden",
       "updateSuccess": "Der Genehmigungsablauf wurde erfolgreich aktualisiert",
       "updateError": "Der Genehmigungsablauf konnte nicht aktualisiert werden",
-      "deleteSuccess": "Approval flow successfully deleted",
-      "deleteError": "Failed to delete approval flow"
+      "deleteSuccess": "Genehmigungsfluss erfolgreich gelöscht",
+      "deleteError": "Genehmigungsfluss konnte nicht gelöscht werden"
     },
     "active": "aktiv",
     "inactive": "passiv",
@@ -211,24 +211,24 @@
   },
   "approvalFlowStep": {
     "messages": {
-      "deleteConfirm": "Are you sure you want to delete this step?",
-      "createSuccess": "Flow step added successfully",
-      "createError": "Failed to add flow step",
-      "deleteSuccess": "Flow step deleted successfully",
-      "deleteError": "Failed to delete flow step",
+      "deleteConfirm": "Möchten Sie diesen Schritt wirklich löschen?",
+      "createSuccess": "Flow-Schritt erfolgreich hinzugefügt",
+      "createError": "Flow-Schritt konnte nicht hinzugefügt werden",
+      "deleteSuccess": "Flow-Schritt erfolgreich gelöscht",
+      "deleteError": "Flow-Schritt konnte nicht gelöscht werden",
       "updateSuccess": "Flow-Schritt erfolgreich aktualisiert",
       "updateError": "Flow-Schritt konnte nicht aktualisiert werden"
     },
     "title": "Flow-Schritte",
-    "addButton": "Add Step",
-    "empty": "No steps added yet",
+    "addButton": "Schritt hinzufügen",
+    "empty": "Noch kein Schritt hinzugefügt",
     "unknownRoleGroup": "Keine Rollengruppe",
     "stepDescription": "Genehmigungsauftrag: {order}",
     "form": {
       "editTitle": "Schritt bearbeiten",
-      "addTitle": "Add New Step",
-      "editDescription": "Edit flow step information",
-      "addDescription": "Add new flow step",
+      "addTitle": "Neuen Schritt hinzufügen",
+      "editDescription": "Flow-Schrittinformationen bearbeiten",
+      "addDescription": "Neuen Flow-Schritt hinzufügen",
       "approvalRoleGroup": "Rollengruppe",
       "selectRoleGroup": "Rollengruppe auswählen",
       "cancel": "Abbrechen",
