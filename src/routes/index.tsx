@@ -44,6 +44,10 @@ const PermissionDefinitionsPage = lazyImport(() => import('@/features/access-con
 const PermissionGroupsPage = lazyImport(() => import('@/features/access-control/components/PermissionGroupsPage.tsx'), 'PermissionGroupsPage', 'access-control');
 const UserGroupAssignmentsPage = lazyImport(() => import('@/features/access-control/components/UserGroupAssignmentsPage.tsx'), 'UserGroupAssignmentsPage', 'access-control');
 const HangfireMonitoringPage = lazyImport(() => import('@/features/hangfire-monitoring/components/HangfireMonitoringPage.tsx'), 'HangfireMonitoringPage', 'hangfire-monitoring');
+const NetsisMirrorCustomersPage = lazyImport(() => import('@/features/netsis-mirror/components/NetsisMirrorPage.tsx'), 'NetsisMirrorCustomersPage', 'netsis-mirror');
+const NetsisMirrorStocksPage = lazyImport(() => import('@/features/netsis-mirror/components/NetsisMirrorPage.tsx'), 'NetsisMirrorStocksPage', 'netsis-mirror');
+const NetsisMirrorWarehousesPage = lazyImport(() => import('@/features/netsis-mirror/components/NetsisMirrorPage.tsx'), 'NetsisMirrorWarehousesPage', 'netsis-mirror');
+const NetsisMirrorBranchesPage = lazyImport(() => import('@/features/netsis-mirror/components/NetsisMirrorPage.tsx'), 'NetsisMirrorBranchesPage', 'netsis-mirror');
 const ProfilePage = lazyImport(() => import('@/features/user-detail-management/components/ProfilePage.tsx'), 'ProfilePage', 'user-detail-management');
 const ProjectsPage = lazyImport(() => import('@/features/aqua/definitions/components/ProjectsPage.tsx'), 'ProjectsPage', 'aqua');
 const CagesPage = lazyImport(() => import('@/features/aqua/definitions/components/CagesPage.tsx'), 'CagesPage', 'aqua');
@@ -116,6 +120,10 @@ export const router = createBrowserRouter([
       { path: 'access-control/permission-groups', element: <PermissionGroupsPage /> },
       { path: 'access-control/user-group-assignments', element: <UserGroupAssignmentsPage /> },
       { path: 'hangfire-monitoring', element: <HangfireMonitoringPage /> },
+      { path: 'netsis/mirror-customers', element: <NetsisMirrorCustomersPage /> },
+      { path: 'netsis/mirror-stocks', element: <NetsisMirrorStocksPage /> },
+      { path: 'netsis/mirror-warehouses', element: <NetsisMirrorWarehousesPage /> },
+      { path: 'netsis/mirror-branches', element: <NetsisMirrorBranchesPage /> },
       { path: 'profile', element: <ProfilePage /> },
       { path: 'aqua/definitions/projects', element: <ProjectsPage /> },
       { path: 'aqua/definitions/cages', element: <CagesPage /> },

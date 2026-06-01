@@ -1,0 +1,59 @@
+{
+  "pages": {
+    "customers": {
+      "title": "Mirror Cari Listesi",
+      "description": "Netsis/ERP tarafındaki cari bilgilerini sayfalı olarak görüntüler. Bu ekran sadece okuma amaçlıdır; senkronizasyon jobları ile gelen kaynağı kontrol etmek için kullanılır.",
+      "badge": "Cari",
+      "searchPlaceholder": "Cari kodu, adı, telefon, şehir veya vergi no ara..."
+    },
+    "stocks": {
+      "title": "Mirror Stok Listesi",
+      "description": "Netsis/ERP stok kartlarını sayfalı olarak görüntüler. Aqua stok yönetimine gelen ürün kodu, ad, birim ve grup bilgilerini kontrol etmek için kullanılır.",
+      "badge": "Stok",
+      "searchPlaceholder": "Stok kodu, adı, grup veya üretici kodu ara..."
+    },
+    "warehouses": {
+      "title": "Mirror Depo Listesi",
+      "description": "Netsis/ERP depo tanımlarını sayfalı olarak görüntüler. Kafes-depo eşleştirmesinde kullanılan depo kodlarını buradan doğrulayabilirsiniz.",
+      "badge": "Depo",
+      "searchPlaceholder": "Depo kodu, adı, cari kodu veya şube ara..."
+    },
+    "branches": {
+      "title": "Mirror Şube Listesi",
+      "description": "Netsis/ERP şube bilgilerini sayfalı olarak görüntüler. Branch header ve sync kontrollerinde kullanılan şube kodlarını doğrulamak için kullanılır.",
+      "badge": "Şube",
+      "searchPlaceholder": "Şube kodu veya ünvan ara..."
+    }
+  },
+  "actions": {
+    "refresh": "Yenile"
+  },
+  "table": {
+    "title": "Mirror Veri",
+    "loading": "Veriler yükleniyor...",
+    "empty": "Kayıt bulunamadı.",
+    "error": "Veriler alınamadı.",
+    "range": "{{from}} - {{to}} / {{total}} kayıt",
+    "page": "Sayfa {{page}} / {{totalPages}}"
+  },
+  "columns": {
+    "customerCode": "Cari Kodu",
+    "customerName": "Cari Adı",
+    "phone": "Telefon",
+    "city": "Şehir",
+    "district": "İlçe",
+    "taxNumber": "Vergi No",
+    "stockCode": "Stok Kodu",
+    "stockName": "Stok Adı",
+    "unit": "Birim",
+    "groupCode": "Grup Kodu",
+    "groupName": "Grup Adı",
+    "producerCode": "Üretici Kodu",
+    "warehouseCode": "Depo Kodu",
+    "warehouseName": "Depo Adı",
+    "branchCode": "Şube Kodu",
+    "branchName": "Şube Ünvanı",
+    "locked": "Kilit",
+    "negativeBalance": "Eksi Bakiye"
+  }
+}

@@ -425,6 +425,41 @@ const ACCESS_CONTROL_PERMISSION_RESOURCES: AccessControlPermissionResource[] = [
   },
 ];
 
+const NETSIS_MIRROR_PERMISSION_RESOURCES: AccessControlPermissionResource[] = [
+  {
+    codeBase: 'netsis.mirror.customers',
+    routePermission: 'netsis.mirror.customers.view',
+    routePaths: ['/netsis/mirror-customers'],
+    routePatterns: [/^\/netsis\/mirror-customers(\/|$)/],
+    actions: ['view'],
+    display: { key: 'sidebar.netsisMirrorCustomers', fallback: 'Mirror Cari' },
+  },
+  {
+    codeBase: 'netsis.mirror.stocks',
+    routePermission: 'netsis.mirror.stocks.view',
+    routePaths: ['/netsis/mirror-stocks'],
+    routePatterns: [/^\/netsis\/mirror-stocks(\/|$)/],
+    actions: ['view'],
+    display: { key: 'sidebar.netsisMirrorStocks', fallback: 'Mirror Stok' },
+  },
+  {
+    codeBase: 'netsis.mirror.warehouses',
+    routePermission: 'netsis.mirror.warehouses.view',
+    routePaths: ['/netsis/mirror-warehouses'],
+    routePatterns: [/^\/netsis\/mirror-warehouses(\/|$)/],
+    actions: ['view'],
+    display: { key: 'sidebar.netsisMirrorWarehouses', fallback: 'Mirror Depo' },
+  },
+  {
+    codeBase: 'netsis.mirror.branches',
+    routePermission: 'netsis.mirror.branches.view',
+    routePaths: ['/netsis/mirror-branches'],
+    routePatterns: [/^\/netsis\/mirror-branches(\/|$)/],
+    actions: ['view'],
+    display: { key: 'sidebar.netsisMirrorBranches', fallback: 'Mirror Şube' },
+  },
+];
+
 function buildPermissionDisplayMap<T extends { codeBase: string; actions: AquaCrudAction[]; display: PermissionDisplayMeta }>(
   resources: T[]
 ): Record<string, PermissionDisplayMeta> {
@@ -439,6 +474,7 @@ function buildPermissionDisplayMap<T extends { codeBase: string; actions: AquaCr
 
 const AQUA_RESOURCE_PERMISSION_DISPLAY = buildPermissionDisplayMap(AQUA_PERMISSION_RESOURCES);
 const ACCESS_CONTROL_RESOURCE_PERMISSION_DISPLAY = buildPermissionDisplayMap(ACCESS_CONTROL_PERMISSION_RESOURCES);
+const NETSIS_MIRROR_RESOURCE_PERMISSION_DISPLAY = buildPermissionDisplayMap(NETSIS_MIRROR_PERMISSION_RESOURCES);
 
 export const AQUA_CONFIG_PERMISSION_CODES: Record<string, Partial<Record<AquaCrudAction, string>>> = {
   projects: {
@@ -691,6 +727,10 @@ export const ROUTE_PERMISSION_MAP: Record<string, string> = {
   '/user-management': 'admin-only',
   '/users/mail-settings': 'admin-only',
   '/hangfire-monitoring': 'settings.hangfire-monitoring.view',
+  '/netsis/mirror-customers': 'netsis.mirror.customers.view',
+  '/netsis/mirror-stocks': 'netsis.mirror.stocks.view',
+  '/netsis/mirror-warehouses': 'netsis.mirror.warehouses.view',
+  '/netsis/mirror-branches': 'netsis.mirror.branches.view',
   '/access-control/permission-definitions': 'access-control.permission-definitions.view',
   '/access-control/permission-groups': 'access-control.permission-groups.view',
   '/access-control/user-group-assignments': 'access-control.user-group-assignments.view',
@@ -764,6 +804,12 @@ export const PATH_TO_PERMISSION_PATTERNS: Array<{ pattern: RegExp; permission: s
       permission: resource.routePermission,
     }))
   ),
+  ...NETSIS_MIRROR_PERMISSION_RESOURCES.flatMap((resource) =>
+    resource.routePatterns.map((pattern) => ({
+      pattern,
+      permission: resource.routePermission,
+    }))
+  ),
   {
     pattern: /^\/aqua\/dashboard(\/|$)/,
     permission: 'dashboard.view',
@@ -797,6 +843,7 @@ export const PERMISSION_CODE_DISPLAY: Record<string, PermissionDisplayMeta> = {
   'settings.hangfire-monitoring.view': { key: 'sidebar.hangfireMonitoring', fallback: 'Hangfire İzleme' },
   ...AQUA_RESOURCE_PERMISSION_DISPLAY,
   ...ACCESS_CONTROL_RESOURCE_PERMISSION_DISPLAY,
+  ...NETSIS_MIRROR_RESOURCE_PERMISSION_DISPLAY,
 };
 
 export function getPermissionDisplayMeta(code: string): PermissionDisplayMeta | null {
@@ -810,6 +857,7 @@ export const PERMISSION_MODULE_DISPLAY: Record<string, PermissionDisplayMeta> = 
   settings: { key: 'sidebar.accessControl', fallback: 'Sistem Ayarları' },
   aqua: { key: 'sidebar.aquaOperations', fallback: 'Aqua İşlemleri' },
   'access-control': { key: 'sidebar.accessControl', fallback: 'Erişim Kontrolü' },
+  netsis: { key: 'sidebar.netsisMirror', fallback: 'Netsis Mirror' },
 };
 
 export function getPermissionModuleDisplayMeta(prefix: string): PermissionDisplayMeta | null {
@@ -825,6 +873,9 @@ const SIDEBAR_PERMISSION_CODES = [
     resource.actions.map((action) => `${resource.codeBase}.${action}`)
   ),
   ...AQUA_PERMISSION_RESOURCES.flatMap((resource) =>
+    resource.actions.map((action) => `${resource.codeBase}.${action}`)
+  ),
+  ...NETSIS_MIRROR_PERMISSION_RESOURCES.flatMap((resource) =>
     resource.actions.map((action) => `${resource.codeBase}.${action}`)
   ),
 ] as const;

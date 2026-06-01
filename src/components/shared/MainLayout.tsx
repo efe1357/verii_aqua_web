@@ -14,7 +14,7 @@ import {
   UserCircleIcon,
   DashboardBrowsingIcon
 } from 'hugeicons-react';
-import { Waves, BookOpen, BarChart3 } from 'lucide-react';
+import { Waves, BookOpen, BarChart3, Database } from 'lucide-react';
 
 interface NavItem {
   title: string;
@@ -109,6 +109,16 @@ export function MainLayout({ navItems }: MainLayoutProps): ReactElement {
         icon: <PackageIcon size={iconSize} className="text-pink-500" />,
         children: [
           { title: sidebarT('stockManagement'), href: '/stocks' },
+        ],
+      },
+      {
+        title: sidebarT('netsisMirror'),
+        icon: <Database size={iconSize} className="text-sky-500" />,
+        children: [
+          { title: sidebarT('netsisMirrorCustomers'), href: '/netsis/mirror-customers' },
+          { title: sidebarT('netsisMirrorStocks'), href: '/netsis/mirror-stocks' },
+          { title: sidebarT('netsisMirrorWarehouses'), href: '/netsis/mirror-warehouses' },
+          { title: sidebarT('netsisMirrorBranches'), href: '/netsis/mirror-branches' },
         ],
       },
       {
