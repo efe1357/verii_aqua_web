@@ -1,10 +1,10 @@
 {
-  "title": "Bildirimler",
-  "loading": "Yükleniyor",
-  "noNotifications": "Bildirim bulunamadı",
-  "markAllAsRead": "Tümünü Okundu İşaretle",
-  "close": "Kapat",
-  "unread": "Okunmadı",
+  "title": "Benachrichtigungen",
+  "loading": "Lädt",
+  "noNotifications": "Keine Benachrichtigungen gefunden",
+  "markAllAsRead": "Alle als gelesen markieren",
+  "close": "Schließen",
+  "unread": "Ungelesen",
   "common": {
     "sidebar": {
       "netsisMirror": "Netsis Mirror",
