@@ -1,14 +1,14 @@
 {
   "menu": "Benutzerverwaltung",
   "description": "Benutzer verwalten und organisieren",
-  "addButton": "Add New User",
+  "addButton": "Neuen Benutzer hinzufügen",
   "table": {
     "id": "ID",
     "username": "Benutzername",
     "email": "E-Mail",
     "fullName": "Vorname Nachname",
     "role": "Rolle",
-    "status": "Status",
+    "status": "Zustand",
     "createdDate": "Erstellungsdatum",
     "active": "aktiv",
     "inactive": "passiv",
@@ -18,15 +18,15 @@
     "actions": "Transaktionen",
     "noData": "Keine Daten",
     "loading": "Laden...",
-    "previous": "Previous",
+    "previous": "Vorherige",
     "next": "Als nächstes",
     "edit": "Bearbeiten",
-    "delete": "Delete",
-    "manager": "Manager"
+    "delete": "Löschen",
+    "manager": "Vorgesetzter"
   },
   "form": {
     "editUser": "Benutzer bearbeiten",
-    "addUser": "Add New User",
+    "addUser": "Neuen Benutzer hinzufügen",
     "editDescription": "Benutzerinformationen bearbeiten",
     "addDescription": "Geben Sie neue Benutzerinformationen ein",
     "username": "Benutzername",
@@ -35,11 +35,11 @@
     "emailPlaceholder": "Geben Sie die E-Mail-Adresse ein",
     "password": "Passwort",
     "passwordPlaceholder": "Bleibt das Feld leer, wird ein temporäres Passwort erstellt.",
-    "firstName": "Name",
+    "firstName": "Vorname",
     "firstNamePlaceholder": "Namen eingeben",
     "lastName": "Nachname",
     "lastNamePlaceholder": "Geben Sie den Nachnamen ein",
-    "phoneNumber": "phone",
+    "phoneNumber": "Telefonnummer",
     "phoneNumberPlaceholder": "Geben Sie die Telefonnummer ein",
     "role": "Rolle",
     "rolePlaceholder": "Rolle auswählen",
@@ -55,9 +55,9 @@
     "permissionGroupsNoData": "Berechtigungsgruppe nicht gefunden",
     "generatedPasswordInfo": "Bleibt das Passwort leer, wird ein temporäres Passwort erstellt",
     "selectAll": "Alles auswählen",
-    "manager": "Manager",
-    "managerPlaceholder": "Select manager",
-    "noManager": "No manager"
+    "manager": "Vorgesetzter",
+    "managerPlaceholder": "Vorgesetzten auswählen",
+    "noManager": "Kein Vorgesetzter"
   },
   "stats": {
     "totalUsers": "Gesamtzahl der Benutzer",
@@ -67,13 +67,13 @@
     "loading": "Laden..."
   },
   "delete": {
-    "confirmTitle": "Delete User",
-    "confirmMessage": "Are you sure you want to delete user {{username}}?"
+    "confirmTitle": "Benutzer löschen",
+    "confirmMessage": "Möchten Sie den Benutzer {{username}} wirklich löschen?"
   },
   "userManagement": {
     "form": {
       "editUser": "Benutzer bearbeiten",
-      "addUser": "Add New User",
+      "addUser": "Neuen Benutzer hinzufügen",
       "editDescription": "Benutzerinformationen bearbeiten",
       "addDescription": "Geben Sie neue Benutzerinformationen ein",
       "username": "Benutzername",
@@ -82,11 +82,11 @@
       "emailPlaceholder": "Geben Sie die E-Mail-Adresse ein",
       "password": "Passwort",
       "passwordPlaceholder": "Bleibt das Feld leer, wird ein temporäres Passwort erstellt.",
-      "firstName": "Name",
+      "firstName": "Vorname",
       "firstNamePlaceholder": "Namen eingeben",
       "lastName": "Nachname",
       "lastNamePlaceholder": "Geben Sie den Nachnamen ein",
-      "phoneNumber": "phone",
+      "phoneNumber": "Telefonnummer",
       "phoneNumberPlaceholder": "Geben Sie die Telefonnummer ein",
       "role": "Rolle",
       "rolePlaceholder": "Rolle auswählen",
@@ -107,6 +107,6 @@
     "detailLoadFailed": "Benutzerdetails konnten nicht geladen werden",
     "createFailed": "Benutzer konnte nicht erstellt werden",
     "updateFailed": "Benutzer konnte nicht aktualisiert werden",
-    "deleteFailed": "Failed to delete user"
+    "deleteFailed": "Benutzer konnte nicht gelöscht werden"
   }
 }

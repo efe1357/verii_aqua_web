@@ -65,9 +65,9 @@
       "firstName.maxLength": "Le nom peut contenir jusqu'à 50 caractères",
       "lastName.maxLength": "Le nom de famille peut contenir au maximum 50 caractères",
       "phoneNumber.maxLength": "Le numéro de téléphone peut contenir jusqu'à 20 caractères",
-      "manager": "Manager",
-      "managerPlaceholder": "Select manager",
-      "noManager": "No manager"
+      "manager": "Responsable",
+      "managerPlaceholder": "Sélectionner le responsable",
+      "noManager": "Aucun responsable"
     },
     "delete": {
       "confirmTitle": "Supprimer un utilisateur",

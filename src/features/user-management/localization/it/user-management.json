@@ -22,7 +22,7 @@
     "next": "Avanti",
     "edit": "Modifica",
     "delete": "Elimina",
-    "manager": "Manager"
+    "manager": "Responsabile"
   },
   "form": {
     "firstName": "Nome",
@@ -35,15 +35,15 @@
     "editUser": "Modifica utente",
     "addUser": "Aggiungi nuovo utente",
     "editDescription": "Modifica le informazioni dell'utente",
-    "addDescription": "Enter new user information",
+    "addDescription": "Inserisci le informazioni del nuovo utente",
     "username": "Nome utente",
-    "usernamePlaceholder": "Enter username",
-    "emailPlaceholder": "Enter email address",
+    "usernamePlaceholder": "Inserisci nome utente",
+    "emailPlaceholder": "Inserisci indirizzo email",
     "passwordPlaceholder": "Se lasciato vuoto, verrà creata una password temporanea.",
-    "firstNamePlaceholder": "Enter name",
-    "lastNamePlaceholder": "Enter last name",
+    "firstNamePlaceholder": "Inserisci nome",
+    "lastNamePlaceholder": "Inserisci cognome",
     "phoneNumber": "telefono",
-    "phoneNumberPlaceholder": "Enter phone number",
+    "phoneNumberPlaceholder": "Inserisci il numero di telefono",
     "rolePlaceholder": "Seleziona ruolo",
     "isActive": "attivo",
     "isActiveDescription": "Stato attivo dell'utente",
@@ -55,9 +55,9 @@
     "permissionGroupsNoData": "Gruppo di autorizzazioni non trovato",
     "generatedPasswordInfo": "Se la password viene lasciata vuota, verrà creata una password temporanea",
     "selectAll": "seleziona tutto",
-    "manager": "Manager",
-    "managerPlaceholder": "Select manager",
-    "noManager": "No manager"
+    "manager": "Responsabile",
+    "managerPlaceholder": "Seleziona responsabile",
+    "noManager": "Nessun responsabile"
   },
   "stats": {
     "totalUsers": "Utenti totali",
@@ -75,19 +75,19 @@
       "editUser": "Modifica utente",
       "addUser": "Aggiungi nuovo utente",
       "editDescription": "Modifica le informazioni dell'utente",
-      "addDescription": "Enter new user information",
+      "addDescription": "Inserisci le informazioni del nuovo utente",
       "username": "Nome utente",
-      "usernamePlaceholder": "Enter username",
+      "usernamePlaceholder": "Inserisci nome utente",
       "email": "E-mail",
-      "emailPlaceholder": "Enter email address",
+      "emailPlaceholder": "Inserisci indirizzo email",
       "password": "parola d'ordine",
       "passwordPlaceholder": "Se lasciato vuoto, verrà creata una password temporanea.",
       "firstName": "Nome",
-      "firstNamePlaceholder": "Enter name",
+      "firstNamePlaceholder": "Inserisci nome",
       "lastName": "Cognome",
-      "lastNamePlaceholder": "Enter last name",
+      "lastNamePlaceholder": "Inserisci cognome",
       "phoneNumber": "telefono",
-      "phoneNumberPlaceholder": "Enter phone number",
+      "phoneNumberPlaceholder": "Inserisci il numero di telefono",
       "role": "Ruolo",
       "rolePlaceholder": "Seleziona ruolo",
       "permissionGroups": "Gruppi di autorizzazione",
@@ -103,10 +103,10 @@
     }
   },
   "api": {
-    "listLoadFailed": "Failed to load user list",
-    "detailLoadFailed": "Failed to load user detail",
-    "createFailed": "Failed to create user",
-    "updateFailed": "Failed to update user",
-    "deleteFailed": "Failed to delete user"
+    "listLoadFailed": "Impossibile caricare l'elenco degli utenti",
+    "detailLoadFailed": "Impossibile caricare i dettagli utente",
+    "createFailed": "Impossibile creare l'utente",
+    "updateFailed": "Impossibile aggiornare l'utente",
+    "deleteFailed": "Impossibile eliminare l'utente"
   }
 }

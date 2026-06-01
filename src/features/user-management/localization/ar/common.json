@@ -65,9 +65,9 @@
       "firstName.maxLength": "يمكن أن يصل الاسم إلى 50 حرفًا",
       "lastName.maxLength": "يمكن أن يصل اسم اللقب إلى 50 حرفًا كحد أقصى",
       "phoneNumber.maxLength": "يمكن أن يصل رقم الهاتف إلى 20 حرفًا",
-      "manager": "Manager",
-      "managerPlaceholder": "Select manager",
-      "noManager": "No manager"
+      "manager": "المدير",
+      "managerPlaceholder": "اختر المدير",
+      "noManager": "لا يوجد مدير"
     },
     "delete": {
       "confirmTitle": "حذف المستخدم",

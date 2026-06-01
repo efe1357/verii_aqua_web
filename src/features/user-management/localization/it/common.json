@@ -31,20 +31,20 @@
     "form": {
       "addUser": "Aggiungi nuovo utente",
       "editUser": "Modifica utente",
-      "addDescription": "Enter new user information",
+      "addDescription": "Inserisci le informazioni del nuovo utente",
       "editDescription": "Modifica le informazioni dell'utente",
       "username": "Nome utente",
-      "usernamePlaceholder": "Enter username",
+      "usernamePlaceholder": "Inserisci nome utente",
       "email": "E-mail",
-      "emailPlaceholder": "Enter email address",
+      "emailPlaceholder": "Inserisci indirizzo email",
       "password": "parola d'ordine",
-      "passwordPlaceholder": "If left blank, a temporary password will be created.",
+      "passwordPlaceholder": "Se lasciato vuoto, verrà creata una password temporanea.",
       "firstName": "Nome",
-      "firstNamePlaceholder": "Enter name",
+      "firstNamePlaceholder": "Inserisci nome",
       "lastName": "Cognome",
-      "lastNamePlaceholder": "Enter last name",
+      "lastNamePlaceholder": "Inserisci cognome",
       "phoneNumber": "telefono",
-      "phoneNumberPlaceholder": "Enter phone number",
+      "phoneNumberPlaceholder": "Inserisci il numero di telefono",
       "role": "Ruolo",
       "rolePlaceholder": "Seleziona ruolo",
       "roleRequired": "La selezione del ruolo è obbligatoria",
@@ -65,9 +65,9 @@
       "firstName.maxLength": "Il nome può contenere fino a 50 caratteri",
       "lastName.maxLength": "Il cognome può contenere un massimo di 50 caratteri",
       "phoneNumber.maxLength": "Il numero di telefono può contenere fino a 20 caratteri",
-      "manager": "Manager",
-      "managerPlaceholder": "Select manager",
-      "noManager": "No manager"
+      "manager": "Responsabile",
+      "managerPlaceholder": "Seleziona responsabile",
+      "noManager": "Nessun responsabile"
     },
     "delete": {
       "confirmTitle": "Elimina utente",
@@ -75,11 +75,11 @@
     },
     "messages": {
       "createSuccess": "Utente creato con successo",
-      "createError": "Failed to create user",
+      "createError": "Impossibile creare l'utente",
       "updateSuccess": "Utente aggiornato con successo",
-      "updateError": "Failed to update user",
+      "updateError": "Impossibile aggiornare l'utente",
       "deleteSuccess": "Utente eliminato con successo",
-      "deleteError": "Failed to delete user"
+      "deleteError": "Impossibile eliminare l'utente"
     }
   }
 }

@@ -22,7 +22,7 @@
     "next": "التالي",
     "edit": "يحرر",
     "delete": "يمسح",
-    "manager": "Manager"
+    "manager": "المدير"
   },
   "form": {
     "firstName": "اسم",
@@ -55,9 +55,9 @@
     "permissionGroupsNoData": "لم يتم العثور على مجموعة الأذونات",
     "generatedPasswordInfo": "إذا تركت كلمة المرور فارغة، فسيتم إنشاء كلمة مرور مؤقتة",
     "selectAll": "حدد الكل",
-    "manager": "Manager",
-    "managerPlaceholder": "Select manager",
-    "noManager": "No manager"
+    "manager": "المدير",
+    "managerPlaceholder": "اختر المدير",
+    "noManager": "لا يوجد مدير"
   },
   "stats": {
     "totalUsers": "إجمالي المستخدمين",
