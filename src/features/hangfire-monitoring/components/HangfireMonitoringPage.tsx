@@ -157,7 +157,7 @@ export function HangfireMonitoringPage(): ReactElement {
 
   const recurringRows = recurringItems.slice((recurringPage - 1) * recurringPageSize, recurringPage * recurringPageSize);
 
-  const headStyle = 'text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 py-4';
+  const headStyle = 'py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 whitespace-nowrap';
 
   const renderStockPaging = (
     total: number,
@@ -167,18 +167,18 @@ export function HangfireMonitoringPage(): ReactElement {
     onNext: () => void,
   ): ReactElement => (
     <div className="flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 bg-slate-50 dark:bg-blue-950/50 border-t border-slate-200 dark:border-cyan-800/30 gap-4 shrink-0 rounded-b-2xl">
-      <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-        {t('stock.list.total')} {total} {t('stock.list.recordsListed')}
-      </span>
+      <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+        {t('stock:list.total')} <span className="font-bold text-slate-900 dark:text-white mx-1">{total}</span> {t('stock:list.recordsListed')}
+      </div>
       <div className="flex items-center gap-2">
         <Button variant="outline" size="sm" className="h-8 px-3 rounded-lg text-xs bg-white border-slate-200 text-slate-700 hover:bg-slate-100 dark:bg-transparent dark:border-cyan-800/50 dark:text-slate-300 dark:hover:bg-blue-900/50 dark:hover:text-white disabled:opacity-50 transition-colors" onClick={onPrevious} disabled={page <= 1}>
-          <ArrowLeft className="w-3 h-3 mr-1" /> {t('common:previous')}
+          <ArrowLeft className="w-3 h-3 mr-1" /> {t('stock:list.previous')}
         </Button>
-        <span className="text-xs font-semibold bg-white border border-slate-200 text-slate-800 dark:bg-blue-950 dark:border-cyan-800/50 px-3 py-1.5 rounded-md min-w-12 text-center dark:text-slate-200 shadow-sm">
-          {page}/{totalPages}
-        </span>
+        <div className="text-xs font-semibold bg-white border border-slate-200 text-slate-800 dark:bg-blue-950 dark:border-cyan-800/50 px-3 py-1.5 rounded-md min-w-12 text-center dark:text-slate-200 shadow-sm">
+          {page} / {totalPages}
+        </div>
         <Button variant="outline" size="sm" className="h-8 px-3 rounded-lg text-xs bg-white border-slate-200 text-slate-700 hover:bg-slate-100 dark:bg-transparent dark:border-cyan-800/50 dark:text-slate-300 dark:hover:bg-blue-900/50 dark:hover:text-white disabled:opacity-50 transition-colors" onClick={onNext} disabled={page >= totalPages}>
-          {t('common:next')} <ArrowRight className="w-3 h-3 ml-1" />
+          {t('stock:list.next')} <ArrowRight className="w-3 h-3 ml-1" />
         </Button>
       </div>
     </div>
@@ -207,19 +207,19 @@ export function HangfireMonitoringPage(): ReactElement {
     onPrevious: () => void;
     onNext: () => void;
   }): ReactElement => (
-    <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300">
-      <div className="p-5 border-b border-slate-100 dark:border-cyan-800/30 bg-slate-50/50 dark:bg-blue-900/20 flex items-center justify-between">
-        <div className="flex items-center gap-3 min-w-0">
+    <section className="space-y-3">
+      <div className="flex items-center justify-between px-1">
+        <div className="flex items-center gap-2.5 min-w-0">
           {icon}
           <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate">{title}</h2>
         </div>
         {headerRight ?? null}
       </div>
-      <div className="bg-transparent flex flex-col min-h-0">
+      <div className="bg-white dark:bg-blue-950/60 backdrop-blur-xl border border-slate-200 dark:border-cyan-800/30 rounded-2xl overflow-hidden shadow-sm transition-all duration-300 flex flex-col min-h-0">
         <div className="overflow-x-auto min-h-[300px] custom-scrollbar">
-          <Table>
-            <TableHeader className="bg-slate-50/80 dark:bg-blue-900/40">
-              <TableRow className="border-b border-slate-200 dark:border-cyan-800/30 hover:bg-transparent">
+          <Table className="w-full text-sm">
+            <TableHeader className="bg-slate-50 dark:bg-blue-950/80 sticky top-0 z-10 backdrop-blur-sm">
+              <TableRow className="hover:bg-transparent border-b border-slate-200 dark:border-cyan-800/30">
                 {tableHeaders}
               </TableRow>
             </TableHeader>
@@ -228,7 +228,7 @@ export function HangfireMonitoringPage(): ReactElement {
         </div>
         {renderStockPaging(total, page, totalPages, onPrevious, onNext)}
       </div>
-    </div>
+    </section>
   );
 
   const renderFailedRows = (items: HangfireFailedResponseDto['items'], emptyText: string, emptyIcon: ReactElement, timeField: 'failedAt' | 'enqueuedAt') => {
@@ -246,9 +246,9 @@ export function HangfireMonitoringPage(): ReactElement {
     }
 
     return items.map((item) => (
-      <TableRow key={`${timeField}-${item.jobId}-${item.reason ?? ''}`} className="border-b border-slate-100 dark:border-cyan-800/10 hover:bg-slate-50 dark:hover:bg-blue-900/20 group transition-colors">
-        <TableCell className="font-mono text-[11px] text-slate-400 dark:text-slate-500 px-6">#{item.jobId}</TableCell>
-        <TableCell className="font-bold text-sm text-slate-900 dark:text-slate-200 max-w-[280px] truncate" title={item.jobName}>
+      <TableRow key={`${timeField}-${item.jobId}-${item.reason ?? ''}`} className="group border-b border-slate-200 dark:border-cyan-800/30 last:border-0 hover:bg-slate-50 dark:hover:bg-blue-900/30 transition-colors duration-200">
+        <TableCell className="font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400 px-6">#{item.jobId}</TableCell>
+        <TableCell className="font-semibold text-sm text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 max-w-[280px] truncate" title={item.jobName}>
           {item.jobName}
         </TableCell>
         <TableCell>
@@ -256,8 +256,8 @@ export function HangfireMonitoringPage(): ReactElement {
             {item.state || 'Failed'}
           </Badge>
         </TableCell>
-        <TableCell className="text-xs text-slate-500 dark:text-slate-400 tabular-nums">{formatDate(item[timeField])}</TableCell>
-        <TableCell className="max-w-[400px] truncate text-xs text-slate-500 group-hover:text-slate-800 dark:group-hover:text-slate-300 transition-colors" title={item.reason}>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{formatDate(item[timeField])}</TableCell>
+        <TableCell className="max-w-[400px] truncate text-sm text-slate-600 dark:text-slate-300 font-medium" title={item.reason}>
           {item.reason || '-'}
         </TableCell>
       </TableRow>
@@ -279,14 +279,14 @@ export function HangfireMonitoringPage(): ReactElement {
     }
 
     return items.map((item) => (
-      <TableRow key={`success-${item.jobId}-${item.finishedAt ?? ''}`} className="border-b border-slate-100 dark:border-cyan-800/10 hover:bg-slate-50 dark:hover:bg-blue-900/20 group transition-colors">
-        <TableCell className="font-mono text-[11px] text-slate-400 dark:text-slate-500 px-6">#{item.jobId}</TableCell>
-        <TableCell className="font-bold text-sm text-slate-900 dark:text-slate-200 max-w-[280px] truncate" title={item.jobName}>{item.jobName}</TableCell>
-        <TableCell className="text-xs text-slate-500 dark:text-slate-400">{item.recurringJobId || '-'}</TableCell>
-        <TableCell className="text-xs text-slate-500 dark:text-slate-400">{item.queue || '-'}</TableCell>
-        <TableCell className="text-xs text-slate-500 dark:text-slate-400 tabular-nums">{formatDuration(item.durationMs)}</TableCell>
-        <TableCell className="text-xs text-slate-500 dark:text-slate-400 tabular-nums">{item.retryCount}</TableCell>
-        <TableCell className="text-xs text-slate-500 dark:text-slate-400 tabular-nums">{formatDate(item.finishedAt)}</TableCell>
+      <TableRow key={`success-${item.jobId}-${item.finishedAt ?? ''}`} className="group border-b border-slate-200 dark:border-cyan-800/30 last:border-0 hover:bg-slate-50 dark:hover:bg-blue-900/30 transition-colors duration-200">
+        <TableCell className="font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400 px-6">#{item.jobId}</TableCell>
+        <TableCell className="font-semibold text-sm text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 max-w-[280px] truncate" title={item.jobName}>{item.jobName}</TableCell>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium">{item.recurringJobId || '-'}</TableCell>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium">{item.queue || '-'}</TableCell>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{formatDuration(item.durationMs)}</TableCell>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{item.retryCount}</TableCell>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{formatDate(item.finishedAt)}</TableCell>
       </TableRow>
     ));
   };
@@ -309,21 +309,21 @@ export function HangfireMonitoringPage(): ReactElement {
       <TableRow
         key={item.id}
         className={cn(
-          'border-b border-slate-100 dark:border-cyan-800/10 hover:bg-slate-50 dark:hover:bg-blue-900/20 transition-colors cursor-pointer',
+          'group cursor-pointer border-b border-slate-200 dark:border-cyan-800/30 last:border-0 hover:bg-slate-50 dark:hover:bg-blue-900/30 transition-colors duration-200',
           selectedRecurringJob?.id === item.id && 'bg-cyan-50/60 dark:bg-cyan-500/10',
         )}
         onClick={() => setSelectedRecurringJobId(item.id)}
       >
-        <TableCell className="font-mono text-[11px] text-slate-500 dark:text-slate-400 px-6">{item.id}</TableCell>
-        <TableCell className="text-sm text-slate-900 dark:text-slate-200">
-          <div className="font-bold">{item.jobName}</div>
+        <TableCell className="font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400 px-6">{item.id}</TableCell>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium">
+          <div className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400">{item.jobName}</div>
           {item.method ? <div className="text-xs text-slate-500 dark:text-slate-400">{item.method}</div> : null}
           {item.error ? <div className="text-xs text-rose-500 mt-1">{item.error}</div> : null}
         </TableCell>
-        <TableCell className="text-xs text-slate-500 dark:text-slate-400">{item.cron || '-'}</TableCell>
-        <TableCell className="text-xs text-slate-500 dark:text-slate-400 tabular-nums">{formatDate(item.nextExecution)}</TableCell>
-        <TableCell className="text-xs text-slate-500 dark:text-slate-400 tabular-nums">{formatDate(item.lastExecution)}</TableCell>
-        <TableCell className="text-xs text-slate-500 dark:text-slate-400">{item.queue || '-'}</TableCell>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium">{item.cron || '-'}</TableCell>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{formatDate(item.nextExecution)}</TableCell>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium tabular-nums">{formatDate(item.lastExecution)}</TableCell>
+        <TableCell className="text-sm text-slate-600 dark:text-slate-300 font-medium">{item.queue || '-'}</TableCell>
       </TableRow>
     ));
   };
