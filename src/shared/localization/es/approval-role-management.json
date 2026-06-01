@@ -14,7 +14,7 @@
       "maxAmount": "Monto Máximo",
       "createdDate": "Fecha de creación",
       "createdBy": "Creado por el usuario",
-      "actions": "Transacciones",
+      "actions": "Acciones",
       "totalRecords": "Total de {{count}} registros.",
       "page": "Página {{current}} / {{total}}",
       "previous": "Anterior",
@@ -45,7 +45,7 @@
       "maxAmountMin": "El importe máximo no puede ser inferior a 0",
       "cancel": "Cancelar",
       "save": "Guardar",
-      "saving": "Grabando..."
+      "saving": "Guardando..."
     },
     "advancedFilter": {
       "columnName": "Nombre del rol",

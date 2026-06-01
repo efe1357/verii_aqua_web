@@ -14,7 +14,7 @@
       "maxAmount": "Maximum Amount",
       "createdDate": "Creation Date",
       "createdBy": "Created by User",
-      "actions": "Transactions",
+      "actions": "Actions",
       "totalRecords": "Total {{count}} records.",
       "page": "Page {{current}} / {{total}}",
       "previous": "Previous",
@@ -45,7 +45,7 @@
       "maxAmountMin": "The maximum amount cannot be less than 0",
       "cancel": "Cancel",
       "save": "Save",
-      "saving": "Recording..."
+      "saving": "Saving..."
     },
     "advancedFilter": {
       "columnName": "Role Name",

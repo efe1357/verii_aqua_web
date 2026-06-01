@@ -14,11 +14,11 @@
       "maxAmount": "Höchstbetrag",
       "createdDate": "Erstellungsdatum",
       "createdBy": "Erstellt vom Benutzer",
-      "actions": "Transaktionen",
+      "actions": "Aktionen",
       "totalRecords": "Insgesamt {{count}} Datensätze.",
       "page": "Seite {{current}} / {{total}}",
       "previous": "Zurück",
-      "next": "Als nächstes"
+      "next": "Weiter"
     },
     "delete": {
       "confirmTitle": "Löschvorgang",
@@ -41,7 +41,7 @@
       "maxAmountPlaceholder": "Geben Sie den Höchstbetrag ein",
       "cancel": "Abbrechen",
       "save": "Speichern",
-      "saving": "Aufnahme...",
+      "saving": "Wird gespeichert...",
       "approvalRoleGroupIdRequired": "Die Auswahl der Genehmigungsrollengruppe ist obligatorisch",
       "nameRequired": "Rollenname ist erforderlich",
       "nameMaxLength": "Der Rollenname kann bis zu 100 Zeichen lang sein",

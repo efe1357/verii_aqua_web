@@ -14,9 +14,9 @@
       "maxAmount": "Montant maximum",
       "createdDate": "Date de création",
       "createdBy": "Créé par l'utilisateur",
-      "actions": "Opérations",
+      "actions": "Actions",
       "totalRecords": "Total de {{count}} enregistrements.",
-      "page": "Pages {{current}} / {{total}}",
+      "page": "Page {{current}} / {{total}}",
       "previous": "Précédent",
       "next": "Suivant"
     },

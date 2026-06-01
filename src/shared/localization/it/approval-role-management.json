@@ -14,7 +14,7 @@
       "maxAmount": "Importo massimo",
       "createdDate": "Data di creazione",
       "createdBy": "Creato dall'utente",
-      "actions": "Transazioni",
+      "actions": "Azioni",
       "totalRecords": "Totale {{count}} record.",
       "page": "Pagina {{current}} / {{total}}",
       "previous": "Precedente",
@@ -45,7 +45,7 @@
       "maxAmountMin": "L'importo massimo non può essere inferiore a 0",
       "cancel": "Annulla",
       "save": "Salva",
-      "saving": "Registrazione..."
+      "saving": "Salvataggio..."
     },
     "advancedFilter": {
       "columnName": "Nome del ruolo",
