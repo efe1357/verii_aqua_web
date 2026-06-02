@@ -1,4 +1,4 @@
-import { type ReactElement, useEffect, useMemo } from 'react';
+import { type ReactElement, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -44,7 +44,6 @@ export function WeatherQuickForm({
   };
 
   const selectedWeatherTypeId = form.watch('weatherTypeId');
-  const selectedWeatherSeverityId = form.watch('weatherSeverityId');
 
   const typeOptions = useMemo(
     () =>
@@ -68,18 +67,6 @@ export function WeatherQuickForm({
       })),
     [filteredSeverities]
   );
-
-  useEffect(() => {
-    if (selectedWeatherTypeId <= 0 || selectedWeatherSeverityId <= 0) return;
-
-    const isSelectedSeverityValid = filteredSeverities.some(
-      (item) => Number(item.id) === Number(selectedWeatherSeverityId)
-    );
-
-    if (!isSelectedSeverityValid) {
-      form.setValue('weatherSeverityId', 0, { shouldDirty: true, shouldValidate: true });
-    }
-  }, [filteredSeverities, form, selectedWeatherSeverityId, selectedWeatherTypeId]);
 
   // AQUA KONSEPT STİLLERİ
   const labelStyle = "text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide ml-1 flex items-center gap-1.5";
@@ -112,7 +99,7 @@ export function WeatherQuickForm({
                     <ChevronRight size={14} className="text-cyan-500" />
                     {t('aqua.quickDailyEntry.weather.severity')}
                   </FormLabel>
-                  <FormControl><Combobox options={severityOptions} value={String(field.value)} onValueChange={(v) => field.onChange(Number(v))} placeholder={t('aqua.quickDailyEntry.weather.selectSeverity')} disabled={selectedWeatherTypeId <= 0} className={inputStyle} /></FormControl>
+                  <FormControl><Combobox options={severityOptions} value={String(field.value)} onValueChange={(v) => field.onChange(Number(v))} placeholder={t('aqua.quickDailyEntry.weather.selectSeverity')} className={inputStyle} /></FormControl>
                   <FormMessage className="text-xs text-red-500" />
                 </FormItem>
               )} />

@@ -15,12 +15,9 @@ function getRankedSeverities(severities: WeatherSeverityDto[]): WeatherSeverityD
 }
 
 export function getFilteredWeatherSeverities(
-  weatherTypeId: number,
+  _weatherTypeId: number,
   _weatherTypes: WeatherTypeDto[],
   severities: WeatherSeverityDto[]
 ): WeatherSeverityDto[] {
-  const ranked = getRankedSeverities(severities);
-  if (weatherTypeId <= 0) return [];
-
-  return ranked.filter((item) => item.weatherTypeId == null || Number(item.weatherTypeId) === Number(weatherTypeId));
+  return getRankedSeverities(severities);
 }
