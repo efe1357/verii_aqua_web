@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
 import { AquaHeaderLineCrudPage } from './AquaHeaderLineCrudPage';
-import { feedingLinesConfig, feedingsConfig } from '../config/page-configs';
+import { feedingDistributionsConfig, feedingLinesConfig, feedingsConfig } from '../config/page-configs';
 
 export function FeedingsPage(): ReactElement {
   return (
@@ -10,6 +10,10 @@ export function FeedingsPage(): ReactElement {
       lineForeignKey="feedingId"
       lineSectionTitle="aqua.pages.feedingLines.title"
       lineSectionDescription="aqua.common.linesForRecord"
+      detailConfig={feedingDistributionsConfig}
+      detailForeignKey="feedingLineId"
+      detailSectionTitle="aqua.pages.feedingDistributions.title"
+      detailSectionDescription="aqua.common.distributionsForLine"
     />
   );
 }

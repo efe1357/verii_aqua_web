@@ -135,8 +135,25 @@ function normalizeFieldValue(field: AquaFieldConfig, rawValue: unknown): unknown
   return rawValue;
 }
 
+function gramsToKilograms(value: number): number {
+  return value / 1000;
+}
+
+function kilogramsToGrams(value: number): number {
+  return value * 1000;
+}
+
+function normalizeMassDisplayNumber(value: number): string {
+  return Number(value.toFixed(6)).toString();
+}
+
+function shouldDisplayAsKg(fieldOrColumn: { unitTransform?: 'gram-to-kg'; key: string }): boolean {
+  return fieldOrColumn.unitTransform === 'gram-to-kg';
+}
+
 function resolveNumberInputStep(field: AquaFieldConfig): string {
   if (field.numberStep) return field.numberStep;
+  if (shouldDisplayAsKg(field)) return '0.001';
   const key = field.key.toLowerCase();
   if (key.includes('count')) return '1';
   return '0.001';
@@ -149,10 +166,20 @@ function isRequiredFieldMissing(field: AquaFieldConfig, value: unknown): boolean
   return false;
 }
 
-function formatCellValue(value: unknown, t: (key: string) => string): string {
+function formatCellValue(value: unknown, t: (key: string) => string, column?: { unitTransform?: 'gram-to-kg'; key: string }): string {
   if (value == null) return '-';
   if (typeof value === 'boolean') return value ? t('common.yes') : t('common.no');
-  if (typeof value === 'string' || typeof value === 'number') return String(value);
+  if (typeof value === 'number') {
+    if (column && shouldDisplayAsKg(column)) return normalizeMassDisplayNumber(gramsToKilograms(value));
+    return String(value);
+  }
+  if (typeof value === 'string') {
+    if (column && shouldDisplayAsKg(column)) {
+      const parsed = toNumericValue(value);
+      return parsed == null ? value : normalizeMassDisplayNumber(gramsToKilograms(parsed));
+    }
+    return value;
+  }
   return JSON.stringify(value);
 }
 
@@ -173,6 +200,10 @@ function extractRecordId(record: Record<string, unknown> | null | undefined): nu
 
 function normalizeInputValue(field: AquaFieldConfig, value: unknown): string {
   if (value == null) return '';
+  if (field.type === 'number' && shouldDisplayAsKg(field)) {
+    const numeric = toNumericValue(value);
+    return numeric == null ? '' : normalizeMassDisplayNumber(gramsToKilograms(numeric));
+  }
   const raw = String(value);
   if (field.type === 'date') return raw.length >= 10 ? raw.slice(0, 10) : raw;
   if (field.type === 'datetime') {
@@ -180,6 +211,27 @@ function normalizeInputValue(field: AquaFieldConfig, value: unknown): string {
     return normalized.length >= 16 ? normalized.slice(0, 16) : normalized;
   }
   return raw;
+}
+
+function normalizeFormInputValue(field: AquaFieldConfig, rawValue: string): string {
+  if (field.type !== 'number' || !shouldDisplayAsKg(field)) return rawValue;
+  const numeric = toNumericValue(rawValue);
+  return numeric == null ? '' : normalizeMassDisplayNumber(kilogramsToGrams(numeric));
+}
+
+function formatKilogramDisplayLabel(label: string): string {
+  if (/gram/i.test(label)) return label.replace(/gram/gi, 'KG');
+  return `${label} (KG)`;
+}
+
+function getFieldDisplayLabel(field: AquaFieldConfig, t: (key: string) => string): string {
+  const label = t(field.label);
+  return shouldDisplayAsKg(field) ? formatKilogramDisplayLabel(label) : label;
+}
+
+function getColumnDisplayLabel(column: { label: string; unitTransform?: 'gram-to-kg'; key: string }, t: (key: string) => string): string {
+  const label = t(column.label);
+  return shouldDisplayAsKg(column) ? formatKilogramDisplayLabel(label) : label;
 }
 
 function toNumericValue(rawValue: unknown): number | null {
@@ -307,7 +359,7 @@ export function AquaCrudPage({
       if (field.type === 'number') type = 'number';
       if (field.type === 'date' || field.type === 'datetime') type = 'date';
       if ((field.type as string) === 'checkbox' || (field.type as string) === 'boolean') type = 'boolean';
-      return { value: field.key, type, labelKey: field.label, translatedLabel: t(field.label) } as FilterColumnConfig & { translatedLabel: string };
+      return { value: field.key, type, labelKey: field.label, translatedLabel: getFieldDisplayLabel(field, t) } as FilterColumnConfig & { translatedLabel: string };
     });
   }, [config.fields, t]);
 
@@ -851,7 +903,7 @@ export function AquaCrudPage({
     }
 
     const firstMissingRequiredField = visibleFields.find((field) => isRequiredFieldMissing(field, preparedPayload[field.key] ?? payload[field.key]));
-    if (firstMissingRequiredField) { toast.error(`${t(firstMissingRequiredField.label)} * - ${t('aqua.common.requiredField')}`); return; }
+    if (firstMissingRequiredField) { toast.error(`${getFieldDisplayLabel(firstMissingRequiredField, t)} * - ${t('aqua.common.requiredField')}`); return; }
     if (editingRow) {
       const id = Number(editingRow.id ?? editingRow.Id); if (!id) return;
       updateMutation.mutate({ id, payload: preparedPayload }); return;
@@ -894,11 +946,12 @@ export function AquaCrudPage({
     else setSelectedIds([...selectedIds, id]);
   };
 
-  const getFormattedCellValue = (row: Record<string, unknown>, columnKey: string): string => {
+  const getFormattedCellValue = (row: Record<string, unknown>, column: { key: string; unitTransform?: 'gram-to-kg' }): string => {
+    const columnKey = column.key;
     const rawValue = getRecordValueByPath(row, columnKey);
     const lookupLabel = lookupLabelsByFieldAndValue[columnKey]?.[String(rawValue)];
     const selectLabel = selectOptionLabelsByFieldAndValue[columnKey]?.[String(rawValue)];
-    return String(lookupLabel ?? selectLabel ?? formatCellValue(rawValue, t));
+    return String(lookupLabel ?? selectLabel ?? formatCellValue(rawValue, t, column));
   };
 
   // PREMIUM ÖZELLİK: Dinamik Hücre Render İşlemi (Rozetler ve Kopyalama)
@@ -932,8 +985,7 @@ export function AquaCrudPage({
     try {
       const dataToExport = rows.map((row) => {
         const exportRow: Record<string, string | number> = {};
-        exportRow[t('aqua.common.id')] = Number(row.id ?? row.Id);
-        displayedColumns.forEach((col) => { exportRow[t(col.label)] = getFormattedCellValue(row, col.key); });
+        displayedColumns.forEach((col) => { exportRow[getColumnDisplayLabel(col, t)] = getFormattedCellValue(row, col); });
         return exportRow;
       });
       const XLSX = await import('xlsx');
@@ -950,11 +1002,8 @@ export function AquaCrudPage({
         import('jspdf-autotable'),
       ]);
       const doc = new JsPDF();
-      const tableColumn = [t('aqua.common.id'), ...displayedColumns.map((col) => t(col.label))];
-      const tableRows = rows.map((row) => [
-        String(Number(row.id ?? row.Id)),
-        ...displayedColumns.map((col) => getFormattedCellValue(row, col.key))
-      ]);
+      const tableColumn = displayedColumns.map((col) => getColumnDisplayLabel(col, t));
+      const tableRows = rows.map((row) => displayedColumns.map((col) => getFormattedCellValue(row, col)));
       autoTable(doc, { head: [tableColumn], body: tableRows });
       doc.save(`${config.key}-export.pdf`);
       toast.success(t('aqua.common.exportSuccess'));
@@ -969,11 +1018,8 @@ export function AquaCrudPage({
       const pptx = new PptxGenJS();
       const slide = pptx.addSlide();
       slide.addText(localizedTitle, { x: 0.5, y: 0.5, w: '90%', fontSize: 24, bold: true });
-      const headers = [t('aqua.common.id'), ...displayedColumns.map((col) => t(col.label))];
-      const tableRows = rows.map((row) => [
-        String(Number(row.id ?? row.Id)),
-        ...displayedColumns.map((col) => getFormattedCellValue(row, col.key))
-      ]);
+      const headers = displayedColumns.map((col) => getColumnDisplayLabel(col, t));
+      const tableRows = rows.map((row) => displayedColumns.map((col) => getFormattedCellValue(row, col)));
       const tableData: Array<Array<{ text: string }>> = [
         headers.map(text => ({ text })),
         ...tableRows.map(rowArr => rowArr.map(text => ({ text }))),
@@ -1048,7 +1094,7 @@ export function AquaCrudPage({
                         </PopoverContent>
                       </Popover>
 
-                      <ColumnPreferencesPopover pageKey={`aqua-${config.key}`} userId={user?.id} columns={baseColumns.map((col) => ({ key: col.key, label: t(col.label) }))} visibleColumns={visibleColumns} columnOrder={columnOrder} onVisibleColumnsChange={setVisibleColumns} onColumnOrderChange={setColumnOrder} />
+                      <ColumnPreferencesPopover pageKey={`aqua-${config.key}`} userId={user?.id} columns={baseColumns.map((col) => ({ key: col.key, label: getColumnDisplayLabel(col, t) }))} visibleColumns={visibleColumns} columnOrder={columnOrder} onVisibleColumnsChange={setVisibleColumns} onColumnOrderChange={setColumnOrder} />
                     </div>
 
                     <div className="ml-auto pl-2 shrink-0">
@@ -1106,14 +1152,10 @@ export function AquaCrudPage({
                       </th>
                     )}
                     
-                    <th className={`${headStyle} cursor-pointer hover:text-cyan-600 dark:hover:text-cyan-400`} onClick={() => handleSort('Id')}>
-                      <div className="flex items-center gap-2">{t('aqua.common.id')}{sortConfig?.key === 'Id' ? (sortConfig.direction === 'asc' ? <ArrowUp size={14} className="text-cyan-500" /> : <ArrowDown size={14} className="text-cyan-500" />) : (<ArrowUpDown size={14} className="opacity-30 group-hover:opacity-100" />)}</div>
-                    </th>
-
                     <SortableContext items={displayedColumns.map(c => c.key)} strategy={horizontalListSortingStrategy}>
                       {displayedColumns.map((column) => (
                         <DraggableTh key={column.key} id={column.key} className={headStyle} onClick={() => handleSort(column.key)}>
-                          {t(column.label)}{sortConfig?.key === column.key ? (sortConfig.direction === 'asc' ? <ArrowUp size={14} className="text-cyan-500 ml-1" /> : <ArrowDown size={14} className="text-cyan-500 ml-1" />) : (<ArrowUpDown size={14} className="opacity-30 group-hover:opacity-100 ml-1" />)}
+                          {getColumnDisplayLabel(column, t)}{sortConfig?.key === column.key ? (sortConfig.direction === 'asc' ? <ArrowUp size={14} className="text-cyan-500 ml-1" /> : <ArrowDown size={14} className="text-cyan-500 ml-1" />) : (<ArrowUpDown size={14} className="opacity-30 group-hover:opacity-100 ml-1" />)}
                         </DraggableTh>
                       ))}
                     </SortableContext>
@@ -1122,10 +1164,10 @@ export function AquaCrudPage({
                 </thead>
                 <tbody>
                   {!canQueryList ? (
-                    <tr><td colSpan={displayedColumns.length + 3} className="text-center py-20 text-slate-500 dark:text-slate-400 font-medium">{t('aqua.common.noData')}</td></tr>
+                    <tr><td colSpan={displayedColumns.length + (rowSelectionEnabled ? 1 : 2)} className="text-center py-20 text-slate-500 dark:text-slate-400 font-medium">{t('aqua.common.noData')}</td></tr>
                   ) : listQuery.isLoading ? (
                     <tr>
-                      <td colSpan={displayedColumns.length + 3} className="text-center py-20">
+                      <td colSpan={displayedColumns.length + (rowSelectionEnabled ? 1 : 2)} className="text-center py-20">
                         <div className="flex flex-col items-center gap-3">
                           <div className="h-10 w-10 animate-spin rounded-full border-b-2 border-current text-cyan-500" />
                           <span className="text-sm font-medium text-slate-500 dark:text-slate-400 animate-pulse">{t('aqua.common.loading')}</span>
@@ -1133,7 +1175,7 @@ export function AquaCrudPage({
                       </td>
                     </tr>
                   ) : rows.length === 0 ? (
-                    <tr><td colSpan={displayedColumns.length + 3} className="text-center py-20 text-slate-500 dark:text-slate-400 font-medium">{t('aqua.common.noData')}</td></tr>
+                    <tr><td colSpan={displayedColumns.length + (rowSelectionEnabled ? 1 : 2)} className="text-center py-20 text-slate-500 dark:text-slate-400 font-medium">{t('aqua.common.noData')}</td></tr>
                   ) : (
                     rows.map((row) => {
                       const id = Number(row.id ?? row.Id);
@@ -1149,12 +1191,10 @@ export function AquaCrudPage({
                             </td>
                           )}
 
-                          <td className={`${cellStyle} font-mono text-xs`}><CopyableCell text={String(id)} /></td>
-                          
                           {displayedColumns.map((column) => (
                             <td key={column.key} className={cellStyle}>
                               {/* Dinamik Render (Rozet ve Copy eklentisi ile) */}
-                              {renderCellContent(column.key, getFormattedCellValue(row, column.key))}
+                              {renderCellContent(column.key, getFormattedCellValue(row, column))}
                             </td>
                           ))}
                           <td className={`${cellStyle} text-right w-[1%] whitespace-nowrap`}>
@@ -1246,7 +1286,7 @@ export function AquaCrudPage({
                     <div key={field.key} className={field.type === 'textarea' ? 'col-span-1 md:col-span-2' : ''}>
                       <Label htmlFor={field.key} className={LABEL_STYLE}>
                         <ChevronRight size={14} className="text-cyan-500" />
-                        {t(field.label)} {field.required && <span className="text-red-500 ml-1">*</span>}
+                        {getFieldDisplayLabel(field, t)} {field.required && <span className="text-red-500 ml-1">*</span>}
                       </Label>
                       {field.type === 'textarea' && (
                         <Textarea id={field.key} placeholder={field.placeholder} value={String(formValues[field.key] ?? '')} onChange={(e) => setFormValues((prev) => ({ ...prev, [field.key]: e.target.value }))} className={`${INPUT_STYLE} min-h-[100px] py-3 resize-none`} />
@@ -1273,7 +1313,7 @@ export function AquaCrudPage({
                           inputMode={field.type === 'number' ? 'decimal' : undefined}
                           placeholder={field.placeholder}
                           value={normalizeInputValue(field, formValues[field.key])}
-                          onChange={(e) => setFormValues((prev) => ({ ...prev, [field.key]: e.target.value }))}
+                          onChange={(e) => setFormValues((prev) => ({ ...prev, [field.key]: normalizeFormInputValue(field, e.target.value) }))}
                           className={INPUT_STYLE}
                           readOnly={
                             (isTransferLineConfig && requireFullTransfer && field.key === 'fishCount') ||
@@ -1351,9 +1391,9 @@ export function AquaCrudPage({
                   </div>
                   {displayedColumns.map(col => (
                     <div key={col.key} className="space-y-1">
-                      <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">{t(col.label)}</p>
+                      <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">{getColumnDisplayLabel(col, t)}</p>
                       <div className="text-sm font-medium text-slate-900 dark:text-slate-300">
-                        {renderCellContent(col.key, getFormattedCellValue(viewingRow, col.key))}
+                        {renderCellContent(col.key, getFormattedCellValue(viewingRow, col))}
                       </div>
                     </div>
                   ))}

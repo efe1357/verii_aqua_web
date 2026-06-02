@@ -36,6 +36,7 @@ export interface AquaFieldConfig {
   numberStep?: string;
   numberMin?: number;
   numberMax?: number;
+  unitTransform?: 'gram-to-kg';
   options?: AquaFieldOption[];
   lookup?: AquaFieldLookupConfig;
   visibleWhen?: {
@@ -47,6 +48,7 @@ export interface AquaFieldConfig {
 export interface AquaColumnConfig {
   key: string;
   label: string;
+  unitTransform?: 'gram-to-kg';
 }
 
 export interface AquaCrudConfig {

@@ -1,11 +1,5 @@
 import type { AquaCrudConfig } from '@/features/aqua/shared/types/aqua-crud';
 
-const documentStatusOptions = [
-  { label: 'aqua.status.draft', value: 0 },
-  { label: 'aqua.status.posted', value: 1 },
-  { label: 'aqua.status.cancelled', value: 2 },
-];
-
 export const projectsConfig: AquaCrudConfig = {
   key: 'projects',
   title: 'aqua.pages.projects.title',
@@ -17,14 +11,12 @@ export const projectsConfig: AquaCrudConfig = {
     { key: 'projectName', label: 'aqua.fields.projectName', type: 'text', required: true },
     { key: 'startDate', label: 'aqua.fields.startDate', type: 'date', required: true },
     { key: 'endDate', label: 'aqua.fields.endDate', type: 'date' },
-    { key: 'status', label: 'aqua.fields.status', type: 'select', required: true, options: documentStatusOptions },
     { key: 'note', label: 'aqua.fields.note', type: 'textarea' },
   ],
   columns: [
     { key: 'projectCode', label: 'aqua.fields.projectCode' },
     { key: 'projectName', label: 'aqua.fields.projectName' },
     { key: 'startDate', label: 'aqua.fields.startDate' },
-    { key: 'status', label: 'aqua.fields.status' },
   ],
   defaultValues: { status: 0 },
 };
@@ -39,13 +31,13 @@ export const cagesConfig: AquaCrudConfig = {
     { key: 'cageCode', label: 'aqua.fields.cageCode', type: 'text', required: true },
     { key: 'cageName', label: 'aqua.fields.cageName', type: 'text', required: true },
     { key: 'capacityCount', label: 'aqua.fields.capacityCount', type: 'number' },
-    { key: 'capacityGram', label: 'aqua.fields.capacityGram', type: 'number' },
+    { key: 'capacityGram', label: 'aqua.fields.capacityGram', type: 'number', unitTransform: 'gram-to-kg' },
   ],
   columns: [
     { key: 'cageCode', label: 'aqua.fields.cageCode' },
     { key: 'cageName', label: 'aqua.fields.cageName' },
     { key: 'capacityCount', label: 'aqua.fields.capacityCount' },
-    { key: 'capacityGram', label: 'aqua.fields.capacityGram' },
+    { key: 'capacityGram', label: 'aqua.fields.capacityGram', unitTransform: 'gram-to-kg' },
   ],
 };
 
