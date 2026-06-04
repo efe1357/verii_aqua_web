@@ -143,6 +143,14 @@ export interface CreateMortalityLinePayload {
 
 export interface CreateDailyWeatherPayload {
   projectId: number;
+  date: string;
+  typeId: number;
+  severityId: number;
+  description?: string;
+}
+
+export interface CreateSeaWaterTemperaturePayload {
+  projectId: number;
   projectCageId: number;
   recordDate: string;
   waterTemperatureCelsius?: number;

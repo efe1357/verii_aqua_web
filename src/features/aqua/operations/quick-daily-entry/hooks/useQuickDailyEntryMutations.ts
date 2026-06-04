@@ -6,6 +6,7 @@ import type {
   CreateMortalityPayload,
   CreateMortalityLinePayload,
   CreateDailyWeatherPayload,
+  CreateSeaWaterTemperaturePayload,
   CreateWindDirectionMatchPayload,
   CreateCurrentDirectionMatchPayload,
   CreateNetOperationPayload,
@@ -27,6 +28,7 @@ import type {
 
 const FEEDINGS_KEY = ['aqua', 'feedings'];
 const MORTALITIES_KEY = ['aqua', 'mortalities'];
+const DAILY_WEATHER_KEY = ['aqua', 'dailyWeathers'];
 const SEA_WATER_TEMPERATURE_KEY = ['aqua', 'seaWaterTemperatures'];
 const WIND_DIRECTION_MATCHES_KEY = ['aqua', 'windDirectionMatches'];
 const CURRENT_DIRECTION_MATCHES_KEY = ['aqua', 'currentDirectionMatches'];
@@ -91,6 +93,17 @@ export function useCreateDailyWeatherMutation() {
   return useMutation({
     mutationFn: (payload: CreateDailyWeatherPayload) =>
       aquaQuickDailyApi.createDailyWeather(payload),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: DAILY_WEATHER_KEY });
+    },
+  });
+}
+
+export function useCreateSeaWaterTemperatureMutation() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: CreateSeaWaterTemperaturePayload) =>
+      aquaQuickDailyApi.createSeaWaterTemperature(payload),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: SEA_WATER_TEMPERATURE_KEY });
     },

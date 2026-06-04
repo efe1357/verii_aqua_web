@@ -12,7 +12,8 @@ export const mortalityQuickFormSchema = z.object({
 });
 
 export const weatherQuickFormSchema = z.object({
-  projectCageId: z.coerce.number().int().positive('common.required'),
+  weatherTypeId: z.coerce.number().int().positive('common.required'),
+  weatherSeverityId: z.coerce.number().int().positive('common.required'),
   windDirectionId: z.coerce.number().int().positive('common.required'),
   currentDirectionId: z.coerce.number().int().positive('common.required'),
   waterTemperatureCelsius: z.coerce.number().min(-5).max(45).optional(),

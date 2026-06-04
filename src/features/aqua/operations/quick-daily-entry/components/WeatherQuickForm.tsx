@@ -11,11 +11,12 @@ import { Combobox } from '@/components/ui/combobox';
 import { formatLabelWithKey } from '@/shared/utils/dropdown-label';
 import { weatherQuickFormSchema, type WeatherQuickFormSchema } from '../schema/quick-daily-entry-schema';
 import { ChevronRight, Save } from 'lucide-react'; // İkonlar eklendi
-import type { CurrentDirectionDto, ProjectCageDto, WeatherSeverityDto, WeatherTypeDto, WindDirectionDto } from '../types/quick-daily-entry-types';
+import { getFilteredWeatherSeverities } from '../utils/weather-selection';
+import type { CurrentDirectionDto, WeatherSeverityDto, WeatherTypeDto, WindDirectionDto } from '../types/quick-daily-entry-types';
 
 interface WeatherQuickFormProps {
   projectId: number | null;
-  projectCages?: ProjectCageDto[];
+  projectCageId: number | null;
   windDirections?: WindDirectionDto[];
   currentDirections?: CurrentDirectionDto[];
   weatherTypes?: WeatherTypeDto[];
@@ -27,9 +28,11 @@ interface WeatherQuickFormProps {
 
 export function WeatherQuickForm({
   projectId,
-  projectCages = [],
+  projectCageId,
   windDirections = [],
   currentDirections = [],
+  weatherTypes = [],
+  severities = [],
   onSubmit,
   isSubmitting,
   canSubmit,
@@ -38,24 +41,32 @@ export function WeatherQuickForm({
   const form = useForm<WeatherQuickFormSchema>({
     resolver: zodResolver(weatherQuickFormSchema) as Resolver<WeatherQuickFormSchema>,
     mode: 'onChange',
-    defaultValues: { projectCageId: 0, windDirectionId: 0, currentDirectionId: 0, waterTemperatureCelsius: undefined, description: '' },
+    defaultValues: { weatherTypeId: 0, weatherSeverityId: 0, windDirectionId: 0, currentDirectionId: 0, waterTemperatureCelsius: undefined, description: '' },
   });
+
+  const selectedWeatherTypeId = Number(form.watch('weatherTypeId') ?? 0);
 
   const handleSubmit: SubmitHandler<WeatherQuickFormSchema> = async (data) => {
     await onSubmit(data);
     form.reset();
   };
 
-  const cageOptions = useMemo(
+  const weatherTypeOptions = useMemo(
     () =>
-      projectCages.map((item) => ({
+      weatherTypes.map((item) => ({
         value: String(item.id),
-        label: formatLabelWithKey(
-          [item.cageCode, item.cageName].filter(Boolean).join(' - ') || item.id,
-          item.id
-        ),
+        label: formatLabelWithKey([item.code, item.name].filter(Boolean).join(' - ') || item.id, item.id),
       })),
-    [projectCages]
+    [weatherTypes]
+  );
+
+  const weatherSeverityOptions = useMemo(
+    () =>
+      getFilteredWeatherSeverities(selectedWeatherTypeId, weatherTypes, severities).map((item) => ({
+        value: String(item.id),
+        label: formatLabelWithKey([item.code, item.name].filter(Boolean).join(' - ') || item.id, item.id),
+      })),
+    [selectedWeatherTypeId, severities, weatherTypes]
   );
 
   const windDirectionOptions = useMemo(
@@ -90,14 +101,24 @@ export function WeatherQuickForm({
       <CardContent className="p-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} noValidate className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-              <FormField control={form.control} name="projectCageId" render={({ field }) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-6">
+              <FormField control={form.control} name="weatherTypeId" render={({ field }) => (
                 <FormItem className="space-y-2">
                   <FormLabel required className={labelStyle}>
                     <ChevronRight size={14} className="text-cyan-500" />
-                    {t('aqua.quickDailyEntry.weather.cage')}
+                    {t('aqua.quickDailyEntry.weather.type')}
                   </FormLabel>
-                  <FormControl><Combobox options={cageOptions} value={String(field.value)} onValueChange={(v) => field.onChange(Number(v))} placeholder={t('aqua.quickDailyEntry.weather.selectCage')} className={inputStyle} /></FormControl>
+                  <FormControl><Combobox options={weatherTypeOptions} value={String(field.value)} onValueChange={(v) => field.onChange(Number(v))} placeholder={t('aqua.quickDailyEntry.weather.selectType')} className={inputStyle} /></FormControl>
+                  <FormMessage className="text-xs text-red-500" />
+                </FormItem>
+              )} />
+              <FormField control={form.control} name="weatherSeverityId" render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel required className={labelStyle}>
+                    <ChevronRight size={14} className="text-cyan-500" />
+                    {t('aqua.quickDailyEntry.weather.severity')}
+                  </FormLabel>
+                  <FormControl><Combobox options={weatherSeverityOptions} value={String(field.value)} onValueChange={(v) => field.onChange(Number(v))} placeholder={t('aqua.quickDailyEntry.weather.selectSeverity')} className={inputStyle} /></FormControl>
                   <FormMessage className="text-xs text-red-500" />
                 </FormItem>
               )} />
@@ -145,7 +166,7 @@ export function WeatherQuickForm({
             <div className="pt-4 flex justify-end border-t border-slate-200 dark:border-cyan-800/30">
               <Button 
                 type="submit" 
-                disabled={!projectId || isSubmitting || !form.formState.isValid || !canSubmit} 
+                disabled={!projectId || !projectCageId || isSubmitting || !form.formState.isValid || !canSubmit} 
                 className="bg-linear-to-r from-cyan-600 to-blue-600 text-white font-bold h-11 px-10 rounded-xl shadow-lg shadow-cyan-500/25 hover:opacity-95 transition-all duration-200 border-0 flex items-center gap-2"
               >
                 <Save size={18} />

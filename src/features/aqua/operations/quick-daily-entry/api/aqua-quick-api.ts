@@ -22,6 +22,7 @@ import type {
   CreateMortalityPayload,
   CreateMortalityLinePayload,
   CreateDailyWeatherPayload,
+  CreateSeaWaterTemperaturePayload,
   CreateWindDirectionMatchPayload,
   CreateCurrentDirectionMatchPayload,
   CreateNetOperationPayload,
@@ -544,6 +545,16 @@ export const aquaQuickDailyApi = {
 
   createDailyWeather: async (
     payload: CreateDailyWeatherPayload
+  ): Promise<{ id: number }> => {
+    const response = await api.post<ApiResponse<{ id: number }>>(
+      '/api/aqua/posting/daily-weather',
+      payload
+    );
+    return ensureSuccess(response, i18n.t('aqua.api.createFailed', { ns: 'common' }));
+  },
+
+  createSeaWaterTemperature: async (
+    payload: CreateSeaWaterTemperaturePayload
   ): Promise<{ id: number }> => {
     const response = await api.post<ApiResponse<{ id: number }>>(
       '/api/SeaWaterTemperature',
