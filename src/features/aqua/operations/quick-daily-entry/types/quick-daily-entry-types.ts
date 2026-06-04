@@ -149,6 +149,13 @@ export interface CreateDailyWeatherPayload {
   description?: string;
 }
 
+export interface CreateDailyEnvironmentalEntryPayload extends CreateDailyWeatherPayload {
+  projectCageId: number;
+  waterTemperatureCelsius?: number;
+  windDirectionId: number;
+  currentDirectionId: number;
+}
+
 export interface CreateSeaWaterTemperaturePayload {
   projectId: number;
   projectCageId: number;
