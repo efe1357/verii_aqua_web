@@ -17,6 +17,18 @@ export interface StockDto {
   id: number;
   code?: string;
   name?: string;
+  grupKodu?: string;
+  grupAdi?: string;
+  kod1?: string;
+  kod1Adi?: string;
+  kod2?: string;
+  kod2Adi?: string;
+  kod3?: string;
+  kod3Adi?: string;
+  kod4?: string;
+  kod4Adi?: string;
+  kod5?: string;
+  kod5Adi?: string;
 }
 
 export interface WarehouseDto {

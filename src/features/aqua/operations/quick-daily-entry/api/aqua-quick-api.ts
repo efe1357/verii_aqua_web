@@ -54,6 +54,18 @@ interface StockListResponseItem {
   id: number;
   erpStockCode?: string;
   stockName?: string;
+  grupKodu?: string;
+  grupAdi?: string;
+  kod1?: string;
+  kod1Adi?: string;
+  kod2?: string;
+  kod2Adi?: string;
+  kod3?: string;
+  kod3Adi?: string;
+  kod4?: string;
+  kod4Adi?: string;
+  kod5?: string;
+  kod5Adi?: string;
 }
 
 interface WarehouseListResponseItem {
@@ -180,6 +192,18 @@ function extractStockList(raw: PagedResultRaw<StockListResponseItem>): StockDto[
     id: item.id,
     code: item.erpStockCode,
     name: item.stockName,
+    grupKodu: item.grupKodu,
+    grupAdi: item.grupAdi,
+    kod1: item.kod1,
+    kod1Adi: item.kod1Adi,
+    kod2: item.kod2,
+    kod2Adi: item.kod2Adi,
+    kod3: item.kod3,
+    kod3Adi: item.kod3Adi,
+    kod4: item.kod4,
+    kod4Adi: item.kod4Adi,
+    kod5: item.kod5,
+    kod5Adi: item.kod5Adi,
   }));
 }
 
@@ -268,7 +292,7 @@ export const aquaQuickDailyApi = {
       pageSize: '500',
       sortBy: 'Id',
       sortDirection: 'asc',
-      filters: '[]',
+      filters: JSON.stringify([{ column: 'GrupKodu', operator: 'eq', value: 'YEM' }]),
       filterLogic: 'and',
     });
     const response = await api.get<ApiResponse<PagedResultRaw<StockListResponseItem>>>(`/api/Stock?${query.toString()}`);

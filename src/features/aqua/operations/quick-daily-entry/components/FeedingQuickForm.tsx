@@ -63,10 +63,12 @@ export function FeedingQuickForm({
     { value: '0', label: t('aqua.quickDailyEntry.feeding.morning') },
     { value: '1', label: t('aqua.quickDailyEntry.feeding.evening') },
   ];
-  const stockOptions = (Array.isArray(stocks) ? stocks : []).map((s) => ({
-    value: String(s.id),
-    label: formatCodeAndKeyLabel(s.code, s.id, s.name),
-  }));
+  const stockOptions = (Array.isArray(stocks) ? stocks : [])
+    .filter((s) => String(s.grupKodu ?? '').trim().toLocaleUpperCase('tr-TR') === 'YEM')
+    .map((s) => ({
+      value: String(s.id),
+      label: formatCodeAndKeyLabel(s.code, s.id, s.name),
+    }));
 
   // AQUA KONSEPT STİLLERİ
   const labelStyle = "text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide ml-1 flex items-center gap-1.5";
