@@ -14,23 +14,6 @@ interface PagedResultRaw<T> {
   TotalCount?: number;
 }
 
-interface ProjectCageRawDto {
-  id: number;
-  projectId: number;
-  cageId: number;
-  cageCode?: string;
-  cageName?: string;
-  assignedDate?: string | null;
-}
-
-interface CageDto {
-  id: number;
-  cageCode?: string;
-  cageName?: string;
-  capacityCount?: number | null;
-  capacityGram?: number | null;
-}
-
 interface GoodsReceiptRawDto {
   id: number;
   projectId?: number | null;
@@ -262,11 +245,6 @@ function toNumber(value: unknown): number {
   return Number.isFinite(numeric) ? numeric : 0;
 }
 
-function safePercent(numerator: number, denominator: number): number | null {
-  if (denominator <= 0) return null;
-  return round((numerator / denominator) * 100);
-}
-
 function daysBetween(startDate?: string | null, endDate?: Date): number {
   if (!startDate) return 0;
   const start = new Date(startDate);
@@ -278,11 +256,6 @@ function daysBetween(startDate?: string | null, endDate?: Date): number {
 
 function toIsoDate(input: Date): string {
   return input.toISOString().slice(0, 10);
-}
-
-function weightedAverage(totalBiomassKg: number, fishCount: number, fallback: number): number {
-  if (fishCount <= 0) return fallback;
-  return round((totalBiomassKg * 1000) / fishCount);
 }
 
 function getLocalMonetaryValue(input: {
@@ -482,71 +455,6 @@ async function getSalePriceInputs(projectId: number): Promise<{
   };
 }
 
-function toRawRow(
-  row: ProjectDetailReport['cages'][number],
-  projectCage: ProjectCageRawDto | undefined,
-  cage: CageDto | undefined,
-  projectStartDate?: string
-): RawKpiRow {
-  const daysInSea = daysBetween(projectCage?.assignedDate ?? projectStartDate);
-  const stockedFish = row.initialFishCount;
-  const liveFish = row.currentFishCount;
-  const deadFish = row.totalDeadCount;
-  const currentBiomassKg = row.currentBiomassGram / 1000;
-  const totalFeedKg = row.totalFeedGram / 1000;
-  const biomassGainKg = Math.max(0, (row.currentBiomassGram - row.initialBiomassGram) / 1000);
-  const survivalPct = safePercent(liveFish, stockedFish);
-  const mortalityPct = safePercent(deadFish, stockedFish);
-  const adgGramPerDay =
-    daysInSea > 0 && row.initialAverageGram > 0
-      ? round((row.currentAverageGram - row.initialAverageGram) / daysInSea)
-      : null;
-  const sgrPctPerDay =
-    daysInSea > 0 && row.initialAverageGram > 0 && row.currentAverageGram > 0
-      ? round((100 * (Math.log(row.currentAverageGram) - Math.log(row.initialAverageGram))) / daysInSea)
-      : null;
-  const fcr = biomassGainKg > 0 ? round(totalFeedKg / biomassGainKg) : null;
-  const densityPct =
-    cage?.capacityGram && cage.capacityGram > 0
-      ? round((row.currentBiomassGram / cage.capacityGram) * 100)
-      : null;
-  const dailyBiomassGainKg = Math.max(0, (adgGramPerDay ?? 0) * liveFish / 1000);
-  const forecastBiomassKg30d = round(currentBiomassKg + dailyBiomassGainKg * FORECAST_DAYS);
-
-  return {
-    projectCageId: row.projectCageId,
-    cageLabel: row.cageLabel,
-    daysInSea,
-    stockedFish,
-    liveFish,
-    deadFish,
-    initialAverageGram: row.initialAverageGram,
-    currentAverageGram: row.currentAverageGram,
-    currentBiomassKg: round(currentBiomassKg),
-    totalFeedKg: round(totalFeedKg),
-    biomassGainKg: round(biomassGainKg),
-    survivalPct,
-    mortalityPct,
-    adgGramPerDay,
-    sgrPctPerDay,
-    fcr,
-    densityPct,
-    forecastBiomassKg30d,
-  };
-}
-
-function getRawMetricDefinitions(): KpiMetricDefinition[] {
-  return [
-    { key: 'survivalPct', labelKey: 'aqua.rawKpiReport.metrics.survivalPct', descriptionKey: 'aqua.rawKpiReport.descriptions.survivalPct', formulaKey: 'aqua.rawKpiReport.formulas.survivalPct' },
-    { key: 'mortalityPct', labelKey: 'aqua.rawKpiReport.metrics.mortalityPct', descriptionKey: 'aqua.rawKpiReport.descriptions.mortalityPct', formulaKey: 'aqua.rawKpiReport.formulas.mortalityPct' },
-    { key: 'fcr', labelKey: 'aqua.rawKpiReport.metrics.fcr', descriptionKey: 'aqua.rawKpiReport.descriptions.fcr', formulaKey: 'aqua.rawKpiReport.formulas.fcr' },
-    { key: 'adgGramPerDay', labelKey: 'aqua.rawKpiReport.metrics.adgGramPerDay', descriptionKey: 'aqua.rawKpiReport.descriptions.adgGramPerDay', formulaKey: 'aqua.rawKpiReport.formulas.adgGramPerDay' },
-    { key: 'sgrPctPerDay', labelKey: 'aqua.rawKpiReport.metrics.sgrPctPerDay', descriptionKey: 'aqua.rawKpiReport.descriptions.sgrPctPerDay', formulaKey: 'aqua.rawKpiReport.formulas.sgrPctPerDay' },
-    { key: 'densityPct', labelKey: 'aqua.rawKpiReport.metrics.densityPct', descriptionKey: 'aqua.rawKpiReport.descriptions.densityPct', formulaKey: 'aqua.rawKpiReport.formulas.densityPct' },
-    { key: 'forecastBiomassKg30d', labelKey: 'aqua.rawKpiReport.metrics.forecastBiomassKg30d', descriptionKey: 'aqua.rawKpiReport.descriptions.forecastBiomassKg30d', formulaKey: 'aqua.rawKpiReport.formulas.forecastBiomassKg30d' },
-  ];
-}
-
 function getBusinessMetricDefinitions(): KpiMetricDefinition[] {
   return [
     { key: 'estimatedFeedCost', labelKey: 'aqua.businessKpiReport.metrics.estimatedFeedCost', descriptionKey: 'aqua.businessKpiReport.descriptions.estimatedFeedCost', formulaKey: 'aqua.businessKpiReport.formulas.estimatedFeedCost' },
@@ -652,86 +560,15 @@ function buildFallbackCage(projectCageId: number, cageLabel: string): ProjectDet
   };
 }
 
-async function getProjectCages(projectId: number): Promise<ProjectCageRawDto[]> {
-  return getAllPagedItems<ProjectCageRawDto>('ProjectCage', [
-    { column: 'ProjectId', operator: 'eq', value: String(projectId) },
-  ]);
-}
-
-async function getCages(): Promise<CageDto[]> {
-  return getAllPagedItems<CageDto>('Cage');
-}
-
 export const aquaKpiApi = {
-  getProjects: async (): Promise<ProjectDto[]> => projectDetailReportApi.getProjects(),
+  getProjects: async (): Promise<ProjectDto[]> => {
+    const response = await api.get<ApiResponse<ProjectDto[]>>('/api/kpi-report/projects');
+    return ensureSuccess(response, i18n.t('errors.listLoadFailed', { ns: 'dashboard' }));
+  },
 
   getRawKpiReport: async (projectId: number): Promise<RawKpiReport> => {
-    const [detail, projectCages, cages] = await Promise.all([
-      projectDetailReportApi.getProjectDetailReport(projectId),
-      getProjectCages(projectId),
-      getCages(),
-    ]);
-
-    const projectCageById = new Map(projectCages.map((item) => [item.id, item]));
-    const cageById = new Map(cages.map((item) => [item.id, item]));
-    const rows = detail.cages
-      .map((row) => {
-        const projectCage = projectCageById.get(row.projectCageId);
-        const cage = projectCage ? cageById.get(projectCage.cageId) : undefined;
-        return toRawRow(row, projectCage, cage, detail.project.startDate);
-      })
-      .sort((a, b) => a.cageLabel.localeCompare(b.cageLabel));
-
-    const stockedFish = rows.reduce((sum, row) => sum + row.stockedFish, 0);
-    const liveFish = rows.reduce((sum, row) => sum + row.liveFish, 0);
-    const deadFish = rows.reduce((sum, row) => sum + row.deadFish, 0);
-    const currentBiomassKg = round(rows.reduce((sum, row) => sum + row.currentBiomassKg, 0));
-    const warehouseFish = detail.warehouseSummary.warehouseFishCount;
-    const warehouseBiomassKg = round(detail.warehouseSummary.warehouseBiomassGram / 1000);
-    const totalFeedKg = round(rows.reduce((sum, row) => sum + row.totalFeedKg, 0));
-    const biomassGainKg = round(rows.reduce((sum, row) => sum + row.biomassGainKg, 0));
-    const totalCapacityGram = rows.reduce((sum, row) => {
-      const projectCage = projectCageById.get(row.projectCageId);
-      const cage = projectCage ? cageById.get(projectCage.cageId) : undefined;
-      return sum + Number(cage?.capacityGram ?? 0);
-    }, 0);
-    const daysInSea = Math.max(1, daysBetween(detail.project.startDate));
-    const initialBiomassKg = round(detail.cages.reduce((sum, row) => sum + row.initialBiomassGram, 0) / 1000);
-    const initialAverageGram = weightedAverage(initialBiomassKg, stockedFish, 0);
-    const currentAverageGram = weightedAverage(currentBiomassKg, liveFish, 0);
-    const dailyBiomassGainKg = Math.max(0, liveFish * ((currentAverageGram - initialAverageGram) / Math.max(daysInSea, 1)) / 1000);
-    const forecastBiomassKg30d = round(currentBiomassKg + dailyBiomassGainKg * FORECAST_DAYS);
-
-    return {
-      projectId: detail.project.id,
-      projectCode: detail.project.projectCode ?? '-',
-      projectName: detail.project.projectName ?? '-',
-      daysInSea,
-      stockedFish,
-      liveFish,
-      warehouseFish,
-      totalSystemFish: liveFish + warehouseFish,
-      deadFish,
-      initialAverageGram,
-      currentAverageGram,
-      currentBiomassKg,
-      warehouseBiomassKg,
-      totalSystemBiomassKg: round(currentBiomassKg + warehouseBiomassKg),
-      totalFeedKg,
-      biomassGainKg,
-      survivalPct: safePercent(liveFish, stockedFish),
-      mortalityPct: safePercent(deadFish, stockedFish),
-      adgGramPerDay: daysInSea > 0 ? round((currentAverageGram - initialAverageGram) / daysInSea) : null,
-      sgrPctPerDay:
-        daysInSea > 0 && initialAverageGram > 0 && currentAverageGram > 0
-          ? round((100 * (Math.log(currentAverageGram) - Math.log(initialAverageGram))) / daysInSea)
-          : null,
-      fcr: biomassGainKg > 0 ? round(totalFeedKg / biomassGainKg) : null,
-      densityPct: totalCapacityGram > 0 ? round(((currentBiomassKg * 1000) / totalCapacityGram) * 100) : null,
-      forecastBiomassKg30d,
-      rows,
-      metricDefinitions: getRawMetricDefinitions(),
-    };
+    const response = await api.get<ApiResponse<RawKpiReport>>(`/api/kpi-report/raw-kpi/${projectId}`);
+    return ensureSuccess(response, i18n.t('errors.reportLoadFailed', { ns: 'dashboard' }));
   },
 
   getBusinessKpiReport: async (projectId: number): Promise<BusinessKpiReport> => {

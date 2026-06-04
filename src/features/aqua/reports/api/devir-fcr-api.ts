@@ -1,6 +1,5 @@
 import { api } from '@/lib/axios';
 import type { ApiResponse } from '@/types/api';
-import { projectDetailReportApi } from './project-detail-report-api';
 
 export interface DevirFcrProjectOption {
   id: number;
@@ -49,12 +48,15 @@ function ensureSuccess<T>(response: ApiResponse<T>, fallback: string): T {
 }
 
 export const devirFcrApi = {
-  getProjects: async (): Promise<DevirFcrProjectOption[]> => projectDetailReportApi.getProjects(),
+  getProjects: async (): Promise<DevirFcrProjectOption[]> => {
+    const response = await api.get<ApiResponse<DevirFcrProjectOption[]>>('/api/kpi-report/projects');
+    return ensureSuccess(response, 'Projects could not be loaded.');
+  },
 
   getReport: async (projectIds: number[], fromDate: string, toDate: string): Promise<DevirFcrReport> => {
     const safeFromDate = clampDate(fromDate);
     const safeToDate = clampDate(toDate);
-    const response = await api.post<ApiResponse<DevirFcrReport>>('/api/aqua/reports/devir-fcr', {
+    const response = await api.post<ApiResponse<DevirFcrReport>>('/api/kpi-report/devir-fcr', {
       projectIds,
       fromDate: safeFromDate,
       toDate: safeToDate,
