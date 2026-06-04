@@ -391,7 +391,8 @@
     "aquaBatchMovements": "Parti Hareketleri",
     "aquaCageBalances": "Kafes Dengesi",
     "aquaSeaWaterTemperatures": "Deniz Suyu Sıcaklıkları",
-    "aquaWindDirections": "Rüzgar Yönleri"
+    "aquaWindDirections": "Rüzgar Yönleri",
+    "aquaCurrentDirections": "Akıntı Yönleri"
   },
   "pdfReportDesigner": {
     "list": "Listele",

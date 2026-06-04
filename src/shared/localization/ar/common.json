@@ -391,7 +391,8 @@
     "aquaBatchMovements": "حركات الدفعات",
     "aquaCageBalances": "أرصدة الأقفاص",
     "aquaSeaWaterTemperatures": "درجات حرارة مياه البحر",
-    "aquaWindDirections": "اتجاهات الرياح"
+    "aquaWindDirections": "اتجاهات الرياح",
+    "aquaCurrentDirections": "اتجاهات التيار"
   },
   "pdfReportDesigner": {
     "list": "قائمة",

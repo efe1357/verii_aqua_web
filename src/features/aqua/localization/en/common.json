@@ -799,6 +799,10 @@
       "windDirections": {
         "title": "Wind Directions",
         "description": "Manage wind direction definitions used in daily entries."
+      },
+      "currentDirections": {
+        "title": "Current Directions",
+        "description": "Manage current direction definitions used in daily entries."
       }
     },
     "fields": {
@@ -953,7 +957,8 @@
       "recordDate": "Record Date",
       "waterTemperatureCelsius": "Water Temperature (°C)",
       "weatherDescription": "Weather Description",
-      "windDirectionName": "Wind Direction"
+      "windDirectionName": "Wind Direction",
+      "currentDirectionName": "Current Direction"
     },
     "quickSetup": {
       "pageTitle": "Quick Setup",
@@ -1071,7 +1076,9 @@
         "waterTemperatureCelsius": "Water Temperature (°C)",
         "descriptionPlaceholder": "E.g. sunny, 23 degrees",
         "windDirection": "Wind Direction",
-        "selectWindDirection": "Select wind direction"
+        "selectWindDirection": "Select wind direction",
+        "currentDirection": "Current Direction",
+        "selectCurrentDirection": "Select current direction"
       },
       "netOperation": {
         "title": "Network Operation",

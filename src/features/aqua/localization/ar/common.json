@@ -700,6 +700,10 @@
       "windDirections": {
         "title": "اتجاهات الرياح",
         "description": "إدارة تعريفات اتجاه الرياح المستخدمة في الإدخالات اليومية."
+      },
+      "currentDirections": {
+        "title": "اتجاهات التيار",
+        "description": "إدارة تعريفات اتجاه التيار المستخدمة في الإدخالات اليومية."
       }
     },
     "fields": {
@@ -854,7 +858,8 @@
       "recordDate": "تاريخ التسجيل",
       "waterTemperatureCelsius": "درجة حرارة الماء (°C)",
       "weatherDescription": "وصف الطقس",
-      "windDirectionName": "اتجاه الرياح"
+      "windDirectionName": "اتجاه الرياح",
+      "currentDirectionName": "اتجاه التيار"
     },
     "quickSetup": {
       "pageTitle": "الإعداد السريع",
@@ -964,7 +969,9 @@
         "waterTemperatureCelsius": "درجة حرارة الماء (°C)",
         "descriptionPlaceholder": "مثال: مشمس، 23 درجة",
         "windDirection": "اتجاه الرياح",
-        "selectWindDirection": "اختر اتجاه الرياح"
+        "selectWindDirection": "اختر اتجاه الرياح",
+        "currentDirection": "اتجاه التيار",
+        "selectCurrentDirection": "اختر اتجاه التيار"
       },
       "netOperation": {
         "title": "تشغيل الشبكة",

@@ -10,6 +10,7 @@ import type {
   WeatherSeverityDto,
   WeatherTypeDto,
   WindDirectionDto,
+  CurrentDirectionDto,
   NetOperationTypeDto,
   FeedingHeaderDto,
   MortalityHeaderDto,
@@ -22,6 +23,7 @@ import type {
   CreateMortalityLinePayload,
   CreateDailyWeatherPayload,
   CreateWindDirectionMatchPayload,
+  CreateCurrentDirectionMatchPayload,
   CreateNetOperationPayload,
   CreateNetOperationLinePayload,
   CreateTransferPayload,
@@ -424,6 +426,13 @@ export const aquaQuickDailyApi = {
     return extractPagedItems(raw);
   },
 
+  getCurrentDirections: async (): Promise<CurrentDirectionDto[]> => {
+    const query = buildPagedQuery(1, 500);
+    const response = await api.get<ApiResponse<PagedResultRaw<CurrentDirectionDto>>>(`/api/CurrentDirection?${query}`);
+    const raw = ensureSuccess(response, i18n.t('aqua.api.listLoadFailed', { ns: 'common' }));
+    return extractPagedItems(raw);
+  },
+
   getNetOperationTypes: async (): Promise<NetOperationTypeDto[]> => {
     const query = buildPagedQuery(1, 500);
     const response = await api.get<ApiResponse<PagedResultRaw<NetOperationTypeDto>>>(`/api/aqua/NetOperationType?${query}`);
@@ -548,6 +557,16 @@ export const aquaQuickDailyApi = {
   ): Promise<{ id: number }> => {
     const response = await api.post<ApiResponse<{ id: number }>>(
       '/api/WindDirectionMatch',
+      payload
+    );
+    return ensureSuccess(response, i18n.t('aqua.api.createFailed', { ns: 'common' }));
+  },
+
+  createCurrentDirectionMatch: async (
+    payload: CreateCurrentDirectionMatchPayload
+  ): Promise<{ id: number }> => {
+    const response = await api.post<ApiResponse<{ id: number }>>(
+      '/api/CurrentDirectionMatch',
       payload
     );
     return ensureSuccess(response, i18n.t('aqua.api.createFailed', { ns: 'common' }));

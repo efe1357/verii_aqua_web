@@ -700,6 +700,10 @@
       "windDirections": {
         "title": "Direzioni del Vento",
         "description": "Gestisci le definizioni della direzione del vento usate negli inserimenti giornalieri."
+      },
+      "currentDirections": {
+        "title": "Direzioni della Corrente",
+        "description": "Gestisci le definizioni della direzione della corrente usate negli inserimenti giornalieri."
       }
     },
     "fields": {
@@ -854,7 +858,8 @@
       "recordDate": "Data Registrazione",
       "waterTemperatureCelsius": "Temperatura Acqua (°C)",
       "weatherDescription": "Descrizione Meteo",
-      "windDirectionName": "Direzione del Vento"
+      "windDirectionName": "Direzione del Vento",
+      "currentDirectionName": "Direzione della Corrente"
     },
     "quickSetup": {
       "pageTitle": "Configurazione rapida",
@@ -964,7 +969,9 @@
         "waterTemperatureCelsius": "Temperatura Acqua (°C)",
         "descriptionPlaceholder": "Es.: soleggiato, 23 gradi",
         "windDirection": "Direzione del Vento",
-        "selectWindDirection": "Seleziona direzione del vento"
+        "selectWindDirection": "Seleziona direzione del vento",
+        "currentDirection": "Direzione della Corrente",
+        "selectCurrentDirection": "Seleziona direzione della corrente"
       },
       "netOperation": {
         "title": "Funzionamento della rete",

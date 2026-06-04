@@ -51,6 +51,11 @@ export interface WindDirectionDto {
   name?: string;
 }
 
+export interface CurrentDirectionDto {
+  id: number;
+  name?: string;
+}
+
 export interface NetOperationTypeDto {
   id: number;
   code?: string;
@@ -149,6 +154,14 @@ export interface CreateWindDirectionMatchPayload {
   projectId: number;
   projectCageId: number;
   windDirectionId: number;
+  recordDate: string;
+  note?: string;
+}
+
+export interface CreateCurrentDirectionMatchPayload {
+  projectId: number;
+  projectCageId: number;
+  currentDirectionId: number;
   recordDate: string;
   note?: string;
 }

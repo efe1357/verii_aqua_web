@@ -57,6 +57,7 @@ const WeatherSeveritiesPage = lazyImport(() => import('@/features/aqua/definitio
 const WeatherTypesPage = lazyImport(() => import('@/features/aqua/definitions/components/WeatherTypesPage.tsx'), 'WeatherTypesPage', 'aqua');
 const SeaWaterTemperaturesPage = lazyImport(() => import('@/features/aqua/definitions/components/SeaWaterTemperaturesPage.tsx'), 'SeaWaterTemperaturesPage', 'aqua');
 const WindDirectionsPage = lazyImport(() => import('@/features/aqua/definitions/components/WindDirectionsPage.tsx'), 'WindDirectionsPage', 'aqua');
+const CurrentDirectionsPage = lazyImport(() => import('@/features/aqua/definitions/components/CurrentDirectionsPage.tsx'), 'CurrentDirectionsPage', 'aqua');
 const NetOperationTypesPage = lazyImport(() => import('@/features/aqua/definitions/components/NetOperationTypesPage.tsx'), 'NetOperationTypesPage', 'aqua');
 const AquaSettingsPage = lazyImport(() => import('@/features/aqua/settings/pages/AquaSettingsPage.tsx'), 'AquaSettingsPage', 'aqua');
 const GoodsReceiptsPage = lazyImport(() => import('@/features/aqua/operations/components/GoodsReceiptsPage.tsx'), 'GoodsReceiptsPage', 'aqua');
@@ -135,6 +136,7 @@ export const router = createBrowserRouter([
       { path: 'aqua/definitions/weather-types', element: <WeatherTypesPage /> },
       { path: 'aqua/definitions/sea-water-temperatures', element: <SeaWaterTemperaturesPage /> },
       { path: 'aqua/definitions/wind-directions', element: <WindDirectionsPage /> },
+      { path: 'aqua/definitions/current-directions', element: <CurrentDirectionsPage /> },
       { path: 'aqua/definitions/net-operation-types', element: <NetOperationTypesPage /> },
       { path: 'aqua/definitions/settings', element: <AquaSettingsPage /> },
       { path: 'aqua/operations/quick-setup', element: <QuickSetupPage /> },

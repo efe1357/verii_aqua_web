@@ -5,4 +5,5 @@ export { WeatherSeveritiesPage } from './components/WeatherSeveritiesPage';
 export { WeatherTypesPage } from './components/WeatherTypesPage';
 export { SeaWaterTemperaturesPage } from './components/SeaWaterTemperaturesPage';
 export { WindDirectionsPage } from './components/WindDirectionsPage';
+export { CurrentDirectionsPage } from './components/CurrentDirectionsPage';
 export { NetOperationTypesPage } from './components/NetOperationTypesPage';

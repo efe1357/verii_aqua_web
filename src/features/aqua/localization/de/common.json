@@ -700,6 +700,10 @@
       "windDirections": {
         "title": "Windrichtungen",
         "description": "Verwalten Sie Windrichtungsdefinitionen für tägliche Eingaben."
+      },
+      "currentDirections": {
+        "title": "Strömungsrichtungen",
+        "description": "Verwalten Sie Strömungsrichtungsdefinitionen für tägliche Eingaben."
       }
     },
     "fields": {
@@ -854,7 +858,8 @@
       "recordDate": "Erfassungsdatum",
       "waterTemperatureCelsius": "Wassertemperatur (°C)",
       "weatherDescription": "Wetterbeschreibung",
-      "windDirectionName": "Windrichtung"
+      "windDirectionName": "Windrichtung",
+      "currentDirectionName": "Strömungsrichtung"
     },
     "quickSetup": {
       "pageTitle": "Schnelle Einrichtung",
@@ -964,7 +969,9 @@
         "waterTemperatureCelsius": "Wassertemperatur (°C)",
         "descriptionPlaceholder": "z. B. sonnig, 23 Grad",
         "windDirection": "Windrichtung",
-        "selectWindDirection": "Windrichtung auswählen"
+        "selectWindDirection": "Windrichtung auswählen",
+        "currentDirection": "Strömungsrichtung",
+        "selectCurrentDirection": "Strömungsrichtung auswählen"
       },
       "netOperation": {
         "title": "Netzwerkbetrieb",

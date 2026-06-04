@@ -5,6 +5,7 @@ export { WeatherSeveritiesPage } from './definitions/components/WeatherSeveritie
 export { WeatherTypesPage } from './definitions/components/WeatherTypesPage';
 export { SeaWaterTemperaturesPage } from './definitions/components/SeaWaterTemperaturesPage';
 export { WindDirectionsPage } from './definitions/components/WindDirectionsPage';
+export { CurrentDirectionsPage } from './definitions/components/CurrentDirectionsPage';
 export { NetOperationTypesPage } from './definitions/components/NetOperationTypesPage';
 export { AquaSettingsPage } from './settings';
 export { QuickSetupPage } from './operations/quick-setup';

@@ -7,6 +7,7 @@ import type {
   CreateMortalityLinePayload,
   CreateDailyWeatherPayload,
   CreateWindDirectionMatchPayload,
+  CreateCurrentDirectionMatchPayload,
   CreateNetOperationPayload,
   CreateNetOperationLinePayload,
   CreateTransferPayload,
@@ -28,6 +29,7 @@ const FEEDINGS_KEY = ['aqua', 'feedings'];
 const MORTALITIES_KEY = ['aqua', 'mortalities'];
 const SEA_WATER_TEMPERATURE_KEY = ['aqua', 'seaWaterTemperatures'];
 const WIND_DIRECTION_MATCHES_KEY = ['aqua', 'windDirectionMatches'];
+const CURRENT_DIRECTION_MATCHES_KEY = ['aqua', 'currentDirectionMatches'];
 const NET_OPERATIONS_KEY = ['aqua', 'netOperations'];
 const TRANSFERS_KEY = ['aqua', 'transfers'];
 const SHIPMENTS_KEY = ['aqua', 'shipments'];
@@ -102,6 +104,17 @@ export function useCreateWindDirectionMatchMutation() {
       aquaQuickDailyApi.createWindDirectionMatch(payload),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: WIND_DIRECTION_MATCHES_KEY });
+    },
+  });
+}
+
+export function useCreateCurrentDirectionMatchMutation() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: CreateCurrentDirectionMatchPayload) =>
+      aquaQuickDailyApi.createCurrentDirectionMatch(payload),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: CURRENT_DIRECTION_MATCHES_KEY });
     },
   });
 }

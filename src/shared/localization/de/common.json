@@ -391,7 +391,8 @@
     "aquaBatchMovements": "Chargenbewegungen",
     "aquaCageBalances": "Käfigbestände",
     "aquaSeaWaterTemperatures": "Meerwassertemperaturen",
-    "aquaWindDirections": "Windrichtungen"
+    "aquaWindDirections": "Windrichtungen",
+    "aquaCurrentDirections": "Strömungsrichtungen"
   },
   "pdfReportDesigner": {
     "list": "Liste",

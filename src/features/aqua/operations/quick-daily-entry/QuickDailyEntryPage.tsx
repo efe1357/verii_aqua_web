@@ -24,6 +24,7 @@ import { useFishBatchListByProjectQuery } from './hooks/useFishBatchListByProjec
 import { useWeatherSeverityListQuery } from './hooks/useWeatherSeverityListQuery';
 import { useWeatherTypeListQuery } from './hooks/useWeatherTypeListBySeverityQuery';
 import { useWindDirectionListQuery } from './hooks/useWindDirectionListQuery';
+import { useCurrentDirectionListQuery } from './hooks/useCurrentDirectionListQuery';
 import { useNetOperationTypeListQuery } from './hooks/useNetOperationTypeListQuery';
 import { aquaQuickDailyApi } from './api/aqua-quick-api';
 import {
@@ -31,6 +32,7 @@ import {
   useCreateMortalityLineWithAutoHeaderMutation,
   useCreateDailyWeatherMutation,
   useCreateWindDirectionMatchMutation,
+  useCreateCurrentDirectionMatchMutation,
   useCreateNetOperationLineWithAutoHeaderMutation,
   useCreateTransferLineWithAutoHeaderMutation,
   useCreateCageWarehouseTransferLineWithAutoHeaderMutation,
@@ -149,12 +151,14 @@ export function QuickDailyEntryPage(): ReactElement {
   const { data: weatherSeverities } = useWeatherSeverityListQuery();
   const { data: weatherTypes } = useWeatherTypeListQuery();
   const { data: windDirections } = useWindDirectionListQuery();
+  const { data: currentDirections } = useCurrentDirectionListQuery();
   const { data: netOperationTypes } = useNetOperationTypeListQuery();
 
   const createFeedingLineWithAutoHeader = useCreateFeedingLineWithAutoHeaderMutation();
   const createMortalityLineWithAutoHeader = useCreateMortalityLineWithAutoHeaderMutation();
   const createDailyWeather = useCreateDailyWeatherMutation();
   const createWindDirectionMatch = useCreateWindDirectionMatchMutation();
+  const createCurrentDirectionMatch = useCreateCurrentDirectionMatchMutation();
   const createNetOperationLineWithAutoHeader = useCreateNetOperationLineWithAutoHeaderMutation();
   const createTransferLineWithAutoHeader = useCreateTransferLineWithAutoHeaderMutation();
   const createCageWarehouseTransferLineWithAutoHeader = useCreateCageWarehouseTransferLineWithAutoHeaderMutation();
@@ -473,6 +477,13 @@ export function QuickDailyEntryPage(): ReactElement {
         projectId,
         projectCageId: data.projectCageId,
         windDirectionId: data.windDirectionId,
+        recordDate: selectedDate,
+        note: data.description,
+      }),
+      createCurrentDirectionMatch.mutateAsync({
+        projectId,
+        projectCageId: data.projectCageId,
+        currentDirectionId: data.currentDirectionId,
         recordDate: selectedDate,
         note: data.description,
       }),
@@ -869,7 +880,7 @@ export function QuickDailyEntryPage(): ReactElement {
       <OperationTypeTabs
         feedingTab={<Suspense fallback={<LazyTabFallback />}><FeedingQuickForm projectId={projectId} projectCageId={projectCageId} stocks={stocks} isLoadingStocks={isLoadingStocks} onSubmit={handleFeedingSubmit} isSubmitting={createFeedingLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         mortalityTab={<Suspense fallback={<LazyTabFallback />}><MortalityQuickForm projectId={projectId} projectCageId={projectCageId} onSubmit={handleMortalitySubmit} isSubmitting={createMortalityLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
-        weatherTab={<Suspense fallback={<LazyTabFallback />}><WeatherQuickForm projectId={projectId} projectCages={projectCages} windDirections={windDirections} weatherTypes={weatherTypes} severities={weatherSeverities} onSubmit={handleWeatherSubmit} isSubmitting={createDailyWeather.isPending || createWindDirectionMatch.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
+        weatherTab={<Suspense fallback={<LazyTabFallback />}><WeatherQuickForm projectId={projectId} projectCages={projectCages} windDirections={windDirections} currentDirections={currentDirections} weatherTypes={weatherTypes} severities={weatherSeverities} onSubmit={handleWeatherSubmit} isSubmitting={createDailyWeather.isPending || createWindDirectionMatch.isPending || createCurrentDirectionMatch.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         netOperationTab={<Suspense fallback={<LazyTabFallback />}><NetOperationQuickForm projectId={projectId} projectCageId={projectCageId} fishBatches={fishBatches} netOperationTypes={netOperationTypes} onSubmit={handleNetOperationSubmit} isSubmitting={createNetOperationLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         transferTab={<Suspense fallback={<LazyTabFallback />}><TransferQuickForm projectId={projectId} projectCageId={projectCageId} targetProjectId={targetProjectId} projects={projectOptions} projectCages={transferTargetOptions} sourceBatch={sourceBatch} onSubmit={handleTransferSubmit} onTargetProjectChange={setTargetProjectId} isSubmitting={createTransferLineWithAutoHeader.isPending} requireFullTransfer={aquaSettings?.requireFullTransfer ?? true} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         cageWarehouseTransferTab={<Suspense fallback={<LazyTabFallback />}><CageWarehouseTransferQuickForm projectId={projectId} projectCageId={projectCageId} warehouseOptions={warehouseOptions} sourceBatch={sourceBatch} onSubmit={handleCageWarehouseTransferSubmit} isSubmitting={createCageWarehouseTransferLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}

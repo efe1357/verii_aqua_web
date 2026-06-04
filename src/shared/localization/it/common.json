@@ -391,7 +391,8 @@
     "aquaBatchMovements": "Movimenti lotto",
     "aquaCageBalances": "Saldi gabbie",
     "aquaSeaWaterTemperatures": "Temperature dell’Acqua di Mare",
-    "aquaWindDirections": "Direzioni del Vento"
+    "aquaWindDirections": "Direzioni del Vento",
+    "aquaCurrentDirections": "Direzioni della Corrente"
   },
   "pdfReportDesigner": {
     "list": "Elenco",

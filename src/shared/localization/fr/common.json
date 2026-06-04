@@ -391,7 +391,8 @@
     "aquaBatchMovements": "Mouvements de lot",
     "aquaCageBalances": "Soldes des cages",
     "aquaSeaWaterTemperatures": "Températures de l’Eau de Mer",
-    "aquaWindDirections": "Directions du Vent"
+    "aquaWindDirections": "Directions du Vent",
+    "aquaCurrentDirections": "Directions du Courant"
   },
   "pdfReportDesigner": {
     "list": "List",

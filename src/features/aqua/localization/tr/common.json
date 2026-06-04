@@ -218,6 +218,10 @@
       "windDirections": {
         "title": "Rüzgar Yönleri",
         "description": "Günlük girişlerde kullanılacak rüzgar yönü tanımlarını yönetin."
+      },
+      "currentDirections": {
+        "title": "Akıntı Yönleri",
+        "description": "Günlük girişlerde kullanılacak akıntı yönü tanımlarını yönetin."
       }
     },
     "fields": {
@@ -372,7 +376,8 @@
       "recordDate": "Kayıt Tarihi",
       "waterTemperatureCelsius": "Su Sıcaklığı (°C)",
       "weatherDescription": "Hava Açıklaması",
-      "windDirectionName": "Rüzgar Yönü"
+      "windDirectionName": "Rüzgar Yönü",
+      "currentDirectionName": "Akıntı Yönü"
     },
     "quickSetup": {
       "pageTitle": "Hızlı Kurulum",
@@ -491,7 +496,9 @@
         "waterTemperatureCelsius": "Su Sıcaklığı (°C)",
         "descriptionPlaceholder": "Örn: 23 derece güneşli",
         "windDirection": "Rüzgar Yönü",
-        "selectWindDirection": "Rüzgar yönü seçin"
+        "selectWindDirection": "Rüzgar yönü seçin",
+        "currentDirection": "Akıntı Yönü",
+        "selectCurrentDirection": "Akıntı yönü seçin"
       },
       "netOperation": {
         "title": "Ağ İşlemi",

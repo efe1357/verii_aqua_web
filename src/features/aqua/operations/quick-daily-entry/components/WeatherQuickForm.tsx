@@ -11,12 +11,13 @@ import { Combobox } from '@/components/ui/combobox';
 import { formatLabelWithKey } from '@/shared/utils/dropdown-label';
 import { weatherQuickFormSchema, type WeatherQuickFormSchema } from '../schema/quick-daily-entry-schema';
 import { ChevronRight, Save } from 'lucide-react'; // İkonlar eklendi
-import type { ProjectCageDto, WeatherSeverityDto, WeatherTypeDto, WindDirectionDto } from '../types/quick-daily-entry-types';
+import type { CurrentDirectionDto, ProjectCageDto, WeatherSeverityDto, WeatherTypeDto, WindDirectionDto } from '../types/quick-daily-entry-types';
 
 interface WeatherQuickFormProps {
   projectId: number | null;
   projectCages?: ProjectCageDto[];
   windDirections?: WindDirectionDto[];
+  currentDirections?: CurrentDirectionDto[];
   weatherTypes?: WeatherTypeDto[];
   severities?: WeatherSeverityDto[];
   onSubmit: (data: WeatherQuickFormSchema) => Promise<void>;
@@ -28,6 +29,7 @@ export function WeatherQuickForm({
   projectId,
   projectCages = [],
   windDirections = [],
+  currentDirections = [],
   onSubmit,
   isSubmitting,
   canSubmit,
@@ -36,7 +38,7 @@ export function WeatherQuickForm({
   const form = useForm<WeatherQuickFormSchema>({
     resolver: zodResolver(weatherQuickFormSchema) as Resolver<WeatherQuickFormSchema>,
     mode: 'onChange',
-    defaultValues: { projectCageId: 0, windDirectionId: 0, waterTemperatureCelsius: undefined, description: '' },
+    defaultValues: { projectCageId: 0, windDirectionId: 0, currentDirectionId: 0, waterTemperatureCelsius: undefined, description: '' },
   });
 
   const handleSubmit: SubmitHandler<WeatherQuickFormSchema> = async (data) => {
@@ -65,6 +67,15 @@ export function WeatherQuickForm({
     [windDirections]
   );
 
+  const currentDirectionOptions = useMemo(
+    () =>
+      currentDirections.map((item) => ({
+        value: String(item.id),
+        label: formatLabelWithKey(item.name ?? item.id, item.id),
+      })),
+    [currentDirections]
+  );
+
   // AQUA KONSEPT STİLLERİ
   const labelStyle = "text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wide ml-1 flex items-center gap-1.5";
   const inputStyle = "bg-slate-50 dark:bg-blue-950/50 border-slate-200 dark:border-cyan-800/30 text-slate-900 dark:text-white focus-visible:ring-cyan-500/20 focus-visible:border-cyan-500 h-11 rounded-xl transition-all duration-200";
@@ -79,7 +90,7 @@ export function WeatherQuickForm({
       <CardContent className="p-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} noValidate className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
               <FormField control={form.control} name="projectCageId" render={({ field }) => (
                 <FormItem className="space-y-2">
                   <FormLabel required className={labelStyle}>
@@ -97,6 +108,16 @@ export function WeatherQuickForm({
                     {t('aqua.quickDailyEntry.weather.windDirection')}
                   </FormLabel>
                   <FormControl><Combobox options={windDirectionOptions} value={String(field.value)} onValueChange={(v) => field.onChange(Number(v))} placeholder={t('aqua.quickDailyEntry.weather.selectWindDirection')} className={inputStyle} /></FormControl>
+                  <FormMessage className="text-xs text-red-500" />
+                </FormItem>
+              )} />
+              <FormField control={form.control} name="currentDirectionId" render={({ field }) => (
+                <FormItem className="space-y-2">
+                  <FormLabel required className={labelStyle}>
+                    <ChevronRight size={14} className="text-cyan-500" />
+                    {t('aqua.quickDailyEntry.weather.currentDirection')}
+                  </FormLabel>
+                  <FormControl><Combobox options={currentDirectionOptions} value={String(field.value)} onValueChange={(v) => field.onChange(Number(v))} placeholder={t('aqua.quickDailyEntry.weather.selectCurrentDirection')} className={inputStyle} /></FormControl>
                   <FormMessage className="text-xs text-red-500" />
                 </FormItem>
               )} />
