@@ -864,6 +864,7 @@
         "endingBiomassKg": "Stok KG",
         "shippedBiomassKg": "Satış KG",
         "mortalityBiomassKg": "Fire KG",
+        "producedBiomassKg": "Üretilen KG",
         "totalFeedKg": "Yem KG",
         "fcr": "FCR"
       }
@@ -1018,6 +1019,7 @@
         "BatchCode": "Batch Kodu",
         "FishStockCode": "Balık Stok Kodu",
         "FishCount": "Balık Adedi",
+        "AverageKg": "Ortalama KG",
         "AverageGram": "Ortalama Gram",
         "AsOfDate": "Bakiye Tarihi",
         "ReceiptNo": "Mal Kabul No",
@@ -1027,6 +1029,7 @@
         "FeedStockCode": "Yem Stok Kodu",
         "FeedingDate": "Yemleme Tarihi",
         "FeedingSlot": "Yemleme Turu",
+        "FeedKg": "Yem KG",
         "FeedGram": "Yem Gramı",
         "ShipmentDate": "Sevkiyat Tarihi",
         "CurrencyCode": "Para Birimi",

@@ -319,10 +319,11 @@ export function QuickDailyEntryPage(): ReactElement {
       const snapshot = sourceBatchByCageId[pc.id];
       const liveCount = Number(snapshot?.liveCount ?? 0);
       const averageGram = Number(snapshot?.averageGram ?? 0);
+      const averageKg = averageGram / 1000;
       const baseLabel = pc.cageCode ?? pc.cageName ?? String(pc.id);
       return {
         value: String(pc.id),
-        label: `${formatLabelWithKey(baseLabel, pc.id)} - ${liveCount}/${averageGram}`,
+        label: `${formatLabelWithKey(baseLabel, pc.id)} - ${liveCount}/${averageKg} KG`,
       };
       }),
     [sourceProjectCages, sourceBatchByCageId]
@@ -376,7 +377,7 @@ export function QuickDailyEntryPage(): ReactElement {
     () =>
       warehouseTransferBatchSnapshots.map((batch) => ({
         value: String(batch.fishBatchId),
-        label: `${batch.batchCode ?? batch.fishBatchId} - ${batch.liveCount}/${batch.averageGram}`,
+        label: `${batch.batchCode ?? batch.fishBatchId} - ${batch.liveCount}/${Number(batch.averageGram ?? 0) / 1000} KG`,
       })),
     [warehouseTransferBatchSnapshots]
   );
@@ -390,7 +391,7 @@ export function QuickDailyEntryPage(): ReactElement {
     () =>
       warehouseCageTransferBatchSnapshots.map((batch) => ({
         value: String(batch.fishBatchId),
-        label: `${batch.batchCode ?? batch.fishBatchId} - ${batch.liveCount}/${batch.averageGram}`,
+        label: `${batch.batchCode ?? batch.fishBatchId} - ${batch.liveCount}/${Number(batch.averageGram ?? 0) / 1000} KG`,
       })),
     [warehouseCageTransferBatchSnapshots]
   );
@@ -415,7 +416,7 @@ export function QuickDailyEntryPage(): ReactElement {
     if (!canCreateQuickDailyEntry) return;
     if (projectId == null || projectCageId == null) return;
     try {
-      const effectiveGramPerUnit = data.gramPerUnit > 0 ? data.gramPerUnit : 1;
+      const effectiveGramPerUnit = 1000;
       await createFeedingLineWithAutoHeader.mutateAsync({
         projectId,
         feedingDate: selectedDate,
@@ -701,7 +702,7 @@ export function QuickDailyEntryPage(): ReactElement {
       if (data.fishCount > sourceBatch.liveCount) throw new Error(t('aqua.quickDailyEntry.toast.stockChangeCountTooHigh'));
 
       const averageGram = sourceBatch.averageGram > 0 ? sourceBatch.averageGram : 0;
-      const newAverageGram = Number(data.newAverageGram);
+      const newAverageGram = Number(data.newAverageGram) * 1000;
       if (newAverageGram <= 0) throw new Error(t('aqua.quickDailyEntry.toast.invalidNewAverageGram'));
       const biomassGram = data.fishCount * averageGram;
       const stockConvertLine = await createStockConvertLineWithAutoHeader.mutateAsync({

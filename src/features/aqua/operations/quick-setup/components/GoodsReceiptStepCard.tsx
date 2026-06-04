@@ -99,7 +99,7 @@ export function GoodsReceiptStepCard({
       fishForm.reset({
         stockId: existingReceipt.fishStockId ?? 0,
         fishCount: existingReceipt.fishCount > 0 ? existingReceipt.fishCount : 0,
-        currentAverageGram: existingReceipt.fishAverageGram ?? 0,
+        currentAverageGram: (existingReceipt.fishAverageGram ?? 0) / 1000,
       });
       feedForm.reset({ stockId: 0, qtyUnit: 0 });
     } else if (!existingReceipt) {
@@ -194,7 +194,7 @@ export function GoodsReceiptStepCard({
                 <p className="text-slate-700 dark:text-slate-300"><span className="text-muted-foreground">{t('aqua.quickSetup.warehouse')}:</span> {existingReceipt.warehouseCode != null ? `${existingReceipt.warehouseCode} - ${existingReceipt.warehouseName ?? ''}`.trim() : '-'}</p>
                 <p className="text-slate-700 dark:text-slate-300"><span className="text-muted-foreground">{t('aqua.quickSetup.stock')}:</span> {fishStockLabel}</p>
                 <p className="text-slate-700 dark:text-slate-300"><span className="text-muted-foreground">{t('aqua.quickSetup.count')}:</span> {existingReceipt.fishCount}</p>
-                <p className="text-slate-700 dark:text-slate-300"><span className="text-muted-foreground">{t('aqua.quickSetup.currentAverageGram')}:</span> {existingReceipt.fishAverageGram ?? 0}</p>
+                <p className="text-slate-700 dark:text-slate-300"><span className="text-muted-foreground">{t('aqua.quickSetup.currentAverageGram')} (KG):</span> {Number(((existingReceipt.fishAverageGram ?? 0) / 1000).toFixed(6))}</p>
             </div>
             {/* Amber uyarı metnini koruduk, Deep Blue slate üzerinde şık durur */}
             <p className="text-amber-600 dark:text-amber-400 mt-4 pt-4 border-t border-border dark:border-cyan-800/20 font-medium">{t('aqua.quickSetup.existingGoodsReceiptPostedInfo')}</p>
@@ -306,7 +306,7 @@ export function GoodsReceiptStepCard({
                       name="currentAverageGram"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel required className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t('aqua.quickSetup.currentAverageGram')}</FormLabel>
+                          <FormLabel required className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t('aqua.quickSetup.currentAverageGram')} (KG)</FormLabel>
                           <FormControl>
                             <Input type="number" min={0} step="0.01" className="bg-background dark:bg-blue-950 border-border dark:border-cyan-800/50 text-foreground focus-visible:ring-pink-500/20 focus-visible:border-pink-500 h-11 rounded-xl placeholder:text-slate-500" {...field} />
                           </FormControl>

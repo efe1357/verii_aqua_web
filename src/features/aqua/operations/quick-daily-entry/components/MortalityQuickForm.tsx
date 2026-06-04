@@ -16,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { mortalityQuickFormSchema, type MortalityQuickFormSchema } from '../schema/quick-daily-entry-schema';
 import { ChevronRight, Save, TrendingDown } from 'lucide-react'; 
+import { getPositiveNumberInputProps } from './positive-number-input';
 
 interface MortalityQuickFormProps {
   projectId: number | null;
@@ -82,11 +83,10 @@ export function MortalityQuickForm({
                     <FormControl>
                       <Input 
                         type="number" 
-                        min={0} 
-                        className={inputStyle} 
-                        placeholder={t('aqua.quickDailyEntry.mortality.exampleCount')}
-                        {...field} 
-                      />
+	                        className={inputStyle} 
+	                        placeholder={t('aqua.quickDailyEntry.mortality.exampleCount')}
+	                        {...getPositiveNumberInputProps(field)}
+	                      />
                     </FormControl>
                     <FormMessage className="text-xs text-rose-500 font-medium" />
                   </FormItem>

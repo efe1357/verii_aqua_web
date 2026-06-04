@@ -12,6 +12,7 @@ import { formatLabelWithKey } from '@/shared/utils/dropdown-label';
 import { stockChangeQuickFormSchema, type StockChangeQuickFormSchema } from '../schema/quick-daily-entry-schema';
 import type { ActiveCageBatchSnapshot } from '../types/quick-daily-entry-types';
 import { ChevronRight, Save } from 'lucide-react';
+import { getPositiveNumberInputProps } from './positive-number-input';
 
 interface StockChangeBatchOption {
   id: number;
@@ -76,7 +77,7 @@ export function StockChangeQuickForm({ projectId, projectCageId, fishBatches, so
                     <ChevronRight size={14} className="text-cyan-500" />
                     {t('aqua.quickDailyEntry.stockChange.fishCount')}
                   </FormLabel>
-                  <FormControl><Input type="number" className={inputStyle} {...field} /></FormControl>
+	                  <FormControl><Input type="number" className={inputStyle} {...getPositiveNumberInputProps(field)} /></FormControl>
                   <FormMessage className="text-xs text-red-500" />
                 </FormItem>
               )} />
@@ -84,9 +85,9 @@ export function StockChangeQuickForm({ projectId, projectCageId, fishBatches, so
                 <FormItem className="space-y-2">
                   <FormLabel required className={labelStyle}>
                     <ChevronRight size={14} className="text-cyan-500" />
-                    {t('aqua.quickDailyEntry.stockChange.newAverageGram')}
+                    {t('aqua.quickDailyEntry.stockChange.newAverageGram')} (KG)
                   </FormLabel>
-                  <FormControl><Input type="number" step="0.01" className={inputStyle} {...field} /></FormControl>
+	                  <FormControl><Input type="number" className={inputStyle} {...getPositiveNumberInputProps(field, { allowDecimal: true, min: 0.001 })} /></FormControl>
                   <FormMessage className="text-xs text-red-500" />
                 </FormItem>
               )} />

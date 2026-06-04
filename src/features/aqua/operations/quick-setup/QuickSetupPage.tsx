@@ -198,14 +198,15 @@ export function QuickSetupPage(): ReactElement {
         receiptDate: data.receipt.receiptDate,
         warehouseId: data.receipt.warehouseId,
       };
+      const currentAverageGram = data.fishLine.currentAverageGram * 1000;
       const fishLinePayload = {
         stockId: data.fishLine.stockId,
         itemType: GOODS_RECEIPT_ITEM_TYPE_FISH,
         fishCount: data.fishLine.fishCount,
-        fishAverageGram: data.fishLine.currentAverageGram,
-        fishTotalGram: data.fishLine.fishCount * data.fishLine.currentAverageGram,
-        gramPerUnit: data.fishLine.currentAverageGram,
-        totalGram: data.fishLine.fishCount * data.fishLine.currentAverageGram,
+        fishAverageGram: currentAverageGram,
+        fishTotalGram: data.fishLine.fishCount * currentAverageGram,
+        gramPerUnit: currentAverageGram,
+        totalGram: data.fishLine.fishCount * currentAverageGram,
       };
 
       const receipt = existingDraft ? await aquaQuickApi.updateGoodsReceipt(existingDraft.receiptId, headerPayload) : await mutations.createGoodsReceipt.mutateAsync(headerPayload);
@@ -213,10 +214,10 @@ export function QuickSetupPage(): ReactElement {
 
       let batchId = existingDraft?.fishBatchId ?? null;
       if (batchId == null) {
-        const fishBatch = await mutations.createFishBatch.mutateAsync({ projectId, batchCode: data.receipt.receiptNo, fishStockId: data.fishLine.stockId, currentAverageGram: data.fishLine.currentAverageGram, startDate: data.receipt.receiptDate, sourceGoodsReceiptLineId: line.id });
+        const fishBatch = await mutations.createFishBatch.mutateAsync({ projectId, batchCode: data.receipt.receiptNo, fishStockId: data.fishLine.stockId, currentAverageGram, startDate: data.receipt.receiptDate, sourceGoodsReceiptLineId: line.id });
         batchId = fishBatch.id;
       } else {
-        await aquaQuickApi.updateFishBatch(batchId, { projectId, batchCode: data.receipt.receiptNo, fishStockId: data.fishLine.stockId, currentAverageGram: data.fishLine.currentAverageGram, startDate: data.receipt.receiptDate, sourceGoodsReceiptLineId: line.id });
+        await aquaQuickApi.updateFishBatch(batchId, { projectId, batchCode: data.receipt.receiptNo, fishStockId: data.fishLine.stockId, currentAverageGram, startDate: data.receipt.receiptDate, sourceGoodsReceiptLineId: line.id });
       }
 
       await aquaQuickApi.updateGoodsReceiptLine(line.id, { goodsReceiptId: receipt.id, fishBatchId: batchId, ...fishLinePayload });

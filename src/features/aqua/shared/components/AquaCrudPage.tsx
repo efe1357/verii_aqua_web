@@ -123,7 +123,8 @@ function normalizeFieldValue(field: AquaFieldConfig, rawValue: unknown): unknown
   if (field.type === 'number') {
     const numericRaw = typeof rawValue === 'string' ? rawValue.trim().replace(',', '.') : rawValue;
     const numeric = Number(numericRaw);
-    return Number.isNaN(numeric) ? null : numeric;
+    if (Number.isNaN(numeric)) return null;
+    return numeric;
   }
   if (field.type === 'select') {
     const hasNumericOption = (field.options ?? DOC_STATUS_OPTIONS).some((option) => typeof option.value === 'number') || !!field.lookup;
@@ -214,13 +215,16 @@ function normalizeInputValue(field: AquaFieldConfig, value: unknown): string {
 }
 
 function normalizeFormInputValue(field: AquaFieldConfig, rawValue: string): string {
+  if (rawValue.trim() === '') return rawValue;
   if (field.type !== 'number' || !shouldDisplayAsKg(field)) return rawValue;
   const numeric = toNumericValue(rawValue);
-  return numeric == null ? '' : normalizeMassDisplayNumber(kilogramsToGrams(numeric));
+  return numeric == null ? rawValue : normalizeMassDisplayNumber(kilogramsToGrams(numeric));
 }
 
 function formatKilogramDisplayLabel(label: string): string {
-  if (/gram/i.test(label)) return label.replace(/gram/gi, 'KG');
+  if (/\(g\)/i.test(label)) return label.replace(/\(g\)/gi, '(KG)');
+  if (/\bgrams?\b/i.test(label)) return label.replace(/\bgrams?\b/gi, 'KG');
+  if (/\bgram\b/i.test(label)) return label.replace(/\bgram\b/gi, 'KG');
   return `${label} (KG)`;
 }
 

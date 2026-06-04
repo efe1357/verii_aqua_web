@@ -3,8 +3,8 @@ import { z } from 'zod';
 export const feedingQuickFormSchema = z.object({
   feedingSlot: z.coerce.number().int().min(0),
   stockId: z.coerce.number().int().positive('common.required'),
-  qtyUnit: z.coerce.number().min(0, 'common.required'),
-  gramPerUnit: z.coerce.number().min(0, 'common.required'),
+  qtyUnit: z.coerce.number().positive('common.required'),
+  gramPerUnit: z.coerce.number().positive('common.required'),
 });
 
 export const mortalityQuickFormSchema = z.object({

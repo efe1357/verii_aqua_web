@@ -865,11 +865,11 @@ function CageCardComponent({
                 <div className={cn('flex items-center justify-center', isPeek ? 'gap-1.5' : isDialog ? 'gap-px' : 'gap-0.5')}>
                   <Droplets className={cn('shrink-0 text-cyan-400/90', isPeek ? 'size-3.5' : isDialog ? 'size-2' : 'size-2.5')} />
                   <span className={cn('truncate font-bold uppercase tracking-wider text-cyan-300/85', sz.statLabel)}>
-                    {t('aquaDashboard.cageCard.measurementGram', { ns: 'dashboard' })}
+                    {t('aquaDashboard.cageCard.measurementGram', { ns: 'dashboard' })} (KG)
                   </span>
                 </div>
                 <span className={cn('font-black tabular-nums text-cyan-200 drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]', sz.statValue)}>
-                  {formatNumber(cage.measurementAverageGram)}
+                  {formatNumber(cage.measurementAverageGram / 1000)}
                 </span>
               </div>
 
@@ -1209,7 +1209,7 @@ function GlobalCageSortSectionComponent({
                       </td>
 
                       <td className="px-5 py-3 text-center font-bold tabular-nums text-cyan-600 dark:text-cyan-300">
-                        {formatNumber(cage.measurementAverageGram)}
+                        {formatNumber(cage.measurementAverageGram / 1000)}
                         <span className="ml-0.5 text-[10px]">g</span>
                       </td>
 
@@ -2214,8 +2214,8 @@ export function AquaDashboardPage(): ReactElement {
                           palette: { border: 'border-amber-500/20', bg: 'bg-[linear-gradient(145deg,rgba(180,83,9,0.10),rgba(15,23,42,0.0))]', label: 'text-amber-400', value: 'text-amber-600 dark:text-amber-300', shimmer: 'from-amber-500/0 via-amber-400/30 to-amber-500/0', dot: 'bg-amber-400' },
                         },
                         {
-                          label: t('aquaDashboard.projectSummary.measurementGram', { ns: 'dashboard' }),
-                          value: `${formatNumber(project.measurementAverageGram)} g`,
+                          label: `${t('aquaDashboard.projectSummary.measurementGram', { ns: 'dashboard' })} (KG)`,
+                          value: `${formatNumber(project.measurementAverageGram / 1000)} kg`,
                           unit: '',
                           icon: <Droplets className="size-3.5" />,
                           palette: { border: 'border-cyan-500/20', bg: 'bg-[linear-gradient(145deg,rgba(6,182,212,0.12),rgba(15,23,42,0.0))]', label: 'text-cyan-400', value: 'text-cyan-600 dark:text-cyan-300', shimmer: 'from-cyan-500/0 via-cyan-400/35 to-cyan-500/0', dot: 'bg-cyan-400' },
@@ -2354,7 +2354,7 @@ export function AquaDashboardPage(): ReactElement {
                               </td>
 
                               <td className="px-5 py-3 text-center font-bold text-cyan-600 dark:text-cyan-300 tabular-nums">
-                                {formatNumber(cage.measurementAverageGram)}
+                                {formatNumber(cage.measurementAverageGram / 1000)}
                                 <span className="text-[10px] ml-0.5">g</span>
                               </td>
 

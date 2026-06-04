@@ -94,6 +94,13 @@ function formatNumber(value: number): string {
   return new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 2 }).format(value);
 }
 
+function kgLabel(label: string): string {
+  if (/\(g\)/i.test(label)) return label.replace(/\(g\)/gi, '(KG)');
+  if (/\bgrams?\b/i.test(label)) return label.replace(/\bgrams?\b/gi, 'KG');
+  if (/\bgram\b/i.test(label)) return label.replace(/\bgram\b/gi, 'KG');
+  return `${label} (KG)`;
+}
+
 function clampPercent(value: number): number {
   if (Number.isNaN(value)) return 0;
   if (value < 0) return 0;
@@ -181,31 +188,31 @@ function CageSummaryCards({ cage, t }: { cage: CageProjectReport; t: (key: strin
       <div className="border-l-2 border-indigo-400 dark:border-indigo-500/50 pl-4">
         <p className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
           <Scale className="size-3.5 text-indigo-500" />
-          {t('aqua.projectDetailReport.initialAverageGram')} / {t('aqua.projectDetailReport.currentAverageGram')}
+          {kgLabel(t('aqua.projectDetailReport.initialAverageGram'))} / {kgLabel(t('aqua.projectDetailReport.currentAverageGram'))}
         </p>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="overflow-hidden border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
             <CardContent className="pt-4 min-w-0">
-              <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400 truncate">{t('aqua.projectDetailReport.initialAverageGram')}</p>
-              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cage.initialAverageGram)}</p>
+              <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400 truncate">{kgLabel(t('aqua.projectDetailReport.initialAverageGram'))}</p>
+              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cage.initialAverageGram / 1000)}</p>
             </CardContent>
           </Card>
           <Card className="overflow-hidden border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
             <CardContent className="pt-4 min-w-0">
-              <p className="text-xs font-medium text-violet-600 dark:text-violet-400 truncate">{t('aqua.projectDetailReport.currentAverageGram')}</p>
-              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cage.currentAverageGram)}</p>
+              <p className="text-xs font-medium text-violet-600 dark:text-violet-400 truncate">{kgLabel(t('aqua.projectDetailReport.currentAverageGram'))}</p>
+              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cage.currentAverageGram / 1000)}</p>
             </CardContent>
           </Card>
           <Card className="overflow-hidden border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
             <CardContent className="pt-4 min-w-0">
-              <p className="text-xs font-medium text-cyan-600 dark:text-cyan-400 truncate">{t('aqua.projectDetailReport.initialBiomassGram')}</p>
-              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cage.initialBiomassGram)}</p>
+              <p className="text-xs font-medium text-cyan-600 dark:text-cyan-400 truncate">{kgLabel(t('aqua.projectDetailReport.initialBiomassGram'))}</p>
+              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cage.initialBiomassGram / 1000)}</p>
             </CardContent>
           </Card>
           <Card className="overflow-hidden border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
             <CardContent className="pt-4 min-w-0">
-              <p className="text-xs font-medium text-blue-600 dark:text-blue-400 truncate">{t('aqua.projectDetailReport.currentBiomassGram')}</p>
-              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cage.currentBiomassGram)}</p>
+              <p className="text-xs font-medium text-blue-600 dark:text-blue-400 truncate">{kgLabel(t('aqua.projectDetailReport.currentBiomassGram'))}</p>
+              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cage.currentBiomassGram / 1000)}</p>
             </CardContent>
           </Card>
         </div>
@@ -214,13 +221,13 @@ function CageSummaryCards({ cage, t }: { cage: CageProjectReport; t: (key: strin
       <div className="border-l-2 border-amber-400 dark:border-amber-500/50 pl-4">
         <p className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
           <UtensilsCrossed className="size-3.5 text-amber-500" />
-          {t('aqua.projectDetailReport.totalFeedGram')} / {t('aqua.projectDetailReport.totalBiomassDelta')}
+          {kgLabel(t('aqua.projectDetailReport.totalFeedGram'))} / {kgLabel(t('aqua.projectDetailReport.totalBiomassDelta'))}
         </p>
         <div className="grid gap-3 sm:grid-cols-2">
           <Card className="overflow-hidden border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
             <CardContent className="pt-4 min-w-0">
-              <p className="text-xs font-medium text-amber-600 dark:text-amber-400 truncate">{t('aqua.projectDetailReport.totalFeedGram')}</p>
-              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cage.totalFeedGram)}</p>
+              <p className="text-xs font-medium text-amber-600 dark:text-amber-400 truncate">{kgLabel(t('aqua.projectDetailReport.totalFeedGram'))}</p>
+              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cage.totalFeedGram / 1000)}</p>
             </CardContent>
           </Card>
           <Card className="overflow-hidden border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
@@ -311,32 +318,32 @@ function ProjectSummaryCards({
       </Card>
       <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
         <CardContent className="pt-4 min-w-0">
-          <p className="text-xs font-medium text-amber-600 dark:text-amber-400 truncate">{t('aqua.projectDetailReport.totalFeedGram')}</p>
-          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(totalFeedGram)}</p>
+          <p className="text-xs font-medium text-amber-600 dark:text-amber-400 truncate">{kgLabel(t('aqua.projectDetailReport.totalFeedGram'))}</p>
+          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(totalFeedGram / 1000)}</p>
         </CardContent>
       </Card>
       <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
         <CardContent className="pt-4 min-w-0">
-          <p className="text-xs font-medium text-blue-600 dark:text-blue-400 truncate">{t('aqua.projectDetailReport.cageBiomassTotal')}</p>
-          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cageBiomassGram)}</p>
+          <p className="text-xs font-medium text-blue-600 dark:text-blue-400 truncate">{kgLabel(t('aqua.projectDetailReport.cageBiomassTotal'))}</p>
+          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cageBiomassGram / 1000)}</p>
         </CardContent>
       </Card>
       <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
         <CardContent className="pt-4 min-w-0">
-          <p className="text-xs font-medium text-fuchsia-600 dark:text-fuchsia-400 truncate">{t('aqua.projectDetailReport.warehouseBiomassTotal')}</p>
-          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(warehouseBiomassGram)}</p>
+          <p className="text-xs font-medium text-fuchsia-600 dark:text-fuchsia-400 truncate">{kgLabel(t('aqua.projectDetailReport.warehouseBiomassTotal'))}</p>
+          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(warehouseBiomassGram / 1000)}</p>
         </CardContent>
       </Card>
       <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
         <CardContent className="pt-4 min-w-0">
-          <p className="text-xs font-medium text-sky-600 dark:text-sky-400 truncate">{t('aqua.projectDetailReport.currentBiomassTotal')}</p>
-          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(totalSystemBiomassGram)}</p>
+          <p className="text-xs font-medium text-sky-600 dark:text-sky-400 truncate">{kgLabel(t('aqua.projectDetailReport.currentBiomassTotal'))}</p>
+          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(totalSystemBiomassGram / 1000)}</p>
         </CardContent>
       </Card>
       <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
         <CardContent className="pt-4 min-w-0">
-          <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400 truncate">{t('aqua.projectDetailReport.currentAvgGramTotal')}</p>
-          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(avgCurrentGram)}</p>
+          <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400 truncate">{kgLabel(t('aqua.projectDetailReport.currentAvgGramTotal'))}</p>
+          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(avgCurrentGram / 1000)}</p>
         </CardContent>
       </Card>
       <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
@@ -347,8 +354,8 @@ function ProjectSummaryCards({
       </Card>
       <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
         <CardContent className="pt-4 min-w-0">
-          <p className="text-xs font-medium text-orange-600 dark:text-orange-400 truncate">{t('aqua.projectDetailReport.totalShipmentBiomass')}</p>
-          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(totalShipmentBiomass)}</p>
+          <p className="text-xs font-medium text-orange-600 dark:text-orange-400 truncate">{kgLabel(t('aqua.projectDetailReport.totalShipmentBiomass'))}</p>
+          <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(totalShipmentBiomass / 1000)}</p>
           <p className="mt-1 text-xs text-slate-500 truncate">{t('aqua.projectDetailReport.lastShipmentDate')}: {lastShipmentDate}</p>
         </CardContent>
       </Card>
@@ -411,20 +418,20 @@ function ProjectCurrentSnapshotCards({ projectCode, projectName, snapshotDate, l
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
             <CardContent className="pt-4 min-w-0">
-              <p className="text-xs font-medium text-blue-600 dark:text-blue-400 truncate">{t('aqua.projectDetailReport.cageBiomassTotal')}</p>
-              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cageBiomassGram)}</p>
+              <p className="text-xs font-medium text-blue-600 dark:text-blue-400 truncate">{kgLabel(t('aqua.projectDetailReport.cageBiomassTotal'))}</p>
+              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(cageBiomassGram / 1000)}</p>
             </CardContent>
           </Card>
           <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
             <CardContent className="pt-4 min-w-0">
-              <p className="text-xs font-medium text-fuchsia-600 dark:text-fuchsia-400 truncate">{t('aqua.projectDetailReport.warehouseBiomassTotal')}</p>
-              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(warehouseBiomassGram)}</p>
+              <p className="text-xs font-medium text-fuchsia-600 dark:text-fuchsia-400 truncate">{kgLabel(t('aqua.projectDetailReport.warehouseBiomassTotal'))}</p>
+              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(warehouseBiomassGram / 1000)}</p>
             </CardContent>
           </Card>
           <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
             <CardContent className="pt-4 min-w-0">
-              <p className="text-xs font-medium text-sky-600 dark:text-sky-400 truncate">{t('aqua.projectDetailReport.currentBiomassTotal')}</p>
-              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(totalSystemBiomassGram)}</p>
+              <p className="text-xs font-medium text-sky-600 dark:text-sky-400 truncate">{kgLabel(t('aqua.projectDetailReport.currentBiomassTotal'))}</p>
+              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(totalSystemBiomassGram / 1000)}</p>
             </CardContent>
           </Card>
           <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
@@ -443,8 +450,8 @@ function ProjectCurrentSnapshotCards({ projectCode, projectName, snapshotDate, l
           </Card>
           <Card className="border-slate-200 bg-white dark:border-cyan-800/30 dark:bg-blue-950/50 shadow-sm">
             <CardContent className="pt-4 min-w-0">
-              <p className="text-xs font-medium text-orange-600 dark:text-orange-400 truncate">{t('aqua.projectDetailReport.totalShipmentBiomass')}</p>
-              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(totalShipmentBiomass)}</p>
+              <p className="text-xs font-medium text-orange-600 dark:text-orange-400 truncate">{kgLabel(t('aqua.projectDetailReport.totalShipmentBiomass'))}</p>
+              <p className="mt-1 text-xl sm:text-2xl font-bold tabular-nums text-slate-900 dark:text-white truncate">{formatNumber(totalShipmentBiomass / 1000)}</p>
               <p className="mt-1 text-xs text-slate-500 truncate">{t('aqua.projectDetailReport.lastShipmentDate')}: {lastShipmentDate}</p>
             </CardContent>
           </Card>
@@ -807,11 +814,11 @@ export function ProjectDetailReportPage(): ReactElement {
                             <TableHeader>
                               <TableRow className="border-slate-100 bg-slate-50 hover:bg-slate-50 dark:border-cyan-800/30 dark:bg-blue-900/20 dark:hover:bg-blue-900/20">
                                 <TableHead className="font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">{t('aqua.projectDetailReport.date')}</TableHead>
-                                <TableHead className="font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">{t('aqua.projectDetailReport.feedGram')}</TableHead>
+                                <TableHead className="font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">{kgLabel(t('aqua.projectDetailReport.feedGram'))}</TableHead>
                                 <TableHead className="font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">{t('aqua.projectDetailReport.feedStocks')}</TableHead>
                                 <TableHead className="font-semibold text-red-600 dark:text-red-400 whitespace-nowrap">{t('aqua.projectDetailReport.deadCount')}</TableHead>
                                 <TableHead className="font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">{t('aqua.projectDetailReport.countDelta')}</TableHead>
-                                <TableHead className="font-semibold text-cyan-600 dark:text-cyan-400 whitespace-nowrap">{t('aqua.projectDetailReport.biomassDelta')}</TableHead>
+                                <TableHead className="font-semibold text-cyan-600 dark:text-cyan-400 whitespace-nowrap">{kgLabel(t('aqua.projectDetailReport.biomassDelta'))}</TableHead>
                                 <TableHead className="font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">{t('aqua.projectDetailReport.weather')}</TableHead>
                                 <TableHead className="font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">{t('aqua.projectDetailReport.netOps')}</TableHead>
                                 <TableHead className="font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap">{t('aqua.projectDetailReport.transfers')}</TableHead>
@@ -832,7 +839,7 @@ export function ProjectDetailReportPage(): ReactElement {
                             {cage.dailyRows.slice(0, 45).map((row, rowIdx) => (
                               <TableRow key={`${cage.projectCageId}-${row.date}`} className={`border-slate-100 dark:border-cyan-800/30 transition-colors ${rowIdx % 2 === 1 ? 'bg-slate-50/50 dark:bg-blue-900/10' : 'bg-transparent'} hover:bg-slate-100/50 dark:hover:bg-blue-900/20`}>
                                 <TableCell className="font-medium tabular-nums text-slate-800 dark:text-slate-300">{row.date}</TableCell>
-                                <TableCell className="tabular-nums text-amber-600 dark:text-amber-400 font-medium">{formatNumber(row.feedGram)}</TableCell>
+                                <TableCell className="tabular-nums text-amber-600 dark:text-amber-400 font-medium">{formatNumber(row.feedGram / 1000)}</TableCell>
                                 <TableCell>
                                   {row.feedDetails.length > 0 ? (
                                     <Button type="button" variant="outline" size="sm" className="h-7 px-3 text-[11px] font-bold bg-cyan-50 border-cyan-200 text-cyan-700 hover:bg-cyan-100 dark:bg-cyan-900/30 dark:border-cyan-700/50 dark:text-cyan-400 dark:hover:bg-cyan-800/50" onClick={() => openDetailDialog(cage, row, 'feeding')}>
@@ -842,7 +849,7 @@ export function ProjectDetailReportPage(): ReactElement {
                                 </TableCell>
                                 <TableCell className="tabular-nums text-red-600 dark:text-red-400 font-bold">{formatNumber(row.deadCount)}</TableCell>
                                 <TableCell className="tabular-nums text-slate-600 dark:text-slate-300">{formatNumber(row.countDelta)}</TableCell>
-                                <TableCell className="tabular-nums text-cyan-600 dark:text-cyan-400 font-bold">{formatNumber(row.biomassDelta)}</TableCell>
+                                <TableCell className="tabular-nums text-cyan-600 dark:text-cyan-400 font-bold">{formatNumber(row.biomassDelta / 1000)}</TableCell>
                                 <TableCell className="max-w-[150px] truncate text-slate-500 dark:text-slate-400 text-xs" title={row.weather}>{row.weather}</TableCell>
                                 <TableCell>
                                   {row.netOperationCount > 0 ? (
@@ -866,7 +873,7 @@ export function ProjectDetailReportPage(): ReactElement {
                                   ) : (<span className="text-slate-400 dark:text-slate-500">-</span>)}
                                 </TableCell>
                                 <TableCell className="tabular-nums text-slate-500 dark:text-slate-400 text-xs">
-                                  {row.shipmentFishCount > 0 || row.shipmentBiomassGram > 0 ? `${formatNumber(row.shipmentFishCount)} / ${formatNumber(row.shipmentBiomassGram)}g` : '-'}
+                                  {row.shipmentFishCount > 0 || row.shipmentBiomassGram > 0 ? `${formatNumber(row.shipmentFishCount)} / ${formatNumber(row.shipmentBiomassGram / 1000)} KG` : '-'}
                                 </TableCell>
                                 <TableCell>
                                   {row.stockConvertCount > 0 ? (

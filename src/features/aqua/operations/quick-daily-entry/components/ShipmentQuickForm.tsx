@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Combobox } from '@/components/ui/combobox';
 import { shipmentQuickFormSchema, type ShipmentQuickFormSchema } from '../schema/quick-daily-entry-schema';
 import { ChevronRight, Info, Save } from 'lucide-react';
+import { getPositiveNumberInputProps } from './positive-number-input';
 
 interface ShipmentQuickFormProps {
   projectId: number | null;
@@ -104,7 +105,7 @@ export function ShipmentQuickForm({
                       <ChevronRight size={14} className="text-cyan-500" />
                       {t('aqua.quickDailyEntry.shipment.fishCount')}
                     </FormLabel>
-                    <FormControl><Input type="number" className={inputStyle} {...field} /></FormControl>
+	                    <FormControl><Input type="number" className={inputStyle} {...getPositiveNumberInputProps(field)} /></FormControl>
                     <FormMessage className="text-xs text-red-500" />
                   </FormItem>
                 )}

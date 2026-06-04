@@ -259,12 +259,13 @@ export function DevirFcrReportPage(): ReactElement {
                   <TableHead className="text-right">{t('aqua.devirFcrReport.columns.mortalityFishCount')}</TableHead>
                   <TableHead className="text-right">{t('aqua.devirFcrReport.columns.mortalityPct')}</TableHead>
                   <TableHead className="text-right">{t('aqua.devirFcrReport.columns.endingFishCount')}</TableHead>
-                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.endingAverageGram')}</TableHead>
+                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.endingAverageGram')} (KG)</TableHead>
                   <TableHead className="text-right">{t('aqua.devirFcrReport.columns.endingBiomassKg')}</TableHead>
-                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.shippedBiomassKg')}</TableHead>
-                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.mortalityBiomassKg')}</TableHead>
-                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.totalFeedKg')}</TableHead>
-                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.fcr')}</TableHead>
+	                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.shippedBiomassKg')}</TableHead>
+	                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.mortalityBiomassKg')}</TableHead>
+	                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.producedBiomassKg')}</TableHead>
+	                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.totalFeedKg')}</TableHead>
+	                  <TableHead className="text-right">{t('aqua.devirFcrReport.columns.fcr')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -277,11 +278,12 @@ export function DevirFcrReportPage(): ReactElement {
                     <TableCell className="text-right tabular-nums">{formatNumber(row.mortalityFishCount, i18n.language)}</TableCell>
                     <TableCell className="text-right tabular-nums">{formatPercent(row.mortalityPct, i18n.language)}</TableCell>
                     <TableCell className="text-right tabular-nums">{formatNumber(row.endingFishCount, i18n.language)}</TableCell>
-                    <TableCell className="text-right tabular-nums">{formatDecimal(row.endingAverageGram, i18n.language)}</TableCell>
+                    <TableCell className="text-right tabular-nums">{formatDecimal(row.endingAverageGram / 1000, i18n.language)}</TableCell>
                     <TableCell className="text-right tabular-nums">{formatDecimal(row.endingBiomassKg, i18n.language)}</TableCell>
-                    <TableCell className="text-right tabular-nums">{formatDecimal(row.shippedBiomassKg, i18n.language)}</TableCell>
-                    <TableCell className="text-right tabular-nums">{formatDecimal(row.mortalityBiomassKg, i18n.language)}</TableCell>
-                    <TableCell className="text-right tabular-nums">{formatDecimal(row.totalFeedKg, i18n.language)}</TableCell>
+	                    <TableCell className="text-right tabular-nums">{formatDecimal(row.shippedBiomassKg, i18n.language)}</TableCell>
+	                    <TableCell className="text-right tabular-nums">{formatDecimal(row.mortalityBiomassKg, i18n.language)}</TableCell>
+	                    <TableCell className="text-right tabular-nums">{formatDecimal(row.producedBiomassKg, i18n.language)}</TableCell>
+	                    <TableCell className="text-right tabular-nums">{formatDecimal(row.totalFeedKg, i18n.language)}</TableCell>
                     <TableCell className="text-right tabular-nums">
                       {row.fcr != null ? <Badge variant="secondary">{formatDecimal(row.fcr, i18n.language)}</Badge> : '-'}
                     </TableCell>
@@ -295,11 +297,12 @@ export function DevirFcrReportPage(): ReactElement {
                   <TableCell className="text-right font-extrabold tabular-nums">{formatNumber(report.totals.mortalityFishCount, i18n.language)}</TableCell>
                   <TableCell className="text-right font-extrabold tabular-nums">{formatPercent(report.totals.mortalityPct, i18n.language)}</TableCell>
                   <TableCell className="text-right font-extrabold tabular-nums">{formatNumber(report.totals.endingFishCount, i18n.language)}</TableCell>
-                  <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.endingAverageGram, i18n.language)}</TableCell>
+                  <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.endingAverageGram / 1000, i18n.language)}</TableCell>
                   <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.endingBiomassKg, i18n.language)}</TableCell>
-                  <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.shippedBiomassKg, i18n.language)}</TableCell>
-                  <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.mortalityBiomassKg, i18n.language)}</TableCell>
-                  <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.totalFeedKg, i18n.language)}</TableCell>
+	                  <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.shippedBiomassKg, i18n.language)}</TableCell>
+	                  <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.mortalityBiomassKg, i18n.language)}</TableCell>
+	                  <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.producedBiomassKg, i18n.language)}</TableCell>
+	                  <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.totalFeedKg, i18n.language)}</TableCell>
                   <TableCell className="text-right font-extrabold tabular-nums">{formatDecimal(report.totals.fcr, i18n.language)}</TableCell>
                 </TableRow>
               </TableBody>

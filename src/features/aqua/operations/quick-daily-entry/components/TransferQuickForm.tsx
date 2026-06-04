@@ -13,6 +13,7 @@ import { formatLabelWithKey } from '@/shared/utils/dropdown-label';
 import { transferQuickFormSchema, type TransferQuickFormSchema } from '../schema/quick-daily-entry-schema';
 import type { ActiveCageBatchSnapshot, ProjectCageDto, ProjectDto } from '../types/quick-daily-entry-types';
 import { ChevronRight, Save, Info, Lock } from 'lucide-react';
+import { getPositiveNumberInputProps } from './positive-number-input';
 
 interface QuickOption {
   value: string;
@@ -161,7 +162,7 @@ export function TransferQuickForm({
                     <ChevronRight size={14} className="text-cyan-500" />
                     {t('aqua.quickDailyEntry.transfer.fishCount')}
                   </FormLabel>
-                  <FormControl><Input type="number" className={inputStyle} {...field} readOnly={requireFullTransfer} /></FormControl>
+	                  <FormControl><Input type="number" className={inputStyle} {...getPositiveNumberInputProps(field)} readOnly={requireFullTransfer} /></FormControl>
                   {requireFullTransfer && (
                     <div className="flex items-center gap-2 text-xs text-amber-700 dark:text-amber-300">
                       <Lock size={14} />

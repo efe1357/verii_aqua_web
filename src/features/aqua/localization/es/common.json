@@ -1355,6 +1355,7 @@
         "endingBiomassKg": "Valores KG",
         "shippedBiomassKg": "Ventas KG",
         "mortalityBiomassKg": "Fuego KG",
+        "producedBiomassKg": "KG producido",
         "totalFeedKg": "Feed KG",
         "fcr": "FCR"
       }
@@ -1421,6 +1422,7 @@
         "BatchCode": "Batch Code",
         "FishStockCode": "Fish Stock Code",
         "FishCount": "Fish Count",
+        "AverageKg": "Promedio KG",
         "AverageGram": "Average Gram",
         "AsOfDate": "Balance Date",
         "ReceiptNo": "Receipt No",
@@ -1430,6 +1432,7 @@
         "FeedStockCode": "Feed Stock Code",
         "FeedingDate": "Feeding Date",
         "FeedingSlot": "Feeding Slot",
+        "FeedKg": "Alimento KG",
         "FeedGram": "Feed Gram",
         "ShipmentDate": "Shipment Date",
         "CurrencyCode": "Currency Code",

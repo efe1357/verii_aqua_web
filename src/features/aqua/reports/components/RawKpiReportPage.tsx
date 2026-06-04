@@ -231,7 +231,7 @@ export function RawKpiReportPage(): ReactElement {
                     <TableHead>{t('aqua.rawKpiReport.columns.cage')}</TableHead>
                     <TableHead className="text-right">{t('aqua.rawKpiReport.columns.daysInSea')}</TableHead>
                     <TableHead className="text-right">{t('aqua.rawKpiReport.columns.liveFish')}</TableHead>
-                    <TableHead className="text-right">{t('aqua.rawKpiReport.columns.currentAverageGram')}</TableHead>
+                    <TableHead className="text-right">{t('aqua.rawKpiReport.columns.currentAverageGram')} (KG)</TableHead>
                     <TableHead className="text-right">{t('aqua.rawKpiReport.columns.currentBiomassKg')}</TableHead>
                     <TableHead className="text-right">{t('aqua.rawKpiReport.columns.totalFeedKg')}</TableHead>
                     <TableHead className="text-right">{t('aqua.rawKpiReport.columns.survivalPct')}</TableHead>
@@ -246,7 +246,7 @@ export function RawKpiReportPage(): ReactElement {
                       <TableCell className="font-medium">{row.cageLabel}</TableCell>
                       <TableCell className="text-right tabular-nums">{formatNumber(row.daysInSea, i18n.language, 0)}</TableCell>
                       <TableCell className="text-right tabular-nums">{formatNumber(row.liveFish, i18n.language, 0)}</TableCell>
-                      <TableCell className="text-right tabular-nums">{formatNumber(row.currentAverageGram, i18n.language)}</TableCell>
+                      <TableCell className="text-right tabular-nums">{formatNumber(row.currentAverageGram / 1000, i18n.language)}</TableCell>
                       <TableCell className="text-right tabular-nums">{formatNumber(row.currentBiomassKg, i18n.language)}</TableCell>
                       <TableCell className="text-right tabular-nums">{formatNumber(row.totalFeedKg, i18n.language)}</TableCell>
                       <TableCell className="text-right tabular-nums">{formatPercent(row.survivalPct, i18n.language)}</TableCell>

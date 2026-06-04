@@ -207,8 +207,8 @@ export function BusinessKpiReportPage(): ReactElement {
             </CardHeader>
             <CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-4 text-sm">
               <div className="rounded-2xl border border-amber-200/70 bg-white/80 p-4 dark:border-amber-800/30 dark:bg-blue-950/40">
-                <p className="text-xs text-slate-500 dark:text-slate-400">{t('aqua.businessKpiReport.assumptions.targetHarvestGram')}</p>
-                <p className="mt-1 font-semibold">{formatNumber(report.assumptions.targetHarvestGram, i18n.language)} g</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">{t('aqua.businessKpiReport.assumptions.targetHarvestGram')} (KG)</p>
+                <p className="mt-1 font-semibold">{formatNumber(report.assumptions.targetHarvestGram / 1000, i18n.language)} KG</p>
               </div>
               <div className="rounded-2xl border border-amber-200/70 bg-white/80 p-4 dark:border-amber-800/30 dark:bg-blue-950/40">
                 <p className="text-xs text-slate-500 dark:text-slate-400">{t('aqua.businessKpiReport.assumptions.forecastDays')}</p>

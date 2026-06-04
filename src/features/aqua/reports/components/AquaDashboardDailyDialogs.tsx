@@ -247,7 +247,7 @@ export default function AquaDashboardDailyDialogs({
                                   </div>
                                   <div className="flex items-center gap-1.5 min-w-0">
                                     <span className="text-sm font-black text-amber-700 dark:text-amber-300 tabular-nums truncate">
-                                      {formatNumber(row.feedGram)}g
+                                      {formatNumber(row.feedGram / 1000)} KG
                                     </span>
                                     {feedDiff !== 0 &&
                                       (feedDiff > 0 ? (
@@ -298,7 +298,7 @@ export default function AquaDashboardDailyDialogs({
                                     {t('aquaDashboard.dailyCards.biomass', { ns: 'dashboard' })}
                                   </div>
                                   <span className="text-sm font-black text-blue-700 dark:text-blue-300 tabular-nums truncate block">
-                                    {formatNumber(row.biomassDelta)}
+                                    {formatNumber(row.biomassDelta / 1000)} KG
                                   </span>
                                 </div>
                               </div>

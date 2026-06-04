@@ -54,7 +54,7 @@ const SHEET_DEFINITIONS: OpeningImportSheetDefinition[] = [
       { field: 'batchCode', label: 'BatchCode' },
       { field: 'fishStockCode', label: 'FishStockCode', required: true },
       { field: 'fishCount', label: 'FishCount', required: true },
-      { field: 'averageGram', label: 'AverageGram', required: true },
+      { field: 'averageGram', label: 'AverageKg', required: true },
       { field: 'asOfDate', label: 'AsOfDate' },
     ],
   },
@@ -70,7 +70,7 @@ const SHEET_DEFINITIONS: OpeningImportSheetDefinition[] = [
       { field: 'batchCode', label: 'BatchCode' },
       { field: 'fishStockCode', label: 'FishStockCode', required: true },
       { field: 'fishCount', label: 'FishCount', required: true },
-      { field: 'averageGram', label: 'AverageGram', required: true },
+      { field: 'averageGram', label: 'AverageKg', required: true },
     ],
   },
   {
@@ -96,7 +96,7 @@ const SHEET_DEFINITIONS: OpeningImportSheetDefinition[] = [
       { field: 'feedStockCode', label: 'FeedStockCode', required: true },
       { field: 'feedingDate', label: 'FeedingDate', required: true },
       { field: 'feedingSlot', label: 'FeedingSlot' },
-      { field: 'feedGram', label: 'FeedGram', required: true },
+      { field: 'feedGram', label: 'FeedKg', required: true },
     ],
   },
   {
@@ -109,7 +109,7 @@ const SHEET_DEFINITIONS: OpeningImportSheetDefinition[] = [
       { field: 'fishStockCode', label: 'FishStockCode', required: true },
       { field: 'shipmentDate', label: 'ShipmentDate', required: true },
       { field: 'fishCount', label: 'FishCount', required: true },
-      { field: 'averageGram', label: 'AverageGram', required: true },
+      { field: 'averageGram', label: 'AverageKg', required: true },
       { field: 'currencyCode', label: 'CurrencyCode' },
       { field: 'exchangeRate', label: 'ExchangeRate' },
       { field: 'unitPrice', label: 'UnitPrice' },
@@ -144,7 +144,7 @@ const TEMPLATE_ROWS: Record<string, Record<string, string | number | null>[]> = 
       BatchCode: 'BATCH-001',
       FishStockCode: 'F001',
       FishCount: 1000,
-      AverageGram: 120,
+      AverageKg: 0.12,
       AsOfDate: '2026-01-01',
     },
   ],
@@ -158,7 +158,7 @@ const TEMPLATE_ROWS: Record<string, Record<string, string | number | null>[]> = 
       BatchCode: 'BATCH-001',
       FishStockCode: 'F001',
       FishCount: 1000,
-      AverageGram: 120,
+      AverageKg: 0.12,
     },
   ],
   OpeningMortality: [
@@ -180,7 +180,7 @@ const TEMPLATE_ROWS: Record<string, Record<string, string | number | null>[]> = 
       FeedStockCode: 'YEM-001',
       FeedingDate: '2026-04-15',
       FeedingSlot: 'Morning',
-      FeedGram: 85000,
+      FeedKg: 85,
     },
   ],
   OpeningShipments: [
@@ -191,7 +191,7 @@ const TEMPLATE_ROWS: Record<string, Record<string, string | number | null>[]> = 
       FishStockCode: 'F001',
       ShipmentDate: '2026-04-18',
       FishCount: 500,
-      AverageGram: 420,
+      AverageKg: 0.42,
       CurrencyCode: 'TRY',
       ExchangeRate: 1,
       UnitPrice: 185,
@@ -204,7 +204,7 @@ const TEMPLATE_ROWS: Record<string, Record<string, string | number | null>[]> = 
       FishStockCode: 'F001',
       ShipmentDate: '2026-04-18',
       FishCount: 300,
-      AverageGram: 415,
+      AverageKg: 0.415,
       CurrencyCode: 'TRY',
       ExchangeRate: 1,
       UnitPrice: 192,
@@ -235,6 +235,7 @@ const FIELD_LABEL_ALIASES: Record<string, string[]> = {
   BatchCode: ['BatchCode', 'Batch Code', 'Batch Kodu'],
   FishStockCode: ['FishStockCode', 'Fish Stock Code', 'Balık Stok Kodu'],
   FishCount: ['FishCount', 'Fish Count', 'Balık Adedi'],
+  AverageKg: ['AverageKg', 'Average KG', 'Ortalama KG', 'Ortalama Kilogram'],
   AverageGram: ['AverageGram', 'Average Gram', 'Ortalama Gram'],
   AsOfDate: ['AsOfDate', 'Balance Date', 'Bakiye Tarihi'],
   ReceiptNo: ['ReceiptNo', 'Receipt No', 'Mal Kabul No'],
@@ -244,6 +245,7 @@ const FIELD_LABEL_ALIASES: Record<string, string[]> = {
   FeedStockCode: ['FeedStockCode', 'Feed Stock Code', 'Yem Stok Kodu'],
   FeedingDate: ['FeedingDate', 'Feeding Date', 'Yemleme Tarihi'],
   FeedingSlot: ['FeedingSlot', 'Feeding Slot', 'Yemleme Turu'],
+  FeedKg: ['FeedKg', 'Feed KG', 'Yem KG', 'Yem Kilogram'],
   FeedGram: ['FeedGram', 'Feed Gram', 'Yem Gramı'],
   ShipmentDate: ['ShipmentDate', 'Shipment Date', 'Sevkiyat Tarihi'],
   CurrencyCode: ['CurrencyCode', 'Currency Code', 'Para Birimi'],
@@ -327,7 +329,8 @@ function findWorkbookSheetName(workbook: WorkBook, canonicalSheetName: string): 
 }
 
 function getFieldAliases(label: string, field: string): string[] {
-  return Array.from(new Set([label, field, ...(FIELD_LABEL_ALIASES[label] ?? [])]));
+  const legacyLabel = field === 'averageGram' ? 'AverageGram' : field === 'feedGram' ? 'FeedGram' : '';
+  return Array.from(new Set([label, field, ...(FIELD_LABEL_ALIASES[label] ?? []), ...(legacyLabel ? FIELD_LABEL_ALIASES[legacyLabel] ?? [] : [])]));
 }
 
 function normalizeHeader(value: string): string {
@@ -340,6 +343,39 @@ function normalizeHeader(value: string): string {
     .replace(/ö/g, 'o')
     .replace(/ç/g, 'c')
     .replace(/[^a-z0-9]/g, '');
+}
+
+function parseImportNumber(value: string | number | null): number | null {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  const rawValue = String(value ?? '').trim();
+  if (!rawValue) return null;
+  const normalizedValue =
+    rawValue.includes('.') && rawValue.includes(',')
+      ? rawValue.replace(/\./g, '').replace(',', '.')
+      : rawValue.replace(',', '.');
+  const parsed = Number(normalizedValue);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function shouldConvertKgColumnToGram(sourceColumn: string, targetField: string): boolean {
+  if (targetField !== 'averageGram' && targetField !== 'feedGram') return false;
+  const normalizedColumn = normalizeHeader(sourceColumn);
+  return normalizedColumn.includes('kg') || normalizedColumn.includes('kilogram') || normalizedColumn.includes('kilo');
+}
+
+function prepareSheetRowsForPreview(sheet: ParsedImportSheet): Array<Record<string, string | null>> {
+  return sheet.rows.map((row) => {
+    const nextRow: Record<string, string | null> = { ...row };
+
+    Object.entries(sheet.mappings).forEach(([sourceColumn, targetField]) => {
+      if (!targetField || !shouldConvertKgColumnToGram(sourceColumn, targetField)) return;
+      const kgValue = parseImportNumber(nextRow[sourceColumn] ?? null);
+      if (kgValue == null) return;
+      nextRow[sourceColumn] = Number((kgValue * 1000).toFixed(6)).toString();
+    });
+
+    return nextRow;
+  });
 }
 
 function autoMapHeader(sheetName: string, header: string): OpeningImportTargetField | '' {
@@ -574,7 +610,7 @@ export function OpeningImportPage(): ReactElement {
         sourceSystem,
         sheets: sheets.map((sheet) => ({
           sheetName: sheet.sheetName,
-          rows: sheet.rows,
+          rows: prepareSheetRowsForPreview(sheet),
           mappings: Object.entries(sheet.mappings)
             .filter(([, targetField]) => Boolean(targetField))
             .map(([sourceColumn, targetField]) => ({

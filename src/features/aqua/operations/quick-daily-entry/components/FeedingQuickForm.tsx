@@ -19,6 +19,7 @@ import { formatCodeAndKeyLabel } from '@/shared/utils/dropdown-label';
 import { feedingQuickFormSchema, type FeedingQuickFormSchema } from '../schema/quick-daily-entry-schema';
 import type { StockDto } from '../types/quick-daily-entry-types';
 import { ChevronRight, Save } from 'lucide-react'; // Aqua konseptine uygun ikonlar eklendi
+import { getPositiveNumberInputProps } from './positive-number-input';
 
 interface FeedingQuickFormProps {
   projectId: number | null;
@@ -47,13 +48,13 @@ export function FeedingQuickForm({
       feedingSlot: 0,
       stockId: 0,
       qtyUnit: 0,
-      gramPerUnit: 1,
+      gramPerUnit: 0.001,
     },
   });
 
   const handleSubmit: SubmitHandler<FeedingQuickFormSchema> = async (data) => {
     await onSubmit(data);
-    form.reset({ feedingSlot: 0, stockId: 0, qtyUnit: 0, gramPerUnit: 1 });
+    form.reset({ feedingSlot: 0, stockId: 0, qtyUnit: 0, gramPerUnit: 0.001 });
   };
 
   const disabled = projectId == null || projectCageId == null;
@@ -138,10 +139,10 @@ export function FeedingQuickForm({
                     <FormItem className="space-y-2">
                       <FormLabel required className={labelStyle}>
                         <ChevronRight size={14} className="text-cyan-500" />
-                        {t('aqua.quickDailyEntry.feeding.qty')}
+                        {t('aqua.quickDailyEntry.feeding.qty')} (KG)
                       </FormLabel>
                       <FormControl>
-                        <Input type="number" min={0} className={inputStyle} {...field} />
+	                        <Input type="number" className={inputStyle} {...getPositiveNumberInputProps(field, { allowDecimal: true, min: 0.001 })} />
                       </FormControl>
                       <FormMessage className="text-xs text-red-500" />
                     </FormItem>
