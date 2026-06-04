@@ -389,7 +389,8 @@
     "aquaRawKpiReport": "Raw-KPI-Bericht",
     "aquaBusinessKpiReport": "Business-KPI-Bericht",
     "aquaBatchMovements": "Chargenbewegungen",
-    "aquaCageBalances": "Käfigbestände"
+    "aquaCageBalances": "Käfigbestände",
+    "aquaSeaWaterTemperatures": "Meerwassertemperaturen"
   },
   "pdfReportDesigner": {
     "list": "Liste",

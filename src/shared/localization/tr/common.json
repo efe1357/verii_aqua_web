@@ -389,7 +389,8 @@
     "aquaRawKpiReport": "Raw KPI Raporu",
     "aquaBusinessKpiReport": "Business KPI Raporu",
     "aquaBatchMovements": "Parti Hareketleri",
-    "aquaCageBalances": "Kafes Dengesi"
+    "aquaCageBalances": "Kafes Dengesi",
+    "aquaSeaWaterTemperatures": "Deniz Suyu Sıcaklıkları"
   },
   "pdfReportDesigner": {
     "list": "Listele",

@@ -12,10 +12,13 @@ export const mortalityQuickFormSchema = z.object({
 });
 
 export const weatherQuickFormSchema = z.object({
-  weatherSeverityId: z.coerce.number().int().positive('common.required'),
-  weatherTypeId: z.coerce.number().int().positive('common.required'),
+  projectCageId: z.coerce.number().int().positive('common.required'),
+  waterTemperatureCelsius: z.coerce.number().min(-5).max(45).optional(),
   description: z.string().optional(),
-});
+}).refine(
+  (value) => value.waterTemperatureCelsius != null || Boolean(value.description?.trim()),
+  { message: 'common.required', path: ['description'] }
+);
 
 export const netOperationQuickFormSchema = z.object({
   netOperationTypeId: z.coerce.number().int().positive('common.required'),

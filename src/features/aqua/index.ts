@@ -3,6 +3,7 @@ export { CagesPage } from './definitions/components/CagesPage';
 export { ProjectCageAssignmentsPage } from './definitions/components/ProjectCageAssignmentsPage';
 export { WeatherSeveritiesPage } from './definitions/components/WeatherSeveritiesPage';
 export { WeatherTypesPage } from './definitions/components/WeatherTypesPage';
+export { SeaWaterTemperaturesPage } from './definitions/components/SeaWaterTemperaturesPage';
 export { NetOperationTypesPage } from './definitions/components/NetOperationTypesPage';
 export { AquaSettingsPage } from './settings';
 export { QuickSetupPage } from './operations/quick-setup';

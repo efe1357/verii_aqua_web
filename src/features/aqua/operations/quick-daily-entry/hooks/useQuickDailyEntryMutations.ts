@@ -25,7 +25,7 @@ import type {
 
 const FEEDINGS_KEY = ['aqua', 'feedings'];
 const MORTALITIES_KEY = ['aqua', 'mortalities'];
-const DAILY_WEATHER_KEY = ['aqua', 'dailyWeathers'];
+const SEA_WATER_TEMPERATURE_KEY = ['aqua', 'seaWaterTemperatures'];
 const NET_OPERATIONS_KEY = ['aqua', 'netOperations'];
 const TRANSFERS_KEY = ['aqua', 'transfers'];
 const SHIPMENTS_KEY = ['aqua', 'shipments'];
@@ -88,7 +88,7 @@ export function useCreateDailyWeatherMutation() {
     mutationFn: (payload: CreateDailyWeatherPayload) =>
       aquaQuickDailyApi.createDailyWeather(payload),
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: DAILY_WEATHER_KEY });
+      void queryClient.invalidateQueries({ queryKey: SEA_WATER_TEMPERATURE_KEY });
     },
   });
 }

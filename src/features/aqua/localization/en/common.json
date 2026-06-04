@@ -791,6 +791,10 @@
       "cageBalances": {
         "title": "Cage Balance",
         "description": "Cage-based live piece and biomass balance."
+      },
+      "seaWaterTemperatures": {
+        "title": "Sea Water Temperatures",
+        "description": "Daily sea water temperature and weather observation records by project and cage."
       }
     },
     "fields": {
@@ -941,7 +945,10 @@
       "liveCount": "Live Piece",
       "averageGram": "Average Gram",
       "biomassGram": "Biomass Gram",
-      "asOfDate": "date"
+      "asOfDate": "date",
+      "recordDate": "Record Date",
+      "waterTemperatureCelsius": "Water Temperature (°C)",
+      "weatherDescription": "Weather Description"
     },
     "quickSetup": {
       "pageTitle": "Quick Setup",
@@ -1053,7 +1060,11 @@
           "sunny": "sunny",
           "cloudy": "cloudy",
           "rainy": "rainy"
-        }
+        },
+        "cage": "Cage",
+        "selectCage": "Select cage",
+        "waterTemperatureCelsius": "Water Temperature (°C)",
+        "descriptionPlaceholder": "E.g. sunny, 23 degrees"
       },
       "netOperation": {
         "title": "Network Operation",

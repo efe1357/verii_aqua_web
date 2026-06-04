@@ -389,7 +389,8 @@
     "aquaRawKpiReport": "Raw KPI Report",
     "aquaBusinessKpiReport": "Business KPI Report",
     "aquaBatchMovements": "Mouvements de lot",
-    "aquaCageBalances": "Soldes des cages"
+    "aquaCageBalances": "Soldes des cages",
+    "aquaSeaWaterTemperatures": "Températures de l’Eau de Mer"
   },
   "pdfReportDesigner": {
     "list": "List",

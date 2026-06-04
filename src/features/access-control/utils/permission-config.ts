@@ -93,6 +93,14 @@ const AQUA_PERMISSION_RESOURCES: AquaPermissionResource[] = [
     display: { key: 'sidebar.aquaWeatherTypes', fallback: 'Hava Durumu Tip Tanımı' },
   },
   {
+    codeBase: 'aqua.definitions.sea-water-temperatures',
+    routePermission: 'aqua.definitions.sea-water-temperatures.view',
+    routePaths: ['/aqua/definitions/sea-water-temperatures'],
+    routePatterns: [/^\/aqua\/definitions\/sea-water-temperatures(\/|$)/],
+    actions: ['view', 'create', 'update', 'delete'],
+    display: { key: 'sidebar.aquaSeaWaterTemperatures', fallback: 'Deniz Suyu Sıcaklıkları' },
+  },
+  {
     codeBase: 'aqua.definitions.net-operation-types',
     routePermission: 'aqua.definitions.net-operation-types.view',
     routePaths: ['/aqua/definitions/net-operation-types'],
@@ -513,6 +521,12 @@ export const AQUA_CONFIG_PERMISSION_CODES: Record<string, Partial<Record<AquaCru
     update: 'aqua.definitions.weather-types.update',
     delete: 'aqua.definitions.weather-types.delete',
   },
+  seaWaterTemperatures: {
+    view: 'aqua.definitions.sea-water-temperatures.view',
+    create: 'aqua.definitions.sea-water-temperatures.create',
+    update: 'aqua.definitions.sea-water-temperatures.update',
+    delete: 'aqua.definitions.sea-water-temperatures.delete',
+  },
   netOperationTypes: {
     view: 'aqua.definitions.net-operation-types.view',
     create: 'aqua.definitions.net-operation-types.create',
@@ -740,6 +754,7 @@ export const ROUTE_PERMISSION_MAP: Record<string, string> = {
   '/aqua/definitions/project-cage-assignments': 'aqua.definitions.project-cage-assignments.view',
   '/aqua/definitions/weather-severities': 'aqua.definitions.weather-severities.view',
   '/aqua/definitions/weather-types': 'aqua.definitions.weather-types.view',
+  '/aqua/definitions/sea-water-temperatures': 'aqua.definitions.sea-water-temperatures.view',
   '/aqua/definitions/net-operation-types': 'aqua.definitions.net-operation-types.view',
   '/aqua/definitions/settings': 'aqua.definitions.settings.view',
 

@@ -100,6 +100,7 @@ export function MainLayout({ navItems }: MainLayoutProps): ReactElement {
           { title: sidebarT('aquaProjectCageAssignments'), href: '/aqua/definitions/project-cage-assignments' },
           { title: sidebarT('aquaWeatherSeverities'), href: '/aqua/definitions/weather-severities' },
           { title: sidebarT('aquaWeatherTypes'), href: '/aqua/definitions/weather-types' },
+          { title: sidebarT('aquaSeaWaterTemperatures'), href: '/aqua/definitions/sea-water-temperatures' },
           { title: sidebarT('aquaNetOperationTypes'), href: '/aqua/definitions/net-operation-types' },
           { title: sidebarT('aquaSettings'), href: '/aqua/definitions/settings' },
         ],

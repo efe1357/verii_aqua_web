@@ -210,6 +210,10 @@
       "cageBalances": {
         "title": "Kafes Dengesi",
         "description": "Kafes bazlı canlı adet ve biyokütle dengesi."
+      },
+      "seaWaterTemperatures": {
+        "title": "Deniz Suyu Sıcaklıkları",
+        "description": "Proje ve kafes bazlı günlük deniz suyu sıcaklığı ile hava gözlem kayıtları."
       }
     },
     "fields": {
@@ -360,7 +364,10 @@
       "liveCount": "Canlı Adet",
       "averageGram": "Ortalama Gram",
       "biomassGram": "Biyokütle Gram",
-      "asOfDate": "Tarih"
+      "asOfDate": "Tarih",
+      "recordDate": "Kayıt Tarihi",
+      "waterTemperatureCelsius": "Su Sıcaklığı (°C)",
+      "weatherDescription": "Hava Açıklaması"
     },
     "quickSetup": {
       "pageTitle": "Hızlı Kurulum",
@@ -473,7 +480,11 @@
           "sunny": "Güneşli",
           "cloudy": "Bulutlu",
           "rainy": "Yağmurlu"
-        }
+        },
+        "cage": "Kafes",
+        "selectCage": "Kafes seçin",
+        "waterTemperatureCelsius": "Su Sıcaklığı (°C)",
+        "descriptionPlaceholder": "Örn: 23 derece güneşli"
       },
       "netOperation": {
         "title": "Ağ İşlemi",

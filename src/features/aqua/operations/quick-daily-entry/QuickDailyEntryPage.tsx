@@ -456,7 +456,14 @@ export function QuickDailyEntryPage(): ReactElement {
     if (!canCreateQuickDailyEntry) return;
     if (projectId == null) return;
     try {
-      await createDailyWeather.mutateAsync({ projectId, weatherDate: selectedDate, weatherSeverityId: data.weatherSeverityId, weatherTypeId: data.weatherTypeId, note: data.description });
+    await createDailyWeather.mutateAsync({
+      projectId,
+      projectCageId: data.projectCageId,
+      recordDate: selectedDate,
+      waterTemperatureCelsius: data.waterTemperatureCelsius,
+      weatherDescription: data.description?.trim() || `${data.waterTemperatureCelsius} °C`,
+      note: data.description,
+    });
       toast.success(t('aqua.quickDailyEntry.toast.weatherSaved'));
     } catch (e) {
       toast.error(e instanceof Error ? e.message : t('aqua.quickDailyEntry.toast.saveFailed')); throw e;
@@ -849,7 +856,7 @@ export function QuickDailyEntryPage(): ReactElement {
       <OperationTypeTabs
         feedingTab={<Suspense fallback={<LazyTabFallback />}><FeedingQuickForm projectId={projectId} projectCageId={projectCageId} stocks={stocks} isLoadingStocks={isLoadingStocks} onSubmit={handleFeedingSubmit} isSubmitting={createFeedingLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         mortalityTab={<Suspense fallback={<LazyTabFallback />}><MortalityQuickForm projectId={projectId} projectCageId={projectCageId} onSubmit={handleMortalitySubmit} isSubmitting={createMortalityLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
-        weatherTab={<Suspense fallback={<LazyTabFallback />}><WeatherQuickForm projectId={projectId} weatherTypes={weatherTypes} severities={weatherSeverities} onSubmit={handleWeatherSubmit} isSubmitting={createDailyWeather.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
+        weatherTab={<Suspense fallback={<LazyTabFallback />}><WeatherQuickForm projectId={projectId} projectCages={projectCages} weatherTypes={weatherTypes} severities={weatherSeverities} onSubmit={handleWeatherSubmit} isSubmitting={createDailyWeather.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         netOperationTab={<Suspense fallback={<LazyTabFallback />}><NetOperationQuickForm projectId={projectId} projectCageId={projectCageId} fishBatches={fishBatches} netOperationTypes={netOperationTypes} onSubmit={handleNetOperationSubmit} isSubmitting={createNetOperationLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         transferTab={<Suspense fallback={<LazyTabFallback />}><TransferQuickForm projectId={projectId} projectCageId={projectCageId} targetProjectId={targetProjectId} projects={projectOptions} projectCages={transferTargetOptions} sourceBatch={sourceBatch} onSubmit={handleTransferSubmit} onTargetProjectChange={setTargetProjectId} isSubmitting={createTransferLineWithAutoHeader.isPending} requireFullTransfer={aquaSettings?.requireFullTransfer ?? true} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         cageWarehouseTransferTab={<Suspense fallback={<LazyTabFallback />}><CageWarehouseTransferQuickForm projectId={projectId} projectCageId={projectCageId} warehouseOptions={warehouseOptions} sourceBatch={sourceBatch} onSubmit={handleCageWarehouseTransferSubmit} isSubmitting={createCageWarehouseTransferLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
