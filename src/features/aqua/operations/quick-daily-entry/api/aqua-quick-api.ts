@@ -528,7 +528,7 @@ export const aquaQuickDailyApi = {
     payload: CreateDailyWeatherPayload
   ): Promise<{ id: number }> => {
     const response = await api.post<ApiResponse<{ id: number }>>(
-      '/api/aqua/SeaWaterTemperature',
+      '/api/SeaWaterTemperature',
       payload
     );
     return ensureSuccess(response, i18n.t('aqua.api.createFailed', { ns: 'common' }));

@@ -186,7 +186,7 @@ export const seaWaterTemperaturesConfig: AquaCrudConfig = {
   key: 'seaWaterTemperatures',
   title: 'aqua.pages.seaWaterTemperatures.title',
   description: 'aqua.pages.seaWaterTemperatures.description',
-  endpoint: 'SeaWaterTemperature',
+  endpoint: '/api/SeaWaterTemperature',
   listStaleTimeMs: 30000,
   fields: [
     {

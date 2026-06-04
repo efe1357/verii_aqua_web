@@ -72,17 +72,20 @@ export const aquaCrudApi = {
   },
 
   async create(endpoint: string, payload: Record<string, unknown>): Promise<Record<string, unknown>> {
-    const response = await api.post<ApiResponse<Record<string, unknown>>>(`/api/aqua/${endpoint}`, payload);
+    const basePath = resolveEndpointPath(endpoint);
+    const response = await api.post<ApiResponse<Record<string, unknown>>>(basePath, payload);
     return ensureSuccess(response, i18n.t('aqua.api.createFailed', { ns: 'common' }));
   },
 
   async update(endpoint: string, id: number, payload: Record<string, unknown>): Promise<Record<string, unknown>> {
-    const response = await api.put<ApiResponse<Record<string, unknown>>>(`/api/aqua/${endpoint}/${id}`, payload);
+    const basePath = resolveEndpointPath(endpoint);
+    const response = await api.put<ApiResponse<Record<string, unknown>>>(`${basePath}/${id}`, payload);
     return ensureSuccess(response, i18n.t('aqua.api.updateFailed', { ns: 'common' }));
   },
 
   async remove(endpoint: string, id: number): Promise<boolean> {
-    const response = await api.delete<ApiResponse<boolean>>(`/api/aqua/${endpoint}/${id}`);
+    const basePath = resolveEndpointPath(endpoint);
+    const response = await api.delete<ApiResponse<boolean>>(`${basePath}/${id}`);
     return ensureSuccess(response, i18n.t('aqua.api.deleteFailed', { ns: 'common' }));
   },
 
