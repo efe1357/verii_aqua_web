@@ -1,7 +1,7 @@
 import { type ReactElement, useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { CalendarRange, Fish, Loader2, Scale, Search, TrendingUp } from 'lucide-react';
+import { BarChart3, Fish, Loader2, Scale, Search, TrendingUp } from 'lucide-react';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -27,10 +27,6 @@ function formatDecimal(value: number | null | undefined, locale: string, digits 
 function formatPercent(value: number | null | undefined, locale: string): string {
   if (value == null || Number.isNaN(value)) return '-';
   return `${formatDecimal(value, locale, 2)}%`;
-}
-
-function formatDateInput(date: Date): string {
-  return date.toISOString().slice(0, 10);
 }
 
 function SummaryCard({
@@ -64,21 +60,9 @@ function SummaryCard({
 
 export function DevirFcrReportPage(): ReactElement {
   const { t, i18n } = useTranslation('common');
-  const today = useMemo(() => new Date(), []);
-  const initialFromDate = useMemo(() => {
-    const from = new Date(today);
-    from.setMonth(from.getMonth() - 1);
-    return formatDateInput(from);
-  }, [today]);
-  const initialToDate = useMemo(() => formatDateInput(today), [today]);
-
-  const [fromDate, setFromDate] = useState(initialFromDate);
-  const [toDate, setToDate] = useState(initialToDate);
   const [projectSearch, setProjectSearch] = useState('');
   const [selectedProjectIds, setSelectedProjectIds] = useState<number[]>([]);
   const [appliedFilters, setAppliedFilters] = useState<{
-    fromDate: string;
-    toDate: string;
     projectIds: number[];
   } | null>(null);
 
@@ -97,17 +81,15 @@ export function DevirFcrReportPage(): ReactElement {
   }, [projectSearch, projectsQuery.data]);
 
   const sortedSelectedProjectIds = useMemo(() => [...selectedProjectIds].sort((a, b) => a - b), [selectedProjectIds]);
-  const canApplyFilters = selectedProjectIds.length > 0 && fromDate <= toDate;
+  const canApplyFilters = selectedProjectIds.length > 0;
 
   const reportQuery = useQuery({
     queryKey: [
       ...REPORT_QUERY_KEY,
-      appliedFilters?.fromDate ?? '',
-      appliedFilters?.toDate ?? '',
       appliedFilters?.projectIds.join(',') ?? '',
     ],
-    queryFn: () => devirFcrApi.getReport(appliedFilters?.projectIds ?? [], appliedFilters?.fromDate ?? '', appliedFilters?.toDate ?? ''),
-    enabled: Boolean(appliedFilters && appliedFilters.projectIds.length > 0 && appliedFilters.fromDate <= appliedFilters.toDate),
+    queryFn: () => devirFcrApi.getReport(appliedFilters?.projectIds ?? []),
+    enabled: Boolean(appliedFilters && appliedFilters.projectIds.length > 0),
   });
 
   const toggleProject = (projectId: number): void => {
@@ -133,8 +115,6 @@ export function DevirFcrReportPage(): ReactElement {
   const applyFilters = (): void => {
     if (!canApplyFilters) return;
     setAppliedFilters({
-      fromDate,
-      toDate,
       projectIds: sortedSelectedProjectIds,
     });
   };
@@ -152,24 +132,12 @@ export function DevirFcrReportPage(): ReactElement {
         <CardHeader className="gap-4">
           <div>
             <CardTitle className="flex items-center gap-2 text-xl text-slate-900 dark:text-white">
-              <CalendarRange className="size-5 text-cyan-500" />
+              <BarChart3 className="size-5 text-cyan-500" />
               {t('aqua.devirFcrReport.pageTitle')}
             </CardTitle>
             <CardDescription className="mt-1">{t('aqua.devirFcrReport.description')}</CardDescription>
           </div>
-          <div className="grid gap-4 xl:grid-cols-[300px_300px_minmax(0,1fr)]">
-            <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                {t('aqua.devirFcrReport.filters.fromDate')}
-              </label>
-              <Input type="date" value={fromDate} max={toDate} onChange={(e) => setFromDate(e.target.value)} />
-            </div>
-            <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-                {t('aqua.devirFcrReport.filters.toDate')}
-              </label>
-              <Input type="date" value={toDate} min={fromDate} onChange={(e) => setToDate(e.target.value)} />
-            </div>
+          <div className="grid gap-4">
             <div className="space-y-2">
               <label className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
                 {t('aqua.devirFcrReport.filters.projects')}
@@ -263,7 +231,9 @@ export function DevirFcrReportPage(): ReactElement {
       ) : reportQuery.isError ? (
         <Card className="border-red-200 bg-red-50 dark:border-red-900/50 dark:bg-red-950/20">
           <CardContent className="py-10 text-sm text-red-700 dark:text-red-300">
-            {reportQuery.error instanceof Error ? reportQuery.error.message : t('aqua.devirFcrReport.loadFailed')}
+            {reportQuery.error instanceof Error && reportQuery.error.message.startsWith('aqua.')
+              ? t(reportQuery.error.message)
+              : t('aqua.devirFcrReport.loadFailed')}
           </CardContent>
         </Card>
       ) : !appliedFilters || appliedFilters.projectIds.length === 0 ? (

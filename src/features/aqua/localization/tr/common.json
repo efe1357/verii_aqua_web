@@ -824,11 +824,11 @@
     },
     "devirFcrReport": {
       "pageTitle": "Devir / FCR Raporu",
-      "description": "Seçilen tarih aralığında proje bazlı başlangıç, satış, fire, kalan stok ve FCR özetini gösterir.",
+      "description": "Seçilen projelerin ilk gününden bugüne kadar başlangıç, satış, fire, kalan stok ve FCR özetini gösterir.",
       "loading": "Devir / FCR raporu yükleniyor...",
       "loadFailed": "Devir / FCR raporu yüklenemedi.",
       "emptyState": "Raporu görmek için en az bir proje seçin.",
-      "pendingState": "Tarih aralığını ve projeleri seçip raporu getir butonuna basın.",
+      "pendingState": "Projeleri seçip raporu getir butonuna basın.",
       "filters": {
         "fromDate": "Başlangıç Tarihi",
         "toDate": "Bitiş Tarihi",
@@ -850,7 +850,7 @@
         "fcrDescription": "Toplam yem / üretilen biyokütle."
       },
       "tableTitle": "Proje Bazlı Devir Özeti",
-      "tableDescription": "{{fromDate}} - {{toDate}} aralığındaki proje özeti.",
+      "tableDescription": "Seçili projelerin {{fromDate}} - {{toDate}} kapsamındaki tam dönem özeti.",
       "totals": "Toplam",
       "columns": {
         "projectName": "Proje Adı",

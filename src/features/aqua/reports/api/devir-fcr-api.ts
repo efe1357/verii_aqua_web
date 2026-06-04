@@ -5,6 +5,7 @@ export interface DevirFcrProjectOption {
   id: number;
   projectCode?: string;
   projectName?: string;
+  startDate?: string;
 }
 
 export interface DevirFcrRow {
@@ -36,13 +37,9 @@ export interface DevirFcrReport {
   };
 }
 
-function clampDate(value: string): string {
-  return value.slice(0, 10);
-}
-
-function ensureSuccess<T>(response: ApiResponse<T>, fallback: string): T {
+function ensureSuccess<T>(response: ApiResponse<T>, fallbackKey: string): T {
   if (!response.success || response.data == null) {
-    throw new Error(response.message || fallback);
+    throw new Error(fallbackKey);
   }
   return response.data;
 }
@@ -50,17 +47,13 @@ function ensureSuccess<T>(response: ApiResponse<T>, fallback: string): T {
 export const devirFcrApi = {
   getProjects: async (): Promise<DevirFcrProjectOption[]> => {
     const response = await api.get<ApiResponse<DevirFcrProjectOption[]>>('/api/kpi-report/projects');
-    return ensureSuccess(response, 'Projects could not be loaded.');
+    return ensureSuccess(response, 'aqua.devirFcrReport.loadFailed');
   },
 
-  getReport: async (projectIds: number[], fromDate: string, toDate: string): Promise<DevirFcrReport> => {
-    const safeFromDate = clampDate(fromDate);
-    const safeToDate = clampDate(toDate);
+  getReport: async (projectIds: number[]): Promise<DevirFcrReport> => {
     const response = await api.post<ApiResponse<DevirFcrReport>>('/api/kpi-report/devir-fcr', {
       projectIds,
-      fromDate: safeFromDate,
-      toDate: safeToDate,
     });
-    return ensureSuccess(response, 'Devir / FCR report could not be loaded.');
+    return ensureSuccess(response, 'aqua.devirFcrReport.loadFailed');
   },
 };

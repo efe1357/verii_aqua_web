@@ -1405,11 +1405,11 @@
     },
     "devirFcrReport": {
       "pageTitle": "Turnover / FCR Report",
-      "description": "Shows project-based summary of start, sales, wastage, remaining stock and FCR in the selected date range.",
+      "description": "Shows starting quantity, sales, mortality, remaining stock and FCR from the first day of the selected projects to today.",
       "loading": "Loading turnover / FCR report...",
       "loadFailed": "Cycle / FCR report could not be loaded.",
       "emptyState": "Select at least one project to see the report.",
-      "pendingState": "Select the date range and projects and press the get report button.",
+      "pendingState": "Select projects and press the get report button.",
       "filters": {
         "fromDate": "Start Date",
         "toDate": "End Date",
@@ -1431,7 +1431,7 @@
         "fcrDescription": "Total feed / biomass produced."
       },
       "tableTitle": "Project Based Handover Summary",
-      "tableDescription": "Project summary in the range {{fromDate}} - {{toDate}}.",
+      "tableDescription": "Full-period summary for the selected projects between {{fromDate}} and {{toDate}}.",
       "totals": "Total",
       "columns": {
         "projectName": "Project Name",
