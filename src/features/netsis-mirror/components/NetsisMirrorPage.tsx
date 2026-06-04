@@ -85,7 +85,12 @@ interface NetsisMirrorPageProps {
 function readCell(row: NetsisMirrorRow, key: string): string {
   const raw = row as unknown as Record<string, unknown>;
   const pascalKey = key.charAt(0).toUpperCase() + key.slice(1);
-  const value = raw[key] ?? raw[pascalKey];
+  const fallbackKeyByColumn: Record<string, string[]> = {
+    grupIsim: ['grupAdi', 'GrupAdi'],
+    grupAdi: ['grupIsim', 'GrupIsim'],
+  };
+  const fallbackValue = fallbackKeyByColumn[key]?.map((fallbackKey) => raw[fallbackKey]).find((candidate) => candidate != null && candidate !== '');
+  const value = raw[key] ?? raw[pascalKey] ?? fallbackValue;
   if (value == null || value === '') return '-';
   return String(value);
 }
