@@ -390,7 +390,8 @@
     "aquaBusinessKpiReport": "Business KPI Report",
     "aquaBatchMovements": "حركات الدفعات",
     "aquaCageBalances": "أرصدة الأقفاص",
-    "aquaSeaWaterTemperatures": "درجات حرارة مياه البحر"
+    "aquaSeaWaterTemperatures": "درجات حرارة مياه البحر",
+    "aquaWindDirections": "اتجاهات الرياح"
   },
   "pdfReportDesigner": {
     "list": "قائمة",

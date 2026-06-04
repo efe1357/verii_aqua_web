@@ -234,6 +234,20 @@ export const seaWaterTemperaturesConfig: AquaCrudConfig = {
   ],
 };
 
+export const windDirectionsConfig: AquaCrudConfig = {
+  key: 'windDirections',
+  title: 'aqua.pages.windDirections.title',
+  description: 'aqua.pages.windDirections.description',
+  endpoint: '/api/WindDirection',
+  listStaleTimeMs: 120000,
+  fields: [
+    { key: 'name', label: 'aqua.fields.windDirectionName', type: 'text', required: true },
+  ],
+  columns: [
+    { key: 'name', label: 'aqua.fields.windDirectionName' },
+  ],
+};
+
 export const netOperationTypesConfig: AquaCrudConfig = {
   key: 'netOperationTypes',
   title: 'aqua.pages.netOperationTypes.title',

@@ -214,6 +214,10 @@
       "seaWaterTemperatures": {
         "title": "Deniz Suyu Sıcaklıkları",
         "description": "Proje ve kafes bazlı günlük deniz suyu sıcaklığı ile hava gözlem kayıtları."
+      },
+      "windDirections": {
+        "title": "Rüzgar Yönleri",
+        "description": "Günlük girişlerde kullanılacak rüzgar yönü tanımlarını yönetin."
       }
     },
     "fields": {
@@ -367,7 +371,8 @@
       "asOfDate": "Tarih",
       "recordDate": "Kayıt Tarihi",
       "waterTemperatureCelsius": "Su Sıcaklığı (°C)",
-      "weatherDescription": "Hava Açıklaması"
+      "weatherDescription": "Hava Açıklaması",
+      "windDirectionName": "Rüzgar Yönü"
     },
     "quickSetup": {
       "pageTitle": "Hızlı Kurulum",
@@ -484,7 +489,9 @@
         "cage": "Kafes",
         "selectCage": "Kafes seçin",
         "waterTemperatureCelsius": "Su Sıcaklığı (°C)",
-        "descriptionPlaceholder": "Örn: 23 derece güneşli"
+        "descriptionPlaceholder": "Örn: 23 derece güneşli",
+        "windDirection": "Rüzgar Yönü",
+        "selectWindDirection": "Rüzgar yönü seçin"
       },
       "netOperation": {
         "title": "Ağ İşlemi",

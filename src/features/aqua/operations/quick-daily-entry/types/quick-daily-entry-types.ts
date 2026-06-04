@@ -46,6 +46,11 @@ export interface WeatherTypeDto {
   name?: string;
 }
 
+export interface WindDirectionDto {
+  id: number;
+  name?: string;
+}
+
 export interface NetOperationTypeDto {
   id: number;
   code?: string;
@@ -137,6 +142,14 @@ export interface CreateDailyWeatherPayload {
   recordDate: string;
   waterTemperatureCelsius?: number;
   weatherDescription: string;
+  note?: string;
+}
+
+export interface CreateWindDirectionMatchPayload {
+  projectId: number;
+  projectCageId: number;
+  windDirectionId: number;
+  recordDate: string;
   note?: string;
 }
 

@@ -696,6 +696,10 @@
       "seaWaterTemperatures": {
         "title": "درجات حرارة مياه البحر",
         "description": "سجلات يومية لدرجة حرارة مياه البحر وملاحظات الطقس حسب المشروع والقفص."
+      },
+      "windDirections": {
+        "title": "اتجاهات الرياح",
+        "description": "إدارة تعريفات اتجاه الرياح المستخدمة في الإدخالات اليومية."
       }
     },
     "fields": {
@@ -849,7 +853,8 @@
       "toWarehouseCode": "Target Warehouse Code",
       "recordDate": "تاريخ التسجيل",
       "waterTemperatureCelsius": "درجة حرارة الماء (°C)",
-      "weatherDescription": "وصف الطقس"
+      "weatherDescription": "وصف الطقس",
+      "windDirectionName": "اتجاه الرياح"
     },
     "quickSetup": {
       "pageTitle": "الإعداد السريع",
@@ -957,7 +962,9 @@
         "cage": "القفص",
         "selectCage": "اختر القفص",
         "waterTemperatureCelsius": "درجة حرارة الماء (°C)",
-        "descriptionPlaceholder": "مثال: مشمس، 23 درجة"
+        "descriptionPlaceholder": "مثال: مشمس، 23 درجة",
+        "windDirection": "اتجاه الرياح",
+        "selectWindDirection": "اختر اتجاه الرياح"
       },
       "netOperation": {
         "title": "تشغيل الشبكة",

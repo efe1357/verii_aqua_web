@@ -795,6 +795,10 @@
       "seaWaterTemperatures": {
         "title": "Sea Water Temperatures",
         "description": "Daily sea water temperature and weather observation records by project and cage."
+      },
+      "windDirections": {
+        "title": "Wind Directions",
+        "description": "Manage wind direction definitions used in daily entries."
       }
     },
     "fields": {
@@ -948,7 +952,8 @@
       "asOfDate": "date",
       "recordDate": "Record Date",
       "waterTemperatureCelsius": "Water Temperature (°C)",
-      "weatherDescription": "Weather Description"
+      "weatherDescription": "Weather Description",
+      "windDirectionName": "Wind Direction"
     },
     "quickSetup": {
       "pageTitle": "Quick Setup",
@@ -1064,7 +1069,9 @@
         "cage": "Cage",
         "selectCage": "Select cage",
         "waterTemperatureCelsius": "Water Temperature (°C)",
-        "descriptionPlaceholder": "E.g. sunny, 23 degrees"
+        "descriptionPlaceholder": "E.g. sunny, 23 degrees",
+        "windDirection": "Wind Direction",
+        "selectWindDirection": "Select wind direction"
       },
       "netOperation": {
         "title": "Network Operation",

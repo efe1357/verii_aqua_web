@@ -696,6 +696,10 @@
       "seaWaterTemperatures": {
         "title": "Meerwassertemperaturen",
         "description": "Tägliche Meerwassertemperatur- und Wetterbeobachtungen nach Projekt und Käfig."
+      },
+      "windDirections": {
+        "title": "Windrichtungen",
+        "description": "Verwalten Sie Windrichtungsdefinitionen für tägliche Eingaben."
       }
     },
     "fields": {
@@ -849,7 +853,8 @@
       "toWarehouseCode": "Target Warehouse Code",
       "recordDate": "Erfassungsdatum",
       "waterTemperatureCelsius": "Wassertemperatur (°C)",
-      "weatherDescription": "Wetterbeschreibung"
+      "weatherDescription": "Wetterbeschreibung",
+      "windDirectionName": "Windrichtung"
     },
     "quickSetup": {
       "pageTitle": "Schnelle Einrichtung",
@@ -957,7 +962,9 @@
         "cage": "Käfig",
         "selectCage": "Käfig auswählen",
         "waterTemperatureCelsius": "Wassertemperatur (°C)",
-        "descriptionPlaceholder": "z. B. sonnig, 23 Grad"
+        "descriptionPlaceholder": "z. B. sonnig, 23 Grad",
+        "windDirection": "Windrichtung",
+        "selectWindDirection": "Windrichtung auswählen"
       },
       "netOperation": {
         "title": "Netzwerkbetrieb",

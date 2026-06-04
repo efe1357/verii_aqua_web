@@ -4,4 +4,5 @@ export { ProjectCageAssignmentsPage } from './components/ProjectCageAssignmentsP
 export { WeatherSeveritiesPage } from './components/WeatherSeveritiesPage';
 export { WeatherTypesPage } from './components/WeatherTypesPage';
 export { SeaWaterTemperaturesPage } from './components/SeaWaterTemperaturesPage';
+export { WindDirectionsPage } from './components/WindDirectionsPage';
 export { NetOperationTypesPage } from './components/NetOperationTypesPage';

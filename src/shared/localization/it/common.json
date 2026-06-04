@@ -390,7 +390,8 @@
     "aquaBusinessKpiReport": "Business KPI Report",
     "aquaBatchMovements": "Movimenti lotto",
     "aquaCageBalances": "Saldi gabbie",
-    "aquaSeaWaterTemperatures": "Temperature dell’Acqua di Mare"
+    "aquaSeaWaterTemperatures": "Temperature dell’Acqua di Mare",
+    "aquaWindDirections": "Direzioni del Vento"
   },
   "pdfReportDesigner": {
     "list": "Elenco",

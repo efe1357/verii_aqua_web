@@ -696,6 +696,10 @@
       "seaWaterTemperatures": {
         "title": "Temperature dell’Acqua di Mare",
         "description": "Registrazioni giornaliere della temperatura dell’acqua di mare e delle osservazioni meteo per progetto e gabbia."
+      },
+      "windDirections": {
+        "title": "Direzioni del Vento",
+        "description": "Gestisci le definizioni della direzione del vento usate negli inserimenti giornalieri."
       }
     },
     "fields": {
@@ -849,7 +853,8 @@
       "toWarehouseCode": "Target Warehouse Code",
       "recordDate": "Data Registrazione",
       "waterTemperatureCelsius": "Temperatura Acqua (°C)",
-      "weatherDescription": "Descrizione Meteo"
+      "weatherDescription": "Descrizione Meteo",
+      "windDirectionName": "Direzione del Vento"
     },
     "quickSetup": {
       "pageTitle": "Configurazione rapida",
@@ -957,7 +962,9 @@
         "cage": "Gabbia",
         "selectCage": "Seleziona gabbia",
         "waterTemperatureCelsius": "Temperatura Acqua (°C)",
-        "descriptionPlaceholder": "Es.: soleggiato, 23 gradi"
+        "descriptionPlaceholder": "Es.: soleggiato, 23 gradi",
+        "windDirection": "Direzione del Vento",
+        "selectWindDirection": "Seleziona direzione del vento"
       },
       "netOperation": {
         "title": "Funzionamento della rete",

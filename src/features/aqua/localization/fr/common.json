@@ -696,6 +696,10 @@
       "seaWaterTemperatures": {
         "title": "Températures de l’Eau de Mer",
         "description": "Relevés quotidiens de température de l’eau de mer et d’observation météo par projet et cage."
+      },
+      "windDirections": {
+        "title": "Directions du Vent",
+        "description": "Gérez les définitions de direction du vent utilisées dans les saisies quotidiennes."
       }
     },
     "fields": {
@@ -849,7 +853,8 @@
       "toWarehouseCode": "Target Warehouse Code",
       "recordDate": "Date de Relevé",
       "waterTemperatureCelsius": "Température de l’Eau (°C)",
-      "weatherDescription": "Description Météo"
+      "weatherDescription": "Description Météo",
+      "windDirectionName": "Direction du Vent"
     },
     "quickSetup": {
       "pageTitle": "Configuration rapide",
@@ -957,7 +962,9 @@
         "cage": "Cage",
         "selectCage": "Sélectionner une cage",
         "waterTemperatureCelsius": "Température de l’Eau (°C)",
-        "descriptionPlaceholder": "Ex. : ensoleillé, 23 degrés"
+        "descriptionPlaceholder": "Ex. : ensoleillé, 23 degrés",
+        "windDirection": "Direction du Vent",
+        "selectWindDirection": "Sélectionner une direction du vent"
       },
       "netOperation": {
         "title": "Fonctionnement du réseau",

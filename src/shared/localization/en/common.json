@@ -390,7 +390,8 @@
     "aquaBusinessKpiReport": "Business KPI Report",
     "aquaBatchMovements": "Batch Movements",
     "aquaCageBalances": "Cage Balances",
-    "aquaSeaWaterTemperatures": "Sea Water Temperatures"
+    "aquaSeaWaterTemperatures": "Sea Water Temperatures",
+    "aquaWindDirections": "Wind Directions"
   },
   "pdfReportDesigner": {
     "list": "List",

@@ -101,6 +101,14 @@ const AQUA_PERMISSION_RESOURCES: AquaPermissionResource[] = [
     display: { key: 'sidebar.aquaSeaWaterTemperatures', fallback: 'Deniz Suyu Sıcaklıkları' },
   },
   {
+    codeBase: 'aqua.definitions.wind-directions',
+    routePermission: 'aqua.definitions.wind-directions.view',
+    routePaths: ['/aqua/definitions/wind-directions'],
+    routePatterns: [/^\/aqua\/definitions\/wind-directions(\/|$)/],
+    actions: ['view', 'create', 'update', 'delete'],
+    display: { key: 'sidebar.aquaWindDirections', fallback: 'Rüzgar Yönleri' },
+  },
+  {
     codeBase: 'aqua.definitions.net-operation-types',
     routePermission: 'aqua.definitions.net-operation-types.view',
     routePaths: ['/aqua/definitions/net-operation-types'],
@@ -527,6 +535,12 @@ export const AQUA_CONFIG_PERMISSION_CODES: Record<string, Partial<Record<AquaCru
     update: 'aqua.definitions.sea-water-temperatures.update',
     delete: 'aqua.definitions.sea-water-temperatures.delete',
   },
+  windDirections: {
+    view: 'aqua.definitions.wind-directions.view',
+    create: 'aqua.definitions.wind-directions.create',
+    update: 'aqua.definitions.wind-directions.update',
+    delete: 'aqua.definitions.wind-directions.delete',
+  },
   netOperationTypes: {
     view: 'aqua.definitions.net-operation-types.view',
     create: 'aqua.definitions.net-operation-types.create',
@@ -755,6 +769,7 @@ export const ROUTE_PERMISSION_MAP: Record<string, string> = {
   '/aqua/definitions/weather-severities': 'aqua.definitions.weather-severities.view',
   '/aqua/definitions/weather-types': 'aqua.definitions.weather-types.view',
   '/aqua/definitions/sea-water-temperatures': 'aqua.definitions.sea-water-temperatures.view',
+  '/aqua/definitions/wind-directions': 'aqua.definitions.wind-directions.view',
   '/aqua/definitions/net-operation-types': 'aqua.definitions.net-operation-types.view',
   '/aqua/definitions/settings': 'aqua.definitions.settings.view',
 

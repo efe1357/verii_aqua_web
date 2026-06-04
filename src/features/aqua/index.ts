@@ -4,6 +4,7 @@ export { ProjectCageAssignmentsPage } from './definitions/components/ProjectCage
 export { WeatherSeveritiesPage } from './definitions/components/WeatherSeveritiesPage';
 export { WeatherTypesPage } from './definitions/components/WeatherTypesPage';
 export { SeaWaterTemperaturesPage } from './definitions/components/SeaWaterTemperaturesPage';
+export { WindDirectionsPage } from './definitions/components/WindDirectionsPage';
 export { NetOperationTypesPage } from './definitions/components/NetOperationTypesPage';
 export { AquaSettingsPage } from './settings';
 export { QuickSetupPage } from './operations/quick-setup';

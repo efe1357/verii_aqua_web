@@ -696,6 +696,10 @@
       "seaWaterTemperatures": {
         "title": "Temperaturas del Agua de Mar",
         "description": "Registros diarios de temperatura del agua de mar y observación meteorológica por proyecto y jaula."
+      },
+      "windDirections": {
+        "title": "Direcciones del Viento",
+        "description": "Gestione las definiciones de dirección del viento usadas en las entradas diarias."
       }
     },
     "fields": {
@@ -849,7 +853,8 @@
       "toWarehouseCode": "Target Warehouse Code",
       "recordDate": "Fecha de Registro",
       "waterTemperatureCelsius": "Temperatura del Agua (°C)",
-      "weatherDescription": "Descripción del Clima"
+      "weatherDescription": "Descripción del Clima",
+      "windDirectionName": "Dirección del Viento"
     },
     "quickSetup": {
       "pageTitle": "Configuración rápida",
@@ -957,7 +962,9 @@
         "cage": "Jaula",
         "selectCage": "Seleccionar jaula",
         "waterTemperatureCelsius": "Temperatura del Agua (°C)",
-        "descriptionPlaceholder": "Ej.: soleado, 23 grados"
+        "descriptionPlaceholder": "Ej.: soleado, 23 grados",
+        "windDirection": "Dirección del Viento",
+        "selectWindDirection": "Seleccionar dirección del viento"
       },
       "netOperation": {
         "title": "Operación de red",
