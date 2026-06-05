@@ -34,21 +34,45 @@ function resolveVendorChunk(id: string): string | undefined {
   if (id.includes("/src/features/access-control/")) return "feature-access-control";
   if (id.includes("/src/features/hangfire-monitoring/")) return "feature-hangfire-monitoring";
   if (id.includes("/src/features/welcome/")) return "feature-welcome";
-  if (id.includes("/src/features/aqua/definitions/")) return "feature-aqua-definitions";
-  if (id.includes("/src/features/aqua/settings/")) return "feature-aqua-settings";
-  if (id.includes("/src/features/aqua/shared/")) return "feature-aqua-shared";
-  if (id.includes("/src/features/aqua/operations/quick-setup/")) return "feature-aqua-quick-setup";
-  if (id.includes("/src/features/aqua/operations/quick-daily-entry/")) return "feature-aqua-quick-daily-entry";
-  if (id.includes("/src/features/aqua/operations/opening-import/")) return "feature-aqua-opening-import";
-  if (id.includes("/src/features/aqua/operations/project-merges/")) return "feature-aqua-project-merges";
-  if (id.includes("/src/features/aqua/operations/")) return "feature-aqua-operations";
+  if (id.includes("/src/features/aqua-core/")) return "feature-aqua-core";
+  if (id.includes("/src/features/aqua-definitions/")) return "feature-aqua-definitions";
+  if (id.includes("/src/features/aqua-settings/")) return "feature-aqua-settings";
+  if (id.includes("/src/features/quick-setup/")) return "feature-aqua-quick-setup";
+  if (id.includes("/src/features/quick-daily-entry/")) return "feature-aqua-quick-daily-entry";
+  if (id.includes("/src/features/opening-import/")) return "feature-aqua-opening-import";
+  if (id.includes("/src/features/project-merges/")) return "feature-aqua-project-merges";
   if (
-    id.includes("/src/features/aqua/reports/components/AquaDashboardPage.tsx") ||
-    id.includes("/src/features/aqua/reports/api/aqua-dashboard-api.ts")
+    id.includes("/src/features/goods-receipts/") ||
+    id.includes("/src/features/feedings/") ||
+    id.includes("/src/features/mortalities/") ||
+    id.includes("/src/features/transfers/") ||
+    id.includes("/src/features/shipments/") ||
+    id.includes("/src/features/weighings/") ||
+    id.includes("/src/features/stock-converts/") ||
+    id.includes("/src/features/fish-batches/") ||
+    id.includes("/src/features/daily-weathers/") ||
+    id.includes("/src/features/net-operations/") ||
+    id.includes("/src/features/aqua-operations/")
+  ) {
+    return "feature-aqua-operations";
+  }
+  if (
+    id.includes("/src/features/aqua-dashboard/components/AquaDashboardPage.tsx") ||
+    id.includes("/src/features/aqua-reports/api/aqua-dashboard-api.ts")
   ) {
     return "aqua-dashboard";
   }
-  if (id.includes("/src/features/aqua/reports/")) return "feature-aqua-reports";
+  if (
+    id.includes("/src/features/aqua-reports/") ||
+    id.includes("/src/features/batch-movements/") ||
+    id.includes("/src/features/cage-balances/") ||
+    id.includes("/src/features/project-detail-report/") ||
+    id.includes("/src/features/raw-kpi-report/") ||
+    id.includes("/src/features/business-kpi-report/") ||
+    id.includes("/src/features/devir-fcr-report/")
+  ) {
+    return "feature-aqua-reports";
+  }
 
   if (!id.includes("node_modules")) return undefined;
 
