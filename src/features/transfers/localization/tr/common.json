@@ -1,0 +1,38 @@
+{
+  "aqua": {
+    "pages": {
+      "transfers": {
+        "title": "Kafes Transferi",
+        "description": "Kafes transfer başlık kayıtları."
+      },
+      "transferLines": {
+        "title": "Kafes Transfer Satırları",
+        "description": "Kafes transfer satır kayıtları."
+      },
+      "warehouseTransfers": {
+        "title": "Depo Transferi",
+        "description": "Depo transfer başlık kayıtları."
+      },
+      "warehouseTransferLines": {
+        "title": "Depo Transfer Satırları",
+        "description": "Depo transfer satır kayıtları."
+      },
+      "cageWarehouseTransfers": {
+        "title": "Kafesten Depoya Transfer",
+        "description": "Kafesten depoya transfer başlık kayıtları."
+      },
+      "cageWarehouseTransferLines": {
+        "title": "Kafesten Depoya Transfer Satırları",
+        "description": "Kafesten depoya transfer satır kayıtları."
+      },
+      "warehouseCageTransfers": {
+        "title": "Depodan Kafese Transfer",
+        "description": "Depodan kafese transfer başlık kayıtları."
+      },
+      "warehouseCageTransferLines": {
+        "title": "Depodan Kafese Transfer Satırları",
+        "description": "Depodan kafese transfer satır kayıtları."
+      }
+    }
+  }
+}

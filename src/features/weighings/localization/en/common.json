@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weighings": {
+        "title": "weighing",
+        "description": "Weighing header records."
+      },
+      "weighingLines": {
+        "title": "Weighing Lines",
+        "description": "Weighing line records."
+      }
+    }
+  }
+}

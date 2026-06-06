@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "netOperationTypes": {
+        "title": "Network Transaction Types",
+        "description": "Network transaction type definitions."
+      },
+      "netOperations": {
+        "title": "Network Operations",
+        "description": "Network transaction header records."
+      },
+      "netOperationLines": {
+        "title": "Network Transaction Lines",
+        "description": "Network transaction line records."
+      }
+    }
+  }
+}

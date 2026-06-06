@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "goodsReceipts": {
+        "title": "Accettazione merci (pesci/mangimi)",
+        "description": "Record del titolo di accettazione delle merci."
+      },
+      "goodsReceiptLines": {
+        "title": "Righe entrata merci",
+        "description": "Record delle righe di accettazione merci."
+      },
+      "goodsReceiptFishDistributions": {
+        "title": "Accettazione Merci Distribuzione Pesce",
+        "description": "Distribuzione dei pesci in gabbie sulle linee di ricevimento delle merci."
+      }
+    }
+  }
+}

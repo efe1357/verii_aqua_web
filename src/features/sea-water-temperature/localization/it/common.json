@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "seaWaterTemperatures": {
+        "title": "Temperature dell’Acqua di Mare",
+        "description": "Registrazioni giornaliere della temperatura dell’acqua di mare e delle osservazioni meteo per progetto e gabbia."
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ import { Combobox } from '@/components/ui/combobox';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { formatLabelWithKey } from '@/shared/utils/dropdown-label';
-import { aquaKpiApi, type BusinessKpiReport } from '@/features/aqua-reports/api/aqua-kpi-api';
+import { aquaKpiApi, type BusinessKpiReport } from '@/features/business-kpi-report/api';
 
 const PROJECTS_QUERY_KEY = ['aqua', 'kpi', 'projects'] as const;
 const BUSINESS_KPI_QUERY_KEY = ['aqua', 'kpi', 'business'] as const;

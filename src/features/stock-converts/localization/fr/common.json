@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "stockConverts": {
+        "title": "Conversion des actions",
+        "description": "Enregistrements d’en-tête de conversion de classe de stock."
+      },
+      "stockConvertLines": {
+        "title": "Lignes de conversion des stocks",
+        "description": "Enregistrements de ligne de conversion de stock."
+      }
+    }
+  }
+}

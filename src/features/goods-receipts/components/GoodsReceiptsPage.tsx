@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
 import { AquaHeaderLineCrudPage } from '@/features/aqua-core/components/AquaHeaderLineCrudPage';
-import { goodsReceiptLinesConfig, goodsReceiptsConfig } from '@/features/aqua-operations/config/page-configs';
+import { goodsReceiptLinesConfig, goodsReceiptsConfig } from '@/features/goods-receipts/config/page-configs';
 
 export function GoodsReceiptsPage(): ReactElement {
   return (

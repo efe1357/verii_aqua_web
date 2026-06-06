@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "shipments": {
+        "title": "Shipment",
+        "description": "Shipment header records."
+      },
+      "shipmentLines": {
+        "title": "Shipping Lines",
+        "description": "Shipping line records."
+      }
+    }
+  }
+}

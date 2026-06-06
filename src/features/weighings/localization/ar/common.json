@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weighings": {
+        "title": "وزن",
+        "description": "وزن السجلات الرأسية."
+      },
+      "weighingLines": {
+        "title": "خطوط الوزن",
+        "description": "سجلات خط الوزن."
+      }
+    }
+  }
+}

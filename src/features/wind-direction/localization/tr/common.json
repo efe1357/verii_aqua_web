@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "windDirections": {
+        "title": "Rüzgar Yönleri",
+        "description": "Günlük girişlerde kullanılacak rüzgar yönü tanımlarını yönetin."
+      }
+    }
+  }
+}

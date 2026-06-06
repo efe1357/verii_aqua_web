@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "netOperationTypes": {
+        "title": "Ağ İşlem Tipleri",
+        "description": "Ağ işlem tipi tanımları."
+      },
+      "netOperations": {
+        "title": "Ağ İşlemleri",
+        "description": "Ağ işlem başlık kayıtları."
+      },
+      "netOperationLines": {
+        "title": "Ağ İşlem Satırları",
+        "description": "Ağ işlem satır kayıtları."
+      }
+    }
+  }
+}

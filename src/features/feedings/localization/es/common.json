@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "feedings": {
+        "title": "Alimentación (Ronda 1 / Ronda 2)",
+        "description": "Registros del cabezal de alimentación."
+      },
+      "feedingLines": {
+        "title": "Líneas de alimentación",
+        "description": "Registros de línea de alimentación."
+      },
+      "feedingDistributions": {
+        "title": "Distribución de alimentación",
+        "description": "Distribución lote/jaula de líneas de alimentación."
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "shipments": {
+        "title": "Spedizione",
+        "description": "Record di intestazione della spedizione."
+      },
+      "shipmentLines": {
+        "title": "Linee di navigazione",
+        "description": "Registri delle linee di spedizione."
+      }
+    }
+  }
+}

@@ -18,7 +18,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { PageLoader } from '@/components/shared/PageLoader';
-import type { DashboardCageDailyRow, DashboardProjectDetailCage } from '@/features/aqua-reports/api/aqua-dashboard-api';
+import type { DashboardCageDailyRow, DashboardProjectDetailCage } from '@/features/aqua-dashboard/api';
 
 type DetailType = 'feeding' | 'netOperation' | 'transfer' | 'stockConvert' | 'shipment';
 

@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weighings": {
+        "title": "Tartım",
+        "description": "Tartım başlık kayıtları."
+      },
+      "weighingLines": {
+        "title": "Tartım Satırları",
+        "description": "Tartım satır kayıtları."
+      }
+    }
+  }
+}

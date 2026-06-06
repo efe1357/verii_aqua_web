@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "projectCageAssignments": {
+        "title": "Affectation de projet-cage",
+        "description": "Enregistrements de correspondance de projet et de maillage."
+      }
+    }
+  }
+}

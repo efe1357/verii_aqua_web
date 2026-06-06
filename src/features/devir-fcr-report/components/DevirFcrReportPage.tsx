@@ -9,7 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { devirFcrApi } from '@/features/aqua-reports/api/devir-fcr-api';
+import { devirFcrApi } from '@/features/devir-fcr-report/api';
 
 const PROJECTS_QUERY_KEY = ['aqua', 'devir-fcr', 'projects'] as const;
 const REPORT_QUERY_KEY = ['aqua', 'devir-fcr', 'report'] as const;

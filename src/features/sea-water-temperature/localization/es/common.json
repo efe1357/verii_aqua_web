@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "seaWaterTemperatures": {
+        "title": "Temperaturas del Agua de Mar",
+        "description": "Registros diarios de temperatura del agua de mar y observación meteorológica por proyecto y jaula."
+      }
+    }
+  }
+}

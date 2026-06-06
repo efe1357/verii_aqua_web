@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weighings": {
+        "title": "pesée",
+        "description": "Enregistrements d'en-tête de pesée."
+      },
+      "weighingLines": {
+        "title": "Lignes de pesée",
+        "description": "Enregistrements de lignes de pesée."
+      }
+    }
+  }
+}

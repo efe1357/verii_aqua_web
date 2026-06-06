@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "feedings": {
+        "title": "Yemleme (1. Tur / 2. Tur)",
+        "description": "Yemleme başlık kayıtları."
+      },
+      "feedingLines": {
+        "title": "Yemleme Satırları",
+        "description": "Yemleme satır kayıtları."
+      },
+      "feedingDistributions": {
+        "title": "Yemleme Dağılımı",
+        "description": "Yemleme satırlarının parti/kafes dağıtımı."
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "goodsReceipts": {
+        "title": "Goods Acceptance (Fish/Feed)",
+        "description": "Goods acceptance title records."
+      },
+      "goodsReceiptLines": {
+        "title": "Goods Receipt Lines",
+        "description": "Goods acceptance line records."
+      },
+      "goodsReceiptFishDistributions": {
+        "title": "Goods Acceptance Fish Distribution",
+        "description": "Cage-based fish distribution of goods receiving lines."
+      }
+    }
+  }
+}

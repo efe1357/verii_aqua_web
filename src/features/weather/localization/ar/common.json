@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weatherSeverities": {
+        "title": "تعريف خطورة الطقس",
+        "description": "مستويات شدة الطقس."
+      },
+      "weatherTypes": {
+        "title": "وصف نوع الطقس",
+        "description": "تعريفات أنواع الطقس"
+      }
+    }
+  }
+}

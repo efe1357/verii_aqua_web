@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "shipments": {
+        "title": "Envío",
+        "description": "Registros de encabezado de envío."
+      },
+      "shipmentLines": {
+        "title": "Líneas navieras",
+        "description": "Registros de líneas navieras."
+      }
+    }
+  }
+}

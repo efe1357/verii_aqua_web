@@ -1,0 +1,111 @@
+import type { AquaCrudConfig } from '@/features/aqua-core/types/aqua-crud';
+import { localDateString } from '@/features/quick-daily-entry/utils/quick-operations';
+
+export const mortalitiesConfig: AquaCrudConfig = {
+  key: 'mortalities',
+  title: 'aqua.pages.mortalities.title',
+  description: 'aqua.pages.mortalities.description',
+  endpoint: 'Mortality',
+  postingSlug: 'mortality',
+  autoPostOnSave: true,
+  listStaleTimeMs: 10000,
+  fields: [
+    {
+      key: 'projectId',
+      label: 'aqua.fields.projectId',
+      type: 'select',
+      required: true,
+      lookup: {
+        endpoint: 'Project',
+        labelKeys: ['projectCode', 'projectName'],
+        labelSeparator: ' - ',
+        valueKey: 'id',
+        staleTimeMs: 60000,
+      },
+    },
+    { key: 'mortalityDate', label: 'aqua.fields.mortalityDate', type: 'date', required: true },
+    { key: 'note', label: 'aqua.fields.note', type: 'textarea' },
+  ],
+  columns: [
+    { key: 'projectCode', label: 'aqua.fields.projectCode' },
+    { key: 'projectName', label: 'aqua.fields.projectName' },
+    { key: 'mortalityDate', label: 'aqua.fields.mortalityDate' },
+  ],
+  defaultValues: { status: 0 },
+};
+
+export const mortalityLinesConfig: AquaCrudConfig = {
+  key: 'mortalityLines',
+  title: 'aqua.pages.mortalityLines.title',
+  description: 'aqua.pages.mortalityLines.description',
+  endpoint: 'MortalityLine',
+  createEndpoint: 'MortalityLine/auto-header',
+  listStaleTimeMs: 10000,
+  fields: [
+    {
+      key: 'projectId',
+      label: 'aqua.fields.projectId',
+      type: 'select',
+      required: true,
+      hideOnEdit: true,
+      lookup: {
+        endpoint: 'Project',
+        labelKeys: ['projectCode', 'projectName'],
+        labelSeparator: ' - ',
+        valueKey: 'id',
+        staleTimeMs: 60000,
+      },
+    },
+    { key: 'mortalityDate', label: 'aqua.fields.mortalityDate', type: 'date', required: true, hideOnEdit: true },
+    {
+      key: 'mortalityId',
+      label: 'aqua.fields.mortalityId',
+      type: 'select',
+      required: true,
+      hideInForm: true,
+      lookup: {
+        endpoint: 'Mortality',
+        labelKeys: ['projectCode', 'mortalityDate'],
+        labelSeparator: ' - ',
+        valueKey: 'id',
+        staleTimeMs: 30000,
+      },
+    },
+    {
+      key: 'fishBatchId',
+      label: 'aqua.fields.fishBatchId',
+      type: 'select',
+      required: true,
+      lookup: {
+        endpoint: 'FishBatch',
+        labelKeys: ['batchCode'],
+        valueKey: 'id',
+        staleTimeMs: 30000,
+        contextFilters: [{ sourceKey: 'projectId', column: 'ProjectId' }],
+      },
+    },
+    {
+      key: 'projectCageId',
+      label: 'aqua.fields.projectCageId',
+      type: 'select',
+      required: true,
+      lookup: {
+        endpoint: 'ProjectCage',
+        labelKeys: ['projectCode', 'cageCode'],
+        labelSeparator: ' - ',
+        valueKey: 'id',
+        staleTimeMs: 30000,
+        contextFilters: [{ sourceKey: 'projectId', column: 'ProjectId' }],
+      },
+    },
+    { key: 'deadCount', label: 'aqua.fields.deadCount', type: 'number', required: true },
+  ],
+  columns: [
+    { key: 'batchCode', label: 'aqua.fields.batchCode' },
+    { key: 'projectCode', label: 'aqua.fields.projectCode' },
+    { key: 'cageCode', label: 'aqua.fields.cageCode' },
+    { key: 'cageName', label: 'aqua.fields.cageName' },
+    { key: 'deadCount', label: 'aqua.fields.deadCount' },
+  ],
+  defaultValues: { mortalityDate: localDateString() },
+};

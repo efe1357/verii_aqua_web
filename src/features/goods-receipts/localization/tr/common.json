@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "goodsReceipts": {
+        "title": "Mal Kabul (Balık/Yem)",
+        "description": "Mal kabul başlık kayıtları."
+      },
+      "goodsReceiptLines": {
+        "title": "Mal Kabul Satırları",
+        "description": "Mal kabul satır kayıtları."
+      },
+      "goodsReceiptFishDistributions": {
+        "title": "Mal Kabul Balık Dağılımı",
+        "description": "Mal kabul satırlarının kafes bazlı balık dağıtımı."
+      }
+    }
+  }
+}

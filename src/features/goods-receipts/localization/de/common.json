@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "goodsReceipts": {
+        "title": "Warenannahme (Fisch/Futter)",
+        "description": "Aufzeichnungen über den Warenannahmetitel."
+      },
+      "goodsReceiptLines": {
+        "title": "Wareneingangszeilen",
+        "description": "Aufzeichnungen der Warenannahmelinie."
+      },
+      "goodsReceiptFishDistributions": {
+        "title": "Warenannahme Fischverteilung",
+        "description": "Käfigbasierte Fischverteilung an Wareneingangslinien."
+      }
+    }
+  }
+}

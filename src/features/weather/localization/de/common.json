@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weatherSeverities": {
+        "title": "Definition des Wetterschweregrads",
+        "description": "Schweregrade des Wetters."
+      },
+      "weatherTypes": {
+        "title": "Beschreibung des Wettertyps",
+        "description": "Wettertypdefinitionen."
+      }
+    }
+  }
+}

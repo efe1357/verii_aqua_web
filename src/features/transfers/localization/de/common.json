@@ -1,0 +1,38 @@
+{
+  "aqua": {
+    "pages": {
+      "transfers": {
+        "title": "Übertragen",
+        "description": "Titelaufzeichnungen übertragen."
+      },
+      "transferLines": {
+        "title": "Transferlinien",
+        "description": "Leitungsdatensätze übertragen."
+      },
+      "warehouseTransfers": {
+        "title": "Warehouse Transfer",
+        "description": "Warehouse transfer header records."
+      },
+      "warehouseTransferLines": {
+        "title": "Warehouse Transfer Lines",
+        "description": "Warehouse transfer line records."
+      },
+      "cageWarehouseTransfers": {
+        "title": "Cage to Warehouse Transfer",
+        "description": "Cage to warehouse transfer header records."
+      },
+      "cageWarehouseTransferLines": {
+        "title": "Cage to Warehouse Transfer Lines",
+        "description": "Cage to warehouse transfer line records."
+      },
+      "warehouseCageTransfers": {
+        "title": "Warehouse to Cage Transfer",
+        "description": "Warehouse to cage transfer header records."
+      },
+      "warehouseCageTransferLines": {
+        "title": "Warehouse to Cage Transfer Lines",
+        "description": "Warehouse to cage transfer line records."
+      }
+    }
+  }
+}

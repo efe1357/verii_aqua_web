@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "mortalities": {
+        "title": "Fire",
+        "description": "Fire başlık kayıtları."
+      },
+      "mortalityLines": {
+        "title": "Fire Satırları",
+        "description": "Fire satır kayıtları."
+      }
+    }
+  }
+}

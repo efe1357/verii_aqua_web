@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "netOperationTypes": {
+        "title": "أنواع معاملات الشبكة",
+        "description": "تعريفات نوع معاملة الشبكة."
+      },
+      "netOperations": {
+        "title": "عمليات الشبكة",
+        "description": "سجلات رأس معاملة الشبكة."
+      },
+      "netOperationLines": {
+        "title": "خطوط معاملات الشبكة",
+        "description": "سجلات خط معاملات الشبكة."
+      }
+    }
+  }
+}

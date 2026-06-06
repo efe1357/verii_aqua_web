@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "mortalities": {
+        "title": "Wastage",
+        "description": "Wastage header records."
+      },
+      "mortalityLines": {
+        "title": "Wastage Lines",
+        "description": "Wastage line records."
+      }
+    }
+  }
+}

@@ -34,8 +34,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { projectDetailReportApi } from '@/features/aqua-reports/api/project-detail-report-api';
-import type { CageDailyRow, CageProjectReport } from '@/features/aqua-reports/types/project-detail-report-types';
+import { projectDetailReportApi } from '@/features/project-detail-report/api';
+import type { CageDailyRow, CageProjectReport } from '@/features/project-detail-report/types';
 
 const REPORT_QUERY_KEY = ['aqua', 'reports', 'project-detail'] as const;
 type DetailType = 'feeding' | 'netOperation' | 'transfer' | 'stockConvert' | 'shipment';

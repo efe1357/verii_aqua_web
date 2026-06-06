@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "seaWaterTemperatures": {
+        "title": "Sea Water Temperatures",
+        "description": "Daily sea water temperature and weather observation records by project and cage."
+      }
+    }
+  }
+}

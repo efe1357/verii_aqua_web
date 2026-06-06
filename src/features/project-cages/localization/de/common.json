@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "projectCageAssignments": {
+        "title": "Projekt-Käfig-Zuordnung",
+        "description": "Projekt- und Mesh-Matching-Datensätze."
+      }
+    }
+  }
+}

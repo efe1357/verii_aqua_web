@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "mortalities": {
+        "title": "Mortalität",
+        "description": "Kopfdatensätze der Mortalität."
+      },
+      "mortalityLines": {
+        "title": "Mortalitätszeilen",
+        "description": "Aufzeichnungen der Mortalitätszeilen."
+      }
+    }
+  }
+}

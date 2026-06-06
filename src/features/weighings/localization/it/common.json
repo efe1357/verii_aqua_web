@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weighings": {
+        "title": "pesatura",
+        "description": "Record dell'intestazione di pesatura."
+      },
+      "weighingLines": {
+        "title": "Linee di pesatura",
+        "description": "Record della linea di pesatura."
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "dailyWeathers": {
+        "title": "Météo quotidienne",
+        "description": "Enregistrements météorologiques quotidiens basés sur le projet."
+      }
+    }
+  }
+}

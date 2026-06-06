@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weighings": {
+        "title": "pesaje",
+        "description": "Pesaje de registros de cabecera."
+      },
+      "weighingLines": {
+        "title": "Líneas de pesaje",
+        "description": "Registros de línea de pesaje."
+      }
+    }
+  }
+}

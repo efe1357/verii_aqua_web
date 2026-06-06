@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "stockConverts": {
+        "title": "تحويل الأسهم",
+        "description": "سجلات رأس تحويل فئة الأسهم."
+      },
+      "stockConvertLines": {
+        "title": "خطوط تحويل الأسهم",
+        "description": "سجلات خط تحويل الأسهم."
+      }
+    }
+  }
+}

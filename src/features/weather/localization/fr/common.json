@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weatherSeverities": {
+        "title": "Définition de la gravité du temps",
+        "description": "Niveaux de gravité du temps."
+      },
+      "weatherTypes": {
+        "title": "Description du type de météo",
+        "description": "Définitions des types de temps."
+      }
+    }
+  }
+}

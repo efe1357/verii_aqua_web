@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "seaWaterTemperatures": {
+        "title": "Températures de l’Eau de Mer",
+        "description": "Relevés quotidiens de température de l’eau de mer et d’observation météo par projet et cage."
+      }
+    }
+  }
+}

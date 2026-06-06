@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "batchMovements": {
+        "title": "Movimenti di partito",
+        "description": "Rendiconto contabile dei movimenti di partito."
+      }
+    }
+  }
+}

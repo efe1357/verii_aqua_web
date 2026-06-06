@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "stockConverts": {
+        "title": "Aktienumwandlung",
+        "description": "Header-Datensätze zur Aktienklassenkonvertierung."
+      },
+      "stockConvertLines": {
+        "title": "Aktienumrechnungslinien",
+        "description": "Datensätze der Aktienumrechnungszeile."
+      }
+    }
+  }
+}

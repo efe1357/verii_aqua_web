@@ -1,0 +1,116 @@
+import type { AquaCrudConfig } from '@/features/aqua-core/types/aqua-crud';
+import { localDateString } from '@/features/quick-daily-entry/utils/quick-operations';
+
+export const weighingsConfig: AquaCrudConfig = {
+  key: 'weighings',
+  title: 'aqua.pages.weighings.title',
+  description: 'aqua.pages.weighings.description',
+  endpoint: 'Weighing',
+  postingSlug: 'weighing',
+  autoPostOnSave: true,
+  listStaleTimeMs: 10000,
+  fields: [
+    {
+      key: 'projectId',
+      label: 'aqua.fields.projectId',
+      type: 'select',
+      required: true,
+      lookup: {
+        endpoint: 'Project',
+        labelKeys: ['projectCode', 'projectName'],
+        labelSeparator: ' - ',
+        valueKey: 'id',
+        staleTimeMs: 60000,
+      },
+    },
+    { key: 'weighingNo', label: 'aqua.fields.weighingNo', type: 'text', required: true },
+    { key: 'weighingDate', label: 'aqua.fields.weighingDate', type: 'date', required: true },
+    { key: 'note', label: 'aqua.fields.note', type: 'textarea' },
+  ],
+  columns: [
+    { key: 'weighingNo', label: 'aqua.fields.weighingNo' },
+    { key: 'weighingDate', label: 'aqua.fields.weighingDate' },
+    { key: 'projectCode', label: 'aqua.fields.projectCode' },
+    { key: 'projectName', label: 'aqua.fields.projectName' },
+  ],
+  defaultValues: { status: 0 },
+};
+
+export const weighingLinesConfig: AquaCrudConfig = {
+  key: 'weighingLines',
+  title: 'aqua.pages.weighingLines.title',
+  description: 'aqua.pages.weighingLines.description',
+  endpoint: 'WeighingLine',
+  createEndpoint: 'WeighingLine/auto-header',
+  listStaleTimeMs: 10000,
+  fields: [
+    {
+      key: 'projectId',
+      label: 'aqua.fields.projectId',
+      type: 'select',
+      required: true,
+      hideOnEdit: true,
+      lookup: {
+        endpoint: 'Project',
+        labelKeys: ['projectCode', 'projectName'],
+        labelSeparator: ' - ',
+        valueKey: 'id',
+        staleTimeMs: 60000,
+      },
+    },
+    { key: 'weighingDate', label: 'aqua.fields.weighingDate', type: 'date', required: true, hideOnEdit: true },
+    {
+      key: 'weighingId',
+      label: 'aqua.fields.weighingId',
+      type: 'select',
+      required: true,
+      hideInForm: true,
+      lookup: {
+        endpoint: 'Weighing',
+        labelKeys: ['weighingNo'],
+        valueKey: 'id',
+        staleTimeMs: 30000,
+      },
+    },
+    {
+      key: 'fishBatchId',
+      label: 'aqua.fields.fishBatchId',
+      type: 'select',
+      required: true,
+      lookup: {
+        endpoint: 'FishBatch',
+        labelKeys: ['batchCode'],
+        valueKey: 'id',
+        staleTimeMs: 30000,
+        contextFilters: [{ sourceKey: 'projectId', column: 'ProjectId' }],
+      },
+    },
+    {
+      key: 'projectCageId',
+      label: 'aqua.fields.projectCageId',
+      type: 'select',
+      required: true,
+      lookup: {
+        endpoint: 'ProjectCage',
+        labelKeys: ['projectCode', 'cageCode'],
+        labelSeparator: ' - ',
+        valueKey: 'id',
+        staleTimeMs: 30000,
+        contextFilters: [{ sourceKey: 'projectId', column: 'ProjectId' }],
+      },
+    },
+    { key: 'measuredCount', label: 'aqua.fields.measuredCount', type: 'number', required: true },
+    { key: 'measuredAverageGram', label: 'aqua.fields.measuredAverageGram', type: 'number', required: true, unitTransform: 'gram-to-kg' },
+    { key: 'measuredBiomassGram', label: 'aqua.fields.measuredBiomassGram', type: 'number', required: true, unitTransform: 'gram-to-kg' },
+  ],
+  columns: [
+    { key: 'batchCode', label: 'aqua.fields.batchCode' },
+    { key: 'projectCode', label: 'aqua.fields.projectCode' },
+    { key: 'cageCode', label: 'aqua.fields.cageCode' },
+    { key: 'cageName', label: 'aqua.fields.cageName' },
+    { key: 'measuredCount', label: 'aqua.fields.measuredCount' },
+    { key: 'measuredAverageGram', label: 'aqua.fields.measuredAverageGram', unitTransform: 'gram-to-kg' },
+    { key: 'measuredBiomassGram', label: 'aqua.fields.measuredBiomassGram', unitTransform: 'gram-to-kg' },
+  ],
+  defaultValues: { weighingDate: localDateString() },
+};

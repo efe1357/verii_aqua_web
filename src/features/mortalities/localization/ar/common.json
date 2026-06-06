@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "mortalities": {
+        "title": "النفوق",
+        "description": "سجلات رؤوس النفوق."
+      },
+      "mortalityLines": {
+        "title": "خطوط النفوق",
+        "description": "سجلات سطور النفوق."
+      }
+    }
+  }
+}

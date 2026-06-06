@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "projectCageAssignments": {
+        "title": "Assegnazione della gabbia di progetto",
+        "description": "Record di corrispondenza di progetto e mesh."
+      }
+    }
+  }
+}

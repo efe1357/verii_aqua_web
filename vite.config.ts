@@ -80,9 +80,17 @@ function resolveVendorChunk(id: string): string | undefined {
   if (id.includes("@tiptap")) return "vendor-tiptap";
   if (id.includes("xlsx")) return "vendor-xlsx";
   if (id.includes("pptxgenjs") || id.includes("jspdf")) return "vendor-doc-export";
-  if (id.includes("three") || id.includes("@react-three")) return "vendor-three";
   if (id.includes("recharts")) return "vendor-recharts";
   if (id.includes("html2canvas")) return "vendor-html2canvas";
+  if (id.includes("react/") || id.includes("react-dom/") || id.includes("react-router-dom")) return "vendor-react";
+  if (id.includes("@tanstack/react-query")) return "vendor-query";
+  if (id.includes("@radix-ui/") || id.includes("/node_modules/radix-ui/")) return "vendor-radix";
+  if (id.includes("react-hook-form") || id.includes("@hookform/resolvers") || id.includes("/node_modules/zod/")) return "vendor-forms";
+  if (id.includes("@dnd-kit/")) return "vendor-dnd";
+  if (id.includes("lucide-react") || id.includes("hugeicons-react")) return "vendor-icons";
+  if (id.includes("i18next") || id.includes("react-i18next")) return "vendor-i18n";
+  if (id.includes("axios") || id.includes("@microsoft/signalr")) return "vendor-network";
+  if (id.includes("date-fns") || id.includes("motion") || id.includes("sonner")) return "vendor-ui-utils";
 
   return "vendor-core";
 }
@@ -99,7 +107,6 @@ export default defineConfig({
             !dep.includes("aqua-dashboard")) ||
           dep.includes("vendor-doc-export") ||
           dep.includes("vendor-tiptap") ||
-          dep.includes("vendor-three") ||
           dep.includes("vendor-xlsx") ||
           dep.includes("vendor-recharts") ||
           dep.includes("vendor-html2canvas")

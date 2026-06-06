@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "cages": {
+        "title": "gabbie",
+        "description": "Definizioni delle gabbie e informazioni sulla capacità."
+      },
+      "cageWarehouseMappings": {
+        "title": "Cage-Warehouse Mapping",
+        "description": "Map cage codes to synchronized Netsis warehouses."
+      }
+    }
+  }
+}

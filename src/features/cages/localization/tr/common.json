@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "cages": {
+        "title": "Kafesler",
+        "description": "Kafes tanımları ve kapasite bilgileri."
+      },
+      "cageWarehouseMappings": {
+        "title": "Kafes-Depo Eşleştirme",
+        "description": "Kafes kodlarını senkronize Netsis depoları ile eşleştirin."
+      }
+    }
+  }
+}

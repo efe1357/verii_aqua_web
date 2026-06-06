@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "cageBalances": {
+        "title": "Equilibrio de la jaula",
+        "description": "Balance de pieza viva y biomasa en jaulas."
+      }
+    }
+  }
+}

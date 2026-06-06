@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "shipments": {
+        "title": "Versand",
+        "description": "Sendungskopfdatensätze."
+      },
+      "shipmentLines": {
+        "title": "Reedereien",
+        "description": "Aufzeichnungen der Reedereien."
+      }
+    }
+  }
+}

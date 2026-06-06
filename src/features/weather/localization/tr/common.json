@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weatherSeverities": {
+        "title": "Hava Durumu Şiddet Tanımı",
+        "description": "Hava durumu şiddet seviyeleri."
+      },
+      "weatherTypes": {
+        "title": "Hava Durumu Tip Tanımı",
+        "description": "Hava durumu tip tanımları."
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weatherSeverities": {
+        "title": "Weather Severity Definition",
+        "description": "Weather severity levels."
+      },
+      "weatherTypes": {
+        "title": "Weather Type Description",
+        "description": "Weather type definitions."
+      }
+    }
+  }
+}

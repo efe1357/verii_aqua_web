@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "shipments": {
+        "title": "Sevkiyat",
+        "description": "Sevkiyat başlık kayıtları."
+      },
+      "shipmentLines": {
+        "title": "Sevkiyat Satırları",
+        "description": "Sevkiyat satır kayıtları."
+      }
+    }
+  }
+}

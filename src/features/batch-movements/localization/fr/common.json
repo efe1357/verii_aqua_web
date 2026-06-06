@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "batchMovements": {
+        "title": "Mouvements de parti",
+        "description": "Rapport comptable des mouvements des partis."
+      }
+    }
+  }
+}

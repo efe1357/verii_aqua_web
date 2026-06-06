@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "goodsReceipts": {
+        "title": "Acceptation des marchandises (poisson/aliments)",
+        "description": "Enregistrements des titres d’acceptation des marchandises."
+      },
+      "goodsReceiptLines": {
+        "title": "Lignes d'entrée de marchandises",
+        "description": "Enregistrements de la ligne d'acceptation des marchandises."
+      },
+      "goodsReceiptFishDistributions": {
+        "title": "Acceptation des marchandises Distribution de poisson",
+        "description": "Distribution de poissons en cage sur lignes de réception de marchandises."
+      }
+    }
+  }
+}

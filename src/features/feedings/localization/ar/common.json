@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "feedings": {
+        "title": "التغذية (الجولة 1 / الجولة 2)",
+        "description": "تغذية سجلات الرأس."
+      },
+      "feedingLines": {
+        "title": "خطوط التغذية",
+        "description": "سجلات خط التغذية."
+      },
+      "feedingDistributions": {
+        "title": "توزيع الأعلاف",
+        "description": "توزيع الدفعة/القفص لخطوط التغذية."
+      }
+    }
+  }
+}

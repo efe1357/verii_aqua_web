@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "currentDirections": {
+        "title": "Current Directions",
+        "description": "Manage current direction definitions used in daily entries."
+      }
+    }
+  }
+}

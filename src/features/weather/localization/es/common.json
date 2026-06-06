@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weatherSeverities": {
+        "title": "Definición de gravedad del clima",
+        "description": "Niveles de severidad climática."
+      },
+      "weatherTypes": {
+        "title": "Descripción del tipo de clima",
+        "description": "Definiciones de tipos de clima."
+      }
+    }
+  }
+}

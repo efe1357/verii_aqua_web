@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "feedings": {
+        "title": "Füttern (Runde 1 / Runde 2)",
+        "description": "Kopfdatensätze zuführen."
+      },
+      "feedingLines": {
+        "title": "Fütterungslinien",
+        "description": "Aufzeichnungen der Fütterungslinien."
+      },
+      "feedingDistributions": {
+        "title": "Futterverteilung",
+        "description": "Parzellen-/Käfigverteilung der Futterlinien."
+      }
+    }
+  }
+}

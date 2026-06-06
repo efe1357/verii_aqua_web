@@ -40,8 +40,8 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sh
 import { PageLoader } from '@/components/shared/PageLoader';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { aquaDashboardApi, type DashboardCageSummary, type DashboardProjectSummary, type DashboardProjectDetailResponse, type DashboardProjectDetailCage, type DashboardCageDailyRow } from '@/features/aqua-reports/api/aqua-dashboard-api';
-import type { ProjectDto } from '@/features/aqua-reports/types/project-detail-report-types';
+import { aquaDashboardApi, type DashboardCageSummary, type DashboardProjectSummary, type DashboardProjectDetailResponse, type DashboardProjectDetailCage, type DashboardCageDailyRow } from '@/features/aqua-dashboard/api';
+import type { ProjectDto } from '@/features/project-detail-report/types';
 import { cn } from '@/lib/utils';
 
 const AquaDashboardDailyDialogs = lazy(() => import('./AquaDashboardDailyDialogs'));
@@ -277,36 +277,8 @@ function formatNumber(value: number): string {
   return new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 2 }).format(value);
 }
 
-function round(value: number): number {
-  return Number(value.toFixed(3));
-}
-
 function toKg(gram: number): number {
   return gram / 1000;
-}
-
-function computeProducedBiomassKg(input: {
-  currentBiomassGram: number;
-  initialBiomassGram: number;
-  totalDeadBiomassGram: number;
-  totalShipmentBiomassGram: number;
-}): number {
-  return Math.max(
-    0,
-    toKg(input.currentBiomassGram + input.totalDeadBiomassGram + input.totalShipmentBiomassGram - input.initialBiomassGram)
-  );
-}
-
-function computeFcr(input: {
-  totalFeedGram: number;
-  currentBiomassGram: number;
-  initialBiomassGram: number;
-  totalDeadBiomassGram: number;
-  totalShipmentBiomassGram: number;
-}): number | null {
-  const producedBiomassKg = computeProducedBiomassKg(input);
-  if (producedBiomassKg <= 0) return null;
-  return round(toKg(input.totalFeedGram) / producedBiomassKg);
 }
 
 function sortDailyRows(rows: DashboardCageDailyRow[]): DashboardCageDailyRow[] {
@@ -331,8 +303,6 @@ function isActiveProject(project: ProjectDto): boolean {
 
 function toDashboardCageSummary(cage: DashboardProjectDetailCage): DashboardCageSummary {
   const totalShipmentCount = cage.dailyRows.reduce((sum, row) => sum + row.shipmentFishCount, 0);
-  const totalShipmentBiomassGram = cage.dailyRows.reduce((sum, row) => sum + row.shipmentBiomassGram, 0);
-  const totalDeadBiomassGram = cage.dailyRows.reduce((sum, row) => sum + row.deadBiomassGram, 0);
 
   return {
     projectCageId: cage.projectCageId,
@@ -343,18 +313,12 @@ function toDashboardCageSummary(cage: DashboardProjectDetailCage): DashboardCage
     initialBiomassGram: cage.initialBiomassGram,
     currentFishCount: cage.currentFishCount,
     totalShipmentCount,
-    totalShipmentBiomassGram,
+    totalShipmentBiomassGram: cage.totalShipmentBiomassGram,
     totalDeadCount: cage.totalDeadCount,
-    totalDeadBiomassGram,
+    totalDeadBiomassGram: cage.totalDeadBiomassGram,
     totalFeedGram: cage.totalFeedGram,
     currentBiomassGram: cage.currentBiomassGram,
-    fcr: computeFcr({
-      totalFeedGram: cage.totalFeedGram,
-      currentBiomassGram: cage.currentBiomassGram,
-      initialBiomassGram: cage.initialBiomassGram,
-      totalDeadBiomassGram,
-      totalShipmentBiomassGram,
-    }),
+    fcr: cage.fcr,
   };
 }
 

@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "feedings": {
+        "title": "Feeding (Round 1 / Round 2)",
+        "description": "Feed head records."
+      },
+      "feedingLines": {
+        "title": "Feeding Lines",
+        "description": "Feed line records."
+      },
+      "feedingDistributions": {
+        "title": "Feeding Distribution",
+        "description": "Lot/cage distribution of feeding lines."
+      }
+    }
+  }
+}

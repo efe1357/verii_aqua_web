@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "seaWaterTemperatures": {
+        "title": "Meerwassertemperaturen",
+        "description": "Tägliche Meerwassertemperatur- und Wetterbeobachtungen nach Projekt und Käfig."
+      }
+    }
+  }
+}

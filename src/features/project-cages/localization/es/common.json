@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "projectCageAssignments": {
+        "title": "Asignación de jaula de proyecto",
+        "description": "Registros de concordancia de proyecto y malla."
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "weighings": {
+        "title": "wiegen",
+        "description": "Wägekopfdatensätze."
+      },
+      "weighingLines": {
+        "title": "Wiegelinien",
+        "description": "Aufzeichnungen der Wiegelinie."
+      }
+    }
+  }
+}

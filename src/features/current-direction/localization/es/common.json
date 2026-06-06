@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "currentDirections": {
+        "title": "Direcciones de Corriente",
+        "description": "Gestione las definiciones de dirección de corriente usadas en las entradas diarias."
+      }
+    }
+  }
+}

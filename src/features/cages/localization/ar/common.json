@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "cages": {
+        "title": "أقفاص",
+        "description": "تعريفات القفص ومعلومات السعة."
+      },
+      "cageWarehouseMappings": {
+        "title": "Cage-Warehouse Mapping",
+        "description": "Map cage codes to synchronized Netsis warehouses."
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "seaWaterTemperatures": {
+        "title": "Deniz Suyu Sıcaklıkları",
+        "description": "Proje ve kafes bazlı günlük deniz suyu sıcaklığı ile hava gözlem kayıtları."
+      }
+    }
+  }
+}

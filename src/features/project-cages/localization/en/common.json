@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "projectCageAssignments": {
+        "title": "Project-Cage Assignment",
+        "description": "Project and mesh matching records."
+      }
+    }
+  }
+}

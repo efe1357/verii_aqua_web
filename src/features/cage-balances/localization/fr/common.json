@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "cageBalances": {
+        "title": "Équilibre en cage",
+        "description": "Bilan des pièces vivantes et de la biomasse en cage."
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "netOperationTypes": {
+        "title": "Tipos de transacciones de red",
+        "description": "Definiciones de tipos de transacciones de red."
+      },
+      "netOperations": {
+        "title": "Operaciones de red",
+        "description": "Registros de encabezado de transacciones de red."
+      },
+      "netOperationLines": {
+        "title": "Líneas de transacciones de red",
+        "description": "Registros de líneas de transacciones de red."
+      }
+    }
+  }
+}

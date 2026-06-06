@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "stockConverts": {
+        "title": "Stok Dönüşüm",
+        "description": "Stok sınıf dönüşüm başlık kayıtları."
+      },
+      "stockConvertLines": {
+        "title": "Stok Dönüşüm Satırları",
+        "description": "Stok dönüşüm satır kayıtları."
+      }
+    }
+  }
+}

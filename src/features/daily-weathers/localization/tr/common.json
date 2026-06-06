@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "dailyWeathers": {
+        "title": "Günlük Hava Durumu",
+        "description": "Proje bazlı günlük hava durumu kayıtları."
+      }
+    }
+  }
+}

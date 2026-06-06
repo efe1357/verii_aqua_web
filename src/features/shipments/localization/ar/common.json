@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "shipments": {
+        "title": "شحنة",
+        "description": "سجلات رأس الشحنة."
+      },
+      "shipmentLines": {
+        "title": "خطوط الشحن",
+        "description": "سجلات خط الشحن."
+      }
+    }
+  }
+}

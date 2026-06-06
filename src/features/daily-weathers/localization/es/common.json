@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "dailyWeathers": {
+        "title": "Clima diario",
+        "description": "Registros meteorológicos diarios basados en proyectos."
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "windDirections": {
+        "title": "Directions du Vent",
+        "description": "Gérez les définitions de direction du vent utilisées dans les saisies quotidiennes."
+      }
+    }
+  }
+}

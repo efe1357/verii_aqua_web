@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "stockConverts": {
+        "title": "Conversión de acciones",
+        "description": "Registros de encabezado de conversión de clases de acciones."
+      },
+      "stockConvertLines": {
+        "title": "Líneas de conversión de acciones",
+        "description": "Registros de líneas de conversión de acciones."
+      }
+    }
+  }
+}

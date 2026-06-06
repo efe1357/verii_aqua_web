@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "stockConverts": {
+        "title": "Stock Conversion",
+        "description": "Stock class conversion header records."
+      },
+      "stockConvertLines": {
+        "title": "Stock Conversion Lines",
+        "description": "Stock conversion line records."
+      }
+    }
+  }
+}

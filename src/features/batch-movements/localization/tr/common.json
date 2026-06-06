@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "batchMovements": {
+        "title": "Parti Hareketleri",
+        "description": "Parti hareketleri muhasebe raporu."
+      }
+    }
+  }
+}

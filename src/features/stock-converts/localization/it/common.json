@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "stockConverts": {
+        "title": "Conversione delle azioni",
+        "description": "Record dell'intestazione di conversione della classe azionaria."
+      },
+      "stockConvertLines": {
+        "title": "Linee di conversione delle azioni",
+        "description": "Record della riga di conversione stock."
+      }
+    }
+  }
+}

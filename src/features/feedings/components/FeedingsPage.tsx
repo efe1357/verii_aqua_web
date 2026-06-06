@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
 import { AquaHeaderLineCrudPage } from '@/features/aqua-core/components/AquaHeaderLineCrudPage';
-import { feedingDistributionsConfig, feedingLinesConfig, feedingsConfig } from '@/features/aqua-operations/config/page-configs';
+import { feedingDistributionsConfig, feedingLinesConfig, feedingsConfig } from '@/features/feedings/config/page-configs';
 
 export function FeedingsPage(): ReactElement {
   return (

@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "batchMovements": {
+        "title": "Movimientos partidistas",
+        "description": "Informe contable de movimientos del partido."
+      }
+    }
+  }
+}

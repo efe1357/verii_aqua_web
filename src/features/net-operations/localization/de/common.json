@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "netOperationTypes": {
+        "title": "Netzwerktransaktionstypen",
+        "description": "Definitionen von Netzwerktransaktionstypen."
+      },
+      "netOperations": {
+        "title": "Netzwerkbetrieb",
+        "description": "Header-Datensätze für Netzwerktransaktionen."
+      },
+      "netOperationLines": {
+        "title": "Netzwerktransaktionslinien",
+        "description": "Datensätze zu Netzwerktransaktionszeilen."
+      }
+    }
+  }
+}

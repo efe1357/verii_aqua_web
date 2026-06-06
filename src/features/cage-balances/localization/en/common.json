@@ -1,0 +1,10 @@
+{
+  "aqua": {
+    "pages": {
+      "cageBalances": {
+        "title": "Cage Balance",
+        "description": "Cage-based live piece and biomass balance."
+      }
+    }
+  }
+}

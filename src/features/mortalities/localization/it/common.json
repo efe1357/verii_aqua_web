@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "mortalities": {
+        "title": "Mortalità",
+        "description": "Record di intestazione della mortalità."
+      },
+      "mortalityLines": {
+        "title": "Linee di mortalità",
+        "description": "Record delle righe di mortalità."
+      }
+    }
+  }
+}

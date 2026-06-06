@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "goodsReceipts": {
+        "title": "قبول البضائع (الأسماك/الأعلاف)",
+        "description": "سجلات ملكية قبول البضائع."
+      },
+      "goodsReceiptLines": {
+        "title": "خطوط استلام البضائع",
+        "description": "سجلات خط قبول البضائع."
+      },
+      "goodsReceiptFishDistributions": {
+        "title": "قبول البضائع توزيع الأسماك",
+        "description": "توزيع الأسماك على أساس الأقفاص لخطوط استلام البضائع."
+      }
+    }
+  }
+}

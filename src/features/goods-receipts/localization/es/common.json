@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "goodsReceipts": {
+        "title": "Aceptación de mercancías (peces/piensos)",
+        "description": "Registros de títulos de aceptación de mercancías."
+      },
+      "goodsReceiptLines": {
+        "title": "Líneas de recepción de mercancías",
+        "description": "Registros de línea de aceptación de mercancías."
+      },
+      "goodsReceiptFishDistributions": {
+        "title": "Aceptación de mercancías Distribución de pescado",
+        "description": "Distribución de pescado en jaulas de líneas receptoras de mercancías."
+      }
+    }
+  }
+}

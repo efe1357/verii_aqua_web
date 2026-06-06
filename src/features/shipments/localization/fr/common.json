@@ -1,0 +1,14 @@
+{
+  "aqua": {
+    "pages": {
+      "shipments": {
+        "title": "Expédition",
+        "description": "Enregistrements d’en-tête d’expédition."
+      },
+      "shipmentLines": {
+        "title": "Lignes maritimes",
+        "description": "Registres des lignes maritimes."
+      }
+    }
+  }
+}

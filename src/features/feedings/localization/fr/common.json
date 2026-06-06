@@ -1,0 +1,18 @@
+{
+  "aqua": {
+    "pages": {
+      "feedings": {
+        "title": "Alimentation (Tour 1 / Tour 2)",
+        "description": "Enregistrements de la tête d'alimentation."
+      },
+      "feedingLines": {
+        "title": "Lignes d'alimentation",
+        "description": "Enregistrements de ligne d'alimentation."
+      },
+      "feedingDistributions": {
+        "title": "Distribution d'alimentation",
+        "description": "Distribution par lots/cages des lignes d'alimentation."
+      }
+    }
+  }
+}
