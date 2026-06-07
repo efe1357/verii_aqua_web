@@ -211,7 +211,7 @@
   },
   "navbar": {
     "VERII WMS": "سجّل الدخول للمتابعة",
-    "crm": "CRM",
+    "crm": "V3RII AQUA",
     "search_placeholder": "بحث سريع..."
   },
   "nav": {
@@ -240,7 +240,7 @@
   },
   "powerbiSync": {
     "title": "مزامنة تقارير Power BI",
-    "description": "جلب التقارير من مساحة العمل ومزامنتها مع قاعدة بيانات CRM.",
+    "description": "جلب التقارير من مساحة العمل ومزامنتها مع قاعدة بيانات AQUA.",
     "workspaceId": "معرف مساحة العمل",
     "workspaceIdPlaceholder": "مساحة العمل GUID (اختياري)",
     "sync": "مزامنة",
@@ -256,7 +256,7 @@
     "operations": "العمليات",
     "masterData": "البيانات الأساسية",
     "finance": "المالية",
-    "crm": "CRM",
+    "crm": "Aqua",
     "dashboard": "لوحة المعلومات",
     "search": "بحث...",
     "home": "الرئيسية",
@@ -557,7 +557,7 @@
   },
   "dashboard": {
     "title": "لوحة التحكم",
-    "subtitle": "مرحباً بك في نظام CRM",
+    "subtitle": "مرحباً بك في نظام AQUA",
     "monthlyRevenue": "الإيرادات الشهرية",
     "conversionRate": "معدل التحويل",
     "totalCustomers": "إجمالي العملاء",
@@ -960,7 +960,7 @@
     }
   },
   "footer": {
-    "copyright": "© {{year}} WMS. جميع الحقوق محفوظة."
+    "copyright": "© {{year}} AQUA. جميع الحقوق محفوظة."
   },
   "theme": {
     "toggle": "تبديل المظهر",

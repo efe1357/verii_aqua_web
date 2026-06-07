@@ -211,7 +211,7 @@
   },
   "navbar": {
     "VERII WMS": "DATA WMS",
-    "crm": "CRM",
+    "crm": "V3RII AQUA",
     "search_placeholder": "Quick search..."
   },
   "nav": {
@@ -240,7 +240,7 @@
   },
   "powerbiSync": {
     "title": "Power BI Report Sync",
-    "description": "Fetches reports from workspace and syncs to CRM database.",
+    "description": "Fetches reports from workspace and syncs them to the AQUA database.",
     "workspaceId": "Workspace ID",
     "workspaceIdPlaceholder": "Workspace GUID (optional)",
     "sync": "Sync",
@@ -259,7 +259,7 @@
     "home": "Home",
     "masterData": "Master Data",
     "finance": "Finance",
-    "crm": "CRM",
+    "crm": "Aqua",
     "customers": "Customers",
     "opportunities": "Opportunities",
     "offers": "Offers",
@@ -557,7 +557,7 @@
   },
   "dashboard": {
     "title": "dashboard",
-    "subtitle": "Welcome to the CRM system",
+    "subtitle": "Welcome to the AQUA system",
     "monthlyRevenue": "Monthly Revenue",
     "conversionRate": "Conversion Rate",
     "totalCustomers": "Total Customers",
@@ -960,7 +960,7 @@
     }
   },
   "footer": {
-    "copyright": "© {{year}} WMS. All rights reserved."
+    "copyright": "© {{year}} AQUA. All rights reserved."
   },
   "theme": {
     "toggle": "Toggle theme",

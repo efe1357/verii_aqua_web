@@ -211,7 +211,7 @@
   },
   "navbar": {
     "VERII WMS": "Inicie sesión para continuar",
-    "crm": "CRM",
+    "crm": "V3RII AQUA",
     "search_placeholder": "Búsqueda rápida..."
   },
   "nav": {
@@ -240,7 +240,7 @@
   },
   "powerbiSync": {
     "title": "Sincronización de informes Power BI",
-    "description": "Obtiene informes del workspace y los sincroniza con la base de datos CRM.",
+    "description": "Obtiene informes del workspace y los sincroniza con la base de datos AQUA.",
     "workspaceId": "ID del espacio de trabajo",
     "workspaceIdPlaceholder": "GUID del espacio de trabajo (opcional)",
     "sync": "Sincronizar",
@@ -256,7 +256,7 @@
     "operations": "Operaciones",
     "masterData": "Datos maestros",
     "finance": "Finanzas",
-    "crm": "CRM",
+    "crm": "Aqua",
     "dashboard": "Panel",
     "search": "Buscar...",
     "home": "Inicio",
@@ -557,7 +557,7 @@
   },
   "dashboard": {
     "title": "Tablero",
-    "subtitle": "Bienvenido al sistema CRM",
+    "subtitle": "Bienvenido al sistema AQUA",
     "monthlyRevenue": "Ingresos Mensuales",
     "conversionRate": "Tasa de Conversión",
     "totalCustomers": "Total de Clientes",
@@ -960,7 +960,7 @@
     }
   },
   "footer": {
-    "copyright": "© {{year}} WMS. Todos los derechos reservados."
+    "copyright": "© {{year}} AQUA. Todos los derechos reservados."
   },
   "theme": {
     "toggle": "Alternar tema",
