@@ -1,10 +1,8 @@
-export { ProjectsPage } from '@/features/projects/components/ProjectsPage';
-export { CagesPage } from '@/features/cages/components/CagesPage';
-export { CageWarehouseMappingsPage } from '@/features/cages/components/CageWarehouseMappingsPage';
-export { ProjectCageAssignmentsPage } from '@/features/project-cages/components/ProjectCageAssignmentsPage';
-export { WeatherSeveritiesPage } from '@/features/weather/components/WeatherSeveritiesPage';
-export { WeatherTypesPage } from '@/features/weather/components/WeatherTypesPage';
-export { SeaWaterTemperaturesPage } from '@/features/sea-water-temperature/components/SeaWaterTemperaturesPage';
-export { WindDirectionsPage } from '@/features/wind-direction/components/WindDirectionsPage';
-export { CurrentDirectionsPage } from '@/features/current-direction/components/CurrentDirectionsPage';
-export { NetOperationTypesPage } from '@/features/net-operations/components/NetOperationTypesPage';
+export { ProjectsPage } from '@/features/projects';
+export { CagesPage, CageWarehouseMappingsPage } from '@/features/cages';
+export { ProjectCageAssignmentsPage } from '@/features/project-cages';
+export { WeatherSeveritiesPage, WeatherTypesPage } from '@/features/weather';
+export { SeaWaterTemperaturesPage } from '@/features/sea-water-temperature';
+export { WindDirectionsPage } from '@/features/wind-direction';
+export { CurrentDirectionsPage } from '@/features/current-direction';
+export { NetOperationTypesPage } from '@/features/net-operations';

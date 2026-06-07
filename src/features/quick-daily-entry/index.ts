@@ -1,12 +1,2 @@
 export { QuickDailyEntryPage } from './QuickDailyEntryPage';
-export { OperationTypeTabs } from './components/OperationTypeTabs';
-export { FeedingQuickForm } from './components/FeedingQuickForm';
-export { MortalityQuickForm } from './components/MortalityQuickForm';
-export { WeatherQuickForm } from './components/WeatherQuickForm';
-export { NetOperationQuickForm } from './components/NetOperationQuickForm';
-export { TransferQuickForm } from './components/TransferQuickForm';
-export { CageWarehouseTransferQuickForm } from './components/CageWarehouseTransferQuickForm';
-export { WarehouseTransferQuickForm } from './components/WarehouseTransferQuickForm';
-export { WarehouseCageTransferQuickForm } from './components/WarehouseCageTransferQuickForm';
-export { ShipmentQuickForm } from './components/ShipmentQuickForm';
-export { StockChangeQuickForm } from './components/StockChangeQuickForm';
+export type * from './types/quick-daily-entry-types';
