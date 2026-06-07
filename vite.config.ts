@@ -84,7 +84,7 @@ function resolveVendorChunk(id: string): string | undefined {
   if (id.includes("html2canvas")) return "vendor-html2canvas";
   if (id.includes("react/") || id.includes("react-dom/") || id.includes("react-router-dom")) return "vendor-react";
   if (id.includes("@tanstack/react-query")) return "vendor-query";
-  if (id.includes("@radix-ui/") || id.includes("/node_modules/radix-ui/")) return "vendor-radix";
+  if (id.includes("@radix-ui/") || id.includes("/node_modules/radix-ui/")) return "app-ui";
   if (id.includes("react-hook-form") || id.includes("@hookform/resolvers") || id.includes("/node_modules/zod/")) return "vendor-forms";
   if (id.includes("@dnd-kit/")) return "vendor-dnd";
   if (id.includes("lucide-react") || id.includes("hugeicons-react")) return "vendor-icons";
