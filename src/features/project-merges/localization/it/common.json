@@ -1,0 +1,36 @@
+{
+  "projectMerge": {
+    "pageTitle": "Fusione di progetti",
+    "pageDescription": "Unisci più progetti nel progetto principale selezionato e conserva la traccia di registrazione.",
+    "form": {
+      "title": "Processo di unione",
+      "description": "Seleziona il progetto di destinazione, controlla i progetti di origine e salva l'unione.",
+      "disabledDescription": "L'unione dei progetti è attualmente disabilitata perché è disattivata nella schermata Impostazioni Aqua.",
+      "save": "combinare"
+    },
+    "fields": {
+      "targetProject": "Progetto obiettivo",
+      "mergeDate": "Data di fusione",
+      "sourceStateAfterMerge": "Stato del progetto di origine",
+      "description": "Descrizione",
+      "descriptionPlaceholder": "Inserisci una descrizione facoltativa",
+      "sourceProjects": "Progetti di origine"
+    },
+    "options": {
+      "sourceStateAfterMerge": {
+        "0": "passivo",
+        "1": "archivio"
+      }
+    },
+    "history": {
+      "sourceProjects": "Progetti uniti",
+      "cageCount": "Gabbia in movimento",
+      "mergeCount": "Progetto sorgente",
+      "empty": "Non esiste ancora alcun record di unione del progetto."
+    },
+    "toast": {
+      "saved": "La fusione del progetto è completata.",
+      "saveFailed": "Impossibile completare l'unione dei progetti."
+    }
+  }
+}

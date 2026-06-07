@@ -1,0 +1,66 @@
+{
+  "aqua": {
+    "rawKpiReport": {
+      "pageTitle": "Rapport brut KPI",
+      "description": "Affiche les zones KPI brutes opérationnelles et biologiques par projet et par cage.",
+      "selectProject": "Sélectionnez un projet",
+      "noProject": "Projet introuvable",
+      "loading": "Chargement des données brutes KPI...",
+      "loadFailed": "Échec du chargement des données brutes KPI.",
+      "snapshotTitle": "Résumé du projet",
+      "tableTitle": "Brut à base de treillis KPI",
+      "tableDescription": "Les performances biologiques et les résultats opérationnels sont répertoriés par cage active.",
+      "dictionaryTitle": "KPI Dictionnaire",
+      "dictionaryDescription": "Vous pouvez voir ce que dit chaque champ et comment il est calculé dans cette section.",
+      "metrics": {
+        "stockedFish": "Poisson débutant",
+        "liveFish": "Poisson vivant",
+        "currentBiomassKg": "Biomasse actuelle",
+        "totalFeedKg": "Alimentation totale",
+        "survivalPct": "Survie %",
+        "mortalityPct": "Mortalité %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG (g/jour)",
+        "sgrPctPerDay": "SGR (%/jour)",
+        "densityPct": "Densité %",
+        "forecastBiomassKg30d": "Biomasse estimée après 30 jours",
+        "cageFishStock": "Cage Stock",
+        "warehouseFishStock": "Warehouse Stock",
+        "totalSystemFishStock": "Total System Stock",
+        "cageBiomassKg": "Cage Biomass",
+        "warehouseBiomassKg": "Warehouse Biomass",
+        "totalSystemBiomassKg": "Total System Biomass"
+      },
+      "columns": {
+        "cage": "cage",
+        "daysInSea": "Journée en mer",
+        "liveFish": "Poisson vivant",
+        "currentAverageGram": "Moy. gramme",
+        "currentBiomassKg": "Biomasse (kg)",
+        "totalFeedKg": "Flux (kg)",
+        "survivalPct": "Survie %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG",
+        "densityPct": "Densité %"
+      },
+      "descriptions": {
+        "survivalPct": "Cette zone montre quelle proportion de poissons initialement placés dans la cage est encore en vie. Lors du calcul, le nombre de poissons de départ et le nombre de poissons vivants existants sont utilisés ; Il est lu sur la population restante après transfert et expédition.",
+        "mortalityPct": "Ce champ montre la mortalité totale accumulée par rapport au stock de départ. Le nombre total de déchets dans les enregistrements de mortalité est calculé en divisant par le nombre initial de poissons.",
+        "fcr": "Il s'agit du champ Taux de conversion alimentaire. La quantité totale d'aliments enregistrée dans le système est divisée par l'augmentation nette de la biomasse qui en résulte. À mesure que la valeur diminue, on comprend que moins de nourriture est utilisée pour la même croissance.",
+        "adgGramPerDay": "Champ Gain quotidien moyen. La différence entre les grammes moyens initiaux de poisson et les grammes moyens actuels est divisée par le nombre de jours en mer. Renvoie la croissance moyenne quotidienne par poisson.",
+        "sgrPctPerDay": "Il s'agit du champ Taux de croissance spécifique. Le logarithme népérien des valeurs initiales et actuelles en grammes est pris et la différence est réduite quotidiennement. Cela est particulièrement utile pour comparer des groupes de différents niveaux de poids.",
+        "densityPct": "Il s'agit du taux d'utilisation temporaire pour la densité des cages. Puisqu'il n'existe actuellement aucun modèle réel de volume ou de m3, la biomasse disponible est divisée par la biomasse de capacité définie de la cage. Ce champ doit donc être lu comme le pourcentage d'occupation de la capacité pour l'instant.",
+        "forecastBiomassKg30d": "Il montre la biomasse brute qui devrait se former après 30 jours, sur la base du taux de croissance final. La biomasse actuelle est prise en compte, l'augmentation quotidienne estimée de la biomasse est ajoutée et reportée sur la fenêtre de 30 jours."
+      },
+      "formulas": {
+        "survivalPct": "Survie % = poisson vivant actuel / poisson de départ * 100",
+        "mortalityPct": "Mortalité % = perte totale / poisson de départ * 100",
+        "fcr": "FCR = aliment total (kg) / augmentation de la biomasse (kg)",
+        "adgGramPerDay": "ADG = (grammes moyens actuels - grammes moyens initiaux) / jours en mer",
+        "sgrPctPerDay": "SGR = 100 * (ln(grammes actuels) - ln(grammes de départ)) / jour",
+        "densityPct": "Densité % = biomasse disponible / biomasse de capacité de la cage * 100",
+        "forecastBiomassKg30d": "Biomasse estimée = biomasse actuelle + augmentation quotidienne de la biomasse * {{forecastDays}} jours"
+      }
+    }
+  }
+}

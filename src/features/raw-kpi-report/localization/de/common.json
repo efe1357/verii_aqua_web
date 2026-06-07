@@ -1,0 +1,66 @@
+{
+  "aqua": {
+    "rawKpiReport": {
+      "pageTitle": "Roher KPI-Bericht",
+      "description": "Zeigt betriebliche und biologische Rohflächen KPI nach Projekt und Käfig.",
+      "selectProject": "Projekt auswählen",
+      "noProject": "Projekt nicht gefunden",
+      "loading": "Rohdaten von KPI werden geladen...",
+      "loadFailed": "Rohdaten von KPI konnten nicht geladen werden.",
+      "snapshotTitle": "Projektzusammenfassung",
+      "tableTitle": "Gitterbasiertes Rohmaterial KPI",
+      "tableDescription": "Die biologische Leistung und die Betriebsergebnisse werden pro aktivem Käfig aufgeführt.",
+      "dictionaryTitle": "KPI Wörterbuch",
+      "dictionaryDescription": "In diesem Abschnitt können Sie sehen, was die einzelnen Felder aussagen und wie sie berechnet werden.",
+      "metrics": {
+        "stockedFish": "Anfängerfisch",
+        "liveFish": "Lebender Fisch",
+        "currentBiomassKg": "Aktuelle Biomasse",
+        "totalFeedKg": "Gesamtfutter",
+        "survivalPct": "Überleben %",
+        "mortalityPct": "Sterblichkeit %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG (g/Tag)",
+        "sgrPctPerDay": "SGR (%/Tag)",
+        "densityPct": "Dichte %",
+        "forecastBiomassKg30d": "Geschätzte Biomasse nach 30 Tagen",
+        "cageFishStock": "Cage Stock",
+        "warehouseFishStock": "Warehouse Stock",
+        "totalSystemFishStock": "Total System Stock",
+        "cageBiomassKg": "Cage Biomass",
+        "warehouseBiomassKg": "Warehouse Biomass",
+        "totalSystemBiomassKg": "Total System Biomass"
+      },
+      "columns": {
+        "cage": "Käfig",
+        "daysInSea": "Tag auf See",
+        "liveFish": "Lebender Fisch",
+        "currentAverageGram": "Durchschn. Gramm",
+        "currentBiomassKg": "Biomasse (kg)",
+        "totalFeedKg": "Feed (kg)",
+        "survivalPct": "Überleben %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG",
+        "densityPct": "Dichte %"
+      },
+      "descriptions": {
+        "survivalPct": "In diesem Bereich wird angezeigt, wie viel von dem ursprünglich im Käfig untergebrachten Fisch noch am Leben ist. Bei der Berechnung werden die Ausgangsfischzahl und die Zahl der vorhandenen Lebendfische herangezogen; Es wird aus der verbleibenden Population nach Transfer und Versand abgelesen.",
+        "mortalityPct": "In diesem Feld wird die kumulierte Gesamtsterblichkeit im Verhältnis zum Ausgangsbestand angezeigt. Die Gesamtzahl der Abfälle in den Sterblichkeitsaufzeichnungen wird durch Division durch die Ausgangszahl der Fische berechnet.",
+        "fcr": "Es handelt sich um das Feld „Feed Conversion Ratio“. Die im System erfasste Gesamtfuttermenge wird durch den resultierenden Nettobiomassezuwachs dividiert. Wenn der Wert sinkt, bedeutet dies, dass für das gleiche Wachstum weniger Futter verwendet wird.",
+        "adgGramPerDay": "Feld „Durchschnittlicher Tagesgewinn“. Die Differenz zwischen den anfänglichen durchschnittlichen Gramm Fisch und den aktuellen durchschnittlichen Gramm wird durch die Anzahl der Tage auf See geteilt. Gibt das tägliche durchschnittliche Wachstum pro Fisch zurück.",
+        "sgrPctPerDay": "Es handelt sich um das Feld „Spezifische Wachstumsrate“. Es wird der natürliche Logarithmus der anfänglichen und aktuellen Grammwerte genommen und die Differenz auf eine Tagesbasis reduziert. Dies ist besonders aussagekräftig für den Vergleich von Gruppen mit unterschiedlichen Gewichtsniveaus.",
+        "densityPct": "Es handelt sich um die vorübergehende Nutzungsrate für die Käfigdichte. Da es derzeit kein tatsächliches Volumen- oder m3-Modell gibt, wird die verfügbare Biomasse durch die definierte Kapazitätsbiomasse des Käfigs dividiert. Daher sollte dieses Feld vorerst als Prozentsatz der Kapazitätsauslastung gelesen werden.",
+        "forecastBiomassKg30d": "Es zeigt die grobe Biomasse, die basierend auf der endgültigen Wachstumsrate voraussichtlich nach 30 Tagen gebildet wird. Es wird die aktuelle Biomasse genommen, der geschätzte tägliche Biomassezuwachs addiert und auf das 30-Tage-Fenster übertragen."
+      },
+      "formulas": {
+        "survivalPct": "Überleben % = aktueller lebender Fisch / Startfisch * 100",
+        "mortalityPct": "Sterblichkeit % = Gesamtverlust / Ausgangsfisch * 100",
+        "fcr": "FCR = Gesamtfutter (kg) / Biomassezunahme (kg)",
+        "adgGramPerDay": "ADG = (aktuelle durchschnittliche Gramm – anfängliche durchschnittliche Gramm) / Tage auf See",
+        "sgrPctPerDay": "SGR = 100 * (ln(aktuelle Gramm) - ln(Anfangsgramm)) / Tag",
+        "densityPct": "Dichte % = verfügbare Biomasse / Käfigkapazität Biomasse * 100",
+        "forecastBiomassKg30d": "Geschätzte Biomasse = aktuelle Biomasse + täglicher Biomassezuwachs * {{forecastDays}} Tage"
+      }
+    }
+  }
+}

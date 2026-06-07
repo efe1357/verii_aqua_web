@@ -1,0 +1,176 @@
+{
+  "aqua": {
+    "quickDailyEntry": {
+      "pageTitle": "Täglicher Login",
+      "project": "Projekt",
+      "selectProject": "Projekt auswählen",
+      "cage": "Käfig",
+      "selectCage": "Wählen Sie einen Käfig",
+      "tabFeeding": "Füttern",
+      "tabMortality": "Mortalität",
+      "tabWeather": "Wetter",
+      "tabNetOperation": "Netzwerkbetrieb",
+      "feeding": {
+        "title": "Füttern",
+        "slot": "Steckplatz",
+        "morning": "Runde 1",
+        "evening": "Runde 2",
+        "feedStock": "Futtermittelbestand",
+        "selectStock": "Lager auswählen",
+        "qty": "Menge",
+        "save": "Speichern"
+      },
+      "mortality": {
+        "title": "Mortalität",
+        "batch": "Charge",
+        "selectBatch": "Charge auswählen",
+        "deadCount": "Mortalitätsmenge",
+        "save": "Speichern",
+        "exampleCount": "Beispiel: 15"
+      },
+      "weather": {
+        "title": "Wetter",
+        "severity": "Gewalt",
+        "selectSeverity": "Wähle Gewalt",
+        "type": "Typ",
+        "selectType": "Typ auswählen",
+        "description": "Beschreibung",
+        "save": "Speichern",
+        "options": {
+          "sunny": "sonnig",
+          "cloudy": "bewölkt",
+          "rainy": "regnerisch"
+        },
+        "cage": "Käfig",
+        "selectCage": "Käfig auswählen",
+        "waterTemperatureCelsius": "Wassertemperatur (°C)",
+        "descriptionPlaceholder": "z. B. sonnig, 23 Grad",
+        "windDirection": "Windrichtung",
+        "selectWindDirection": "Windrichtung auswählen",
+        "currentDirection": "Strömungsrichtung",
+        "selectCurrentDirection": "Strömungsrichtung auswählen"
+      },
+      "netOperation": {
+        "title": "Netzwerkbetrieb",
+        "operationType": "Transaktionstyp",
+        "selectType": "Typ auswählen",
+        "description": "Beschreibung",
+        "save": "Speichern",
+        "batch": "Charge",
+        "selectBatch": "Charge auswählen",
+        "noBatch": "keine Charge",
+        "quantity": "Menge",
+        "unitGram": "Einheit Gramm"
+      },
+      "stockChange": {
+        "title": "Bestandsänderung",
+        "sourceInfo": "Quellbatch #{{fishBatchId}} – Live: {{liveCount}}",
+        "noSourceBatch": "Im ausgewählten Käfig wurde keine aktive Charge gefunden.",
+        "targetBatch": "Zielcharge",
+        "fishCount": "Menge",
+        "description": "Beschreibung",
+        "save": "Speichern",
+        "newAverageGram": "Gramm zum Hinzufügen",
+        "gramInfo": "Aktuelle Gramm: {{oldGram}} | Hinzuzufügen: {{increase}} | Neue Gesamtsumme: {{newGram}}"
+      },
+      "transfer": {
+        "title": "Käfigaustausch",
+        "sourceInfo": "Quellbatch #{{fishBatchId}} – Live: {{liveCount}}",
+        "noSourceBatch": "Im ausgewählten Käfig wurde keine aktive Charge gefunden.",
+        "targetCage": "Zielkäfig",
+        "occupied": "voll",
+        "empty": "leer",
+        "fishCount": "Menge",
+        "fishCountAutoInfo": "Die Menge kann manuell eingegeben werden.",
+        "description": "Beschreibung",
+        "save": "Speichern",
+        "targetProject": "Zielprojekt",
+        "fullTransferInfo": "Alle Transfers sind obligatorisch und offen. Alle Wohneinheiten in der Quelle werden verschoben."
+      },
+      "toast": {
+        "feedingSaved": "Fütterung aufgezeichnet",
+        "mortalitySaved": "Mortalitätsdatensatz erstellt",
+        "weatherSaved": "Wetter aufgezeichnet",
+        "netOperationSaved": "Netzwerktransaktion aufgezeichnet",
+        "saveFailed": "Die Registrierung ist fehlgeschlagen",
+        "invalidNewAverageGram": "Das hinzuzufügende Gramm muss größer als 0 sein.",
+        "noActiveBatchForCage": "Für den ausgewählten Käfig wurde keine aktive Charge gefunden.",
+        "sameCageTransferNotAllowed": "Das Quell- und Zielnetz dürfen nicht identisch sein.",
+        "transferCountTooHigh": "Die Anzahl der Transfers darf die Anzahl der Tiere im Käfig nicht überschreiten.",
+        "sameBatchStockChangeNotAllowed": "Die Zielcharge darf nicht mit der Quellcharge identisch sein.",
+        "stockChangeCountTooHigh": "Die Anzahl der Bestandswechsel darf die Anzahl der Tiere im Käfig nicht überschreiten.",
+        "stockChangeSaved": "Bestandsveränderung erfasst.",
+        "fullTransferRequired": "Alle Transfers sind obligatorisch und offen. Alle Wohneinheiten an der Quelle müssen verlegt werden.",
+        "partialTransferToOccupiedCageNotAllowed": "Ein teilweiser Transfer in einen vollen Käfig ist nicht möglich.",
+        "partialTransferToOccupiedCageOnlySameBatchAllowed": "Ein teilweiser Transfer in den vollen Käfig ist nur für dieselbe Charge möglich.",
+        "shipmentCountTooHigh": "Die Anzahl der Sendungen darf die Anzahl der Tiere im Käfig nicht überschreiten.",
+        "shipmentSaved": "Versand erfasst.",
+        "cageWarehouseTransferCountTooHigh": "The quantity moved from cage to warehouse cannot exceed the live quantity in the cage.",
+        "cageWarehouseTransferSaved": "Cage to warehouse transfer recorded.",
+        "sameWarehouseTransferNotAllowed": "Source and target warehouses cannot be the same.",
+        "noActiveBatchForWarehouse": "No active batch was found for the selected warehouse.",
+        "warehouseTransferCountTooHigh": "The warehouse transfer quantity cannot exceed the selected batch stock quantity.",
+        "warehouseTransferSaved": "Warehouse transfer recorded.",
+        "warehouseCageTransferCountTooHigh": "The quantity moved from warehouse to cage cannot exceed the selected batch stock quantity.",
+        "warehouseCageTransferSaved": "Warehouse to cage transfer recorded."
+      },
+      "pageDescription": "Nehmen Sie Ihre täglichen Betriebseingaben schnell über einen einzigen Bildschirm vor.",
+      "tabTransfer": "Käfigaustausch",
+      "tabStockChange": "Bestandsänderung",
+      "transferSuccessDialog": {
+        "title": "Transaktion erfolgreich",
+        "description": "Der Käfigwechsel wurde erfolgreich erfasst. Die Seite wird aktualisiert, um die Daten zu aktualisieren."
+      },
+      "date": "Datum",
+      "tabShipment": "Versand",
+      "tabProjectMerge": "Projektzusammenführung",
+      "shipment": {
+        "title": "Versand",
+        "sourceInfo": "Quellbatch #{{fishBatchId}} – Live: {{liveCount}}",
+        "fishCount": "Menge",
+        "currency": "Devisen",
+        "unitPrice": "Stückpreis",
+        "targetWarehouse": "Ziellager",
+        "description": "Beschreibung",
+        "save": "Speichern"
+      },
+      "projectMerge": {
+        "title": "Projektzusammenführung"
+      },
+      "transferLine": {
+        "fullTransferInfo": "Alle Transfers sind obligatorisch und offen. Die Menge für diese Zeile ist auf {{count}} festgelegt.",
+        "fullTransferRequired": "Alle Transfers sind obligatorisch und offen. In dieser Zeile sollte {{count}} stehen."
+      },
+      "tabCageWarehouseTransfer": "Cage to Warehouse",
+      "tabWarehouseTransfer": "Warehouse to Warehouse",
+      "tabWarehouseCageTransfer": "Warehouse to Cage",
+      "cageWarehouseTransfer": {
+        "title": "Cage to Warehouse Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "targetWarehouse": "Target Warehouse",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      },
+      "warehouseTransfer": {
+        "title": "Warehouse Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "sourceWarehouse": "Source Warehouse",
+        "targetWarehouse": "Target Warehouse",
+        "sourceBatch": "Source Batch",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      },
+      "warehouseCageTransfer": {
+        "title": "Warehouse to Cage Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "sourceWarehouse": "Source Warehouse",
+        "sourceBatch": "Source Batch",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      }
+    }
+  }
+}

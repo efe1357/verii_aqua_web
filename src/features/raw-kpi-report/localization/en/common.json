@@ -1,0 +1,66 @@
+{
+  "aqua": {
+    "rawKpiReport": {
+      "pageTitle": "Raw KPI Report",
+      "description": "Shows operational and biological raw KPI areas by project and cage.",
+      "selectProject": "Select project",
+      "noProject": "Project not found",
+      "loading": "Loading raw KPI data...",
+      "loadFailed": "Failed to load raw KPI data.",
+      "snapshotTitle": "Project Summary",
+      "tableTitle": "Lattice Based Raw KPI",
+      "tableDescription": "Biological performance and operational outcomes are listed per active cage.",
+      "dictionaryTitle": "KPI Dictionary",
+      "dictionaryDescription": "You can see what each field says and how it is calculated in this section.",
+      "metrics": {
+        "stockedFish": "Beginner Fish",
+        "liveFish": "Live Fish",
+        "cageFishStock": "Cage Stock",
+        "warehouseFishStock": "Warehouse Stock",
+        "totalSystemFishStock": "Total System Stock",
+        "currentBiomassKg": "Current Biomass",
+        "cageBiomassKg": "Cage Biomass",
+        "warehouseBiomassKg": "Warehouse Biomass",
+        "totalSystemBiomassKg": "Total System Biomass",
+        "totalFeedKg": "Total Feed",
+        "survivalPct": "Survival %",
+        "mortalityPct": "Wastage %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG (g/day)",
+        "sgrPctPerDay": "SGR (%/day)",
+        "densityPct": "Density %",
+        "forecastBiomassKg30d": "Estimated Biomass After 30 Days"
+      },
+      "columns": {
+        "cage": "cage",
+        "daysInSea": "Day at Sea",
+        "liveFish": "Live Fish",
+        "currentAverageGram": "Avg. gram",
+        "currentBiomassKg": "Biomass (kg)",
+        "totalFeedKg": "Feed (kg)",
+        "survivalPct": "Survival %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG",
+        "densityPct": "Density %"
+      },
+      "descriptions": {
+        "survivalPct": "This area shows how much of the fish originally placed in the cage is still alive. When calculating, the starting number of fish and the number of existing live fish are used; It is read from the remaining population after transfer and shipment.",
+        "mortalityPct": "This field shows the accumulated total wastage relative to the starting stock. The total number of dead fish in wastage records is calculated by dividing by the starting number of fish.",
+        "fcr": "It is the Feed Conversion Ratio field. The total amount of feed recorded in the system is divided by the resulting net biomass increase. As the value decreases, it is understood that less feed is used for the same growth.",
+        "adgGramPerDay": "Average Daily Gain field. The difference between the initial average grams of fish and the current average grams is divided by the number of days at sea. Returns the daily average growth per fish.",
+        "sgrPctPerDay": "It is the Specific Growth Rate field. The natural logarithm of the initial and current gram values ​​is taken and the difference is reduced to a daily basis. It is especially meaningful for comparing groups at different weight levels.",
+        "densityPct": "It is the temporary usage rate for cage density. Since there is currently no actual volume or m3 model, the available biomass is divided by the defined capacity biomass of the cage. So this field should be read as the capacity occupancy percentage for now.",
+        "forecastBiomassKg30d": "It shows the rough biomass expected to be formed after 30 days based on the final growth rate. The current biomass is taken, the estimated daily biomass increase is added and carried over to the 30-day window."
+      },
+      "formulas": {
+        "survivalPct": "Survival % = current live fish / starting fish * 100",
+        "mortalityPct": "Wastage % = total wastage / starting fish * 100",
+        "fcr": "FCR = total feed (kg) / biomass increase (kg)",
+        "adgGramPerDay": "ADG = (current average grams - initial average grams) / days at sea",
+        "sgrPctPerDay": "SGR = 100 * (ln(current grams) - ln(starting grams)) / day",
+        "densityPct": "Density % = available biomass / cage capacity biomass * 100",
+        "forecastBiomassKg30d": "Estimated biomass = current biomass + daily biomass increase * {{forecastDays}} days"
+      }
+    }
+  }
+}

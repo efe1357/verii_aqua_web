@@ -1,0 +1,68 @@
+{
+  "aqua": {
+    "businessKpiReport": {
+      "pageTitle": "Business KPI Raporu",
+      "description": "Hasat hazırlığı, tahmin güveni ve varsayımsal gelir/marj alanlarını proje ve kafes bazında gösterir.",
+      "selectProject": "Proje seçin",
+      "noProject": "Proje bulunamadı",
+      "loading": "Business KPI verileri yükleniyor...",
+      "loadFailed": "Business KPI verileri yüklenemedi.",
+      "snapshotTitle": "Business Özet",
+      "tableTitle": "Kafes Bazlı Business KPI",
+      "tableDescription": "Karar destek metrikleri ve varsayıma dayalı ekonomik göstergeler aktif kafes bazında listelenir.",
+      "dictionaryTitle": "Business KPI Sözlüğü",
+      "dictionaryDescription": "Bu alanlar mevcut operasyon verisinden ve business yorum kurallarından türetilir. Fiyatlı mal kabul ve sevkiyat satırları varsa sistem bunları kullanır; fiyat verisi bulunmayan alanlar zorla tahmin edilmez.",
+      "assumptionTitle": "Varsayımlar",
+      "assumptionDescription": "Yem maliyeti mal kabul satırlarından, satış fiyatı sevkiyat satırlarından türetilir. Uygun fiyat geçmişi yoksa sistem yalnızca eksik kalan bölümleri 0 kabul eder ve hayali rakam üretmez.",
+      "assumptions": {
+        "targetHarvestGram": "Hedef hasat gramı",
+        "forecastDays": "Forecast günü",
+        "feedCostPerKg": "Yem maliyeti",
+        "salePricePerKg": "Satış fiyatı"
+      },
+      "metrics": {
+        "estimatedFeedCost": "Yem Maliyeti",
+        "feedCostPerCurrentKg": "Canlı Kg Başına Yem Maliyeti",
+        "projectedHarvestBiomassKg": "Tahmini Hasat Biyokütlesi",
+        "projectedRevenue": "Tahmini Ciro",
+        "projectedGrossMargin": "Tahmini Brüt Marj",
+        "projectedMarginPct": "Tahmini Marj %",
+        "daysToTarget": "Hedef Grama Kalan Gün",
+        "estimatedHarvestDate": "Tahmini Hasat Tarihi",
+        "forecastConfidencePct": "Forecast Confidence %",
+        "harvestReadinessPct": "Harvest Readiness %"
+      },
+      "columns": {
+        "cage": "Kafes",
+        "targetWeightProgressPct": "Hedef Gram %",
+        "daysToTarget": "Kalan Gün",
+        "harvestReadinessPct": "Hazırlık %",
+        "forecastConfidencePct": "Güven %",
+        "estimatedFeedCost": "Yem Maliyeti",
+        "projectedRevenue": "Ciro",
+        "projectedGrossMargin": "Brüt Marj",
+        "estimatedHarvestDate": "Tahmini Tarih"
+      },
+      "descriptions": {
+        "estimatedFeedCost": "Toplam yem miktarı, mal kabul geçmişinden türetilen kg başı yem maliyeti ile çarpılarak bulunur. İlgili stok için fiyat geçmişi yoksa yalnızca eksik kalan bölüm 0 kabul edilir.",
+        "feedCostPerCurrentKg": "Bulunan yem maliyeti mevcut canlı biyokütleye bölünür. Böylece proje bugün hangi maliyet seviyesinde canlı kg taşıyor sorusuna cevap verir.",
+        "projectedHarvestBiomassKg": "Raw KPI içindeki büyüme ve biyokütle trendi business katmanına taşınır. Mevcut büyüme temposu korunursa forecast periyodu sonundaki beklenen hasat biyokütlesi gösterilir.",
+        "projectedRevenue": "Tahmini hasat biyokütlesi, sevkiyat geçmişinden türetilen kg başı satış fiyatı ile çarpılır. Satış geçmişi yoksa sistem ciroyu veri geldikçe yükseltecek şekilde temkinli hesaplar.",
+        "projectedGrossMargin": "Tahmini cirodan yem maliyeti düşülür. Sistem veri bulunmayan fiyat alanlarını zorla tahmin etmez; bu nedenle marj hesabı mevcut gerçek fiyat kapsamı kadar güçlüdür.",
+        "daysToTarget": "Mevcut ortalama gram ile hedef hasat gramı arasındaki fark alınır ve ADG değerine bölünür. ADG yoksa veya büyüme hızı sıfırsa alan hesaplanamaz.",
+        "harvestReadinessPct": "Bu alan tek bir finansal veri değil, karar destek skorudur. Ağırlık ilerlemesi, survival performansı ve FCR kalitesi birleşerek 0-100 arası bir hazırlık puanı üretir.",
+        "forecastConfidencePct": "Tahmine ne kadar güvenilebileceğini gösterir. Yakın tarihli tartım varsa, son günlerde düzenli yemleme yapılmışsa ve veri seti yeterince olgunsa skor yükselir."
+      },
+      "formulas": {
+        "estimatedFeedCost": "Yem maliyeti = toplam yem (kg) * kg başı yem maliyeti. Maliyet, mal kabul geçmişinden ve fallback yönteminden türetilir.",
+        "feedCostPerCurrentKg": "Canlı kg başına maliyet = tahmini yem maliyeti / mevcut biyokütle (kg)",
+        "projectedHarvestBiomassKg": "Tahmini hasat biyokütlesi = mevcut biyokütle + günlük biyokütle artışı * {{forecastDays}} gün",
+        "projectedRevenue": "Tahmini ciro = tahmini hasat biyokütlesi * satış fiyatı. Satış fiyatı sevkiyat geçmişinden türetilir.",
+        "projectedGrossMargin": "Tahmini brüt marj = tahmini ciro - yem maliyeti. Hesap yalnızca mevcut gerçek fiyat kapsamı kadar güçlüdür.",
+        "daysToTarget": "Kalan gün = (hedef gram {{targetHarvestGram}} - mevcut gram) / ADG",
+        "harvestReadinessPct": "Hazırlık % = ağırlık ilerleme skoru * 0.55 + survival * 0.25 + FCR skoru * 0.20",
+        "forecastConfidencePct": "Forecast confidence = tartım yakınlığı + yemleme sürekliliği + veri olgunluğu skoru"
+      }
+    }
+  }
+}

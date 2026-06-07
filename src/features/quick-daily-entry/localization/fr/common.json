@@ -1,0 +1,176 @@
+{
+  "aqua": {
+    "quickDailyEntry": {
+      "pageTitle": "Connexion quotidienne",
+      "project": "Projet",
+      "selectProject": "Sélectionnez un projet",
+      "cage": "cage",
+      "selectCage": "Choisissez une cage",
+      "tabFeeding": "alimentation",
+      "tabMortality": "Mortalité",
+      "tabWeather": "Météo",
+      "tabNetOperation": "Fonctionnement du réseau",
+      "feeding": {
+        "title": "alimentation",
+        "slot": "fente",
+        "morning": "Tour 1",
+        "evening": "Tour 2",
+        "feedStock": "Aliments pour animaux",
+        "selectStock": "sélectionner des actions",
+        "qty": "quantité",
+        "save": "Enregistrer"
+      },
+      "mortality": {
+        "title": "Mortalité",
+        "batch": "Lot",
+        "selectBatch": "Sélectionnez un lot",
+        "deadCount": "Quantité de mortalité",
+        "save": "Enregistrer",
+        "exampleCount": "Ex : 15"
+      },
+      "weather": {
+        "title": "Météo",
+        "severity": "violence",
+        "selectSeverity": "choisir la violence",
+        "type": "Tapez",
+        "selectType": "Sélectionnez le type",
+        "description": "Descriptif",
+        "save": "Enregistrer",
+        "options": {
+          "sunny": "ensoleillé",
+          "cloudy": "nuageux",
+          "rainy": "pluvieux"
+        },
+        "cage": "Cage",
+        "selectCage": "Sélectionner une cage",
+        "waterTemperatureCelsius": "Température de l’Eau (°C)",
+        "descriptionPlaceholder": "Ex. : ensoleillé, 23 degrés",
+        "windDirection": "Direction du Vent",
+        "selectWindDirection": "Sélectionner une direction du vent",
+        "currentDirection": "Direction du Courant",
+        "selectCurrentDirection": "Sélectionner une direction du courant"
+      },
+      "netOperation": {
+        "title": "Fonctionnement du réseau",
+        "operationType": "Type de transaction",
+        "selectType": "Sélectionnez le type",
+        "description": "Descriptif",
+        "save": "Enregistrer",
+        "batch": "Lot",
+        "selectBatch": "Sélectionnez un lot",
+        "noBatch": "pas de lot",
+        "quantity": "quantité",
+        "unitGram": "Unité Gramme"
+      },
+      "stockChange": {
+        "title": "Changement de stock",
+        "sourceInfo": "Lot source n°{{fishBatchId}} - En direct : {{liveCount}}",
+        "noSourceBatch": "Aucun lot actif trouvé dans la cage sélectionnée.",
+        "targetBatch": "Lot cible",
+        "fishCount": "quantité",
+        "description": "Descriptif",
+        "save": "Enregistrer",
+        "newAverageGram": "Grammes à ajouter",
+        "gramInfo": "Grammes actuels : {{oldGram}} | À ajouter : {{increase}} | Nouveau total : {{newGram}}"
+      },
+      "transfer": {
+        "title": "Remplacement des cages",
+        "sourceInfo": "Lot source n°{{fishBatchId}} - En direct : {{liveCount}}",
+        "noSourceBatch": "Aucun lot actif trouvé dans la cage sélectionnée.",
+        "targetCage": "Cage cible",
+        "occupied": "plein",
+        "empty": "vide",
+        "fishCount": "quantité",
+        "fishCountAutoInfo": "La quantité peut être saisie manuellement.",
+        "description": "Descriptif",
+        "save": "Enregistrer",
+        "targetProject": "Projet cible",
+        "fullTransferInfo": "Tous les transferts sont obligatoires et ouverts. Toutes les unités résidentielles de la source seront déplacées."
+      },
+      "toast": {
+        "feedingSaved": "Alimentation enregistrée",
+        "mortalitySaved": "Enregistrement de mortalité créé",
+        "weatherSaved": "Météo enregistrée",
+        "netOperationSaved": "Transaction réseau enregistrée",
+        "saveFailed": "L'inscription a échoué",
+        "invalidNewAverageGram": "Le gramme à ajouter doit être supérieur à 0.",
+        "noActiveBatchForCage": "Aucun lot actif trouvé pour la cage sélectionnée.",
+        "sameCageTransferNotAllowed": "Les maillages source et cible ne peuvent pas être identiques.",
+        "transferCountTooHigh": "Le nombre de transferts ne peut pas dépasser le nombre de créatures dans la cage.",
+        "sameBatchStockChangeNotAllowed": "Le lot cible ne peut pas être le même que le lot source.",
+        "stockChangeCountTooHigh": "Le nombre de changements de stock ne peut pas dépasser le nombre de créatures dans la cage.",
+        "stockChangeSaved": "Variation de stock enregistrée.",
+        "fullTransferRequired": "Tous les transferts sont obligatoires et ouverts. Toutes les unités résidentielles à la source doivent être déplacées.",
+        "partialTransferToOccupiedCageNotAllowed": "Un transfert partiel ne peut pas être effectué vers une cage pleine.",
+        "partialTransferToOccupiedCageOnlySameBatchAllowed": "Le transfert partiel vers une cage pleine ne peut être effectué que pour le même lot.",
+        "shipmentCountTooHigh": "Le nombre d'envois ne peut pas dépasser le nombre de créatures dans la cage.",
+        "shipmentSaved": "Envoi enregistré.",
+        "cageWarehouseTransferCountTooHigh": "The quantity moved from cage to warehouse cannot exceed the live quantity in the cage.",
+        "cageWarehouseTransferSaved": "Cage to warehouse transfer recorded.",
+        "sameWarehouseTransferNotAllowed": "Source and target warehouses cannot be the same.",
+        "noActiveBatchForWarehouse": "No active batch was found for the selected warehouse.",
+        "warehouseTransferCountTooHigh": "The warehouse transfer quantity cannot exceed the selected batch stock quantity.",
+        "warehouseTransferSaved": "Warehouse transfer recorded.",
+        "warehouseCageTransferCountTooHigh": "The quantity moved from warehouse to cage cannot exceed the selected batch stock quantity.",
+        "warehouseCageTransferSaved": "Warehouse to cage transfer recorded."
+      },
+      "pageDescription": "Effectuez rapidement vos saisies d’opérations quotidiennes à partir d’un seul écran.",
+      "tabTransfer": "Remplacement des cages",
+      "tabStockChange": "Changement de stock",
+      "transferSuccessDialog": {
+        "title": "Transaction réussie",
+        "description": "Le remplacement de la cage a été enregistré avec succès. La page sera actualisée pour mettre à jour les données."
+      },
+      "date": "rendez-vous",
+      "tabShipment": "Expédition",
+      "tabProjectMerge": "Fusion de projets",
+      "shipment": {
+        "title": "Expédition",
+        "sourceInfo": "Lot source n°{{fishBatchId}} - En direct : {{liveCount}}",
+        "fishCount": "quantité",
+        "currency": "change",
+        "unitPrice": "Prix unitaire",
+        "targetWarehouse": "Entrepôt cible",
+        "description": "Descriptif",
+        "save": "Enregistrer"
+      },
+      "projectMerge": {
+        "title": "Fusion de projets"
+      },
+      "transferLine": {
+        "fullTransferInfo": "Tous les transferts sont obligatoires et ouverts. La quantité pour cette ligne est fixée à {{count}}.",
+        "fullTransferRequired": "Tous les transferts sont obligatoires et ouverts. Il devrait y avoir {{count}} dans cette ligne."
+      },
+      "tabCageWarehouseTransfer": "Cage to Warehouse",
+      "tabWarehouseTransfer": "Warehouse to Warehouse",
+      "tabWarehouseCageTransfer": "Warehouse to Cage",
+      "cageWarehouseTransfer": {
+        "title": "Cage to Warehouse Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "targetWarehouse": "Target Warehouse",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      },
+      "warehouseTransfer": {
+        "title": "Warehouse Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "sourceWarehouse": "Source Warehouse",
+        "targetWarehouse": "Target Warehouse",
+        "sourceBatch": "Source Batch",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      },
+      "warehouseCageTransfer": {
+        "title": "Warehouse to Cage Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "sourceWarehouse": "Source Warehouse",
+        "sourceBatch": "Source Batch",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      }
+    }
+  }
+}

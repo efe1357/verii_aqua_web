@@ -1,0 +1,68 @@
+{
+  "aqua": {
+    "businessKpiReport": {
+      "pageTitle": "Informe comercial KPI",
+      "description": "Muestra la preparación para la cosecha, la confianza en el pronóstico y áreas hipotéticas de ingresos/margen por proyecto y jaula.",
+      "selectProject": "Seleccionar proyecto",
+      "noProject": "Proyecto no encontrado",
+      "loading": "Cargando datos de empresa KPI...",
+      "loadFailed": "No se pudieron cargar los datos de la empresa KPI.",
+      "snapshotTitle": "Resumen empresarial",
+      "tableTitle": "Negocio basado en celosía KPI",
+      "tableDescription": "Las métricas de apoyo a la toma de decisiones y los indicadores económicos hipotéticos se enumeran por malla activa.",
+      "dictionaryTitle": "Diccionario de negocios KPI",
+      "dictionaryDescription": "Estos campos se derivan de datos de operaciones existentes y reglas de comentarios comerciales. Si hay líneas de aceptación y envío de mercancías con precio, el sistema las utiliza; Las áreas sin datos de precios no se estiman de manera contundente.",
+      "assumptionTitle": "Suposiciones",
+      "assumptionDescription": "El costo de alimentación se deriva de las líneas de entrada de mercancías y el precio de venta se deriva de las líneas de envío. Si no hay un historial de precios adecuado, el sistema sólo acepta las piezas que faltan como 0 y no produce cifras imaginarias.",
+      "assumptions": {
+        "targetHarvestGram": "Gramos de cosecha objetivo",
+        "forecastDays": "Día de pronóstico",
+        "feedCostPerKg": "Costo de alimentación",
+        "salePricePerKg": "precio de venta"
+      },
+      "metrics": {
+        "estimatedFeedCost": "Costo de alimentación",
+        "feedCostPerCurrentKg": "Costo de alimento por kg vivo",
+        "projectedHarvestBiomassKg": "Biomasa de cosecha estimada",
+        "projectedRevenue": "Volumen de negocios estimado",
+        "projectedGrossMargin": "Margen bruto estimado",
+        "projectedMarginPct": "Margen estimado %",
+        "daysToTarget": "Días para alcanzar el gramo",
+        "estimatedHarvestDate": "Fecha estimada de cosecha",
+        "forecastConfidencePct": "Confianza del pronóstico %",
+        "harvestReadinessPct": "Preparación para la cosecha %"
+      },
+      "columns": {
+        "cage": "jaula",
+        "targetWeightProgressPct": "Gramo objetivo %",
+        "daysToTarget": "Días restantes",
+        "harvestReadinessPct": "Preparación %",
+        "forecastConfidencePct": "Confía en %",
+        "estimatedFeedCost": "Costo de alimentación",
+        "projectedRevenue": "facturación",
+        "projectedGrossMargin": "Margen bruto",
+        "estimatedHarvestDate": "Fecha estimada"
+      },
+      "descriptions": {
+        "estimatedFeedCost": "La cantidad total de alimento se calcula multiplicando el costo del alimento por kg derivado del historial de aceptación de mercancías. Si no hay historial de precios para la acción relevante, solo la parte que falta se considera 0.",
+        "feedCostPerCurrentKg": "El costo del alimento encontrado se divide por la biomasa viva disponible. Por lo tanto, responde a la pregunta a qué nivel de costo el proyecto lleva kg hoy.",
+        "projectedHarvestBiomassKg": "La tendencia de crecimiento y biomasa en KPI bruto se traslada a la capa empresarial. Si se mantiene el ritmo de crecimiento actual, se muestra la biomasa de cosecha esperada al final del período de pronóstico.",
+        "projectedRevenue": "La biomasa de cosecha estimada se multiplica por el precio de venta por kg derivado del historial de envío. Si no hay historial de ventas, el sistema calcula la facturación con cautela, incrementándola a medida que llegan los datos.",
+        "projectedGrossMargin": "El costo del alimento se deduce de la facturación estimada. El sistema no predice con fuerza áreas de precios para las cuales no hay datos; Por lo tanto, el cálculo del margen es tan sólido como la cobertura del precio real actual.",
+        "daysToTarget": "Tome la diferencia entre los gramos promedio actuales y los gramos de cosecha objetivo y divídala por ADG. Si ADG no está presente o la tasa de crecimiento es cero, no se puede calcular el área.",
+        "harvestReadinessPct": "Este campo no es un dato financiero único, sino una puntuación de apoyo a la decisión. La progresión de peso, el rendimiento de supervivencia y la calidad FCR se combinan para producir una puntuación de preparación entre 0 y 100.",
+        "forecastConfidencePct": "Muestra cuán confiable puede ser el pronóstico. Si hay un pesaje reciente, se ha realizado una alimentación regular en los últimos días y el conjunto de datos es lo suficientemente maduro, la puntuación aumenta."
+      },
+      "formulas": {
+        "estimatedFeedCost": "Costo de alimentación = alimentación total (kg) * costo de alimentación por kg. El costo se deriva del historial de aceptación de mercancías y del método alternativo.",
+        "feedCostPerCurrentKg": "Costo por vida kg = costo estimado de alimentación / biomasa disponible (kg)",
+        "projectedHarvestBiomassKg": "Biomasa de cosecha estimada = biomasa actual + aumento de biomasa diario * {{forecastDays}} días",
+        "projectedRevenue": "Volumen de negocios estimado = biomasa cosechada estimada * precio de venta. El precio de venta se deriva del historial de envíos.",
+        "projectedGrossMargin": "Margen bruto estimado = facturación estimada - costo de alimentación. La cuenta es tan sólida como su cobertura de precio real actual.",
+        "daysToTarget": "Días restantes = (gramos objetivo {{targetHarvestGram}} - gramos actuales) / ADG",
+        "harvestReadinessPct": "Preparación % = puntuación de progreso de peso * 0,55 + supervivencia * 0,25 + puntuación FCR * 0,20",
+        "forecastConfidencePct": "Confianza en el pronóstico = cercanía del pesaje + consistencia de la alimentación + puntaje de madurez de los datos"
+      }
+    }
+  }
+}

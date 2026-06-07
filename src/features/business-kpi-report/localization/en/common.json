@@ -1,0 +1,68 @@
+{
+  "aqua": {
+    "businessKpiReport": {
+      "pageTitle": "Business KPI Report",
+      "description": "Shows harvest readiness, forecast confidence and hypothetical revenue/margin areas by project and cage.",
+      "selectProject": "Select project",
+      "noProject": "Project not found",
+      "loading": "Loading Business KPI data...",
+      "loadFailed": "Business KPI data could not be loaded.",
+      "snapshotTitle": "Business Summary",
+      "tableTitle": "Lattice Based Business KPI",
+      "tableDescription": "Decision support metrics and hypothetical economic indicators are listed by active mesh.",
+      "dictionaryTitle": "Business KPI Dictionary",
+      "dictionaryDescription": "These fields are derived from existing operations data and business commentary rules. If there are priced goods acceptance and shipment lines, the system uses them; Areas without price data are not forcefully estimated.",
+      "assumptionTitle": "Assumptions",
+      "assumptionDescription": "The feed cost is derived from the goods receipt lines and the sales price is derived from the shipment lines. If there is no suitable price history, the system only accepts the missing parts as 0 and does not produce imaginary figures.",
+      "assumptions": {
+        "targetHarvestGram": "Target harvest grams",
+        "forecastDays": "Forecast day",
+        "feedCostPerKg": "Feed cost",
+        "salePricePerKg": "selling price"
+      },
+      "metrics": {
+        "estimatedFeedCost": "Feed Cost",
+        "feedCostPerCurrentKg": "Feed Cost per Live Kg",
+        "projectedHarvestBiomassKg": "Estimated Harvest Biomass",
+        "projectedRevenue": "Estimated Turnover",
+        "projectedGrossMargin": "Estimated Gross Margin",
+        "projectedMarginPct": "Estimated Margin %",
+        "daysToTarget": "Days to Target Gram",
+        "estimatedHarvestDate": "Estimated Harvest Date",
+        "forecastConfidencePct": "Forecast Confidence %",
+        "harvestReadinessPct": "Harvest Readiness %"
+      },
+      "columns": {
+        "cage": "cage",
+        "targetWeightProgressPct": "Target Gram %",
+        "daysToTarget": "Remaining Days",
+        "harvestReadinessPct": "Preparation %",
+        "forecastConfidencePct": "Trust %",
+        "estimatedFeedCost": "Feed Cost",
+        "projectedRevenue": "turnover",
+        "projectedGrossMargin": "Gross Margin",
+        "estimatedHarvestDate": "Estimated Date"
+      },
+      "descriptions": {
+        "estimatedFeedCost": "The total feed quantity is found by multiplying the feed cost per kg derived from the goods acceptance history. If there is no price history for the relevant stock, only the missing part is considered 0.",
+        "feedCostPerCurrentKg": "The found feed cost is divided by the available live biomass. Thus, it answers the question at what cost level the project carries kg today.",
+        "projectedHarvestBiomassKg": "The growth and biomass trend in raw KPI is carried over to the business layer. If the current growth pace is maintained, the expected harvest biomass at the end of the forecast period is shown.",
+        "projectedRevenue": "The estimated harvest biomass is multiplied by the selling price per kg derived from shipping history. If there is no sales history, the system calculates the turnover cautiously, increasing it as data arrives.",
+        "projectedGrossMargin": "Feed cost is deducted from the estimated turnover. The system does not forcefully predict price areas for which there is no data; Therefore, the margin calculation is as strong as the current real price coverage.",
+        "daysToTarget": "Take the difference between the current average grams and the target harvest grams and divide by ADG. If ADG is not present or the growth rate is zero, the area cannot be calculated.",
+        "harvestReadinessPct": "This field is not a single financial data, but a decision support score. Weight progression, survival performance, and FCR quality combine to produce a preparation score between 0-100.",
+        "forecastConfidencePct": "It shows how reliable the forecast can be. If there is a recent weigh-in, regular feeding has been done in recent days, and the data set is mature enough, the score increases."
+      },
+      "formulas": {
+        "estimatedFeedCost": "Feed cost = total feed (kg) * feed cost per kg. The cost is derived from the goods acceptance history and the fallback method.",
+        "feedCostPerCurrentKg": "Cost per live kg = estimated feed cost / available biomass (kg)",
+        "projectedHarvestBiomassKg": "Estimated harvest biomass = current biomass + daily biomass increase * {{forecastDays}} days",
+        "projectedRevenue": "Estimated turnover = estimated harvested biomass * selling price. The sales price is derived from shipping history.",
+        "projectedGrossMargin": "Estimated gross margin = estimated turnover - feed cost. The account is only as strong as its current true price coverage.",
+        "daysToTarget": "Days remaining = (target grams {{targetHarvestGram}} - current grams) / ADG",
+        "harvestReadinessPct": "Preparation % = weight progress score * 0.55 + survival * 0.25 + FCR score * 0.20",
+        "forecastConfidencePct": "Forecast confidence = weighing closeness + feeding consistency + data maturity score"
+      }
+    }
+  }
+}

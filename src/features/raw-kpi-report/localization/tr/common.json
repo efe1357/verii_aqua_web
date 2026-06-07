@@ -1,0 +1,66 @@
+{
+  "aqua": {
+    "rawKpiReport": {
+      "pageTitle": "Raw KPI Raporu",
+      "description": "Operasyonel ve biyolojik ham KPI alanlarını proje ve kafes bazında gösterir.",
+      "selectProject": "Proje seçin",
+      "noProject": "Proje bulunamadı",
+      "loading": "Raw KPI verileri yükleniyor...",
+      "loadFailed": "Raw KPI verileri yüklenemedi.",
+      "snapshotTitle": "Proje Özeti",
+      "tableTitle": "Kafes Bazlı Raw KPI",
+      "tableDescription": "Biyolojik performans ve operasyon çıktıları aktif kafes bazında listelenir.",
+      "dictionaryTitle": "KPI Sözlüğü",
+      "dictionaryDescription": "Her alanın ne anlattığını ve nasıl hesaplandığını bu bölümden görebilirsiniz.",
+      "metrics": {
+        "stockedFish": "Başlangıç Balık",
+        "liveFish": "Canlı Balık",
+        "cageFishStock": "Kafes Stoku",
+        "warehouseFishStock": "Depo Stoku",
+        "totalSystemFishStock": "Toplam Sistem Stoku",
+        "currentBiomassKg": "Mevcut Biyokütle",
+        "cageBiomassKg": "Kafes Biyokütlesi",
+        "warehouseBiomassKg": "Depo Biyokütlesi",
+        "totalSystemBiomassKg": "Toplam Sistem Biyokütlesi",
+        "totalFeedKg": "Toplam Yem",
+        "survivalPct": "Survival %",
+        "mortalityPct": "Fire %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG (g/gün)",
+        "sgrPctPerDay": "SGR (%/gün)",
+        "densityPct": "Density %",
+        "forecastBiomassKg30d": "30 Gün Sonra Tahmini Biyokütle"
+      },
+      "columns": {
+        "cage": "Kafes",
+        "daysInSea": "Denizde Gün",
+        "liveFish": "Canlı Balık",
+        "currentAverageGram": "Ort. Gram",
+        "currentBiomassKg": "Biyokütle (kg)",
+        "totalFeedKg": "Yem (kg)",
+        "survivalPct": "Survival %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG",
+        "densityPct": "Density %"
+      },
+      "descriptions": {
+        "survivalPct": "Bu alan, başlangıçta kafese yerleştirilen balığın ne kadarının halen canlı olduğunu gösterir. Hesaplama yapılırken başlangıç balık adedi ile mevcut canlı balık adedi kullanılır; transfer ve sevkiyat sonrası kalan popülasyon üzerinden okunur.",
+        "mortalityPct": "Bu alan, başlangıç stoğuna göre biriken toplam fire oranını gösterir. Fire kayıtlarındaki toplam fire adedi başlangıç balık sayısına bölünerek bulunur.",
+        "fcr": "Feed Conversion Ratio alanıdır. Sistemde kaydedilen toplam yem miktarı, oluşan net biyokütle artışına bölünür. Değer küçüldükçe aynı büyüme için daha az yem kullanıldığı anlaşılır.",
+        "adgGramPerDay": "Average Daily Gain alanıdır. Balığın başlangıç ortalama gramı ile mevcut ortalama gramı arasındaki fark, denizde geçen gün sayısına bölünür. Balık başına günlük ortalama büyümeyi verir.",
+        "sgrPctPerDay": "Specific Growth Rate alanıdır. Başlangıç ve mevcut gram değerlerinin doğal logaritması alınır, fark günlük baza indirilir. Özellikle farklı ağırlık seviyelerindeki grupları kıyaslamak için daha anlamlıdır.",
+        "densityPct": "Kafes yoğunluğu için geçici kullanım oranıdır. Şu an gerçek hacim veya m3 modeli olmadığı için mevcut biyokütle, kafesin tanımlı kapasite biyokütlesine bölünür. Yani bu alan şimdilik kapasite doluluk yüzdesi gibi okunmalıdır.",
+        "forecastBiomassKg30d": "Son büyüme hızına göre 30 gün sonra oluşması beklenen kaba biyokütleyi gösterir. Mevcut biyokütle alınır, günlük tahmini biyokütle artışı eklenir ve 30 günlük pencereye taşınır."
+      },
+      "formulas": {
+        "survivalPct": "Survival % = mevcut canlı balık / başlangıç balık * 100",
+        "mortalityPct": "Fire % = toplam fire / başlangıç balık * 100",
+        "fcr": "FCR = toplam yem (kg) / biyokütle artışı (kg)",
+        "adgGramPerDay": "ADG = (mevcut ortalama gram - başlangıç ortalama gram) / denizde geçen gün",
+        "sgrPctPerDay": "SGR = 100 * (ln(mevcut gram) - ln(başlangıç gram)) / gün",
+        "densityPct": "Density % = mevcut biyokütle / kafes kapasite biyokütlesi * 100",
+        "forecastBiomassKg30d": "Tahmini biyokütle = mevcut biyokütle + günlük biyokütle artışı * {{forecastDays}} gün"
+      }
+    }
+  }
+}

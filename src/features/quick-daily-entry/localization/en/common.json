@@ -1,0 +1,176 @@
+{
+  "aqua": {
+    "quickDailyEntry": {
+      "pageTitle": "Daily Login",
+      "date": "date",
+      "project": "Project",
+      "selectProject": "Select project",
+      "cage": "cage",
+      "selectCage": "Choose cage",
+      "tabFeeding": "feeding",
+      "tabMortality": "Wastage",
+      "tabWeather": "Weather",
+      "tabNetOperation": "Network Operation",
+      "tabTransfer": "Cage Replacement",
+      "tabCageWarehouseTransfer": "Cage to Warehouse",
+      "tabWarehouseTransfer": "Warehouse to Warehouse",
+      "tabWarehouseCageTransfer": "Warehouse to Cage",
+      "tabShipment": "Shipment",
+      "tabStockChange": "Stock Change",
+      "tabProjectMerge": "Project Merge",
+      "feeding": {
+        "title": "feeding",
+        "slot": "slot",
+        "morning": "Round 1",
+        "evening": "Round 2",
+        "feedStock": "Feed Stock",
+        "selectStock": "select stock",
+        "qty": "quantity",
+        "save": "Save"
+      },
+      "mortality": {
+        "title": "Wastage",
+        "batch": "Batch",
+        "selectBatch": "Select batch",
+        "deadCount": "Wastage quantity",
+        "save": "Save",
+        "exampleCount": "Ex: 15"
+      },
+      "weather": {
+        "title": "Weather",
+        "severity": "violence",
+        "selectSeverity": "choose violence",
+        "type": "Type",
+        "selectType": "Select type",
+        "description": "Description",
+        "save": "Save",
+        "options": {
+          "sunny": "sunny",
+          "cloudy": "cloudy",
+          "rainy": "rainy"
+        },
+        "cage": "Cage",
+        "selectCage": "Select cage",
+        "waterTemperatureCelsius": "Water Temperature (°C)",
+        "descriptionPlaceholder": "E.g. sunny, 23 degrees",
+        "windDirection": "Wind Direction",
+        "selectWindDirection": "Select wind direction",
+        "currentDirection": "Current Direction",
+        "selectCurrentDirection": "Select current direction"
+      },
+      "netOperation": {
+        "title": "Network Operation",
+        "operationType": "Transaction Type",
+        "selectType": "Select type",
+        "batch": "Batch",
+        "selectBatch": "Select batch",
+        "noBatch": "no batch",
+        "quantity": "quantity",
+        "unitGram": "Unit Gram",
+        "description": "Description",
+        "save": "Save"
+      },
+      "stockChange": {
+        "title": "Stock Change",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "noSourceBatch": "No active batch found in the selected cage.",
+        "targetBatch": "Target Batch",
+        "fishCount": "quantity",
+        "newAverageGram": "Grams to Add",
+        "gramInfo": "Current grams: {{oldGram}} | To be added: {{increase}} | New total: {{newGram}}",
+        "description": "Description",
+        "save": "Save"
+      },
+      "transfer": {
+        "title": "Cage Replacement",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "noSourceBatch": "No active batch found in the selected cage.",
+        "targetProject": "Target Project",
+        "targetCage": "Target Cage",
+        "occupied": "full",
+        "empty": "empty",
+        "fishCount": "quantity",
+        "fishCountAutoInfo": "Quantity can be entered manually.",
+        "fullTransferInfo": "All transfers are mandatory and open. All living units in the source will be moved.",
+        "description": "Description",
+        "save": "Save"
+      },
+      "shipment": {
+        "title": "Shipment",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "fishCount": "quantity",
+        "currency": "foreign exchange",
+        "unitPrice": "Unit Price",
+        "targetWarehouse": "Target Warehouse",
+        "description": "Description",
+        "save": "Save"
+      },
+      "cageWarehouseTransfer": {
+        "title": "Cage to Warehouse Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "targetWarehouse": "Target Warehouse",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      },
+      "warehouseTransfer": {
+        "title": "Warehouse Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "sourceWarehouse": "Source Warehouse",
+        "targetWarehouse": "Target Warehouse",
+        "sourceBatch": "Source Batch",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      },
+      "warehouseCageTransfer": {
+        "title": "Warehouse to Cage Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "sourceWarehouse": "Source Warehouse",
+        "sourceBatch": "Source Batch",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      },
+      "projectMerge": {
+        "title": "Project Merge"
+      },
+      "transferLine": {
+        "fullTransferInfo": "All transfers are mandatory and open. The quantity for this row is fixed as {{count}}.",
+        "fullTransferRequired": "All transfers are mandatory and open. There should be {{count}} in this line."
+      },
+      "toast": {
+        "feedingSaved": "Feeding recorded",
+        "mortalitySaved": "Wastage record created",
+        "weatherSaved": "Weather recorded",
+        "netOperationSaved": "Network transaction recorded",
+        "invalidNewAverageGram": "The gram to be added must be greater than 0.",
+        "saveFailed": "Registration failed",
+        "noActiveBatchForCage": "No active batch found for the selected cage.",
+        "sameCageTransferNotAllowed": "The source and target mesh cannot be the same.",
+        "transferCountTooHigh": "The number of transfers cannot exceed the number of creatures in the cage.",
+        "fullTransferRequired": "All transfers are mandatory and open. All living units at the source must be moved.",
+        "partialTransferToOccupiedCageNotAllowed": "Partial transfer cannot be made to a full cage.",
+        "partialTransferToOccupiedCageOnlySameBatchAllowed": "Partial transfer to full cage can only be done for the same batch.",
+        "sameBatchStockChangeNotAllowed": "The target batch cannot be the same as the source batch.",
+        "stockChangeCountTooHigh": "The number of stock changes cannot exceed the number of creatures in the cage.",
+        "stockChangeSaved": "Stock change recorded.",
+        "shipmentCountTooHigh": "The number of shipments cannot exceed the number of creatures in the cage.",
+        "shipmentSaved": "Shipment recorded.",
+        "cageWarehouseTransferCountTooHigh": "The quantity moved from cage to warehouse cannot exceed the live quantity in the cage.",
+        "cageWarehouseTransferSaved": "Cage to warehouse transfer recorded.",
+        "sameWarehouseTransferNotAllowed": "Source and target warehouses cannot be the same.",
+        "noActiveBatchForWarehouse": "No active batch was found for the selected warehouse.",
+        "warehouseTransferCountTooHigh": "The warehouse transfer quantity cannot exceed the selected batch stock quantity.",
+        "warehouseTransferSaved": "Warehouse transfer recorded.",
+        "warehouseCageTransferCountTooHigh": "The quantity moved from warehouse to cage cannot exceed the selected batch stock quantity.",
+        "warehouseCageTransferSaved": "Warehouse to cage transfer recorded."
+      },
+      "pageDescription": "Make your daily operation entries quickly from a single screen.",
+      "transferSuccessDialog": {
+        "title": "Transaction Successful",
+        "description": "The cage replacement was successfully recorded. The page will be refreshed to update the data."
+      }
+    }
+  }
+}

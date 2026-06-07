@@ -1,0 +1,36 @@
+{
+  "projectMerge": {
+    "pageTitle": "Projektzusammenführung",
+    "pageDescription": "Führen Sie mehrere Projekte zum ausgewählten Masterprojekt zusammen und behalten Sie die Aufnahmespur bei.",
+    "form": {
+      "title": "Zusammenführungsprozess",
+      "description": "Wählen Sie das Zielprojekt aus, überprüfen Sie die Quellprojekte und speichern Sie die Zusammenführung.",
+      "disabledDescription": "Die Projektzusammenführung ist derzeit deaktiviert, da sie im Bildschirm „Aqua-Einstellungen“ deaktiviert ist.",
+      "save": "kombinieren"
+    },
+    "fields": {
+      "targetProject": "Zielprojekt",
+      "mergeDate": "Fusionsdatum",
+      "sourceStateAfterMerge": "Quellprojektstatus",
+      "description": "Beschreibung",
+      "descriptionPlaceholder": "Geben Sie eine optionale Beschreibung ein",
+      "sourceProjects": "Quellprojekte"
+    },
+    "options": {
+      "sourceStateAfterMerge": {
+        "0": "passiv",
+        "1": "Archiv"
+      }
+    },
+    "history": {
+      "sourceProjects": "Zusammengeführte Projekte",
+      "cageCount": "Beweglicher Käfig",
+      "mergeCount": "Quellprojekt",
+      "empty": "Es gibt noch keinen Projektzusammenführungsdatensatz."
+    },
+    "toast": {
+      "saved": "Die Projektzusammenführung ist abgeschlossen.",
+      "saveFailed": "Die Projektzusammenführung konnte nicht abgeschlossen werden."
+    }
+  }
+}

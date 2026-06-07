@@ -1,0 +1,51 @@
+{
+  "aqua": {
+    "devirFcrReport": {
+      "pageTitle": "Devir / FCR Raporu",
+      "description": "Seçilen projelerin ilk gününden bugüne kadar başlangıç, satış, fire, kalan stok ve FCR özetini gösterir.",
+      "loading": "Devir / FCR raporu yükleniyor...",
+      "loadFailed": "Devir / FCR raporu yüklenemedi.",
+      "emptyState": "Raporu görmek için en az bir proje seçin.",
+      "pendingState": "Projeleri seçip raporu getir butonuna basın.",
+      "filters": {
+        "fromDate": "Başlangıç Tarihi",
+        "toDate": "Bitiş Tarihi",
+        "projects": "Projeler",
+        "searchProject": "Proje ara...",
+        "selectFiltered": "Filtreleneni Seç",
+        "clearFiltered": "Filtreleneni Kaldır",
+        "selectionSummary": "{{count}} proje seçildi",
+        "apply": "Raporu Getir"
+      },
+      "summary": {
+        "openingFish": "Başlangıç Adet",
+        "openingFishDescription": "Dönemin açılışındaki canlı stok.",
+        "shipmentFish": "Satış Adet",
+        "shipmentFishDescription": "Dönem içinde sevk edilen toplam adet.",
+        "endingFish": "Kalan Stok",
+        "endingFishDescription": "Dönem sonundaki canlı stok.",
+        "fcr": "Dönem FCR",
+        "fcrDescription": "Toplam yem / üretilen biyokütle."
+      },
+      "tableTitle": "Proje Bazlı Devir Özeti",
+      "tableDescription": "Seçili projelerin {{fromDate}} - {{toDate}} kapsamındaki tam dönem özeti.",
+      "totals": "Toplam",
+      "columns": {
+        "projectName": "Proje Adı",
+        "projectCode": "Proje Kodu",
+        "openingFishCount": "Başlangıç Adet",
+        "shipmentFishCount": "Satış Adet",
+        "mortalityFishCount": "Fire Adet",
+        "mortalityPct": "Fire Oranı",
+        "endingFishCount": "Kalan Stok",
+        "endingAverageGram": "Gramaj",
+        "endingBiomassKg": "Stok KG",
+        "shippedBiomassKg": "Satış KG",
+        "mortalityBiomassKg": "Fire KG",
+        "producedBiomassKg": "Üretilen KG",
+        "totalFeedKg": "Yem KG",
+        "fcr": "FCR"
+      }
+    }
+  }
+}

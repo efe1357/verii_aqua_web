@@ -1,0 +1,68 @@
+{
+  "aqua": {
+    "businessKpiReport": {
+      "pageTitle": "Rapporto aziendale KPI",
+      "description": "Mostra lo stato di preparazione del raccolto, la confidenza delle previsioni e le ipotetiche aree di ricavo/margine per progetto e gabbia.",
+      "selectProject": "Seleziona progetto",
+      "noProject": "Progetto non trovato",
+      "loading": "Caricamento dati aziendali KPI...",
+      "loadFailed": "Impossibile caricare i dati aziendali KPI.",
+      "snapshotTitle": "Riepilogo aziendale",
+      "tableTitle": "Attività basata su reticoli KPI",
+      "tableDescription": "Le metriche di supporto alle decisioni e gli ipotetici indicatori economici sono elencati per mesh attiva.",
+      "dictionaryTitle": "Dizionario commerciale KPI",
+      "dictionaryDescription": "Questi campi derivano dai dati operativi esistenti e dalle regole di commento aziendale. Se sono presenti righe di accettazione e spedizione di merci prezzate, il sistema le utilizza; Le aree senza dati sui prezzi non vengono stimate in modo forzato.",
+      "assumptionTitle": "Ipotesi",
+      "assumptionDescription": "Il costo di alimentazione deriva dalle righe di entrata merci, mentre il prezzo di vendita dalle righe di spedizione. Se non esiste uno storico dei prezzi adeguato, il sistema accetta solo le parti mancanti come 0 e non produce cifre immaginarie.",
+      "assumptions": {
+        "targetHarvestGram": "Obiettivo del raccolto grammi",
+        "forecastDays": "Giorno di previsione",
+        "feedCostPerKg": "Costo del mangime",
+        "salePricePerKg": "prezzo di vendita"
+      },
+      "metrics": {
+        "estimatedFeedCost": "Costo del mangime",
+        "feedCostPerCurrentKg": "Costo del mangime per Kg vivo",
+        "projectedHarvestBiomassKg": "Biomassa di raccolta stimata",
+        "projectedRevenue": "Fatturato stimato",
+        "projectedGrossMargin": "Margine lordo stimato",
+        "projectedMarginPct": "Margine stimato %",
+        "daysToTarget": "Giorni per raggiungere Gram",
+        "estimatedHarvestDate": "Data di raccolta stimata",
+        "forecastConfidencePct": "Fiducia delle previsioni %",
+        "harvestReadinessPct": "Prontezza per il raccolto %"
+      },
+      "columns": {
+        "cage": "gabbia",
+        "targetWeightProgressPct": "Obiettivo Grammo %",
+        "daysToTarget": "Giorni rimanenti",
+        "harvestReadinessPct": "Preparazione %",
+        "forecastConfidencePct": "Fidati di %",
+        "estimatedFeedCost": "Costo del mangime",
+        "projectedRevenue": "fatturato",
+        "projectedGrossMargin": "Margine lordo",
+        "estimatedHarvestDate": "Data stimata"
+      },
+      "descriptions": {
+        "estimatedFeedCost": "La quantità totale del feed viene ricavata moltiplicando il costo del feed per kg derivato dalla cronologia di accettazione delle merci. Se non esiste uno storico dei prezzi per il titolo in questione, solo la parte mancante viene considerata 0.",
+        "feedCostPerCurrentKg": "Il costo del mangime trovato viene diviso per la biomassa viva disponibile. Pertanto, risponde alla domanda a quale livello di costo il progetto comporta kg oggi.",
+        "projectedHarvestBiomassKg": "L'andamento della crescita e della biomassa in KPI grezzo viene riportato al livello aziendale. Se viene mantenuto il ritmo di crescita attuale, viene mostrata la biomassa di raccolto prevista alla fine del periodo di previsione.",
+        "projectedRevenue": "La biomassa del raccolto stimato viene moltiplicata per il prezzo di vendita per kg derivato dalla cronologia delle spedizioni. Se non è presente lo storico delle vendite, il sistema calcola con cautela il fatturato, incrementandolo man mano che arrivano i dati.",
+        "projectedGrossMargin": "Il costo del mangime viene detratto dal fatturato stimato. Il sistema non prevede in modo forzato le aree di prezzo per le quali non esistono dati; Pertanto, il calcolo del margine è forte quanto l’attuale copertura del prezzo reale.",
+        "daysToTarget": "Prendi la differenza tra i grammi medi attuali e i grammi di raccolto target e dividi per ADG. Se ADG non è presente o il tasso di crescita è zero, l'area non può essere calcolata.",
+        "harvestReadinessPct": "Questo campo non rappresenta un singolo dato finanziario, ma un punteggio di supporto decisionale. La progressione del peso, le prestazioni di sopravvivenza e la qualità FCR si combinano per produrre un punteggio di preparazione compreso tra 0 e 100.",
+        "forecastConfidencePct": "Mostra quanto affidabile possa essere la previsione. Se è stata effettuata una pesatura recente, è stata effettuata un'alimentazione regolare negli ultimi giorni e il set di dati è sufficientemente maturo, il punteggio aumenta."
+      },
+      "formulas": {
+        "estimatedFeedCost": "Costo del feed = feed totale (kg) * costo del feed per kg. Il costo deriva dallo storico di accettazione delle merci e dal metodo di fallback.",
+        "feedCostPerCurrentKg": "Costo per vivo kg = costo del mangime stimato / biomassa disponibile (kg)",
+        "projectedHarvestBiomassKg": "Biomassa di raccolto stimata = biomassa attuale + aumento giornaliero della biomassa * {{forecastDays}} giorni",
+        "projectedRevenue": "Fatturato stimato = biomassa raccolta stimata * prezzo di vendita. Il prezzo di vendita deriva dallo storico delle spedizioni.",
+        "projectedGrossMargin": "Margine lordo stimato = fatturato stimato - costo del mangime. Il conto è forte quanto la sua attuale copertura dei prezzi reali.",
+        "daysToTarget": "Giorni rimanenti = (grammi target {{targetHarvestGram}} - grammi attuali) / ADG",
+        "harvestReadinessPct": "Preparazione % = punteggio avanzamento peso * 0,55 + sopravvivenza * 0,25 + punteggio FCR * 0,20",
+        "forecastConfidencePct": "Confidenza della previsione = vicinanza della pesatura + consistenza dell'alimentazione + punteggio di maturità dei dati"
+      }
+    }
+  }
+}

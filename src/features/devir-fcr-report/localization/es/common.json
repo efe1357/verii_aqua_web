@@ -1,0 +1,51 @@
+{
+  "aqua": {
+    "devirFcrReport": {
+      "pageTitle": "Informe de Turnover / FCR",
+      "description": "Muestra un resumen basado en proyectos de inicio, ventas, desperdicio, stock restante y FCR en el rango de fechas seleccionado.",
+      "loading": "Cargando informe de facturación / FCR...",
+      "loadFailed": "No se pudo cargar el informe de ciclo/FCR.",
+      "emptyState": "Seleccione al menos un proyecto para ver el informe.",
+      "pendingState": "Seleccione el rango de fechas y los proyectos y presione el botón obtener informe.",
+      "filters": {
+        "fromDate": "Fecha de inicio",
+        "toDate": "Fecha de finalización",
+        "projects": "Proyectos",
+        "searchProject": "Buscar proyectos...",
+        "selectFiltered": "Seleccionar filtrado",
+        "clearFiltered": "Eliminar filtrado",
+        "selectionSummary": "{{count}} proyecto seleccionado",
+        "apply": "Obtener informe"
+      },
+      "summary": {
+        "openingFish": "Cantidad inicial",
+        "openingFishDescription": "Ganado al inicio del período.",
+        "shipmentFish": "Cantidad de ventas",
+        "shipmentFishDescription": "Unidades totales enviadas durante el período.",
+        "endingFish": "Stock restante",
+        "endingFishDescription": "Ganado vivo al final del período.",
+        "fcr": "Período FCR",
+        "fcrDescription": "Pienso total/biomasa producida."
+      },
+      "tableTitle": "Resumen de transferencia basada en proyectos",
+      "tableDescription": "Resumen del proyecto en el rango {{fromDate}} - {{toDate}}.",
+      "totals": "totales",
+      "columns": {
+        "projectName": "Nombre del proyecto",
+        "projectCode": "Código de proyecto",
+        "openingFishCount": "Cantidad inicial",
+        "shipmentFishCount": "Cantidad de ventas",
+        "mortalityFishCount": "Cantidad de fuego",
+        "mortalityPct": "Tasa de desperdicio",
+        "endingFishCount": "Stock restante",
+        "endingAverageGram": "gramaje",
+        "endingBiomassKg": "Valores KG",
+        "shippedBiomassKg": "Ventas KG",
+        "mortalityBiomassKg": "Fuego KG",
+        "producedBiomassKg": "KG producido",
+        "totalFeedKg": "Feed KG",
+        "fcr": "FCR"
+      }
+    }
+  }
+}

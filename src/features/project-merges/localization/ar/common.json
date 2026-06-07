@@ -1,0 +1,36 @@
+{
+  "projectMerge": {
+    "pageTitle": "دمج المشروع",
+    "pageDescription": "دمج مشاريع متعددة في المشروع الرئيسي المحدد والحفاظ على مسار التسجيل.",
+    "form": {
+      "title": "عملية الدمج",
+      "description": "حدد المشروع المستهدف، وتحقق من المشاريع المصدر واحفظ الدمج.",
+      "disabledDescription": "تم تعطيل دمج المشروع حاليًا لأنه تم إيقافه في شاشة إعدادات Aqua.",
+      "save": "يجمع"
+    },
+    "fields": {
+      "targetProject": "المشروع المستهدف",
+      "mergeDate": "تاريخ الاندماج",
+      "sourceStateAfterMerge": "حالة المشروع المصدر",
+      "description": "توضيح",
+      "descriptionPlaceholder": "أدخل الوصف الاختياري",
+      "sourceProjects": "مشاريع المصدر"
+    },
+    "options": {
+      "sourceStateAfterMerge": {
+        "0": "سلبي",
+        "1": "أرشيف"
+      }
+    },
+    "history": {
+      "sourceProjects": "المشاريع المدمجة",
+      "cageCount": "قفص متحرك",
+      "mergeCount": "مشروع المصدر",
+      "empty": "لا يوجد سجل دمج المشروع حتى الآن."
+    },
+    "toast": {
+      "saved": "اكتمل دمج المشروع.",
+      "saveFailed": "لا يمكن إكمال دمج المشروع."
+    }
+  }
+}

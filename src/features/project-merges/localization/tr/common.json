@@ -1,0 +1,36 @@
+{
+  "projectMerge": {
+    "pageTitle": "Proje Birleştirme",
+    "pageDescription": "Birden fazla projeyi seçilen ana projede birleştirin ve kayıt izini koruyun.",
+    "form": {
+      "title": "Birleştirme İşlemi",
+      "description": "Hedef projeyi seçin, kaynak projeleri işaretleyin ve birleştirmeyi kaydedin.",
+      "disabledDescription": "Proje birleştirme Aqua Ayarları ekranında kapalı olduğu için şu an pasif durumda.",
+      "save": "Birleştir"
+    },
+    "fields": {
+      "targetProject": "Hedef Proje",
+      "mergeDate": "Birleştirme Tarihi",
+      "sourceStateAfterMerge": "Kaynak Proje Durumu",
+      "description": "Açıklama",
+      "descriptionPlaceholder": "İsteğe bağlı açıklama girin",
+      "sourceProjects": "Kaynak Projeler"
+    },
+    "options": {
+      "sourceStateAfterMerge": {
+        "0": "Pasif",
+        "1": "Arşiv"
+      }
+    },
+    "history": {
+      "sourceProjects": "Birleşen Projeler",
+      "cageCount": "Taşınan Kafes",
+      "mergeCount": "Kaynak Proje",
+      "empty": "Henüz proje birleştirme kaydı bulunmuyor."
+    },
+    "toast": {
+      "saved": "Proje birleştirme tamamlandı.",
+      "saveFailed": "Proje birleştirme tamamlanamadı."
+    }
+  }
+}

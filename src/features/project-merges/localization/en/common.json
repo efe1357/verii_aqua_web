@@ -1,0 +1,36 @@
+{
+  "projectMerge": {
+    "pageTitle": "Project Merge",
+    "pageDescription": "Merge multiple projects into the selected master project and preserve the recording track.",
+    "form": {
+      "title": "Merge Process",
+      "description": "Select the target project, check the source projects and save the merge.",
+      "disabledDescription": "Project merging is currently disabled because it is turned off in the Aqua Settings screen.",
+      "save": "combine"
+    },
+    "fields": {
+      "targetProject": "Target Project",
+      "mergeDate": "Merger Date",
+      "sourceStateAfterMerge": "Source Project Status",
+      "description": "Description",
+      "descriptionPlaceholder": "Enter optional description",
+      "sourceProjects": "Source Projects"
+    },
+    "options": {
+      "sourceStateAfterMerge": {
+        "0": "passive",
+        "1": "archive"
+      }
+    },
+    "history": {
+      "sourceProjects": "Merged Projects",
+      "cageCount": "Moving Cage",
+      "mergeCount": "Source Project",
+      "empty": "There is no project merge record yet."
+    },
+    "toast": {
+      "saved": "Project merging is complete.",
+      "saveFailed": "Project merge could not be completed."
+    }
+  }
+}

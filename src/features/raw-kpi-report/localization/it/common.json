@@ -1,0 +1,66 @@
+{
+  "aqua": {
+    "rawKpiReport": {
+      "pageTitle": "Rapporto KPI non elaborato",
+      "description": "Mostra le aree KPI grezze operative e biologiche per progetto e gabbia.",
+      "selectProject": "Seleziona progetto",
+      "noProject": "Progetto non trovato",
+      "loading": "Caricamento dati grezzi KPI...",
+      "loadFailed": "Impossibile caricare i dati KPI non elaborati.",
+      "snapshotTitle": "Riepilogo del progetto",
+      "tableTitle": "Raw basato su reticolo KPI",
+      "tableDescription": "Le prestazioni biologiche e i risultati operativi sono elencati per gabbia attiva.",
+      "dictionaryTitle": "KPI Dizionario",
+      "dictionaryDescription": "Puoi vedere cosa dice ciascun campo e come viene calcolato in questa sezione.",
+      "metrics": {
+        "stockedFish": "Pesce principiante",
+        "liveFish": "Pesce vivo",
+        "currentBiomassKg": "Biomassa attuale",
+        "totalFeedKg": "Alimentazione totale",
+        "survivalPct": "Sopravvivenza %",
+        "mortalityPct": "Mortalità %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG (g/giorno)",
+        "sgrPctPerDay": "SGR (%/giorno)",
+        "densityPct": "Densità %",
+        "forecastBiomassKg30d": "Biomassa stimata dopo 30 giorni",
+        "cageFishStock": "Cage Stock",
+        "warehouseFishStock": "Warehouse Stock",
+        "totalSystemFishStock": "Total System Stock",
+        "cageBiomassKg": "Cage Biomass",
+        "warehouseBiomassKg": "Warehouse Biomass",
+        "totalSystemBiomassKg": "Total System Biomass"
+      },
+      "columns": {
+        "cage": "gabbia",
+        "daysInSea": "Giornata al mare",
+        "liveFish": "Pesce vivo",
+        "currentAverageGram": "Media grammo",
+        "currentBiomassKg": "Biomassa (kg)",
+        "totalFeedKg": "Alimentazione (kg)",
+        "survivalPct": "Sopravvivenza %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG",
+        "densityPct": "Densità %"
+      },
+      "descriptions": {
+        "survivalPct": "Quest'area mostra la quantità di pesci originariamente collocati nella gabbia che sono ancora vivi. Nel calcolo vengono utilizzati il ​​numero iniziale di pesci e il numero di pesci vivi esistenti; Viene letto dalla popolazione rimanente dopo il trasferimento e la spedizione.",
+        "mortalityPct": "Questo campo mostra la mortalità totale accumulata relativa allo stock iniziale. Il numero totale di rifiuti nei registri di mortalità viene calcolato dividendo per il numero iniziale di pesci.",
+        "fcr": "È il campo Rapporto di conversione del feed. La quantità totale di mangime registrata nel sistema viene divisa per il conseguente aumento netto della biomassa. Al diminuire del valore si intende che per la stessa crescita viene utilizzata meno mangime.",
+        "adgGramPerDay": "Campo Guadagno giornaliero medio. La differenza tra i grammi medi di pesce iniziali e i grammi medi attuali viene divisa per il numero di giorni in mare. Restituisce la crescita media giornaliera per pesce.",
+        "sgrPctPerDay": "È il campo Tasso di crescita specifico. Viene preso il logaritmo naturale dei valori in grammi iniziali e attuali e la differenza viene ridotta su base giornaliera. È particolarmente significativo per confrontare gruppi con diversi livelli di peso.",
+        "densityPct": "È il tasso di utilizzo temporaneo per la densità delle gabbie. Poiché attualmente non esiste un modello di volume o m3 effettivo, la biomassa disponibile viene divisa per la biomassa di capacità definita della gabbia. Quindi per ora questo campo dovrebbe essere letto come la percentuale di occupazione della capacità.",
+        "forecastBiomassKg30d": "Mostra la biomassa approssimativa che si prevede si formerà dopo 30 giorni in base al tasso di crescita finale. Viene presa la biomassa attuale, l'aumento giornaliero stimato della biomassa viene aggiunto e riportato alla finestra di 30 giorni."
+      },
+      "formulas": {
+        "survivalPct": "Sopravvivenza % = pesce vivo attuale/pesce iniziale * 100",
+        "mortalityPct": "Mortalità % = spreco totale/pesce iniziale * 100",
+        "fcr": "FCR = mangime totale (kg) / aumento della biomassa (kg)",
+        "adgGramPerDay": "ADG = (grammi medi attuali - grammi medi iniziali) / giorni in mare",
+        "sgrPctPerDay": "SGR = 100 * (ln(grammi attuali) - ln(grammi iniziali)) / giorno",
+        "densityPct": "Densità % = biomassa disponibile / biomassa capacità gabbia * 100",
+        "forecastBiomassKg30d": "Biomassa stimata = biomassa attuale + aumento giornaliero della biomassa * {{forecastDays}} giorni"
+      }
+    }
+  }
+}

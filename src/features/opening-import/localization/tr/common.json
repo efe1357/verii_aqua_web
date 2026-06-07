@@ -1,0 +1,201 @@
+{
+  "aqua": {
+    "openingImport": {
+      "badge": "İlk Geçiş",
+      "title": "İlk Geçiş / Veri Aktarımı",
+      "description": "Eski sistemdeki aktif proje, kafes ve açılış stok durumunu kontrollü şekilde içeri alın. Excel şablonunu indirip doldurun, kolonları eşleyin, önizleyin ve hatasız ise tek adımda sisteme aktarın.",
+      "cutoverModeHint": "Eğer sadece bugünkü net stokla başlayacaksan Açılış Stoku yeterlidir. Geçmiş özet mal kabul, fire, yemleme ve sevkiyat bilgisini de sisteme almak istersen ilgili açılış sheetlerini doldurabilirsin. Açılış Stoku boşsa sistem net açılış bakiyesini mal kabul ve fire özetlerinden türetir.",
+      "guide": {
+        "title": "Açılış şablonları ne işe yarar?",
+        "description": "Kurulum ekibinin kafası karışmasın diye her açılış sheetinin hangi iş senaryosu için kullanıldığını burada özetledik. Aynı rehber Excel şablonunun ilk sayfasında da bulunur.",
+        "sheetName": "Kullanım Rehberi",
+        "exportSection": "Bölüm",
+        "exportWhen": "Ne zaman kullanılır?",
+        "exportRule": "Doldurma kuralı",
+        "cards": {
+          "openingStock": {
+            "title": "Açılış Stoku",
+            "body": "Bugün Aqua kullanmaya başlarken elinizdeki net balık adedi ve ortalama gramdır. Geçmiş belge detayı yoksa yalnızca bu sheet ile canlı stok başlatılır."
+          },
+          "openingGoodsReceipts": {
+            "title": "Açılış Mal Kabul",
+            "body": "Balığın sisteme başlamadan önce hangi giriş hareketleriyle geldiğini özet belge olarak taşır. Bir projede tek mal kabul oluşur; başlık ilk satırda yazılır, aynı batch alt satırlarda kafeslere dağıtılır."
+          },
+          "openingShipments": {
+            "title": "Açılış Sevkiyat",
+            "body": "Sistem açılmadan önce satılmış ya da çıkışı yapılmış balıkları taşır. Satış fiyatı girilirse gelir, marj ve Business KPI tarafı geçmiş satışları da hesaba katar."
+          },
+          "cageWarehouse": {
+            "title": "Kafes-Depo Eşleştirme",
+            "body": "Cages sheetindeki WarehouseCode opsiyoneldir. Doldurulursa kafes aktif ERP/Netsis deposuna bağlanır; B2 gibi kafes adı artık otomatik depo kabul edilmez."
+          },
+          "openingMortalityFeedings": {
+            "title": "Açılış Fire ve Yemleme",
+            "body": "Geçmiş fire ve yem tüketimi FCR, yaşam oranı ve üretim raporlarında görünsün isteniyorsa doldurulur. Detay bilinmiyorsa boş bırakılabilir."
+          },
+          "recommendedPath": {
+            "title": "Önerilen En Basit Yol",
+            "body": "Sadece canlı başlangıç yapılacaksa Projects, Cages ve OpeningStock yeterlidir. Geçmiş hareket analizi isteniyorsa ilgili özet sheetler ayrıca doldurulur."
+          },
+          "dateFormat": {
+            "title": "Tarih Formatı",
+            "body": "Tüm tarih alanlarında önerilen format 2026-01-31 şeklindedir. 31.01.2026 gibi Türk formatı ve Excel seri tarihleri de desteklenir."
+          }
+        },
+        "rows": {
+          "0": {
+            "title": "Projeler",
+            "when": "Aqua içinde açılacak projenin ana bilgisidir. Her ilk geçiş dosyasında proje kodu ve proje adı net olmalıdır.",
+            "rule": "ProjectCode benzersiz olmalıdır. Aynı proje daha önce kurulduysa import tekrar çalıştırılmaz ve kullanıcı uyarılır."
+          },
+          "1": {
+            "title": "Kafesler",
+            "when": "Projeye bağlı kafesleri tanımlar. Kafes B2 gibi bir isim taşıyabilir; bu isim artık otomatik olarak Netsis deposu kabul edilmez.",
+            "rule": "WarehouseCode opsiyoneldir. Doldurulursa bu kafes ilgili ERP/Netsis deposuna aktif olarak eşlenir."
+          },
+          "2": {
+            "title": "Açılış Stoku",
+            "when": "Sisteme bugün başlarken eldeki net canlı stok ve biyokütleyi girmek için kullanılır.",
+            "rule": "Geçmiş detay bilinmiyorsa en güvenli başlangıç burasıdır. Belge üretmez; açılış bakiyesi oluşturur."
+          },
+          "3": {
+            "title": "Açılış Mal Kabul",
+            "when": "Sistem başlamadan önce tesise/projeye girmiş balık hareketlerini özet belge olarak taşımak için kullanılır.",
+            "rule": "Her proje için tek mal kabul başlığı oluşur; Mal Kabul No ve Tarihi ilk satırda yazılıp devam dağıtım satırlarında boş bırakılabilir. Aynı BatchCode farklı kafeslerde tekrar ediyorsa adetlerin toplamı tek batch kalemidir. Farklı ürün veya ortalama gram için farklı BatchCode kullanılır."
+          },
+          "4": {
+            "title": "Açılış Sevkiyat",
+            "when": "Sistem başlamadan önce satılmış veya çıkışı yapılmış balıkları özet sevkiyat olarak taşımak için kullanılır.",
+            "rule": "Business KPI, gelir/marj ve geçmiş satış adedi/kg takibi için fiyat varsa UnitPrice doldurulur; yoksa 0 kabul edilir."
+          },
+          "5": {
+            "title": "Açılış Fire ve Yemleme",
+            "when": "Geçmiş fire ve yem tüketimi raporlarda görünsün, FCR/yaşam oranı başlangıçtan itibaren anlamlı hesaplansın diye kullanılır.",
+            "rule": "Geçmiş detay yoksa boş bırakılabilir. Doldurulursa ilgili batch, stok ve kafes bilgileriyle eşleşmelidir."
+          },
+          "6": {
+            "title": "Tarih Formatı",
+            "when": "Başlangıç, atama, bakiye, mal kabul, fire, yemleme ve sevkiyat tarihleri için geçerlidir.",
+            "rule": "Önerilen format yyyy-MM-dd örn. 2026-01-31. Kullanıcı isterse gg.aa.yyyy örn. 31.01.2026 veya Excel seri tarihi de kullanılabilir."
+          }
+        }
+      },
+      "downloadTemplate": "Şablon İndir",
+      "downloadErrors": "Hata Excel'ini İndir",
+      "sourceSystem": "Kaynak Sistem",
+      "file": "Excel Dosyası",
+      "noFile": "Henüz dosya seçilmedi.",
+      "preview": "Önizle ve Doğrula",
+      "commit": "İçe Aktar",
+      "summaryTitle": "İş Özeti",
+      "summaryDescription": "Önizleme sonrası satır bazlı doğrulama sonuçları burada görünür.",
+      "mappingTitle": "Kolon Eşleme",
+      "mappingDescription": "Excel kolonlarını sistem alanlarına eşleyin. Zorunlu alanlar boş bırakılmamalıdır.",
+      "sheetStats": "{{headers}} kolon, {{rows}} satır",
+      "sourceColumn": "Excel Kolonu",
+      "targetField": "Sistem Alanı",
+      "ignoreColumn": "Bu kolonu yoksay",
+      "sheetMissing": "Bu sheet dosyada bulunamadı ya da boş.",
+      "previewTitle": "Önizleme Sonuçları",
+      "previewDescription": "İş #{{jobId}} için durum: {{status}}",
+      "previewRowNumber": "Satır",
+      "status": "Durum",
+      "messages": "Mesajlar",
+      "normalizedData": "Normalize Veri",
+      "noIssues": "Sorun yok",
+      "commitResultTitle": "İçe Aktarım Sonucu",
+      "commitResultDescription": "İlk geçiş başarıyla işlendi. Oluşan kayıt özetini aşağıda görebilirsiniz.",
+      "cleanupSoftDeleted": {
+        "title": "Silinmiş test kaydı bulundu",
+        "description": "Bu kodlar daha önce test sırasında açılıp silinmiş. İstersen sistem bu önizlemede görünen silinmiş proje/kafes kayıtlarını kalıcı temizlemeyi denesin; ilişkili hareket varsa işlem güvenlik için durur.",
+        "action": "Silinmiş test kayıtlarını temizle",
+        "confirm": "Bu işlem yalnızca bu önizlemede yakalanan silinmiş test proje/kafes kayıtlarını kalıcı temizlemeyi dener. İlişkili hareket varsa işlem durdurulur. Devam edilsin mi?",
+        "success": "{{projects}} proje ve {{cages}} kafes test kaydı temizlendi. Önizlemeyi yeniden çalıştırın.",
+        "failed": "Silinmiş test kayıtları temizlenemedi."
+      },
+      "steps": {
+        "uploadTitle": "Dosya ve Kaynak Bilgisi",
+        "uploadDescription": "Şablonu indirip doldurduktan sonra Excel dosyasını seçin ve önizleme başlatın."
+      },
+      "summary": {
+        "totalRows": "Toplam Satır",
+        "validRows": "Geçerli Satır",
+        "warningRows": "Uyarılı Satır",
+        "errorRows": "Hatalı Satır"
+      },
+      "sheets": {
+        "Projects": "Projeler",
+        "Cages": "Kafesler",
+        "OpeningStock": "Açılış Stoku",
+        "OpeningGoodsReceipts": "Açılış Mal Kabulleri",
+        "OpeningMortality": "Açılış Fire",
+        "OpeningFeedings": "Açılış Yemleme",
+        "OpeningShipments": "Açılış Sevkiyat"
+      },
+      "fields": {
+        "ProjectCode": "Proje Kodu",
+        "ProjectName": "Proje Adı",
+        "StartDate": "Başlangıç Tarihi",
+        "Note": "Not",
+        "CageCode": "Kafes Kodu",
+        "CageName": "Kafes Adı",
+        "AssignedDate": "Atama Tarihi",
+        "WarehouseCode": "ERP Depo Kodu",
+        "TargetWarehouseCode": "Hedef ERP Depo Kodu",
+        "BatchCode": "Batch Kodu",
+        "FishStockCode": "Balık Stok Kodu",
+        "FishCount": "Balık Adedi",
+        "AverageKg": "Ortalama KG",
+        "AverageGram": "Ortalama Gram",
+        "AsOfDate": "Bakiye Tarihi",
+        "ReceiptNo": "Mal Kabul No",
+        "ReceiptDate": "Mal Kabul Tarihi",
+        "DeadCount": "Fire Adedi",
+        "MortalityDate": "Fire Tarihi",
+        "FeedStockCode": "Yem Stok Kodu",
+        "FeedingDate": "Yemleme Tarihi",
+        "FeedingSlot": "Yemleme Turu",
+        "FeedKg": "Yem KG",
+        "FeedGram": "Yem Gramı",
+        "ShipmentDate": "Sevkiyat Tarihi",
+        "CurrencyCode": "Para Birimi",
+        "ExchangeRate": "Kur",
+        "UnitPrice": "Birim Fiyat"
+      },
+      "statusValues": {
+        "Valid": "Geçerli",
+        "Applied": "Uygulandı",
+        "Error": "Hatalı",
+        "Warning": "Uyarı"
+      },
+      "commitSummary": {
+        "createdProjects": "Oluşturulan Proje",
+        "createdCages": "Oluşturulan Kafes",
+        "createdCageWarehouseMappings": "Oluşturulan Kafes-Depo Eşleme",
+        "createdProjectCages": "Oluşturulan Proje-Kafes",
+        "createdFishBatches": "Oluşturulan Batch",
+        "createdGoodsReceipts": "Oluşturulan Özet Mal Kabul",
+        "createdFeedingHeaders": "Oluşturulan Özet Yemleme",
+        "createdGoodsReceiptLines": "Oluşturulan Mal Kabul Satırı",
+        "createdFeedingLines": "Oluşturulan Yemleme Satırı",
+        "createdFeedingDistributions": "Oluşturulan Yemleme Dağılımı",
+        "createdMortalityHeaders": "Oluşturulan Özet Fire Belgesi",
+        "createdMortalityLines": "Oluşturulan Fire Satırı",
+        "createdShipmentHeaders": "Oluşturulan Özet Sevkiyat Belgesi",
+        "createdShipmentLines": "Oluşturulan Sevkiyat Satırı",
+        "appliedCageRows": "Kafese Yazılan Satır",
+        "appliedWarehouseRows": "Depoya Yazılan Satır",
+        "skippedRows": "Atlanan Satır"
+      },
+      "toast": {
+        "fileParsed": "Excel dosyası okundu.",
+        "fileParseFailed": "Excel dosyası okunamadı.",
+        "previewReady": "Önizleme hazırlandı.",
+        "previewFailed": "Önizleme alınamadı.",
+        "commitSuccessful": "İlk geçiş başarıyla içe aktarıldı.",
+        "commitFailed": "İçe aktarma işlemi başarısız oldu."
+      },
+      "noPermission": "Bu ekranı görüntüleme yetkiniz yok."
+    }
+  }
+}

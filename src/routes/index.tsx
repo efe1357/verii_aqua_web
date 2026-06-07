@@ -88,15 +88,15 @@ const StockConvertLinesPage = lazyImport(() => import('@/features/stock-converts
 const NetOperationLinesPage = lazyImport(() => import('@/features/net-operations'), 'NetOperationLinesPage', ['aqua', 'net-operations']);
 const BatchMovementsPage = lazyImport(() => import('@/features/batch-movements'), 'BatchMovementsPage', ['aqua', 'batch-movements']);
 const CageBalancesPage = lazyImport(() => import('@/features/cage-balances'), 'CageBalancesPage', ['aqua', 'cage-balances']);
-const ProjectDetailReportPage = lazyImport(() => import('@/features/project-detail-report'), 'ProjectDetailReportPage', 'aqua');
+const ProjectDetailReportPage = lazyImport(() => import('@/features/project-detail-report'), 'ProjectDetailReportPage', ['aqua', 'project-detail-report']);
 const AquaDashboardPage = lazyImport(() => import('@/features/aqua-dashboard'), 'AquaDashboardPage', 'aqua');
-const RawKpiReportPage = lazyImport(() => import('@/features/raw-kpi-report'), 'RawKpiReportPage', 'aqua');
-const BusinessKpiReportPage = lazyImport(() => import('@/features/business-kpi-report'), 'BusinessKpiReportPage', 'aqua');
-const DevirFcrReportPage = lazyImport(() => import('@/features/devir-fcr-report'), 'DevirFcrReportPage', 'aqua');
-const QuickSetupPage = lazyImport(() => import('@/features/quick-setup'), 'QuickSetupPage', 'aqua');
-const QuickDailyEntryPage = lazyImport(() => import('@/features/quick-daily-entry'), 'QuickDailyEntryPage', 'aqua');
-const OpeningImportPage = lazyImport(() => import('@/features/opening-import'), 'OpeningImportPage', 'aqua');
-const ProjectMergesPage = lazyImport(() => import('@/features/project-merges'), 'ProjectMergesPage', 'aqua');
+const RawKpiReportPage = lazyImport(() => import('@/features/raw-kpi-report'), 'RawKpiReportPage', ['aqua', 'raw-kpi-report']);
+const BusinessKpiReportPage = lazyImport(() => import('@/features/business-kpi-report'), 'BusinessKpiReportPage', ['aqua', 'business-kpi-report']);
+const DevirFcrReportPage = lazyImport(() => import('@/features/devir-fcr-report'), 'DevirFcrReportPage', ['aqua', 'devir-fcr-report']);
+const QuickSetupPage = lazyImport(() => import('@/features/quick-setup'), 'QuickSetupPage', ['aqua', 'quick-setup']);
+const QuickDailyEntryPage = lazyImport(() => import('@/features/quick-daily-entry'), 'QuickDailyEntryPage', ['aqua', 'quick-daily-entry', 'project-merges']);
+const OpeningImportPage = lazyImport(() => import('@/features/opening-import'), 'OpeningImportPage', ['aqua', 'opening-import']);
+const ProjectMergesPage = lazyImport(() => import('@/features/project-merges'), 'ProjectMergesPage', ['aqua', 'project-merges']);
 const WelcomePage = lazyImport(() => import('@/features/welcome'), 'WelcomePage', 'welcome');
 
 export const router = createBrowserRouter([

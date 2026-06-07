@@ -1,0 +1,51 @@
+{
+  "aqua": {
+    "devirFcrReport": {
+      "pageTitle": "تقرير الدوران / FCR",
+      "description": "يعرض ملخصًا قائمًا على المشروع للبدء والمبيعات والهدر والمخزون المتبقي وFCR في النطاق الزمني المحدد.",
+      "loading": "جارٍ تحميل تقرير حجم الأعمال / FCR...",
+      "loadFailed": "تعذر تحميل تقرير الدورة / FCR.",
+      "emptyState": "حدد مشروعًا واحدًا على الأقل لرؤية التقرير.",
+      "pendingState": "حدد النطاق الزمني والمشاريع واضغط على زر الحصول على التقرير.",
+      "filters": {
+        "fromDate": "تاريخ البدء",
+        "toDate": "تاريخ الانتهاء",
+        "projects": "المشاريع",
+        "searchProject": "البحث عن المشاريع...",
+        "selectFiltered": "حدد تمت تصفيته",
+        "clearFiltered": "إزالة تمت تصفيتها",
+        "selectionSummary": "{{count}} تم تحديد المشروع",
+        "apply": "احصل على التقرير"
+      },
+      "summary": {
+        "openingFish": "كمية البداية",
+        "openingFishDescription": "المخزون الحي عند افتتاح الفترة.",
+        "shipmentFish": "كمية المبيعات",
+        "shipmentFishDescription": "إجمالي الوحدات المشحونة خلال الفترة.",
+        "endingFish": "المخزون المتبقي",
+        "endingFishDescription": "المخزون الحي في نهاية الفترة.",
+        "fcr": "الفترة FCR",
+        "fcrDescription": "إجمالي العلف / الكتلة الحيوية المنتجة."
+      },
+      "tableTitle": "ملخص تسليم المشروع",
+      "tableDescription": "ملخص المشروع في النطاق {{fromDate}} - {{toDate}}.",
+      "totals": "المجموع",
+      "columns": {
+        "projectName": "اسم المشروع",
+        "projectCode": "رمز المشروع",
+        "openingFishCount": "كمية البداية",
+        "shipmentFishCount": "كمية المبيعات",
+        "mortalityFishCount": "كمية النار",
+        "mortalityPct": "معدل النفايات",
+        "endingFishCount": "المخزون المتبقي",
+        "endingAverageGram": "جراماج",
+        "endingBiomassKg": "المخزون KG",
+        "shippedBiomassKg": "المبيعات KG",
+        "mortalityBiomassKg": "حريق KG",
+        "producedBiomassKg": "KG المنتج",
+        "totalFeedKg": "تغذية KG",
+        "fcr": "FCR"
+      }
+    }
+  }
+}

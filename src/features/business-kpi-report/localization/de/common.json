@@ -1,0 +1,68 @@
+{
+  "aqua": {
+    "businessKpiReport": {
+      "pageTitle": "Geschäftsbericht KPI",
+      "description": "Zeigt Erntebereitschaft, Prognosesicherheit und hypothetische Umsatz-/Margenbereiche nach Projekt und Käfig.",
+      "selectProject": "Projekt auswählen",
+      "noProject": "Projekt nicht gefunden",
+      "loading": "Geschäftsdaten KPI werden geladen...",
+      "loadFailed": "Geschäftsdaten KPI konnten nicht geladen werden.",
+      "snapshotTitle": "Unternehmenszusammenfassung",
+      "tableTitle": "Lattice-basiertes Geschäft KPI",
+      "tableDescription": "Entscheidungsunterstützungsmetriken und hypothetische Wirtschaftsindikatoren werden nach aktivem Netz aufgelistet.",
+      "dictionaryTitle": "Business KPI Wörterbuch",
+      "dictionaryDescription": "Diese Felder werden aus vorhandenen Betriebsdaten und Geschäftskommentarregeln abgeleitet. Wenn es bepreiste Warenannahme- und Versandzeilen gibt, verwendet das System diese; Gebiete ohne Preisdaten werden nicht zwingend geschätzt.",
+      "assumptionTitle": "Annahmen",
+      "assumptionDescription": "Die Futterkosten werden aus den Wareneingangszeilen und der Verkaufspreis aus den Versandzeilen abgeleitet. Liegt keine passende Preishistorie vor, akzeptiert das System die fehlenden Teile nur als 0 und erzeugt keine imaginären Zahlen.",
+      "assumptions": {
+        "targetHarvestGram": "Zielernte in Gramm",
+        "forecastDays": "Vorhersagetag",
+        "feedCostPerKg": "Futterkosten",
+        "salePricePerKg": "Verkaufspreis"
+      },
+      "metrics": {
+        "estimatedFeedCost": "Futterkosten",
+        "feedCostPerCurrentKg": "Futterkosten pro lebendem kg",
+        "projectedHarvestBiomassKg": "Geschätzte Erntebiomasse",
+        "projectedRevenue": "Geschätzter Umsatz",
+        "projectedGrossMargin": "Geschätzte Bruttomarge",
+        "projectedMarginPct": "Geschätzte Marge %",
+        "daysToTarget": "Tage bis zum Zielgramm",
+        "estimatedHarvestDate": "Geschätztes Erntedatum",
+        "forecastConfidencePct": "Prognosevertrauen %",
+        "harvestReadinessPct": "Erntebereitschaft %"
+      },
+      "columns": {
+        "cage": "Käfig",
+        "targetWeightProgressPct": "Zielgramm %",
+        "daysToTarget": "Verbleibende Tage",
+        "harvestReadinessPct": "Vorbereitung %",
+        "forecastConfidencePct": "Vertrauen Sie %",
+        "estimatedFeedCost": "Futterkosten",
+        "projectedRevenue": "Umsatz",
+        "projectedGrossMargin": "Bruttomarge",
+        "estimatedHarvestDate": "Voraussichtliches Datum"
+      },
+      "descriptions": {
+        "estimatedFeedCost": "Die Gesamtfuttermenge ergibt sich aus der Multiplikation der aus der Warenannahmehistorie abgeleiteten Futterkosten pro kg. Liegt für die entsprechende Aktie kein Kursverlauf vor, wird nur der fehlende Teil als 0 gewertet.",
+        "feedCostPerCurrentKg": "Die ermittelten Futterkosten werden durch die verfügbare lebende Biomasse dividiert. Damit wird die Frage beantwortet, auf welchem ​​Kostenniveau das Projekt heute kg trägt.",
+        "projectedHarvestBiomassKg": "Der Wachstums- und Biomassetrend bei Roh-KPI wird auf die Geschäftsebene übertragen. Bei Beibehaltung des aktuellen Wachstumstempos wird die erwartete Erntebiomasse am Ende des Prognosezeitraums angezeigt.",
+        "projectedRevenue": "Die geschätzte Erntebiomasse wird mit dem aus der Versandhistorie abgeleiteten Verkaufspreis pro kg multipliziert. Liegt keine Verkaufshistorie vor, berechnet das System den Umsatz vorsichtig und erhöht ihn bei Eingang der Daten.",
+        "projectedGrossMargin": "Die Futterkosten werden vom geschätzten Umsatz abgezogen. Das System prognostiziert keine Preisbereiche, für die keine Daten vorliegen. Daher ist die Margenberechnung genauso stark wie die aktuelle reale Preisabdeckung.",
+        "daysToTarget": "Nehmen Sie die Differenz zwischen den aktuellen durchschnittlichen Gramm und den angestrebten Erntegrammen und dividieren Sie durch ADG. Wenn ADG nicht vorhanden ist oder die Wachstumsrate Null ist, kann die Fläche nicht berechnet werden.",
+        "harvestReadinessPct": "Bei diesem Feld handelt es sich nicht um einzelne Finanzdaten, sondern um einen Entscheidungsunterstützungswert. Gewichtsentwicklung, Überlebensleistung und FCR-Qualität ergeben zusammen einen Vorbereitungswert zwischen 0 und 100.",
+        "forecastConfidencePct": "Es zeigt, wie zuverlässig die Prognose sein kann. Wenn ein aktuelles Wiegen vorliegt, in den letzten Tagen regelmäßig gefüttert wurde und der Datensatz ausgereift genug ist, erhöht sich die Punktzahl."
+      },
+      "formulas": {
+        "estimatedFeedCost": "Futterkosten = Gesamtfutter (kg) * Futterkosten pro kg. Die Kosten werden aus der Warenannahmehistorie und der Fallback-Methode abgeleitet.",
+        "feedCostPerCurrentKg": "Kosten pro Leben kg = geschätzte Futterkosten / verfügbare Biomasse (kg)",
+        "projectedHarvestBiomassKg": "Geschätzte Erntebiomasse = aktuelle Biomasse + täglicher Biomassezuwachs * {{forecastDays}} Tage",
+        "projectedRevenue": "Geschätzter Umsatz = geschätzte geerntete Biomasse * Verkaufspreis. Der Verkaufspreis ergibt sich aus der Versandhistorie.",
+        "projectedGrossMargin": "Geschätzte Bruttomarge = geschätzter Umsatz – Futterkosten. Das Konto ist nur so stark wie seine aktuelle tatsächliche Preisabdeckung.",
+        "daysToTarget": "Verbleibende Tage = (Zielgramm {{targetHarvestGram}} - aktuelle Gramm) / ADG",
+        "harvestReadinessPct": "Vorbereitung % = Gewichtsfortschrittswert * 0,55 + Überleben * 0,25 + FCR Wert * 0,20",
+        "forecastConfidencePct": "Prognosekonfidenz = Gewichtungsnähe + Fütterungskonsistenz + Datenreifewert"
+      }
+    }
+  }
+}

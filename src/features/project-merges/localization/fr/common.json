@@ -1,0 +1,36 @@
+{
+  "projectMerge": {
+    "pageTitle": "Fusion de projets",
+    "pageDescription": "Fusionnez plusieurs projets dans le projet principal sélectionné et conservez la piste d'enregistrement.",
+    "form": {
+      "title": "Processus de fusion",
+      "description": "Sélectionnez le projet cible, vérifiez les projets sources et enregistrez la fusion.",
+      "disabledDescription": "La fusion de projets est actuellement désactivée car elle est désactivée dans l'écran Paramètres Aqua.",
+      "save": "combiner"
+    },
+    "fields": {
+      "targetProject": "Projet cible",
+      "mergeDate": "Date de fusion",
+      "sourceStateAfterMerge": "Statut du projet source",
+      "description": "Descriptif",
+      "descriptionPlaceholder": "Entrez une description facultative",
+      "sourceProjects": "Projets sources"
+    },
+    "options": {
+      "sourceStateAfterMerge": {
+        "0": "passif",
+        "1": "archiver"
+      }
+    },
+    "history": {
+      "sourceProjects": "Projets fusionnés",
+      "cageCount": "Cage mobile",
+      "mergeCount": "Projet source",
+      "empty": "Il n’existe pas encore d’enregistrement de fusion de projet."
+    },
+    "toast": {
+      "saved": "La fusion des projets est terminée.",
+      "saveFailed": "La fusion des projets n'a pas pu être réalisée."
+    }
+  }
+}

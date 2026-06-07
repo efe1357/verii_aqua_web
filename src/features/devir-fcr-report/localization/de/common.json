@@ -1,0 +1,51 @@
+{
+  "aqua": {
+    "devirFcrReport": {
+      "pageTitle": "Turnover / FCR Bericht",
+      "description": "Zeigt eine projektbasierte Zusammenfassung von Start, Verkäufen, Verschwendung, Restbeständen und FCR im ausgewählten Datumsbereich an.",
+      "loading": "Umsatz-/FCR-Bericht wird geladen...",
+      "loadFailed": "Zyklus-/FCR-Bericht konnte nicht geladen werden.",
+      "emptyState": "Wählen Sie mindestens ein Projekt aus, um den Bericht anzuzeigen.",
+      "pendingState": "Wählen Sie den Datumsbereich und die Projekte aus und klicken Sie auf die Schaltfläche „Bericht abrufen“.",
+      "filters": {
+        "fromDate": "Startdatum",
+        "toDate": "Enddatum",
+        "projects": "Projekte",
+        "searchProject": "Nach Projekten suchen...",
+        "selectFiltered": "Wählen Sie Gefiltert aus",
+        "clearFiltered": "Gefiltert entfernen",
+        "selectionSummary": "{{count}} Projekt ausgewählt",
+        "apply": "Bericht abrufen"
+      },
+      "summary": {
+        "openingFish": "Startmenge",
+        "openingFishDescription": "Lebender Bestand zu Beginn des Zeitraums.",
+        "shipmentFish": "Verkaufsmenge",
+        "shipmentFishDescription": "Gesamtzahl der im Berichtszeitraum versendeten Einheiten.",
+        "endingFish": "Restposten",
+        "endingFishDescription": "Lebender Bestand am Ende des Zeitraums.",
+        "fcr": "Zeitraum FCR",
+        "fcrDescription": "Insgesamt produziertes Futter/Biomasse."
+      },
+      "tableTitle": "Zusammenfassung der projektbasierten Übergabe",
+      "tableDescription": "Projektzusammenfassung im Bereich {{fromDate}} - {{toDate}}.",
+      "totals": "Insgesamt",
+      "columns": {
+        "projectName": "Projektname",
+        "projectCode": "Projektcode",
+        "openingFishCount": "Startmenge",
+        "shipmentFishCount": "Verkaufsmenge",
+        "mortalityFishCount": "Feuermenge",
+        "mortalityPct": "Abfallrate",
+        "endingFishCount": "Restposten",
+        "endingAverageGram": "Grammatur",
+        "endingBiomassKg": "Lagerbestand KG",
+        "shippedBiomassKg": "Verkäufe KG",
+        "mortalityBiomassKg": "Feuer KG",
+        "producedBiomassKg": "Produzierte KG",
+        "totalFeedKg": "Feed KG",
+        "fcr": "FCR"
+      }
+    }
+  }
+}

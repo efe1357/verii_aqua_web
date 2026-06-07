@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { formatLabelWithKey } from '@/shared/utils/dropdown-label';
-import type { ProjectDto } from '@/features/quick-daily-entry/types/quick-daily-entry-types';
+import type { ProjectDto } from '@/features/quick-daily-entry/types';
 import { projectMergeFormSchema, type ProjectMergeFormSchema } from '../types/projectMerge';
 
 interface ProjectMergeFormProps {

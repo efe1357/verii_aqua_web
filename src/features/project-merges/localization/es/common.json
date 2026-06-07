@@ -1,0 +1,36 @@
+{
+  "projectMerge": {
+    "pageTitle": "Fusión de proyectos",
+    "pageDescription": "Fusione varios proyectos en el proyecto maestro seleccionado y conserve la pista de grabación.",
+    "form": {
+      "title": "Proceso de fusión",
+      "description": "Seleccione el proyecto de destino, verifique los proyectos de origen y guarde la combinación.",
+      "disabledDescription": "La fusión de proyectos está actualmente deshabilitada porque está desactivada en la pantalla de Configuración de Aqua.",
+      "save": "combinar"
+    },
+    "fields": {
+      "targetProject": "Proyecto objetivo",
+      "mergeDate": "Fecha de fusión",
+      "sourceStateAfterMerge": "Estado del proyecto fuente",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Introduzca una descripción opcional",
+      "sourceProjects": "Proyectos fuente"
+    },
+    "options": {
+      "sourceStateAfterMerge": {
+        "0": "pasivo",
+        "1": "archivo"
+      }
+    },
+    "history": {
+      "sourceProjects": "Proyectos fusionados",
+      "cageCount": "Jaula móvil",
+      "mergeCount": "Proyecto fuente",
+      "empty": "Aún no existe ningún registro de fusión de proyectos."
+    },
+    "toast": {
+      "saved": "La fusión del proyecto está completa.",
+      "saveFailed": "No se pudo completar la fusión del proyecto."
+    }
+  }
+}

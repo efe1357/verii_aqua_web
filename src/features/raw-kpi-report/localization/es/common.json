@@ -1,0 +1,66 @@
+{
+  "aqua": {
+    "rawKpiReport": {
+      "pageTitle": "Informe sin procesar KPI",
+      "description": "Muestra áreas operativas y biológicas sin procesar KPI por proyecto y jaula.",
+      "selectProject": "Seleccionar proyecto",
+      "noProject": "Proyecto no encontrado",
+      "loading": "Cargando datos sin procesar KPI...",
+      "loadFailed": "No se pudieron cargar datos KPI sin procesar.",
+      "snapshotTitle": "Resumen del proyecto",
+      "tableTitle": "Basado en celosía sin procesar KPI",
+      "tableDescription": "El rendimiento biológico y los resultados operativos se enumeran por jaula activa.",
+      "dictionaryTitle": "KPI Diccionario",
+      "dictionaryDescription": "Puedes ver qué dice cada campo y cómo se calcula en esta sección.",
+      "metrics": {
+        "stockedFish": "Pez principiante",
+        "liveFish": "Peces vivos",
+        "currentBiomassKg": "Biomasa actual",
+        "totalFeedKg": "Alimentación total",
+        "survivalPct": "Supervivencia %",
+        "mortalityPct": "Mortalidad %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG (g/día)",
+        "sgrPctPerDay": "SGR (%/día)",
+        "densityPct": "Densidad %",
+        "forecastBiomassKg30d": "Biomasa estimada después de 30 días",
+        "cageFishStock": "Cage Stock",
+        "warehouseFishStock": "Warehouse Stock",
+        "totalSystemFishStock": "Total System Stock",
+        "cageBiomassKg": "Cage Biomass",
+        "warehouseBiomassKg": "Warehouse Biomass",
+        "totalSystemBiomassKg": "Total System Biomass"
+      },
+      "columns": {
+        "cage": "jaula",
+        "daysInSea": "día en el mar",
+        "liveFish": "Peces vivos",
+        "currentAverageGram": "Promedio gramo",
+        "currentBiomassKg": "Biomasa (kg)",
+        "totalFeedKg": "Feed (kg)",
+        "survivalPct": "Supervivencia %",
+        "fcr": "FCR",
+        "adgGramPerDay": "ADG",
+        "densityPct": "Densidad %"
+      },
+      "descriptions": {
+        "survivalPct": "Esta área muestra cuántos peces originalmente colocados en la jaula todavía están vivos. Al calcular, se utiliza el número inicial de peces y el número de peces vivos existentes; Se lee de la población restante después del traslado y envío.",
+        "mortalityPct": "Este campo muestra la mortalidad total acumulada en relación con el stock inicial. El número total de desechos en los registros de mortalidad se calcula dividiendo por el número inicial de peces.",
+        "fcr": "Es el campo Índice de conversión alimenticia. La cantidad total de alimento registrada en el sistema se divide por el aumento neto de biomasa resultante. Al disminuir el valor se entiende que se utiliza menos alimento para el mismo crecimiento.",
+        "adgGramPerDay": "Campo de ganancia diaria promedio. La diferencia entre los gramos medios iniciales de pescado y los gramos medios actuales se divide por el número de días en el mar. Devuelve el crecimiento promedio diario por pez.",
+        "sgrPctPerDay": "Es el campo Tasa de crecimiento específica. Se toma el logaritmo natural de los valores de gramos inicial y actual y la diferencia se reduce a diario. Es especialmente significativo para comparar grupos con diferentes niveles de peso.",
+        "densityPct": "Es la tasa de uso temporal para la densidad de la jaula. Dado que actualmente no existe un modelo de volumen o m3 real, la biomasa disponible se divide por la biomasa de capacidad definida de la jaula. Por lo tanto, este campo debe leerse como el porcentaje de ocupación de capacidad por ahora.",
+        "forecastBiomassKg30d": "Muestra la biomasa aproximada que se espera que se forme después de 30 días según la tasa de crecimiento final. Se toma la biomasa actual, se suma el aumento de biomasa diario estimado y se traslada a la ventana de 30 días."
+      },
+      "formulas": {
+        "survivalPct": "Supervivencia % = pez vivo actual / pez inicial * 100",
+        "mortalityPct": "Mortalidad % = desperdicio total / pescado inicial * 100",
+        "fcr": "FCR = alimento total (kg) / aumento de biomasa (kg)",
+        "adgGramPerDay": "ADG = (gramos promedio actual - gramos promedio inicial) / días en el mar",
+        "sgrPctPerDay": "SGR = 100 * (ln(gramos actuales) - ln(gramos iniciales)) / día",
+        "densityPct": "Densidad % = biomasa disponible / biomasa de capacidad de jaula * 100",
+        "forecastBiomassKg30d": "Biomasa estimada = biomasa actual + aumento diario de biomasa * {{forecastDays}} días"
+      }
+    }
+  }
+}

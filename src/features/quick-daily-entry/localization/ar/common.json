@@ -1,0 +1,176 @@
+{
+  "aqua": {
+    "quickDailyEntry": {
+      "pageTitle": "تسجيل الدخول اليومي",
+      "project": "مشروع",
+      "selectProject": "حدد المشروع",
+      "cage": "قفص",
+      "selectCage": "اختر القفص",
+      "tabFeeding": "تغذية",
+      "tabMortality": "النفوق",
+      "tabWeather": "طقس",
+      "tabNetOperation": "تشغيل الشبكة",
+      "feeding": {
+        "title": "تغذية",
+        "slot": "فتحة",
+        "morning": "الجولة 1",
+        "evening": "الجولة 2",
+        "feedStock": "مخزون الأعلاف",
+        "selectStock": "حدد المخزون",
+        "qty": "كمية",
+        "save": "يحفظ"
+      },
+      "mortality": {
+        "title": "النفوق",
+        "batch": "حزمة",
+        "selectBatch": "حدد الدفعة",
+        "deadCount": "كمية النفوق",
+        "save": "يحفظ",
+        "exampleCount": "مثال: 15"
+      },
+      "weather": {
+        "title": "طقس",
+        "severity": "عنف",
+        "selectSeverity": "اختر العنف",
+        "type": "الدواء",
+        "selectType": "اختر النوع",
+        "description": "توضيح",
+        "save": "يحفظ",
+        "options": {
+          "sunny": "مشمس",
+          "cloudy": "غائم",
+          "rainy": "ممطر"
+        },
+        "cage": "القفص",
+        "selectCage": "اختر القفص",
+        "waterTemperatureCelsius": "درجة حرارة الماء (°C)",
+        "descriptionPlaceholder": "مثال: مشمس، 23 درجة",
+        "windDirection": "اتجاه الرياح",
+        "selectWindDirection": "اختر اتجاه الرياح",
+        "currentDirection": "اتجاه التيار",
+        "selectCurrentDirection": "اختر اتجاه التيار"
+      },
+      "netOperation": {
+        "title": "تشغيل الشبكة",
+        "operationType": "نوع المعاملة",
+        "selectType": "اختر النوع",
+        "description": "توضيح",
+        "save": "يحفظ",
+        "batch": "حزمة",
+        "selectBatch": "حدد الدفعة",
+        "noBatch": "لا دفعة",
+        "quantity": "كمية",
+        "unitGram": "وحدة جرام"
+      },
+      "stockChange": {
+        "title": "تغيير المخزون",
+        "sourceInfo": "دفعة المصدر #{{fishBatchId}} - مباشر: {{liveCount}}",
+        "noSourceBatch": "لم يتم العثور على دفعة نشطة في القفص المحدد.",
+        "targetBatch": "دفعة الهدف",
+        "fishCount": "قطعة",
+        "description": "توضيح",
+        "save": "يحفظ",
+        "newAverageGram": "غرام للإضافة",
+        "gramInfo": "الجرام الحالي: {{oldGram}} | للإضافة: {{increase}} | الإجمالي الجديد: {{newGram}}"
+      },
+      "transfer": {
+        "title": "استبدال القفص",
+        "sourceInfo": "دفعة المصدر #{{fishBatchId}} - مباشر: {{liveCount}}",
+        "noSourceBatch": "لم يتم العثور على دفعة نشطة في القفص المحدد.",
+        "targetCage": "القفص المستهدف",
+        "occupied": "ممتلىء",
+        "empty": "فارغ",
+        "fishCount": "قطعة",
+        "fishCountAutoInfo": "يمكن إدخال الكمية يدويا.",
+        "description": "توضيح",
+        "save": "يحفظ",
+        "targetProject": "المشروع المستهدف",
+        "fullTransferInfo": "جميع التحويلات إلزامية ومفتوحة. سيتم نقل جميع الوحدات السكنية في المصدر."
+      },
+      "toast": {
+        "feedingSaved": "تم تسجيل التغذية",
+        "mortalitySaved": "تم إنشاء سجل النفوق",
+        "weatherSaved": "سجلت الطقس",
+        "netOperationSaved": "تم تسجيل معاملة الشبكة",
+        "saveFailed": "فشل التسجيل",
+        "invalidNewAverageGram": "يجب أن يكون الجرام المراد إضافته أكبر من 0.",
+        "noActiveBatchForCage": "لم يتم العثور على دفعة نشطة للقفص المحدد.",
+        "sameCageTransferNotAllowed": "لا يمكن أن تكون شبكة المصدر والهدف هي نفسها.",
+        "transferCountTooHigh": "لا يمكن أن يتجاوز عدد عمليات النقل عدد المخلوقات الموجودة في القفص.",
+        "sameBatchStockChangeNotAllowed": "لا يمكن أن تكون الدفعة المستهدفة هي نفس الدفعة المصدر.",
+        "stockChangeCountTooHigh": "لا يمكن أن يتجاوز عدد التغييرات في المخزون عدد المخلوقات الموجودة في القفص.",
+        "stockChangeSaved": "تم تسجيل تغير المخزون",
+        "fullTransferRequired": "جميع التحويلات إلزامية ومفتوحة. يجب نقل كافة الوحدات السكنية عند المصدر.",
+        "partialTransferToOccupiedCageNotAllowed": "لا يمكن إجراء النقل الجزئي إلى قفص كامل.",
+        "partialTransferToOccupiedCageOnlySameBatchAllowed": "لا يمكن إجراء النقل الجزئي إلى القفص الكامل إلا لنفس الدفعة.",
+        "shipmentCountTooHigh": "لا يمكن أن يتجاوز عدد الشحنات عدد الكائنات الموجودة في القفص.",
+        "shipmentSaved": "تم تسجيل الشحنة.",
+        "cageWarehouseTransferCountTooHigh": "The quantity moved from cage to warehouse cannot exceed the live quantity in the cage.",
+        "cageWarehouseTransferSaved": "Cage to warehouse transfer recorded.",
+        "sameWarehouseTransferNotAllowed": "Source and target warehouses cannot be the same.",
+        "noActiveBatchForWarehouse": "No active batch was found for the selected warehouse.",
+        "warehouseTransferCountTooHigh": "The warehouse transfer quantity cannot exceed the selected batch stock quantity.",
+        "warehouseTransferSaved": "Warehouse transfer recorded.",
+        "warehouseCageTransferCountTooHigh": "The quantity moved from warehouse to cage cannot exceed the selected batch stock quantity.",
+        "warehouseCageTransferSaved": "Warehouse to cage transfer recorded."
+      },
+      "pageDescription": "قم بإجراء إدخالات العمليات اليومية الخاصة بك بسرعة من شاشة واحدة.",
+      "tabTransfer": "استبدال القفص",
+      "tabStockChange": "تغيير المخزون",
+      "transferSuccessDialog": {
+        "title": "الصفقة ناجحة",
+        "description": "تم تسجيل استبدال القفص بنجاح. سيتم تحديث الصفحة لتحديث البيانات."
+      },
+      "date": "تاريخ",
+      "tabShipment": "شحنة",
+      "tabProjectMerge": "دمج المشروع",
+      "shipment": {
+        "title": "شحنة",
+        "sourceInfo": "دفعة المصدر #{{fishBatchId}} - مباشر: {{liveCount}}",
+        "fishCount": "قطعة",
+        "currency": "العملة الأجنبية",
+        "unitPrice": "سعر الوحدة",
+        "targetWarehouse": "مستودع الهدف",
+        "description": "توضيح",
+        "save": "يحفظ"
+      },
+      "projectMerge": {
+        "title": "دمج المشروع"
+      },
+      "transferLine": {
+        "fullTransferInfo": "جميع التحويلات إلزامية ومفتوحة. تم تحديد الكمية لهذا الصف كـ {{count}}.",
+        "fullTransferRequired": "جميع التحويلات إلزامية ومفتوحة. يجب أن يكون هناك {{count}} في هذا السطر."
+      },
+      "tabCageWarehouseTransfer": "Cage to Warehouse",
+      "tabWarehouseTransfer": "Warehouse to Warehouse",
+      "tabWarehouseCageTransfer": "Warehouse to Cage",
+      "cageWarehouseTransfer": {
+        "title": "Cage to Warehouse Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "targetWarehouse": "Target Warehouse",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      },
+      "warehouseTransfer": {
+        "title": "Warehouse Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "sourceWarehouse": "Source Warehouse",
+        "targetWarehouse": "Target Warehouse",
+        "sourceBatch": "Source Batch",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      },
+      "warehouseCageTransfer": {
+        "title": "Warehouse to Cage Transfer",
+        "sourceInfo": "Source batch #{{fishBatchId}} - Live: {{liveCount}}",
+        "sourceWarehouse": "Source Warehouse",
+        "sourceBatch": "Source Batch",
+        "fishCount": "quantity",
+        "description": "Description",
+        "save": "Save"
+      }
+    }
+  }
+}

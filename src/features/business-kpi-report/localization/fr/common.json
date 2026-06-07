@@ -1,0 +1,68 @@
+{
+  "aqua": {
+    "businessKpiReport": {
+      "pageTitle": "Rapport d'activité KPI",
+      "description": "Affiche l'état de préparation à la récolte, la confiance dans les prévisions et les zones de revenus/marges hypothétiques par projet et par cage.",
+      "selectProject": "Sélectionnez un projet",
+      "noProject": "Projet introuvable",
+      "loading": "Chargement des données de l'entreprise KPI...",
+      "loadFailed": "Les données de l'entreprise KPI n'ont pas pu être chargées.",
+      "snapshotTitle": "Résumé de l'activité",
+      "tableTitle": "Entreprise basée sur un treillis KPI",
+      "tableDescription": "Les mesures d’aide à la décision et les indicateurs économiques hypothétiques sont répertoriés par maillage actif.",
+      "dictionaryTitle": "Dictionnaire des affaires KPI",
+      "dictionaryDescription": "Ces champs sont dérivés des données opérationnelles existantes et des règles de commentaires métier. S'il existe des lignes d'acceptation et d'expédition de marchandises tarifées, le système les utilise ; Les zones sans données de prix ne sont pas estimées avec force.",
+      "assumptionTitle": "Hypothèses",
+      "assumptionDescription": "Le coût des aliments est dérivé des lignes d'entrée de marchandises et le prix de vente est dérivé des lignes d'expédition. S'il n'existe pas d'historique de prix approprié, le système accepte uniquement les pièces manquantes comme 0 et ne produit pas de chiffres imaginaires.",
+      "assumptions": {
+        "targetHarvestGram": "Grammes de récolte cibles",
+        "forecastDays": "Jour de prévision",
+        "feedCostPerKg": "Coût des aliments",
+        "salePricePerKg": "prix de vente"
+      },
+      "metrics": {
+        "estimatedFeedCost": "Coût des aliments",
+        "feedCostPerCurrentKg": "Coût des aliments par kg vivant",
+        "projectedHarvestBiomassKg": "Biomasse de récolte estimée",
+        "projectedRevenue": "Chiffre d'affaires estimé",
+        "projectedGrossMargin": "Marge brute estimée",
+        "projectedMarginPct": "Marge estimée %",
+        "daysToTarget": "Jours pour cibler le gramme",
+        "estimatedHarvestDate": "Date de récolte estimée",
+        "forecastConfidencePct": "Confiance des prévisions %",
+        "harvestReadinessPct": "Préparation à la récolte %"
+      },
+      "columns": {
+        "cage": "cage",
+        "targetWeightProgressPct": "Gramme cible %",
+        "daysToTarget": "Jours restants",
+        "harvestReadinessPct": "Préparation %",
+        "forecastConfidencePct": "Faites confiance à %",
+        "estimatedFeedCost": "Coût des aliments",
+        "projectedRevenue": "chiffre d'affaires",
+        "projectedGrossMargin": "Marge brute",
+        "estimatedHarvestDate": "Date estimée"
+      },
+      "descriptions": {
+        "estimatedFeedCost": "La quantité totale d'aliments est obtenue en multipliant le coût des aliments par kg dérivé de l'historique d'acceptation des marchandises. S'il n'existe pas d'historique de prix pour le stock concerné, seule la pièce manquante est considérée comme 0.",
+        "feedCostPerCurrentKg": "Le coût de l’alimentation trouvé est divisé par la biomasse vivante disponible. Ainsi, cela répond à la question à quel niveau de coût le projet supporte kg aujourd'hui.",
+        "projectedHarvestBiomassKg": "La tendance de la croissance et de la biomasse dans le KPI brut est reportée à la couche métier. Si le rythme de croissance actuel est maintenu, la biomasse récoltée attendue à la fin de la période de prévision est affichée.",
+        "projectedRevenue": "La biomasse récoltée estimée est multipliée par le prix de vente par kg dérivé de l'historique des expéditions. S'il n'y a pas d'historique des ventes, le système calcule le chiffre d'affaires avec prudence, en l'augmentant au fur et à mesure que les données arrivent.",
+        "projectedGrossMargin": "Le coût de l'alimentation est déduit du chiffre d'affaires estimé. Le système ne prédit pas avec force les zones de prix pour lesquelles il n'existe aucune donnée ; Par conséquent, le calcul de la marge est aussi solide que la couverture actuelle des prix réels.",
+        "daysToTarget": "Prenez la différence entre les grammes moyens actuels et les grammes de récolte cibles et divisez par ADG. Si ADG n'est pas présent ou si le taux de croissance est nul, la superficie ne peut pas être calculée.",
+        "harvestReadinessPct": "Ce champ n’est pas une simple donnée financière, mais un score d’aide à la décision. La progression du poids, les performances de survie et la qualité FCR se combinent pour produire un score de préparation compris entre 0 et 100.",
+        "forecastConfidencePct": "Cela montre à quel point les prévisions peuvent être fiables. S'il y a une pesée récente, qu'une alimentation régulière a été effectuée ces derniers jours et que l'ensemble de données est suffisamment mature, le score augmente."
+      },
+      "formulas": {
+        "estimatedFeedCost": "Coût des aliments = aliment total (kg) * coût des aliments par kg. Le coût est dérivé de l'historique d'acceptation des marchandises et de la méthode de repli.",
+        "feedCostPerCurrentKg": "Coût par vie kg = coût estimé des aliments / biomasse disponible (kg)",
+        "projectedHarvestBiomassKg": "Biomasse de récolte estimée = biomasse actuelle + augmentation quotidienne de la biomasse * {{forecastDays}} jours",
+        "projectedRevenue": "Chiffre d'affaires estimé = biomasse récoltée estimée * prix de vente. Le prix de vente est dérivé de l’historique des expéditions.",
+        "projectedGrossMargin": "Marge brute estimée = chiffre d'affaires estimé - coût de l'alimentation. Le compte est aussi solide que sa véritable couverture actuelle des prix.",
+        "daysToTarget": "Jours restants = (grammes cibles {{targetHarvestGram}} - grammes actuels) / ADG",
+        "harvestReadinessPct": "Préparation % = score de progression pondérale * 0,55 + survie * 0,25 + score FCR * 0,20",
+        "forecastConfidencePct": "Confiance des prévisions = proximité de la pondération + cohérence de l'alimentation + score de maturité des données"
+      }
+    }
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "aqua": {
+    "openingImport": {
+      "badge": "Initial Load",
+      "title": "Initial Load / Data Migration",
+      "description": "Bring active projects, cages, and opening stock from the legacy system into Aqua in a controlled way. Download the Excel template, fill it in, map the columns, preview the data, and import it in one step when it is clean.",
+      "cutoverModeHint": "If you only want to start with today's net stock, Opening Stock is enough. If you also want to bring summarized historic goods receipt, wastage, feeding, and shipment data, fill in the related opening sheets as well. If Opening Stock is empty, the system derives the net opening balance from the goods receipt and wastage summaries.",
+      "downloadTemplate": "Download Template",
+      "downloadErrors": "Download Error Excel",
+      "sourceSystem": "Source System",
+      "file": "Excel File",
+      "noFile": "No file selected yet.",
+      "preview": "Preview and Validate",
+      "commit": "Import",
+      "summaryTitle": "Job Summary",
+      "summaryDescription": "Row-level validation results appear here after preview.",
+      "mappingTitle": "Column Mapping",
+      "mappingDescription": "Match Excel columns to system fields. Required fields must not be left empty.",
+      "sheetStats": "{{headers}} columns, {{rows}} rows",
+      "sourceColumn": "Excel Column",
+      "targetField": "System Field",
+      "ignoreColumn": "Ignore this column",
+      "sheetMissing": "This sheet was not found in the file or it is empty.",
+      "previewTitle": "Preview Results",
+      "previewDescription": "Status for job #{{jobId}}: {{status}}",
+      "previewRowNumber": "Row",
+      "status": "Status",
+      "messages": "Messages",
+      "normalizedData": "Normalized Data",
+      "noIssues": "No issues",
+      "commitResultTitle": "Import Result",
+      "commitResultDescription": "The initial load has been processed successfully. You can review the created records below.",
+      "steps": {
+        "uploadTitle": "File and Source Information",
+        "uploadDescription": "After downloading and filling in the template, select the Excel file and start the preview."
+      },
+      "summary": {
+        "totalRows": "Total Rows",
+        "validRows": "Valid Rows",
+        "warningRows": "Warning Rows",
+        "errorRows": "Error Rows"
+      },
+      "sheets": {
+        "Projects": "Projects",
+        "Cages": "Cages",
+        "OpeningStock": "Opening Stock",
+        "OpeningGoodsReceipts": "Opening Goods Receipts",
+        "OpeningMortality": "Opening Wastage",
+        "OpeningFeedings": "Opening Feedings",
+        "OpeningShipments": "Opening Shipments"
+      },
+      "fields": {
+        "ProjectCode": "Project Code",
+        "ProjectName": "Project Name",
+        "StartDate": "Start Date",
+        "Note": "Note",
+        "CageCode": "Cage Code",
+        "CageName": "Cage Name",
+        "AssignedDate": "Assignment Date",
+        "WarehouseCode": "Warehouse Code",
+        "TargetWarehouseCode": "Target Warehouse Code",
+        "BatchCode": "Batch Code",
+        "FishStockCode": "Fish Stock Code",
+        "FishCount": "Fish Count",
+        "AverageKg": "Promedio KG",
+        "AverageGram": "Average Gram",
+        "AsOfDate": "Balance Date",
+        "ReceiptNo": "Receipt No",
+        "ReceiptDate": "Receipt Date",
+        "DeadCount": "Dead Count",
+        "MortalityDate": "Wastage Date",
+        "FeedStockCode": "Feed Stock Code",
+        "FeedingDate": "Feeding Date",
+        "FeedingSlot": "Feeding Slot",
+        "FeedKg": "Alimento KG",
+        "FeedGram": "Feed Gram",
+        "ShipmentDate": "Shipment Date",
+        "CurrencyCode": "Currency Code",
+        "ExchangeRate": "Exchange Rate",
+        "UnitPrice": "Unit Price"
+      },
+      "statusValues": {
+        "Valid": "Valid",
+        "Applied": "Applied",
+        "Error": "Error",
+        "Warning": "Warning"
+      },
+      "commitSummary": {
+        "createdProjects": "Created Projects",
+        "createdCages": "Created Cages",
+        "createdProjectCages": "Created Project-Cages",
+        "createdFishBatches": "Created Batches",
+        "createdGoodsReceipts": "Created Summary Goods Receipts",
+        "createdFeedingHeaders": "Created Summary Feedings",
+        "createdGoodsReceiptLines": "Created Goods Receipt Lines",
+        "createdFeedingLines": "Created Feeding Lines",
+        "createdFeedingDistributions": "Created Feeding Distributions",
+        "createdMortalityHeaders": "Created Summary Wastage Headers",
+        "createdMortalityLines": "Created Wastage Lines",
+        "createdShipmentHeaders": "Created Summary Shipment Headers",
+        "createdShipmentLines": "Created Shipment Lines",
+        "appliedCageRows": "Rows Applied to Cages",
+        "appliedWarehouseRows": "Rows Applied to Warehouses",
+        "skippedRows": "Skipped Rows",
+        "createdCageWarehouseMappings": "Created Cage-Warehouse Mappings"
+      },
+      "toast": {
+        "fileParsed": "Excel file parsed successfully.",
+        "fileParseFailed": "Excel file could not be parsed.",
+        "previewReady": "Preview is ready.",
+        "previewFailed": "Preview could not be generated.",
+        "commitSuccessful": "Initial load imported successfully.",
+        "commitFailed": "Import failed."
+      },
+      "noPermission": "You do not have permission to view this screen.",
+      "guide": {
+        "title": "What are the opening templates for?",
+        "description": "To make setup clearer, each opening sheet is explained by business purpose. The same guide is included as the first sheet in the Excel template.",
+        "sheetName": "User Guide",
+        "exportSection": "Section",
+        "exportWhen": "When to use it?",
+        "exportRule": "Fill rule",
+        "cards": {
+          "openingStock": {
+            "title": "Opening Stock",
+            "body": "The net fish count and average gram you have on the day you start using Aqua. If historical document detail is not available, this sheet is enough to start live stock."
+          },
+          "openingGoodsReceipts": {
+            "title": "Opening Goods Receipt",
+            "body": "Carries fish entries that happened before Aqua as a summary document. One goods receipt is created per project; enter its header on the first row and distribute the same batch to cages below."
+          },
+          "openingShipments": {
+            "title": "Opening Shipment",
+            "body": "Carries fish that were sold or shipped before Aqua went live. If a sales price is entered, revenue, margin, and Business KPI include those historical sales."
+          },
+          "cageWarehouse": {
+            "title": "Cage-Warehouse Mapping",
+            "body": "WarehouseCode in the Cages sheet is optional. If filled, the cage is actively mapped to that ERP/Netsis warehouse; a cage name like B2 is no longer assumed to be a warehouse."
+          },
+          "openingMortalityFeedings": {
+            "title": "Opening Wastage and Feeding",
+            "body": "Fill these if historical wastage and feed consumption should appear in FCR, survival rate, and production reports. They can be left empty if details are unknown."
+          },
+          "recommendedPath": {
+            "title": "Simplest Recommended Path",
+            "body": "For a live-stock-only start, Projects, Cages, and OpeningStock are enough. Add the related summary sheets only when historical movement analysis is needed."
+          },
+          "dateFormat": {
+            "title": "Date Format",
+            "body": "The recommended format for all date fields is 2026-01-31. Turkish format such as 31.01.2026 and Excel serial dates are also supported."
+          }
+        },
+        "rows": {
+          "0": {
+            "title": "Projects",
+            "when": "Main information for the project that will be opened in Aqua. Project code and project name must be clear in every initial load file.",
+            "rule": "ProjectCode must be unique. If the same project was already created, the import is blocked and the user is warned."
+          },
+          "1": {
+            "title": "Cages",
+            "when": "Defines cages linked to the project. A cage can be named B2, but that name is no longer automatically treated as a Netsis warehouse.",
+            "rule": "WarehouseCode is optional. If filled, the cage is actively mapped to the related ERP/Netsis warehouse."
+          },
+          "2": {
+            "title": "Opening Stock",
+            "when": "Used to enter the net live stock and biomass available on the day you start using Aqua.",
+            "rule": "If historical details are unknown, this is the safest starting point. It does not create historical documents; it creates opening balance."
+          },
+          "3": {
+            "title": "Opening Goods Receipt",
+            "when": "Used to carry fish entries made before Aqua as summary documents.",
+            "rule": "One goods receipt header is created per project; Receipt No and Date may be entered on the first row and left blank on continuation distribution rows. If the same BatchCode repeats across cages, the counts sum to one batch line. Use a different BatchCode for a different product or average gram."
+          },
+          "4": {
+            "title": "Opening Shipment",
+            "when": "Used to carry fish that were sold or shipped before Aqua went live as summary shipments.",
+            "rule": "For Business KPI, revenue/margin, and historical sales count/kg tracking, fill UnitPrice if available; otherwise it is treated as 0."
+          },
+          "5": {
+            "title": "Opening Wastage and Feeding",
+            "when": "Used when historical wastage and feed consumption should appear in reports and FCR/survival rate should be meaningful from day one.",
+            "rule": "Can be left empty if details are unknown. If filled, batch, stock, and cage information must match."
+          },
+          "6": {
+            "title": "Date Format",
+            "when": "Applies to start, assignment, balance, goods receipt, wastage, feeding, and shipment dates.",
+            "rule": "Recommended format is yyyy-MM-dd, for example 2026-01-31. Turkish format such as 31.01.2026 and Excel serial dates can also be used."
+          }
+        }
+      },
+      "cleanupSoftDeleted": {
+        "title": "Deleted test records found",
+        "description": "These codes were created and deleted during testing. If you approve, the system will try to permanently clean the deleted project/cage records shown in this preview; if related movements exist, the operation stops for safety.",
+        "action": "Clean deleted test records",
+        "confirm": "This action only tries to permanently clean the deleted test project/cage records found in this preview. If related movements exist, the operation is stopped. Continue?",
+        "success": "{{projects}} project and {{cages}} cage test records were cleaned. Please run preview again.",
+        "failed": "Deleted test records could not be cleaned."
+      }
+    }
+  }
+}

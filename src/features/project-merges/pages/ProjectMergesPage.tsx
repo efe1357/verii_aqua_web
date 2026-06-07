@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { GitMerge, Archive, PauseCircle } from 'lucide-react';
 import { useUIStore } from '@/stores/ui-store';
 import { useAquaSettingsQuery } from '@/features/aqua-settings/hooks/useAquaSettingsQuery';
-import { useProjectListQuery } from '@/features/quick-daily-entry/hooks/useProjectListQuery';
+import { useProjectListQuery } from '@/features/quick-daily-entry/hooks';
 import { useProjectMergeListQuery } from '../hooks/useProjectMergeListQuery';
 import { useCreateProjectMergeMutation } from '../hooks/useCreateProjectMergeMutation';
 import { ProjectMergeForm } from '../components/ProjectMergeForm';

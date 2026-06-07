@@ -1,0 +1,51 @@
+{
+  "aqua": {
+    "devirFcrReport": {
+      "pageTitle": "Turnover / FCR Report",
+      "description": "Shows starting quantity, sales, mortality, remaining stock and FCR from the first day of the selected projects to today.",
+      "loading": "Loading turnover / FCR report...",
+      "loadFailed": "Cycle / FCR report could not be loaded.",
+      "emptyState": "Select at least one project to see the report.",
+      "pendingState": "Select projects and press the get report button.",
+      "filters": {
+        "fromDate": "Start Date",
+        "toDate": "End Date",
+        "projects": "Projects",
+        "searchProject": "Search for projects...",
+        "selectFiltered": "Select Filtered",
+        "clearFiltered": "Remove Filtered",
+        "selectionSummary": "{{count}} project selected",
+        "apply": "Get Report"
+      },
+      "summary": {
+        "openingFish": "Starting Quantity",
+        "openingFishDescription": "Live stock at the opening of the period.",
+        "shipmentFish": "Sales Quantity",
+        "shipmentFishDescription": "Total units shipped during the period.",
+        "endingFish": "Remaining Stock",
+        "endingFishDescription": "Live stock at the end of the period.",
+        "fcr": "Period FCR",
+        "fcrDescription": "Total feed / biomass produced."
+      },
+      "tableTitle": "Project Based Handover Summary",
+      "tableDescription": "Full-period summary for the selected projects between {{fromDate}} and {{toDate}}.",
+      "totals": "Total",
+      "columns": {
+        "projectName": "Project Name",
+        "projectCode": "Project Code",
+        "openingFishCount": "Starting Quantity",
+        "shipmentFishCount": "Sales Quantity",
+        "mortalityFishCount": "Fire Quantity",
+        "mortalityPct": "Waste Rate",
+        "endingFishCount": "Remaining Stock",
+        "endingAverageGram": "grammage",
+        "endingBiomassKg": "Stock KG",
+        "shippedBiomassKg": "Sales KG",
+        "mortalityBiomassKg": "Fire KG",
+        "producedBiomassKg": "Produced KG",
+        "totalFeedKg": "Feed KG",
+        "fcr": "FCR"
+      }
+    }
+  }
+}

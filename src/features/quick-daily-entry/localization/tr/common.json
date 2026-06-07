@@ -1,0 +1,176 @@
+{
+  "aqua": {
+    "quickDailyEntry": {
+      "pageTitle": "Günlük Giriş",
+      "pageDescription": "Günlük operasyon girişlerinizi tek ekrandan hızlıca yapın.",
+      "date": "Tarih",
+      "project": "Proje",
+      "selectProject": "Proje seçin",
+      "cage": "Kafes",
+      "selectCage": "Kafes seçin",
+      "tabFeeding": "Yemleme",
+      "tabMortality": "Fire",
+      "tabWeather": "Hava Durumu",
+      "tabNetOperation": "Ağ İşlemi",
+      "tabTransfer": "Kafes Değişimi",
+      "tabCageWarehouseTransfer": "Kafesten Depoya",
+      "tabWarehouseTransfer": "Depodan Depoya",
+      "tabWarehouseCageTransfer": "Depodan Kafese",
+      "tabShipment": "Sevkiyat",
+      "tabStockChange": "Stok Değişimi",
+      "tabProjectMerge": "Proje Birleştirme",
+      "feeding": {
+        "title": "Yemleme",
+        "slot": "Slot",
+        "morning": "1. Tur",
+        "evening": "2. Tur",
+        "feedStock": "Yem Stoku",
+        "selectStock": "Stok seçin",
+        "qty": "Miktar",
+        "save": "Kaydet"
+      },
+      "mortality": {
+        "title": "Fire",
+        "batch": "Batch",
+        "selectBatch": "Batch seçin",
+        "deadCount": "Fire Adedi",
+        "save": "Kaydet",
+        "exampleCount": "Örn: 15"
+      },
+      "weather": {
+        "title": "Hava Durumu",
+        "severity": "Şiddet",
+        "selectSeverity": "Şiddet seçin",
+        "type": "Tip",
+        "selectType": "Tip seçin",
+        "description": "Açıklama",
+        "save": "Kaydet",
+        "options": {
+          "sunny": "Güneşli",
+          "cloudy": "Bulutlu",
+          "rainy": "Yağmurlu"
+        },
+        "cage": "Kafes",
+        "selectCage": "Kafes seçin",
+        "waterTemperatureCelsius": "Su Sıcaklığı (°C)",
+        "descriptionPlaceholder": "Örn: 23 derece güneşli",
+        "windDirection": "Rüzgar Yönü",
+        "selectWindDirection": "Rüzgar yönü seçin",
+        "currentDirection": "Akıntı Yönü",
+        "selectCurrentDirection": "Akıntı yönü seçin"
+      },
+      "netOperation": {
+        "title": "Ağ İşlemi",
+        "operationType": "İşlem Tipi",
+        "selectType": "Tip seçin",
+        "batch": "Batch",
+        "selectBatch": "Batch seçin",
+        "noBatch": "Batch yok",
+        "quantity": "Miktar",
+        "unitGram": "Birim Gram",
+        "description": "Açıklama",
+        "save": "Kaydet"
+      },
+      "stockChange": {
+        "title": "Stok Değişimi",
+        "sourceInfo": "Kaynak batch #{{fishBatchId}} - Canlı: {{liveCount}}",
+        "noSourceBatch": "Seçili kafeste aktif batch bulunamadı.",
+        "targetBatch": "Hedef Batch",
+        "fishCount": "Adet",
+        "newAverageGram": "Eklenecek Gram",
+        "gramInfo": "Mevcut gram: {{oldGram}} | Eklenecek: {{increase}} | Yeni toplam: {{newGram}}",
+        "description": "Açıklama",
+        "save": "Kaydet"
+      },
+      "transfer": {
+        "title": "Kafes Değişimi",
+        "sourceInfo": "Kaynak batch #{{fishBatchId}} - Canlı: {{liveCount}}",
+        "noSourceBatch": "Seçili kafeste aktif batch bulunamadı.",
+        "targetProject": "Hedef Proje",
+        "targetCage": "Hedef Kafes",
+        "occupied": "Dolu",
+        "empty": "Boş",
+        "fishCount": "Adet",
+        "fishCountAutoInfo": "Adet manuel girilebilir.",
+        "fullTransferInfo": "Transfer tamamı zorunlu açık. Kaynaktaki tüm canlı adet taşınacaktır.",
+        "description": "Açıklama",
+        "save": "Kaydet"
+      },
+      "shipment": {
+        "title": "Sevkiyat",
+        "sourceInfo": "Kaynak batch #{{fishBatchId}} - Canlı: {{liveCount}}",
+        "fishCount": "Adet",
+        "currency": "Döviz",
+        "unitPrice": "Birim Fiyat",
+        "targetWarehouse": "Hedef Depo",
+        "description": "Açıklama",
+        "save": "Kaydet"
+      },
+      "cageWarehouseTransfer": {
+        "title": "Kafesten Depoya Transfer",
+        "sourceInfo": "Kaynak batch #{{fishBatchId}} - Canlı: {{liveCount}}",
+        "targetWarehouse": "Hedef Depo",
+        "fishCount": "Adet",
+        "description": "Açıklama",
+        "save": "Kaydet"
+      },
+      "warehouseTransfer": {
+        "title": "Depo Transferi",
+        "sourceInfo": "Kaynak batch #{{fishBatchId}} - Canlı: {{liveCount}}",
+        "sourceWarehouse": "Kaynak Depo",
+        "targetWarehouse": "Hedef Depo",
+        "sourceBatch": "Kaynak Batch",
+        "fishCount": "Adet",
+        "description": "Açıklama",
+        "save": "Kaydet"
+      },
+      "warehouseCageTransfer": {
+        "title": "Depodan Kafese Transfer",
+        "sourceInfo": "Kaynak batch #{{fishBatchId}} - Canlı: {{liveCount}}",
+        "sourceWarehouse": "Kaynak Depo",
+        "sourceBatch": "Kaynak Batch",
+        "fishCount": "Adet",
+        "description": "Açıklama",
+        "save": "Kaydet"
+      },
+      "projectMerge": {
+        "title": "Proje Birleştirme"
+      },
+      "transferLine": {
+        "fullTransferInfo": "Transfer tamamı zorunlu açık. Bu satır için adet {{count}} olarak sabitlendi.",
+        "fullTransferRequired": "Transfer tamamı zorunlu açık. Bu satırda adet {{count}} olmalıdır."
+      },
+      "toast": {
+        "feedingSaved": "Yemleme kaydedildi",
+        "mortalitySaved": "Fire kaydı oluşturuldu",
+        "weatherSaved": "Hava durumu kaydedildi",
+        "netOperationSaved": "Ağ işlemi kaydedildi",
+        "noActiveBatchForCage": "Seçili kafes için aktif batch bulunamadı.",
+        "sameCageTransferNotAllowed": "Kaynak ve hedef kafes aynı olamaz.",
+        "transferCountTooHigh": "Transfer adedi, kafesteki canlı adedini aşamaz.",
+        "fullTransferRequired": "Transfer tamamı zorunlu açık. Kaynaktaki tüm canlı adet taşınmalıdır.",
+        "partialTransferToOccupiedCageNotAllowed": "Dolu kafese kısmi transfer yapılamaz.",
+        "partialTransferToOccupiedCageOnlySameBatchAllowed": "Dolu kafese kısmi transfer yalnızca aynı batch için yapılabilir.",
+        "sameBatchStockChangeNotAllowed": "Hedef batch kaynak batch ile aynı olamaz.",
+        "stockChangeCountTooHigh": "Stok değişim adedi, kafesteki canlı adedini aşamaz.",
+        "invalidNewAverageGram": "Eklenecek gram 0'dan büyük olmalı.",
+        "stockChangeSaved": "Stok değişimi kaydedildi.",
+        "shipmentCountTooHigh": "Sevk adedi, kafesteki canlı adedini aşamaz.",
+        "shipmentSaved": "Sevkiyat kaydedildi.",
+        "cageWarehouseTransferCountTooHigh": "Kafesten depoya aktarım adedi, kafesteki canlı adedini aşamaz.",
+        "cageWarehouseTransferSaved": "Kafesten depoya transfer kaydedildi.",
+        "sameWarehouseTransferNotAllowed": "Kaynak ve hedef depo aynı olamaz.",
+        "noActiveBatchForWarehouse": "Seçili depo için aktif batch bulunamadı.",
+        "warehouseTransferCountTooHigh": "Depo transfer adedi, seçili batch stok adedini aşamaz.",
+        "warehouseTransferSaved": "Depo transferi kaydedildi.",
+        "warehouseCageTransferCountTooHigh": "Depodan kafese aktarım adedi, seçili batch stok adedini aşamaz.",
+        "warehouseCageTransferSaved": "Depodan kafese transfer kaydedildi.",
+        "saveFailed": "Kayıt başarısız"
+      },
+      "transferSuccessDialog": {
+        "title": "İşlem Başarılı",
+        "description": "Kafes değişimi başarıyla kaydedildi. Verilerin güncellenmesi için sayfa yenilenecektir."
+      }
+    }
+  }
+}
