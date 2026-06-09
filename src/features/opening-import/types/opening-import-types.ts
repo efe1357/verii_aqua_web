@@ -16,6 +16,7 @@ export type OpeningImportTargetField =
   | 'receiptNo'
   | 'receiptDate'
   | 'deadCount'
+  | 'mortalityBiomassKg'
   | 'mortalityDate'
   | 'feedStockCode'
   | 'feedingDate'
