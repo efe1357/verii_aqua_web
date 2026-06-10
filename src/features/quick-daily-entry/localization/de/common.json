@@ -2,6 +2,13 @@
   "aqua": {
     "quickDailyEntry": {
       "pageTitle": "Täglicher Login",
+      "datePicker": {
+        "open": "Kalender öffnen",
+        "title": "Datumsauswahl",
+        "selected": "Ausgewähltes Datum",
+        "formatHint": "Erwartetes Format: {{format}}",
+        "today": "Heute"
+      },
       "project": "Projekt",
       "selectProject": "Projekt auswählen",
       "cage": "Käfig",

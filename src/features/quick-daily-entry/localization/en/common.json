@@ -3,6 +3,13 @@
     "quickDailyEntry": {
       "pageTitle": "Daily Login",
       "date": "date",
+      "datePicker": {
+        "open": "Open calendar",
+        "title": "Date selection",
+        "selected": "Selected date",
+        "formatHint": "Expected format: {{format}}",
+        "today": "Today"
+      },
       "project": "Project",
       "selectProject": "Select project",
       "cage": "cage",

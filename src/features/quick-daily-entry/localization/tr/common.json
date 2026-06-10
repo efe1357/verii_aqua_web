@@ -4,6 +4,13 @@
       "pageTitle": "Günlük Giriş",
       "pageDescription": "Günlük operasyon girişlerinizi tek ekrandan hızlıca yapın.",
       "date": "Tarih",
+      "datePicker": {
+        "open": "Takvimi aç",
+        "title": "Tarih seçimi",
+        "selected": "Seçili tarih",
+        "formatHint": "Beklenen format: {{format}}",
+        "today": "Bugün"
+      },
       "project": "Proje",
       "selectProject": "Proje seçin",
       "cage": "Kafes",

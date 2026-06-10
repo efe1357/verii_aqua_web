@@ -2,6 +2,13 @@
   "aqua": {
     "quickDailyEntry": {
       "pageTitle": "Accesso giornaliero",
+      "datePicker": {
+        "open": "Apri calendario",
+        "title": "Selezione data",
+        "selected": "Data selezionata",
+        "formatHint": "Formato previsto: {{format}}",
+        "today": "Oggi"
+      },
       "project": "Progetto",
       "selectProject": "Seleziona progetto",
       "cage": "gabbia",
