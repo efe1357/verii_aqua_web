@@ -20,6 +20,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Combobox } from '@/components/ui/combobox';
+import { LocalizedDateInput } from '@/components/shared/LocalizedDateInput';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,6 +42,7 @@ import { aquaCrudApi } from '../api/aqua-crud-api';
 import { PageToolbar, ColumnPreferencesPopover, AdvancedFilter } from '@/components/shared';
 import { loadColumnPreferences, saveColumnPreferences } from '@/lib/column-preferences';
 import type { FilterRow, FilterColumnConfig } from '@/lib/advanced-filter-types';
+import { formatDateOnlyForLocale, formatDateTimeForLocale } from '@/lib/date-localization';
 import { formatLabelWithKey } from '@/shared/utils/dropdown-label';
 import { useAquaSettingsQuery } from '@/features/aqua-settings/hooks/useAquaSettingsQuery';
 import { useMyPermissionsQuery } from '@/features/access-control/hooks/useMyPermissionsQuery';
@@ -167,7 +169,7 @@ function isRequiredFieldMissing(field: AquaFieldConfig, value: unknown): boolean
   return false;
 }
 
-function formatCellValue(value: unknown, t: (key: string) => string, column?: { unitTransform?: 'gram-to-kg'; key: string }): string {
+function formatCellValue(value: unknown, t: (key: string) => string, column?: { unitTransform?: 'gram-to-kg'; key: string; type?: string }, language?: string): string {
   if (value == null) return '-';
   if (typeof value === 'boolean') return value ? t('common.yes') : t('common.no');
   if (typeof value === 'number') {
@@ -175,6 +177,8 @@ function formatCellValue(value: unknown, t: (key: string) => string, column?: { 
     return String(value);
   }
   if (typeof value === 'string') {
+    if (column?.type === 'date') return formatDateOnlyForLocale(value, language) || '-';
+    if (column?.type === 'datetime') return formatDateTimeForLocale(value, language) || '-';
     if (column && shouldDisplayAsKg(column)) {
       const parsed = toNumericValue(value);
       return parsed == null ? value : normalizeMassDisplayNumber(gramsToKilograms(parsed));
@@ -325,7 +329,7 @@ const DraggableTh = ({ id, children, className, onClick, ...props }: React.ThHTM
 export function AquaCrudPage({
   config, contextFilter, lookupContextValues, hidePageHeader = false, disablePageTitleSync = false, rowSelectionEnabled = false, selectedRowId = null, onRowSelect,
 }: AquaCrudPageProps): ReactElement {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { setPageTitle } = useUIStore();
   const { user } = useAuthStore();
   const queryClient = useQueryClient();
@@ -955,7 +959,7 @@ export function AquaCrudPage({
     const rawValue = getRecordValueByPath(row, columnKey);
     const lookupLabel = lookupLabelsByFieldAndValue[columnKey]?.[String(rawValue)];
     const selectLabel = selectOptionLabelsByFieldAndValue[columnKey]?.[String(rawValue)];
-    return String(lookupLabel ?? selectLabel ?? formatCellValue(rawValue, t, column));
+    return String(lookupLabel ?? selectLabel ?? formatCellValue(rawValue, t, column, i18n.language));
   };
 
   // PREMIUM ÖZELLİK: Dinamik Hücre Render İşlemi (Rozetler ve Kopyalama)
@@ -1307,10 +1311,10 @@ export function AquaCrudPage({
                           className="bg-slate-50 dark:bg-blue-950/50 text-slate-900 dark:text-white border-slate-200 dark:border-cyan-800/30"
                         />
                       )}
-                      {(field.type === 'text' || field.type === 'number' || field.type === 'date' || field.type === 'datetime') && (
+                      {(field.type === 'text' || field.type === 'number' || field.type === 'datetime') && (
                         <Input
                           id={field.key}
-                          type={field.type === 'number' ? 'number' : field.type === 'date' ? 'date' : field.type === 'datetime' ? 'datetime-local' : 'text'}
+                          type={field.type === 'number' ? 'number' : field.type === 'datetime' ? 'datetime-local' : 'text'}
                           step={field.type === 'number' ? resolveNumberInputStep(field) : undefined}
                           min={field.type === 'number' ? field.numberMin : undefined}
                           max={field.type === 'number' ? field.numberMax : undefined}
@@ -1330,6 +1334,15 @@ export function AquaCrudPage({
                                 (field.key === 'exchangeRate' && String(formValues.currencyCode ?? 'TRY').toUpperCase() === 'TRY')
                               ))
                           }
+                        />
+                      )}
+                      {field.type === 'date' && (
+                        <LocalizedDateInput
+                          id={field.key}
+                          placeholder={field.placeholder}
+                          value={normalizeInputValue(field, formValues[field.key])}
+                          onChange={(value) => setFormValues((prev) => ({ ...prev, [field.key]: value }))}
+                          className={INPUT_STYLE}
                         />
                       )}
                       {isTransferLineConfig && requireFullTransfer && field.key === 'fishCount' && Number(transferLineSourceBalanceQuery.data ?? 0) > 0 && (

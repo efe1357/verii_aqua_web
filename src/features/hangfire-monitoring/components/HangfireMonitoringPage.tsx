@@ -59,6 +59,7 @@ import type {
 import { cn } from '@/lib/utils';
 import { applyFilterRowsClient, type FilterColumnConfig, type FilterRow } from '@/lib/advanced-filter-types';
 import { loadColumnPreferences } from '@/lib/column-preferences';
+import { formatDateTimeForLocale } from '@/lib/date-localization';
 import {
   Select,
   SelectContent,
@@ -153,11 +154,9 @@ function filterDataTableRows<T extends object>(
   })));
 }
 
-function formatDate(value?: string): string {
+function formatDate(value?: string, language?: string): string {
   if (!value) return '-';
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return '-';
-  return date.toLocaleString();
+  return formatDateTimeForLocale(value, language) || '-';
 }
 
 function formatDuration(durationMs: number): string {
@@ -167,7 +166,7 @@ function formatDuration(durationMs: number): string {
 }
 
 export function HangfireMonitoringPage(): ReactElement {
-  const { t } = useTranslation(['hangfire-monitoring', 'stock', 'common']);
+  const { t, i18n } = useTranslation(['hangfire-monitoring', 'stock', 'common']);
   const { setPageTitle } = useUIStore();
   const { user } = useAuthStore();
   const queryClient = useQueryClient();
@@ -294,10 +293,10 @@ export function HangfireMonitoringPage(): ReactElement {
       searchableValue: (item) => `${item.jobName} ${item.method ?? ''} ${item.error ?? ''}`,
     },
     { key: 'cron', label: t('recurring.table.cron'), type: 'string', render: (item) => item.cron || '-' },
-    { key: 'nextExecution', label: t('recurring.table.nextExecution'), type: 'date', render: (item) => formatDate(item.nextExecution), searchableValue: (item) => formatDate(item.nextExecution) },
-    { key: 'lastExecution', label: t('recurring.table.lastExecution'), type: 'date', render: (item) => formatDate(item.lastExecution), searchableValue: (item) => formatDate(item.lastExecution) },
+    { key: 'nextExecution', label: t('recurring.table.nextExecution'), type: 'date', render: (item) => formatDate(item.nextExecution, i18n.language), searchableValue: (item) => formatDate(item.nextExecution, i18n.language) },
+    { key: 'lastExecution', label: t('recurring.table.lastExecution'), type: 'date', render: (item) => formatDate(item.lastExecution, i18n.language), searchableValue: (item) => formatDate(item.lastExecution, i18n.language) },
     { key: 'queue', label: t('recurring.table.queue'), type: 'string', render: (item) => item.queue || '-' },
-  ], [t]);
+  ], [i18n.language, t]);
 
   const successColumns = useMemo<DataTableColumn<HangfireSuccessJobItemDto>[]>(() => [
     { key: 'jobId', label: 'ID', type: 'string', className: 'w-[80px] px-6 font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400', render: (item) => `#${item.jobId}` },
@@ -306,24 +305,24 @@ export function HangfireMonitoringPage(): ReactElement {
     { key: 'queue', label: t('table.queue'), type: 'string', render: (item) => item.queue || '-' },
     { key: 'durationMs', label: t('table.duration'), type: 'number', render: (item) => formatDuration(item.durationMs), searchableValue: (item) => formatDuration(item.durationMs) },
     { key: 'retryCount', label: t('table.retryCount'), type: 'number', render: (item) => item.retryCount },
-    { key: 'finishedAt', label: t('table.time'), type: 'date', render: (item) => formatDate(item.finishedAt), searchableValue: (item) => formatDate(item.finishedAt) },
-  ], [t]);
+    { key: 'finishedAt', label: t('table.time'), type: 'date', render: (item) => formatDate(item.finishedAt, i18n.language), searchableValue: (item) => formatDate(item.finishedAt, i18n.language) },
+  ], [i18n.language, t]);
 
   const failedColumns = useMemo<DataTableColumn<HangfireFailedResponseDto['items'][number]>[]>(() => [
     { key: 'jobId', label: 'ID', type: 'string', className: 'w-[80px] px-6 font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400', render: (item) => `#${item.jobId}` },
     { key: 'jobName', label: t('table.jobName'), type: 'string', className: 'min-w-[200px] max-w-[320px] truncate font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400', render: (item) => item.jobName },
     { key: 'state', label: t('table.state'), type: 'string', className: 'w-[120px]', render: (item) => <Badge variant="outline" className="bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-500/20 rounded-md text-[10px] font-bold px-2 py-0">{item.state || 'Failed'}</Badge> },
-    { key: 'failedAt', label: t('table.time'), type: 'date', className: 'w-[180px]', render: (item) => formatDate(item.failedAt), searchableValue: (item) => formatDate(item.failedAt) },
+    { key: 'failedAt', label: t('table.time'), type: 'date', className: 'w-[180px]', render: (item) => formatDate(item.failedAt, i18n.language), searchableValue: (item) => formatDate(item.failedAt, i18n.language) },
     { key: 'reason', label: t('table.reason'), type: 'string', className: 'max-w-[400px] truncate', render: (item) => item.reason || '-' },
-  ], [t]);
+  ], [i18n.language, t]);
 
   const deadLetterColumns = useMemo<DataTableColumn<HangfireFailedResponseDto['items'][number]>[]>(() => [
     { key: 'jobId', label: 'ID', type: 'string', className: 'w-[80px] px-6 font-mono text-xs text-slate-500 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400', render: (item) => `#${item.jobId}` },
     { key: 'jobName', label: t('table.jobName'), type: 'string', className: 'min-w-[200px] max-w-[320px] truncate font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400', render: (item) => item.jobName },
     { key: 'state', label: t('table.state'), type: 'string', className: 'w-[120px]', render: (item) => <Badge variant="outline" className="bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-500 border-amber-200 dark:border-amber-500/20 rounded-md text-[10px] font-bold px-2 py-0">{item.state || 'Enqueued'}</Badge> },
-    { key: 'enqueuedAt', label: t('table.time'), type: 'date', className: 'w-[180px]', render: (item) => formatDate(item.enqueuedAt), searchableValue: (item) => formatDate(item.enqueuedAt) },
+    { key: 'enqueuedAt', label: t('table.time'), type: 'date', className: 'w-[180px]', render: (item) => formatDate(item.enqueuedAt, i18n.language), searchableValue: (item) => formatDate(item.enqueuedAt, i18n.language) },
     { key: 'reason', label: t('table.reason'), type: 'string', className: 'max-w-[400px] truncate', render: (item) => item.reason || '-' },
-  ], [t]);
+  ], [i18n.language, t]);
 
   const getVisibleColumns = <T extends object,>(columns: DataTableColumn<T>[], controls: DataTableControls): DataTableColumn<T>[] => {
     const byKey = new Map(columns.map((column) => [column.key, column]));
@@ -642,10 +641,10 @@ export function HangfireMonitoringPage(): ReactElement {
               <div className="text-sm font-bold text-slate-900 dark:text-white">{selectedRecurringJob?.jobName || '-'}</div>
               <div className="text-xs text-slate-500 dark:text-slate-400 mt-2">{selectedRecurringJob?.cron || '-'}</div>
               <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                {t('recurring.table.nextExecution')}: {formatDate(selectedRecurringJob?.nextExecution)}
+                {t('recurring.table.nextExecution')}: {formatDate(selectedRecurringJob?.nextExecution, i18n.language)}
               </div>
               <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                {t('recurring.table.lastExecution')}: {formatDate(selectedRecurringJob?.lastExecution)}
+                {t('recurring.table.lastExecution')}: {formatDate(selectedRecurringJob?.lastExecution, i18n.language)}
               </div>
             </div>
           </CardContent>

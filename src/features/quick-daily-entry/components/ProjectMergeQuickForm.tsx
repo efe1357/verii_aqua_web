@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { LocalizedDateInput } from '@/components/shared/LocalizedDateInput';
 import { Combobox } from '@/components/ui/combobox';
 import { projectMergeFormSchema, type ProjectMergeFormSchema } from '../../project-merges/types/projectMerge';
 import type { ProjectDto } from '../types/quick-daily-entry-types';
@@ -133,7 +134,7 @@ export function ProjectMergeQuickForm({
                       <ChevronRight size={14} className="text-cyan-500" />
                       {t('projectMerge.fields.mergeDate')}
                     </FormLabel>
-                    <FormControl><Input type="date" className={inputStyle} {...field} /></FormControl>
+                    <FormControl><LocalizedDateInput value={field.value} onChange={field.onChange} className={inputStyle} /></FormControl>
                     <FormMessage className="text-xs text-red-500" />
                   </FormItem>
                 )}

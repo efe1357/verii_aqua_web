@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Combobox } from '@/components/ui/combobox';
+import { LocalizedDateInput } from '@/components/shared/LocalizedDateInput';
 import type { FilterRow, FilterColumnConfig } from '@/lib/advanced-filter-types';
 import {
   getOperatorsForColumn,
@@ -199,9 +200,16 @@ export function AdvancedFilter({
                     emptyText={t('common.noResults', { ns: 'common' })}
                     className="flex-1 min-w-[100px] h-9 bg-white dark:bg-blue-950 border-slate-200 dark:border-cyan-800/50 text-slate-900 dark:text-white focus-visible:ring-pink-500/20 text-xs font-semibold rounded-lg"
                   />
+                ) : isDate ? (
+                  <LocalizedDateInput
+                    value={row.value}
+                    onChange={(value) => updateRow(row.id, { value })}
+                    placeholder={getLabel('value', t('common.advancedFilter.value', { ns: 'common' }))}
+                    className="flex-1 min-w-[100px] h-9 bg-white dark:bg-blue-950 border-slate-200 dark:border-cyan-800/50 text-slate-900 dark:text-white focus-visible:border-pink-500 focus-visible:ring-pink-500/20 rounded-lg placeholder:text-slate-400 dark:placeholder:text-slate-500 text-xs font-medium"
+                  />
                 ) : (
                   <Input
-                    type={isDate ? 'date' : 'text'}
+                    type="text"
                     placeholder={getLabel('value', t('common.advancedFilter.value', { ns: 'common' }))}
                     value={row.value}
                     onChange={(e) => updateRow(row.id, { value: e.target.value })}

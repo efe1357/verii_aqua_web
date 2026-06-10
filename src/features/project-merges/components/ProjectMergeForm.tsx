@@ -14,7 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { LocalizedDateInput } from '@/components/shared/LocalizedDateInput';
 import { Textarea } from '@/components/ui/textarea';
 import {
   Select,
@@ -129,7 +129,7 @@ export function ProjectMergeForm({
                   <FormItem className="space-y-2">
                     <FormLabel>{t('projectMerge.fields.mergeDate')}</FormLabel>
                     <FormControl>
-                      <Input type="date" {...field} disabled={!mergeEnabled} />
+                      <LocalizedDateInput value={field.value} onChange={field.onChange} disabled={!mergeEnabled} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

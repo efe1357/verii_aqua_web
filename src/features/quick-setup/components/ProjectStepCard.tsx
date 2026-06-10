@@ -14,6 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { LocalizedDateInput } from '@/components/shared/LocalizedDateInput';
 import { Combobox } from '@/components/ui/combobox';
 import { formatLabelWithKey } from '@/shared/utils/dropdown-label';
 import { projectFormSchema, type ProjectFormSchema } from '../schema/quick-setup-schema';
@@ -115,7 +116,7 @@ export function ProjectStepCard({
                 <FormItem>
                   <FormLabel required className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t('aqua.quickSetup.startDate')}</FormLabel>
                   <FormControl>
-                    <Input type="date" className="bg-background dark:bg-blue-950 border-border dark:border-cyan-800/50 text-foreground focus-visible:ring-pink-500/20 focus-visible:border-pink-500 h-11 rounded-xl dark:[&::-webkit-calendar-picker-indicator]:invert" {...field} />
+                    <LocalizedDateInput value={field.value} onChange={field.onChange} className="bg-background dark:bg-blue-950 border-border dark:border-cyan-800/50 text-foreground focus-visible:ring-pink-500/20 focus-visible:border-pink-500 h-11 rounded-xl" />
                   </FormControl>
                   <FormMessage className="text-xs text-rose-500 dark:text-rose-400" />
                 </FormItem>

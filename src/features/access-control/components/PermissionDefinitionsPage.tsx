@@ -29,11 +29,12 @@ import { ensurePermissionDefinitionsSynced } from '../utils/permission-definitio
 import { cn } from '@/lib/utils';
 import { useMyPermissionsQuery } from '../hooks/useMyPermissionsQuery';
 import { hasPermission } from '../utils/hasPermission';
+import { formatDateOnlyForLocale } from '@/lib/date-localization';
 
 const EMPTY_PERMISSION_DEFINITIONS: PermissionDefinitionDto[] = [];
 
 export function PermissionDefinitionsPage(): ReactElement {
-  const { t } = useTranslation(['access-control', 'common']);
+  const { t, i18n } = useTranslation(['access-control', 'common']);
   const getPermissionTitle = useCallback(
     (key: string, fallback: string): string => t(key, { ns: 'common', defaultValue: fallback }),
     [t]
@@ -295,7 +296,7 @@ export function PermissionDefinitionsPage(): ReactElement {
                       </Badge>
                     </TableCell>
                     <TableCell className="text-slate-500 dark:text-slate-400 text-xs tabular-nums font-medium">
-                      {item.updatedDate ? new Date(item.updatedDate).toLocaleDateString() : '-'}
+                      {item.updatedDate ? formatDateOnlyForLocale(item.updatedDate, i18n.language) : '-'}
                     </TableCell>
                     <TableCell className="text-right px-6">
                       <div className="flex justify-end gap-1">

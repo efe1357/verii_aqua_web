@@ -11,9 +11,10 @@ import type { ProjectMergeFormSchema } from '../types/projectMerge';
 import { useMyPermissionsQuery } from '@/features/access-control/hooks/useMyPermissionsQuery';
 import { hasPermission } from '@/features/access-control/utils/hasPermission';
 import { AQUA_SPECIAL_PERMISSION_CODES } from '@/features/access-control/utils/permission-config';
+import { formatDateOnlyForLocale } from '@/lib/date-localization';
 
 export function ProjectMergesPage(): ReactElement {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const { setPageTitle } = useUIStore();
   const { data: aquaSettings } = useAquaSettingsQuery();
   const { data: projects } = useProjectListQuery();
@@ -79,7 +80,7 @@ export function ProjectMergesPage(): ReactElement {
                   {merge.targetProjectName}
                 </div>
                 <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                  {new Date(merge.mergeDate).toLocaleDateString('tr-TR')}
+                  {formatDateOnlyForLocale(merge.mergeDate, i18n.language)}
                 </div>
               </div>
               <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-cyan-800/30 px-3 py-1 text-xs font-semibold text-slate-600 dark:text-slate-300">

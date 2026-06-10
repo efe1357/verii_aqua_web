@@ -16,6 +16,7 @@ import type { StockGetDto } from '../types';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { formatDateOnlyForLocale } from '@/lib/date-localization';
 
 interface StockBasicInfoProps {
   stock: StockGetDto;
@@ -89,11 +90,11 @@ export function StockBasicInfo({ stock }: StockBasicInfoProps): ReactElement {
       <div className="flex flex-col gap-2 pt-4 border-t border-slate-100 dark:border-cyan-800/20">
          <div className="flex items-center gap-2 text-[10px] text-slate-500 dark:text-slate-400 font-medium">
             <Calendar className="w-3 h-3 text-cyan-500/70" />
-            <span>{t('stock.detail.created')}: {stock.createdAt ? new Date(stock.createdAt).toLocaleDateString(i18n.language) : '-'}</span>
+            <span>{t('stock.detail.created')}: {stock.createdAt ? formatDateOnlyForLocale(stock.createdAt, i18n.language) : '-'}</span>
          </div>
          <div className="flex items-center gap-2 text-[10px] text-slate-500 dark:text-slate-400 font-medium">
             <CheckCircle2 className="w-3 h-3 text-emerald-500/70" />
-            <span>{t('stock.detail.updated')}: {stock.updatedAt ? new Date(stock.updatedAt).toLocaleDateString(i18n.language) : '-'}</span>
+            <span>{t('stock.detail.updated')}: {stock.updatedAt ? formatDateOnlyForLocale(stock.updatedAt, i18n.language) : '-'}</span>
          </div>
       </div>
 

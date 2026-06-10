@@ -56,7 +56,7 @@ import {
   localDateString,
 } from './utils/quick-operations';
 import { ChevronRight, ClipboardEdit, CheckCircle2, CalendarDays } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { LocalizedDateInput } from '@/components/shared/LocalizedDateInput';
 import { useMyPermissionsQuery } from '@/features/access-control/hooks/useMyPermissionsQuery';
 import { hasPermission } from '@/features/access-control/utils/hasPermission';
 import { AQUA_SPECIAL_PERMISSION_CODES } from '@/features/access-control/utils/permission-config';
@@ -858,10 +858,9 @@ export function QuickDailyEntryPage(): ReactElement {
               <CalendarDays size={14} className="text-cyan-500" />
               {t('aqua.quickDailyEntry.date')}
             </label>
-            <Input
-              type="date"
+            <LocalizedDateInput
               value={selectedDate}
-              onChange={(event) => setSelectedDate(event.target.value)}
+              onChange={setSelectedDate}
               className="w-full bg-slate-50 dark:bg-blue-900/20 text-slate-900 dark:text-white border-slate-200 dark:border-cyan-800/30 h-12 rounded-xl focus-visible:ring-cyan-500/20 font-medium transition-all dark:[&::-webkit-calendar-picker-indicator]:invert"
             />
           </div>
