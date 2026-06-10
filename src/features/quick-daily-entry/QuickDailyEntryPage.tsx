@@ -11,7 +11,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
 import { Combobox } from '@/components/ui/combobox';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { formatLabelWithKey } from '@/shared/utils/dropdown-label';
 import { OperationTypeTabs } from './components/OperationTypeTabs';
 import { useAquaSettingsQuery } from '@/features/aqua-settings/hooks/useAquaSettingsQuery';
@@ -56,7 +59,7 @@ import {
   localDateString,
 } from './utils/quick-operations';
 import { ChevronRight, ClipboardEdit, CheckCircle2, CalendarDays } from 'lucide-react';
-import { LocalizedDateInput } from '@/components/shared/LocalizedDateInput';
+import { formatDateOnlyForLocale, parseDateOnlyToLocalDate, toIsoDateOnly } from '@/lib/date-localization';
 import { useMyPermissionsQuery } from '@/features/access-control/hooks/useMyPermissionsQuery';
 import { hasPermission } from '@/features/access-control/utils/hasPermission';
 import { AQUA_SPECIAL_PERMISSION_CODES } from '@/features/access-control/utils/permission-config';
@@ -122,7 +125,7 @@ function LazyTabFallback(): ReactElement {
 }
 
 export function QuickDailyEntryPage(): ReactElement {
-  const { t } = useTranslation('common');
+  const { t, i18n } = useTranslation('common');
   const { data: aquaSettings } = useAquaSettingsQuery();
   const { data: permissions } = useMyPermissionsQuery();
   const [searchParams] = useSearchParams();
@@ -134,6 +137,7 @@ export function QuickDailyEntryPage(): ReactElement {
   const [projectCageId, setProjectCageId] = useState<number | null>(null);
   const [targetProjectId, setTargetProjectId] = useState<number | null>(null);
   const [selectedDate, setSelectedDate] = useState<string>(localDateString());
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [sourceBatch, setSourceBatch] = useState<ActiveCageBatchSnapshot | null>(null);
   const [sourceBatchByCageId, setSourceBatchByCageId] = useState<Record<number, ActiveCageBatchSnapshot | null>>({});
   const [transferTargetBatchByCageId, setTransferTargetBatchByCageId] = useState<Record<number, ActiveCageBatchSnapshot | null>>({});
@@ -156,6 +160,7 @@ export function QuickDailyEntryPage(): ReactElement {
   const { data: windDirections } = useWindDirectionListQuery();
   const { data: currentDirections } = useCurrentDirectionListQuery();
   const { data: netOperationTypes } = useNetOperationTypeListQuery();
+  const selectedCalendarDate = useMemo(() => parseDateOnlyToLocalDate(selectedDate) ?? new Date(), [selectedDate]);
 
   const createFeedingLineWithAutoHeader = useCreateFeedingLineWithAutoHeaderMutation();
   const createMortalityLineWithAutoHeader = useCreateMortalityLineWithAutoHeaderMutation();
@@ -858,11 +863,30 @@ export function QuickDailyEntryPage(): ReactElement {
               <CalendarDays size={14} className="text-cyan-500" />
               {t('aqua.quickDailyEntry.date')}
             </label>
-            <LocalizedDateInput
-              value={selectedDate}
-              onChange={setSelectedDate}
-              className="w-full bg-slate-50 dark:bg-blue-900/20 text-slate-900 dark:text-white border-slate-200 dark:border-cyan-800/30 h-12 rounded-xl focus-visible:ring-cyan-500/20 font-medium transition-all dark:[&::-webkit-calendar-picker-indicator]:invert"
-            />
+            <Popover open={isDatePickerOpen} onOpenChange={setIsDatePickerOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full justify-start bg-slate-50 dark:bg-blue-900/20 text-slate-900 dark:text-white border-slate-200 dark:border-cyan-800/30 h-12 rounded-xl focus-visible:ring-cyan-500/20 font-medium transition-all hover:bg-slate-100 dark:hover:bg-blue-900/30"
+                >
+                  <CalendarDays size={16} className="text-cyan-500" />
+                  <span className="tabular-nums">{formatDateOnlyForLocale(selectedDate, i18n.language)}</span>
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent align="start" className="z-80 w-auto rounded-2xl border border-cyan-800/30 bg-white p-0 shadow-2xl dark:bg-blue-950">
+                <Calendar
+                  mode="single"
+                  selected={selectedCalendarDate}
+                  onSelect={(date) => {
+                    if (!date) return;
+                    setSelectedDate(toIsoDateOnly(date));
+                    setIsDatePickerOpen(false);
+                  }}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
       </div>

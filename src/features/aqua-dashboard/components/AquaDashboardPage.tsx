@@ -792,7 +792,7 @@ function CageCardComponent({
                 </span>
               </div>
 
-              {/* Stok kg */}
+              {/* Kalan adet */}
               <div className={cn(
                 'relative flex flex-col items-center overflow-hidden rounded-md border',
                 isPeek ? 'gap-1.5 p-3' : isDialog ? 'gap-px p-0.5' : 'gap-0.5 p-1.5',
@@ -803,11 +803,11 @@ function CageCardComponent({
                 <div className={cn('flex items-center justify-center', isPeek ? 'gap-1.5' : isDialog ? 'gap-px' : 'gap-0.5')}>
                   <Layers className={cn('shrink-0 text-sky-400/75', isPeek ? 'size-3.5' : isDialog ? 'size-2' : 'size-2.5')} />
                   <span className={cn('truncate font-bold uppercase tracking-wider text-sky-300/75', sz.statLabel)}>
-                    {t('aquaDashboard.cageCard.stockKg', { ns: 'dashboard' })}
+                    {t('aquaDashboard.cageCard.remainingCount', { ns: 'dashboard' })}
                   </span>
                 </div>
                 <span className={cn('font-black tabular-nums text-sky-200 drop-shadow-[0_0_4px_rgba(56,189,248,0.4)]', sz.statValue)}>
-                  {formatNumber(toKg(cage.currentBiomassGram))}
+                  {formatNumber(cage.currentFishCount)}
                 </span>
               </div>
             </div>
@@ -1341,9 +1341,9 @@ function CagePeekOverlayComponent({ cage, onClose, t }: CagePeekOverlayProps): R
                       <div className="rounded-2xl border border-white/8 bg-white/5 p-3">
                         <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
                           <Layers className="size-3.5 text-sky-300" />
-                          {t('aquaDashboard.cageCard.stockKg', { ns: 'dashboard' })}
+                          {t('aquaDashboard.cageCard.remainingCount', { ns: 'dashboard' })}
                         </div>
-                        <div className="mt-2 text-2xl font-black text-white">{formatNumber(toKg(cage.currentBiomassGram))}</div>
+                        <div className="mt-2 text-2xl font-black text-white">{formatNumber(cage.currentFishCount)}</div>
                       </div>
                       <div className="rounded-2xl border border-white/8 bg-white/5 p-3">
                         <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">

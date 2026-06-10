@@ -198,6 +198,7 @@
       "totalDeadCount": "Mortality Count",
       "shipmentCount": "Shipment Count",
       "stockCount": "Stock Count",
+      "remainingCount": "Quantità residua",
       "totalDeadKg": "Mortality Kg",
       "shipmentKg": "Shipment Kg",
       "stockKg": "Stock Kg",

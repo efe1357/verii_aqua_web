@@ -198,6 +198,7 @@
       "totalDeadCount": "Fire Adet",
       "shipmentCount": "Satış Adet",
       "stockCount": "Stok Adet",
+      "remainingCount": "Kalan Adet",
       "totalDeadKg": "Fire Kg",
       "shipmentKg": "Satış Kg",
       "stockKg": "Stok Kg",
