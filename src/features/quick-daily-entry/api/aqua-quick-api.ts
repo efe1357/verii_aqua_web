@@ -111,7 +111,7 @@ interface BatchWarehouseBalanceListResponseItem {
   warehouseName?: string;
 }
 
-function isActiveProjectCage(releasedDate?: string | null): boolean {
+export function isActiveProjectCage(releasedDate?: string | null): boolean {
   if (!releasedDate) return true;
   const parsed = new Date(releasedDate);
   if (Number.isNaN(parsed.getTime())) return true;
@@ -217,6 +217,10 @@ function extractWarehouseList(raw: PagedResultRaw<WarehouseListResponseItem>): W
   }));
 }
 
+function hasPositiveLiveCount(item: Record<string, unknown>): boolean {
+  return getNumberField(item, 'liveCount', 'LiveCount') > 0;
+}
+
 async function getAllAquaItems<T>(endpoint: string, pageSize = 500): Promise<T[]> {
   const all: T[] = [];
   let page = 1;
@@ -239,7 +243,46 @@ export const aquaQuickDailyApi = {
     const query = buildPagedQuery(1, 500);
     const response = await api.get<ApiResponse<PagedResultRaw<ProjectDto>>>(`/api/aqua/Project?${query}`);
     const raw = ensureSuccess(response, i18n.t('aqua.api.listLoadFailed', { ns: 'common' }));
-    return extractPagedItems(raw);
+    const projects = extractPagedItems(raw);
+
+    try {
+      const [projectCages, cageBalances, warehouseBalances] = await Promise.all([
+        getAllAquaItems<ProjectCageListResponseItem>('ProjectCage'),
+        getAllAquaItems<BatchCageBalanceListResponseItem>('BatchCageBalance'),
+        getAllAquaItems<BatchWarehouseBalanceListResponseItem>('BatchWarehouseBalance'),
+      ]);
+
+      const projectIdByProjectCageId = new Map<number, number>();
+      (projectCages as unknown as Record<string, unknown>[]).forEach((item) => {
+        const id = getNumberField(item, 'id', 'Id');
+        const projectId = getNumberField(item, 'projectId', 'ProjectId');
+        if (id > 0 && projectId > 0) {
+          projectIdByProjectCageId.set(id, projectId);
+        }
+      });
+
+      const activeProjectIds = new Set<number>();
+      (cageBalances as unknown as Record<string, unknown>[]).forEach((item) => {
+        if (!hasPositiveLiveCount(item)) return;
+        const projectCageId = getNumberField(item, 'projectCageId', 'ProjectCageId');
+        const projectId = projectIdByProjectCageId.get(projectCageId);
+        if (projectId && projectId > 0) {
+          activeProjectIds.add(projectId);
+        }
+      });
+
+      (warehouseBalances as unknown as Record<string, unknown>[]).forEach((item) => {
+        if (!hasPositiveLiveCount(item)) return;
+        const projectId = getNumberField(item, 'projectId', 'ProjectId');
+        if (projectId > 0) {
+          activeProjectIds.add(projectId);
+        }
+      });
+
+      return projects.filter((project) => activeProjectIds.has(Number(project.id)));
+    } catch {
+      return projects;
+    }
   },
 
   getProjectCages: async (projectId: number): Promise<ProjectCageDto[]> => {
@@ -248,7 +291,7 @@ export const aquaQuickDailyApi = {
     const raw = ensureSuccess(response, i18n.t('aqua.api.listLoadFailed', { ns: 'common' }));
     return (extractPagedItems(raw) as unknown as Record<string, unknown>[])
       .map(normalizeProjectCage)
-      .filter((x) => Number(x.projectId) === projectId && isActiveProjectCage(x.releasedDate))
+      .filter((x) => Number(x.projectId) === projectId)
       .map((x) => ({
         id: x.id,
         projectId: x.projectId,

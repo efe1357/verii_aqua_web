@@ -26,7 +26,7 @@ import { useWeatherTypeListQuery } from './hooks/useWeatherTypeListBySeverityQue
 import { useWindDirectionListQuery } from './hooks/useWindDirectionListQuery';
 import { useCurrentDirectionListQuery } from './hooks/useCurrentDirectionListQuery';
 import { useNetOperationTypeListQuery } from './hooks/useNetOperationTypeListQuery';
-import { aquaQuickDailyApi } from './api/aqua-quick-api';
+import { aquaQuickDailyApi, isActiveProjectCage } from './api/aqua-quick-api';
 import {
   useCreateFeedingLineWithAutoHeaderMutation,
   useCreateMortalityLineWithAutoHeaderMutation,
@@ -297,11 +297,15 @@ export function QuickDailyEntryPage(): ReactElement {
     return () => { active = false; };
   }, [projectId, warehouses]);
 
+  const sourceBatchLookupReady = Object.keys(sourceBatchByCageId).length > 0;
   const sourceProjectCages = useMemo(() =>
-    (Array.isArray(projectCages) ? projectCages : []).filter((cage) =>
-      projectId == null ? true : Number(cage.projectId) === Number(projectId)
-    ),
-    [projectCages, projectId]
+    (Array.isArray(projectCages) ? projectCages : []).filter((cage) => {
+      if (projectId != null && Number(cage.projectId) !== Number(projectId)) return false;
+      if (isActiveProjectCage(cage.releasedDate)) return true;
+      if (!sourceBatchLookupReady) return true;
+      return Number(sourceBatchByCageId[cage.id]?.liveCount ?? 0) > 0;
+    }),
+    [projectCages, projectId, sourceBatchByCageId, sourceBatchLookupReady]
   );
 
   const projectOptions = useMemo(
