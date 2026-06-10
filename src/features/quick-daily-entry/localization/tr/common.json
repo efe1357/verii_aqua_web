@@ -27,7 +27,10 @@
         "feedStock": "Yem Stoku",
         "selectStock": "Stok seçin",
         "qty": "Miktar",
-        "save": "Kaydet"
+        "save": "Kaydet",
+        "existingUpdateTitle": "Bu tur ve yem stoğu için mevcut kayıt var.",
+        "existingUpdateDescription": "Kaydettiğinizde yeni satır açılmaz; mevcut değer güncellenir. Mevcut miktar: {{qty}} KG, toplam yem: {{totalKg}} KG.",
+        "existingCages": "Kayıtlı kafes(ler): {{cages}}"
       },
       "mortality": {
         "title": "Fire",

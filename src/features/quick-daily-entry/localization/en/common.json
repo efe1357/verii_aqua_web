@@ -26,7 +26,10 @@
         "feedStock": "Feed Stock",
         "selectStock": "select stock",
         "qty": "quantity",
-        "save": "Save"
+        "save": "Save",
+        "existingUpdateTitle": "An entry already exists for this round and feed stock.",
+        "existingUpdateDescription": "Saving will update the existing value instead of creating a new line. Current quantity: {{qty}} KG, total feed: {{totalKg}} KG.",
+        "existingCages": "Registered cage(s): {{cages}}"
       },
       "mortality": {
         "title": "Wastage",

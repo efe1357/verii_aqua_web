@@ -81,6 +81,20 @@ export interface FeedingHeaderDto {
   feedingSlot?: number;
 }
 
+export interface FeedingLineDto {
+  id: number;
+  feedingId: number;
+  feedingSlot?: number;
+  stockId: number;
+  stockCode?: string;
+  stockName?: string;
+  cageCode?: string;
+  cageName?: string;
+  qtyUnit: number;
+  gramPerUnit: number;
+  totalGram: number;
+}
+
 export interface MortalityHeaderDto {
   id: number;
   projectId: number;
@@ -324,6 +338,8 @@ export interface CreateFeedingLineWithAutoHeaderPayload {
   feedingSlot: number;
   sourceType?: number;
   note?: string;
+  projectCageId?: number;
+  fishBatchId?: number;
   stockId: number;
   qtyUnit: number;
   gramPerUnit: number;

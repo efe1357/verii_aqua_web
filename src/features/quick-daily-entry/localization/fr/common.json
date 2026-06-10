@@ -18,7 +18,10 @@
         "feedStock": "Aliments pour animaux",
         "selectStock": "sélectionner des actions",
         "qty": "quantité",
-        "save": "Enregistrer"
+        "save": "Enregistrer",
+        "existingUpdateTitle": "Une saisie existe déjà pour ce tour et cet aliment.",
+        "existingUpdateDescription": "L'enregistrement mettra à jour la valeur existante au lieu de créer une nouvelle ligne. Quantité actuelle : {{qty}} KG, aliment total : {{totalKg}} KG.",
+        "existingCages": "Cage(s) enregistrée(s) : {{cages}}"
       },
       "mortality": {
         "title": "Mortalité",

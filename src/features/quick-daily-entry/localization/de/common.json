@@ -18,7 +18,10 @@
         "feedStock": "Futtermittelbestand",
         "selectStock": "Lager auswählen",
         "qty": "Menge",
-        "save": "Speichern"
+        "save": "Speichern",
+        "existingUpdateTitle": "Für diese Runde und diesen Futterartikel existiert bereits ein Eintrag.",
+        "existingUpdateDescription": "Beim Speichern wird kein neuer Eintrag erstellt; der vorhandene Wert wird aktualisiert. Aktuelle Menge: {{qty}} KG, Gesamtfutter: {{totalKg}} KG.",
+        "existingCages": "Erfasste Käfige: {{cages}}"
       },
       "mortality": {
         "title": "Mortalität",

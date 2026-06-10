@@ -18,7 +18,10 @@
         "feedStock": "Material de alimentación",
         "selectStock": "seleccione acciones",
         "qty": "cantidad",
-        "save": "Guardar"
+        "save": "Guardar",
+        "existingUpdateTitle": "Ya existe un registro para esta ronda y este alimento.",
+        "existingUpdateDescription": "Al guardar no se creará una nueva línea; se actualizará el valor existente. Cantidad actual: {{qty}} KG, alimento total: {{totalKg}} KG.",
+        "existingCages": "Jaula(s) registradas: {{cages}}"
       },
       "mortality": {
         "title": "Mortalidad",

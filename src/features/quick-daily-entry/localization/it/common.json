@@ -18,7 +18,10 @@
         "feedStock": "Mangime",
         "selectStock": "seleziona azione",
         "qty": "quantità",
-        "save": "Salva"
+        "save": "Salva",
+        "existingUpdateTitle": "Esiste già una registrazione per questo turno e mangime.",
+        "existingUpdateDescription": "Il salvataggio aggiornerà il valore esistente invece di creare una nuova riga. Quantità attuale: {{qty}} KG, mangime totale: {{totalKg}} KG.",
+        "existingCages": "Gabbia/e registrata/e: {{cages}}"
       },
       "mortality": {
         "title": "Mortalità",

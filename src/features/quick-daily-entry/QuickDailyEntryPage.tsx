@@ -422,6 +422,7 @@ export function QuickDailyEntryPage(): ReactElement {
         feedingDate: selectedDate,
         feedingSlot: data.feedingSlot,
         sourceType: 0,
+        projectCageId,
         stockId: data.stockId,
         qtyUnit: data.qtyUnit,
         gramPerUnit: effectiveGramPerUnit,
@@ -862,7 +863,7 @@ export function QuickDailyEntryPage(): ReactElement {
       
       {/* İşlem Sekmeleri (Tab'lar) */}
       <OperationTypeTabs
-        feedingTab={<Suspense fallback={<LazyTabFallback />}><FeedingQuickForm projectId={projectId} projectCageId={projectCageId} stocks={stocks} isLoadingStocks={isLoadingStocks} onSubmit={handleFeedingSubmit} isSubmitting={createFeedingLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
+        feedingTab={<Suspense fallback={<LazyTabFallback />}><FeedingQuickForm projectId={projectId} projectCageId={projectCageId} feedingDate={selectedDate} stocks={stocks} isLoadingStocks={isLoadingStocks} onSubmit={handleFeedingSubmit} isSubmitting={createFeedingLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         mortalityTab={<Suspense fallback={<LazyTabFallback />}><MortalityQuickForm projectId={projectId} projectCageId={projectCageId} onSubmit={handleMortalitySubmit} isSubmitting={createMortalityLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         weatherTab={<Suspense fallback={<LazyTabFallback />}><WeatherQuickForm projectId={projectId} projectCageId={projectCageId} windDirections={windDirections} currentDirections={currentDirections} weatherTypes={weatherTypes} severities={weatherSeverities} onSubmit={handleWeatherSubmit} isSubmitting={createDailyEnvironmentalEntry.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
         netOperationTab={<Suspense fallback={<LazyTabFallback />}><NetOperationQuickForm projectId={projectId} projectCageId={projectCageId} fishBatches={fishBatches} netOperationTypes={netOperationTypes} onSubmit={handleNetOperationSubmit} isSubmitting={createNetOperationLineWithAutoHeader.isPending} canSubmit={canCreateQuickDailyEntry} /></Suspense>}
