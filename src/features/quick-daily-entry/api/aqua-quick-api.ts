@@ -252,12 +252,13 @@ export const aquaQuickDailyApi = {
         getAllAquaItems<BatchWarehouseBalanceListResponseItem>('BatchWarehouseBalance'),
       ]);
 
-      const projectIdByProjectCageId = new Map<number, number>();
+      const activeProjectIdByProjectCageId = new Map<number, number>();
       (projectCages as unknown as Record<string, unknown>[]).forEach((item) => {
         const id = getNumberField(item, 'id', 'Id');
         const projectId = getNumberField(item, 'projectId', 'ProjectId');
-        if (id > 0 && projectId > 0) {
-          projectIdByProjectCageId.set(id, projectId);
+        const releasedDate = getStringField(item, 'releasedDate', 'ReleasedDate');
+        if (id > 0 && projectId > 0 && isActiveProjectCage(releasedDate)) {
+          activeProjectIdByProjectCageId.set(id, projectId);
         }
       });
 
@@ -265,7 +266,7 @@ export const aquaQuickDailyApi = {
       (cageBalances as unknown as Record<string, unknown>[]).forEach((item) => {
         if (!hasPositiveLiveCount(item)) return;
         const projectCageId = getNumberField(item, 'projectCageId', 'ProjectCageId');
-        const projectId = projectIdByProjectCageId.get(projectCageId);
+        const projectId = activeProjectIdByProjectCageId.get(projectCageId);
         if (projectId && projectId > 0) {
           activeProjectIds.add(projectId);
         }
@@ -286,10 +287,8 @@ export const aquaQuickDailyApi = {
   },
 
   getProjectCages: async (projectId: number): Promise<ProjectCageDto[]> => {
-    const query = buildPagedQuery(1, 500, [{ column: 'ProjectId', operator: 'eq', value: String(projectId) }]);
-    const response = await api.get<ApiResponse<PagedResultRaw<ProjectCageDto>>>(`/api/aqua/ProjectCage?${query}`);
-    const raw = ensureSuccess(response, i18n.t('aqua.api.listLoadFailed', { ns: 'common' }));
-    return (extractPagedItems(raw) as unknown as Record<string, unknown>[])
+    const items = await getAllAquaItems<ProjectCageDto>('ProjectCage');
+    return (items as unknown as Record<string, unknown>[])
       .map(normalizeProjectCage)
       .filter((x) => Number(x.projectId) === projectId)
       .map((x) => ({
@@ -392,21 +391,31 @@ export const aquaQuickDailyApi = {
 
     const chunkSize = 25;
     const balanceRows: BatchCageBalanceListResponseItem[] = [];
+    const normalizedIdSet = new Set(normalizedIds);
 
-    for (let index = 0; index < normalizedIds.length; index += chunkSize) {
-      const idChunk = normalizedIds.slice(index, index + chunkSize);
-      const query = buildPagedQuery(
-        1,
-        Math.max(idChunk.length * 20, 100),
-        idChunk.map((id) => ({ column: 'ProjectCageId', operator: 'eq', value: String(id) })),
-        'desc',
-        'or'
+    try {
+      for (let index = 0; index < normalizedIds.length; index += chunkSize) {
+        const idChunk = normalizedIds.slice(index, index + chunkSize);
+        const query = buildPagedQuery(
+          1,
+          Math.max(idChunk.length * 20, 100),
+          idChunk.map((id) => ({ column: 'ProjectCageId', operator: 'eq', value: String(id) })),
+          'desc',
+          'or'
+        );
+        const response = await api.get<ApiResponse<PagedResultRaw<BatchCageBalanceListResponseItem>>>(
+          `/api/aqua/BatchCageBalance?${query}`
+        );
+        const raw = ensureSuccess(response, i18n.t('aqua.api.queryFailed', { ns: 'common' }));
+        balanceRows.push(...extractPagedItems(raw));
+      }
+    } catch {
+      const allRows = await getAllAquaItems<BatchCageBalanceListResponseItem>('BatchCageBalance');
+      balanceRows.push(
+        ...(allRows as unknown as Record<string, unknown>[])
+          .filter((row) => normalizedIdSet.has(getNumberField(row, 'projectCageId', 'ProjectCageId')))
+          .map((row) => row as unknown as BatchCageBalanceListResponseItem)
       );
-      const response = await api.get<ApiResponse<PagedResultRaw<BatchCageBalanceListResponseItem>>>(
-        `/api/aqua/BatchCageBalance?${query}`
-      );
-      const raw = ensureSuccess(response, i18n.t('aqua.api.queryFailed', { ns: 'common' }));
-      balanceRows.push(...extractPagedItems(raw));
     }
 
     const rowsByProjectCageId = new Map<number, BatchCageBalanceListResponseItem[]>();

@@ -63,6 +63,11 @@ import { AQUA_SPECIAL_PERMISSION_CODES } from '@/features/access-control/utils/p
 import { useCreateProjectMergeMutation } from '../project-merges/hooks/useCreateProjectMergeMutation';
 import type { ProjectMergeFormSchema } from '../project-merges/types/projectMerge';
 
+function formatAverageKg(averageGram: number | null | undefined): string {
+  const averageKg = Number(averageGram ?? 0) / 1000;
+  return Number.isFinite(averageKg) ? averageKg.toFixed(3) : '0.000';
+}
+
 const FeedingQuickForm = lazy(async () => {
   const module = await import('./components/FeedingQuickForm');
   return { default: module.FeedingQuickForm };
@@ -301,7 +306,7 @@ export function QuickDailyEntryPage(): ReactElement {
   const sourceProjectCages = useMemo(() =>
     (Array.isArray(projectCages) ? projectCages : []).filter((cage) => {
       if (projectId != null && Number(cage.projectId) !== Number(projectId)) return false;
-      if (isActiveProjectCage(cage.releasedDate)) return true;
+      if (!isActiveProjectCage(cage.releasedDate)) return false;
       if (!sourceBatchLookupReady) return true;
       return Number(sourceBatchByCageId[cage.id]?.liveCount ?? 0) > 0;
     }),
@@ -322,12 +327,10 @@ export function QuickDailyEntryPage(): ReactElement {
       sourceProjectCages.map((pc) => {
       const snapshot = sourceBatchByCageId[pc.id];
       const liveCount = Number(snapshot?.liveCount ?? 0);
-      const averageGram = Number(snapshot?.averageGram ?? 0);
-      const averageKg = averageGram / 1000;
       const baseLabel = pc.cageCode ?? pc.cageName ?? String(pc.id);
       return {
         value: String(pc.id),
-        label: `${formatLabelWithKey(baseLabel, pc.id)} - ${liveCount}/${averageKg} KG`,
+        label: `${formatLabelWithKey(baseLabel, pc.id)} - ${liveCount}/${formatAverageKg(snapshot?.averageGram)} KG`,
       };
       }),
     [sourceProjectCages, sourceBatchByCageId]
@@ -381,7 +384,7 @@ export function QuickDailyEntryPage(): ReactElement {
     () =>
       warehouseTransferBatchSnapshots.map((batch) => ({
         value: String(batch.fishBatchId),
-        label: `${batch.batchCode ?? batch.fishBatchId} - ${batch.liveCount}/${Number(batch.averageGram ?? 0) / 1000} KG`,
+        label: `${batch.batchCode ?? batch.fishBatchId} - ${batch.liveCount}/${formatAverageKg(batch.averageGram)} KG`,
       })),
     [warehouseTransferBatchSnapshots]
   );
@@ -395,7 +398,7 @@ export function QuickDailyEntryPage(): ReactElement {
     () =>
       warehouseCageTransferBatchSnapshots.map((batch) => ({
         value: String(batch.fishBatchId),
-        label: `${batch.batchCode ?? batch.fishBatchId} - ${batch.liveCount}/${Number(batch.averageGram ?? 0) / 1000} KG`,
+        label: `${batch.batchCode ?? batch.fishBatchId} - ${batch.liveCount}/${formatAverageKg(batch.averageGram)} KG`,
       })),
     [warehouseCageTransferBatchSnapshots]
   );
