@@ -297,6 +297,18 @@ const TEMPLATE_GUIDE_ROWS = [
   },
 ];
 
+function isExistingOpeningDataMessage(message: string): boolean {
+  const normalizedMessage = message.toLocaleLowerCase('tr-TR');
+  return (
+    normalizedMessage.includes('zaten mevcut') ||
+    normalizedMessage.includes('zaten sistemde kayıtlı') ||
+    normalizedMessage.includes('zaten tanımlı') ||
+    normalizedMessage.includes('farklı bir projeye atanmış') ||
+    normalizedMessage.includes('already exists') ||
+    normalizedMessage.includes('already assigned')
+  );
+}
+
 function getTemplateGuideRows(t: (key: string, options?: Record<string, unknown>) => string): Array<Record<string, string>> {
   return TEMPLATE_GUIDE_ROWS.map((row, index) => ({
     [ttExport(t, 'aqua.openingImport.guide.exportSection', 'Bölüm')]: ttExport(t, `aqua.openingImport.guide.rows.${index}.title`, row.Bolum),
@@ -555,10 +567,7 @@ export function OpeningImportPage(): ReactElement {
   );
   const hasExistingOpeningDataErrors = Boolean(
     preview?.rows.some((row) =>
-      row.messages.some((message) =>
-        message.includes('zaten mevcut') ||
-        message.includes('daha önce silinmiş kayıt olarak mevcut')
-      )
+      row.messages.some((message) => isExistingOpeningDataMessage(message) || message.includes('daha önce silinmiş kayıt olarak mevcut'))
     )
   );
 
