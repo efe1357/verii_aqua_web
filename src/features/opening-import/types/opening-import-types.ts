@@ -6,6 +6,7 @@ export type OpeningImportTargetField =
   | 'cageCode'
   | 'cageName'
   | 'assignedDate'
+  | 'releasedDate'
   | 'batchCode'
   | 'fishStockCode'
   | 'fishCount'

@@ -42,6 +42,7 @@ const SHEET_DEFINITIONS: OpeningImportSheetDefinition[] = [
       { field: 'cageName', label: 'CageName', required: true },
       { field: 'warehouseCode', label: 'WarehouseCode' },
       { field: 'assignedDate', label: 'AssignedDate' },
+      { field: 'releasedDate', label: 'ReleasedDate' },
     ],
   },
   {
@@ -135,6 +136,7 @@ const TEMPLATE_ROWS: Record<string, Record<string, string | number | null>[]> = 
       CageName: 'A1 Kafesi',
       WarehouseCode: 10,
       AssignedDate: '2026-01-01',
+      ReleasedDate: null,
     },
   ],
   OpeningStock: [
@@ -232,6 +234,7 @@ const FIELD_LABEL_ALIASES: Record<string, string[]> = {
   CageCode: ['CageCode', 'Cage Code', 'Kafes Kodu'],
   CageName: ['CageName', 'Cage Name', 'Kafes Adı'],
   AssignedDate: ['AssignedDate', 'Assignment Date', 'Atama Tarihi'],
+  ReleasedDate: ['ReleasedDate', 'Release Date', 'Bitiş Tarihi', 'Kapanış Tarihi', 'Çıkış Tarihi'],
   WarehouseCode: ['WarehouseCode', 'Warehouse Code', 'Depo Kodu', 'ERP Depo Kodu', 'Mirror Depo Kodu', 'ErpWarehouseCode'],
   BatchCode: ['BatchCode', 'Batch Code', 'Batch Kodu'],
   FishStockCode: ['FishStockCode', 'Fish Stock Code', 'Balık Stok Kodu'],
