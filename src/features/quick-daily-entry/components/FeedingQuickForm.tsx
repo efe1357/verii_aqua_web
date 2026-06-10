@@ -63,21 +63,20 @@ export function FeedingQuickForm({
 
   const disabled = projectId == null || projectCageId == null;
   const selectedFeedingSlot = useWatch({ control: form.control, name: 'feedingSlot' });
-  const selectedStockId = useWatch({ control: form.control, name: 'stockId' });
 
   const existingFeedingLineQuery = useQuery({
-    queryKey: ['aqua', 'quick-daily-entry', 'existing-feeding-line', projectId, feedingDate, selectedFeedingSlot, selectedStockId],
+    queryKey: ['aqua', 'quick-daily-entry', 'existing-feeding-line', projectId, projectCageId, feedingDate, selectedFeedingSlot],
     queryFn: () => aquaQuickDailyApi.findExistingFeedingLine(
       projectId!,
       feedingDate,
       Number(selectedFeedingSlot),
-      Number(selectedStockId)
+      projectCageId
     ),
     enabled:
       projectId != null &&
+      projectCageId != null &&
       Boolean(feedingDate) &&
-      Number.isFinite(Number(selectedFeedingSlot)) &&
-      Number(selectedStockId) > 0,
+      Number.isFinite(Number(selectedFeedingSlot)),
     staleTime: 5000,
   });
   const existingFeedingLine = existingFeedingLineQuery.data ?? null;
@@ -189,6 +188,11 @@ export function FeedingQuickForm({
                         totalKg: (Number(existingFeedingLine.totalGram ?? 0) / 1000).toLocaleString(undefined, { maximumFractionDigits: 3 }),
                       })}
                     </p>
+                    {existingFeedingLine.stockCode || existingFeedingLine.stockName ? (
+                      <p className="text-xs font-medium text-cyan-700 dark:text-cyan-200">
+                        {formatCodeAndKeyLabel(existingFeedingLine.stockCode, existingFeedingLine.stockId, existingFeedingLine.stockName)}
+                      </p>
+                    ) : null}
                     {existingFeedingLine.cageCode ? (
                       <p className="text-xs font-medium text-cyan-700 dark:text-cyan-200">
                         {t('aqua.quickDailyEntry.feeding.existingCages', { cages: existingFeedingLine.cageCode })}

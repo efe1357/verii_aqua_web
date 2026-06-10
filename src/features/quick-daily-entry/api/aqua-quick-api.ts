@@ -14,6 +14,7 @@ import type {
   NetOperationTypeDto,
   FeedingHeaderDto,
   FeedingLineDto,
+  FeedingDistributionDto,
   MortalityHeaderDto,
   NetOperationHeaderDto,
   ActiveCageBatchSnapshot,
@@ -537,7 +538,7 @@ export const aquaQuickDailyApi = {
     projectId: number,
     feedingDate: string,
     feedingSlot: number,
-    stockId: number
+    projectCageId?: number | null
   ): Promise<FeedingLineDto | null> => {
     const headerQuery = buildPagedQuery(1, 1, [
       { column: 'ProjectId', operator: 'eq', value: String(projectId) },
@@ -549,9 +550,18 @@ export const aquaQuickDailyApi = {
     const header = extractPagedItems(headerRaw)[0];
     if (!header?.id) return null;
 
+    const distributionQuery = buildPagedQuery(1, 1, [
+      { column: 'FeedingId', operator: 'eq', value: String(header.id) },
+      { column: 'ProjectCageId', operator: 'eq', value: String(projectCageId ?? 0) },
+    ]);
+    const distributionResponse = await api.get<ApiResponse<PagedResultRaw<FeedingDistributionDto>>>(`/api/aqua/FeedingDistribution?${distributionQuery}`);
+    const distributionRaw = ensureSuccess(distributionResponse, i18n.t('aqua.api.queryFailed', { ns: 'common' }));
+    const distribution = extractPagedItems(distributionRaw)[0];
+    if (!distribution?.feedingLineId) return null;
+
     const lineQuery = buildPagedQuery(1, 1, [
       { column: 'FeedingId', operator: 'eq', value: String(header.id) },
-      { column: 'StockId', operator: 'eq', value: String(stockId) },
+      { column: 'Id', operator: 'eq', value: String(distribution.feedingLineId) },
     ]);
     const lineResponse = await api.get<ApiResponse<PagedResultRaw<FeedingLineDto>>>(`/api/aqua/FeedingLine?${lineQuery}`);
     const lineRaw = ensureSuccess(lineResponse, i18n.t('aqua.api.queryFailed', { ns: 'common' }));

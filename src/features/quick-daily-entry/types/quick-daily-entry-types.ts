@@ -95,6 +95,14 @@ export interface FeedingLineDto {
   totalGram: number;
 }
 
+export interface FeedingDistributionDto {
+  id: number;
+  feedingLineId: number;
+  fishBatchId: number;
+  projectCageId: number;
+  feedGram: number;
+}
+
 export interface MortalityHeaderDto {
   id: number;
   projectId: number;
