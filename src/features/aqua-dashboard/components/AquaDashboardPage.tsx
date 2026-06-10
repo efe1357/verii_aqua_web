@@ -111,7 +111,6 @@ interface CageSizeClasses {
   statValue: string;
   fcrValue: string;
   cageLabel: string;
-  survivalRow: string;
   quickEntryBtn: string;
   fcrLabel: string;
 }
@@ -132,7 +131,6 @@ const CAGE_SIZE_CLASSES: Record<CageCardSize, CageSizeClasses> = {
     statValue: 'text-[12px]',
     fcrValue: 'text-sm',
     cageLabel: 'text-[12px] max-w-[220px] min-w-[80px]',
-    survivalRow: 'text-[11px] py-1.5',
     quickEntryBtn: 'h-9 text-xs',
     fcrLabel: 'text-[9px]',
   },
@@ -146,7 +144,6 @@ const CAGE_SIZE_CLASSES: Record<CageCardSize, CageSizeClasses> = {
     statValue: 'text-[8px] leading-none',
     fcrValue: 'text-[9px] leading-tight',
     cageLabel: 'text-[6px] max-w-[148px] min-w-0',
-    survivalRow: 'text-[7px] py-px leading-none',
     quickEntryBtn: 'h-5 text-[8px] leading-none',
     fcrLabel: 'text-[6px]',
   },
@@ -159,7 +156,6 @@ const CAGE_SIZE_CLASSES: Record<CageCardSize, CageSizeClasses> = {
     statValue: 'text-[22px]',
     fcrValue: 'text-4xl',
     cageLabel: 'text-[18px] max-w-[320px]',
-    survivalRow: 'text-[16px] py-2',
     quickEntryBtn: 'h-12 text-base',
     fcrLabel: 'text-[13px]',
   },
@@ -879,7 +875,7 @@ function CageCardComponent({
             </span>
           </div>
 
-          {/* Alt alan: Günlük giriş + Yaşam oranı */}
+          {/* Alt alan: Günlük giriş */}
           <div className={cn('mt-auto flex w-full shrink-0 flex-col items-center', isDialog ? 'gap-0.5' : 'gap-1', sz.bottom)}>
             {onQuickEntryClick && (
               <Button
@@ -899,23 +895,6 @@ function CageCardComponent({
                 {t('aquaDashboard.cageCard.quickDailyEntry', { ns: 'dashboard' })}
               </Button>
             )}
-            <div
-              className={cn(
-                'flex items-center justify-between rounded-full border font-bold uppercase',
-                isPeek ? 'w-[80%] tracking-wider px-5' : isDialog ? 'w-[96%] px-1 tracking-tight' : 'w-[80%] tracking-wider px-2.5',
-                sz.survivalRow,
-                isCritical
-                  ? 'border-rose-400/60 bg-rose-950/85 text-rose-200 shadow-[0_0_12px_rgba(244,63,94,0.25)]'
-                  : isWarning
-                    ? 'border-amber-400/55 bg-amber-950/85 text-amber-200 shadow-[0_0_10px_rgba(245,158,11,0.2)]'
-                    : 'border-emerald-400/50 bg-emerald-950/85 text-emerald-100 shadow-[0_0_10px_rgba(52,211,153,0.18)]'
-              )}
-            >
-              <span className="truncate">{t('aquaDashboard.cageCard.survivalRate', { ns: 'dashboard' })}</span>
-              <span className={cn('ml-1 shrink-0 font-black', isCritical ? 'text-rose-300' : isWarning ? 'text-amber-200' : 'text-emerald-200')}>
-                %{survivalRate.toFixed(1)}
-              </span>
-            </div>
           </div>
         </div>
       </div>
@@ -1105,7 +1084,6 @@ function GlobalCageSortSectionComponent({
                   <th className="whitespace-nowrap px-5 py-4 text-center">{t('aquaDashboard.listTable.measurementGram', { ns: 'dashboard' })}</th>
                   <th className="whitespace-nowrap px-5 py-4 text-center">{t('aquaDashboard.listTable.feedKg', { ns: 'dashboard' })}</th>
                   <th className="whitespace-nowrap px-5 py-4 text-center">{t('aquaDashboard.listTable.fcr', { ns: 'dashboard' })}</th>
-                  <th className="whitespace-nowrap px-5 py-4 text-center">{t('aquaDashboard.listTable.survivalRate', { ns: 'dashboard' })}</th>
                   <th className="whitespace-nowrap px-5 py-4 text-right">{t('aquaDashboard.listTable.action', { ns: 'dashboard' })}</th>
                 </tr>
               </thead>
@@ -1184,21 +1162,6 @@ function GlobalCageSortSectionComponent({
 
                       <td className="px-5 py-3 text-center font-bold tabular-nums text-sky-600 dark:text-sky-300">
                         {cage.fcr != null ? formatNumber(cage.fcr) : '-'}
-                      </td>
-
-                      <td className="px-5 py-3 text-center">
-                        <span
-                          className={cn(
-                            'rounded-xl border px-2.5 py-1.5 text-[11px] font-black',
-                            survivalRate < 80
-                              ? 'border-rose-200 bg-rose-50 text-rose-600 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-400'
-                              : survivalRate < 95
-                                ? 'border-amber-200 bg-amber-50 text-amber-600 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-400'
-                                : 'border-emerald-200 bg-emerald-50 text-emerald-600 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400'
-                          )}
-                        >
-                          %{survivalRate.toFixed(1)}
-                        </span>
                       </td>
 
                       <td className="px-5 py-3 text-right">
@@ -1398,25 +1361,6 @@ function CagePeekOverlayComponent({ cage, onClose, t }: CagePeekOverlayProps): R
                       </div>
                     </div>
 
-                    <div className="rounded-2xl border border-white/8 bg-linear-to-r from-slate-950/70 via-slate-900/60 to-slate-950/70 p-4">
-                      <div className="flex items-center justify-between gap-3">
-                        <div>
-                          <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-400">
-                            {t('aquaDashboard.cageCard.survivalRate', { ns: 'dashboard' })}
-                          </div>
-                          <div className="mt-1 text-3xl font-black text-white">
-                            %{(() => {
-                              const totalInitial = cage.currentFishCount + cage.totalDeadCount;
-                              const survivalRate = totalInitial > 0 ? (cage.currentFishCount / totalInitial) * 100 : 100;
-                              return survivalRate.toFixed(1);
-                            })()}
-                          </div>
-                        </div>
-                        <div className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-emerald-200">
-                          {t('aquaDashboard.controls.detail', { ns: 'dashboard' })}
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
                   <div className="flex items-center justify-between gap-3 border-t border-white/8 pt-4 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400">
@@ -2266,7 +2210,6 @@ export function AquaDashboardPage(): ReactElement {
                           <th className="px-5 py-4 text-center whitespace-nowrap">{t('aquaDashboard.listTable.measurementGram', { ns: 'dashboard' })}</th>
                           <th className="px-5 py-4 text-center whitespace-nowrap">{t('aquaDashboard.listTable.feedKg', { ns: 'dashboard' })}</th>
                           <th className="px-5 py-4 text-center whitespace-nowrap">{t('aquaDashboard.listTable.fcr', { ns: 'dashboard' })}</th>
-                          <th className="px-5 py-4 text-center whitespace-nowrap">{t('aquaDashboard.listTable.survivalRate', { ns: 'dashboard' })}</th>
                           <th className="px-5 py-4 text-right whitespace-nowrap">{t('aquaDashboard.listTable.action', { ns: 'dashboard' })}</th>
                         </tr>
                       </thead>
@@ -2329,21 +2272,6 @@ export function AquaDashboardPage(): ReactElement {
 
                               <td className="px-5 py-3 text-center font-bold text-sky-600 dark:text-sky-300 tabular-nums">
                                 {cage.fcr != null ? formatNumber(cage.fcr) : '-'}
-                              </td>
-
-                              <td className="px-5 py-3 text-center">
-                                <span
-                                  className={cn(
-                                    'font-black text-[11px] px-2.5 py-1.5 rounded-xl border',
-                                    survivalRate < 80
-                                      ? 'bg-rose-50 text-rose-600 border-rose-200 dark:bg-rose-500/10 dark:text-rose-400 dark:border-rose-500/30'
-                                      : survivalRate < 95
-                                        ? 'bg-amber-50 text-amber-600 border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/30'
-                                        : 'bg-emerald-50 text-emerald-600 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/30'
-                                  )}
-                                >
-                                  %{survivalRate.toFixed(1)}
-                                </span>
                               </td>
 
                               <td className="px-5 py-3 text-right">
