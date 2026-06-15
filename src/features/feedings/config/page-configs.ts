@@ -49,6 +49,11 @@ export const feedingsConfig: AquaCrudConfig = {
     { key: 'feedingNo', label: 'aqua.fields.feedingNo' },
     { key: 'feedingDate', label: 'aqua.fields.feedingDate' },
     { key: 'feedingSlot', label: 'aqua.fields.feedingSlot' },
+    { key: 'isERPIntegrated', label: 'aqua.fields.isERPIntegrated' },
+    { key: 'erpReferenceNumber', label: 'aqua.fields.erpReferenceNumber' },
+    { key: 'erpIntegrationDate', label: 'aqua.fields.erpIntegrationDate' },
+    { key: 'erpIntegrationStatus', label: 'aqua.fields.erpIntegrationStatus' },
+    { key: 'erpErrorMessage', label: 'aqua.fields.erpErrorMessage' },
   ],
   defaultValues: { feedingSlot: 0, sourceType: 0 },
 };
