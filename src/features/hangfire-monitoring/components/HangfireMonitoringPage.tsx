@@ -70,7 +70,7 @@ import {
 
 const DEFAULT_PAGE_SIZE = 20;
 const PAGE_SIZE_OPTIONS = [10, 20, 50, 100] as const;
-const RECURRING_COLUMN_KEYS = ['id', 'jobName', 'cron', 'nextExecution', 'lastExecution', 'queue'];
+const RECURRING_COLUMN_KEYS = ['id', 'jobName', 'category', 'cron', 'nextExecution', 'lastExecution', 'queue'];
 const SUCCESS_COLUMN_KEYS = ['jobId', 'jobName', 'recurringJobId', 'queue', 'durationMs', 'retryCount', 'finishedAt'];
 const FAILED_COLUMN_KEYS = ['jobId', 'jobName', 'state', 'failedAt', 'reason'];
 const DEAD_LETTER_COLUMN_KEYS = ['jobId', 'jobName', 'state', 'enqueuedAt', 'reason'];
@@ -212,7 +212,7 @@ export function HangfireMonitoringPage(): ReactElement {
   const triggerRecurringJobMutation = useMutation({
     mutationFn: (jobId: string) => hangfireMonitoringApi.triggerRecurringJob(jobId),
     onSuccess: async (result) => {
-      toast.success(t('recurring.triggerSuccess', { jobName: result.jobId }));
+      toast.success(t('recurring.triggerSuccess', { jobName: result.jobName ?? selectedRecurringJob?.jobName ?? result.recurringJobId ?? result.jobId }));
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: HANGFIRE_QUERY_KEYS.RECURRING }),
         queryClient.invalidateQueries({ queryKey: HANGFIRE_QUERY_KEYS.STATS }),
@@ -286,12 +286,14 @@ export function HangfireMonitoringPage(): ReactElement {
       render: (item) => (
         <div className="max-w-[340px]">
           <div className="truncate font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400" title={item.jobName}>{item.jobName}</div>
-          {item.method ? <div className="truncate text-xs text-slate-500 dark:text-slate-400" title={item.method}>{item.method}</div> : null}
+          {item.description ? <div className="truncate text-xs text-slate-500 dark:text-slate-400" title={item.description}>{item.description}</div> : null}
+          {item.technicalJobName ? <div className="truncate text-[11px] text-slate-400 dark:text-slate-500" title={item.technicalJobName}>{item.technicalJobName}</div> : null}
           {item.error ? <div className="truncate text-xs text-rose-500 mt-1" title={item.error}>{item.error}</div> : null}
         </div>
       ),
-      searchableValue: (item) => `${item.jobName} ${item.method ?? ''} ${item.error ?? ''}`,
+      searchableValue: (item) => `${item.jobName} ${item.description ?? ''} ${item.category ?? ''} ${item.method ?? ''} ${item.technicalJobName ?? ''} ${item.error ?? ''}`,
     },
+    { key: 'category', label: t('recurring.table.category'), type: 'string', render: (item) => item.category || '-' },
     { key: 'cron', label: t('recurring.table.cron'), type: 'string', render: (item) => item.cron || '-' },
     { key: 'nextExecution', label: t('recurring.table.nextExecution'), type: 'date', render: (item) => formatDate(item.nextExecution, i18n.language), searchableValue: (item) => formatDate(item.nextExecution, i18n.language) },
     { key: 'lastExecution', label: t('recurring.table.lastExecution'), type: 'date', render: (item) => formatDate(item.lastExecution, i18n.language), searchableValue: (item) => formatDate(item.lastExecution, i18n.language) },
@@ -620,7 +622,10 @@ export function HangfireMonitoringPage(): ReactElement {
                 <SelectContent>
                   {recurringItems.map((item) => (
                     <SelectItem key={item.id} value={item.id}>
-                      {item.jobName}
+                      <div className="flex flex-col gap-0.5 py-1">
+                        <span className="font-semibold">{item.jobName}</span>
+                        <span className="text-xs text-slate-500">{item.id}</span>
+                      </div>
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -639,6 +644,16 @@ export function HangfireMonitoringPage(): ReactElement {
                 {selectedRecurringJob?.id || '-'}
               </div>
               <div className="text-sm font-bold text-slate-900 dark:text-white">{selectedRecurringJob?.jobName || '-'}</div>
+              {selectedRecurringJob?.description ? (
+                <div className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+                  {selectedRecurringJob.description}
+                </div>
+              ) : null}
+              {selectedRecurringJob?.category ? (
+                <Badge variant="outline" className="mt-3 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-500/20">
+                  {selectedRecurringJob.category}
+                </Badge>
+              ) : null}
               <div className="text-xs text-slate-500 dark:text-slate-400 mt-2">{selectedRecurringJob?.cron || '-'}</div>
               <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                 {t('recurring.table.nextExecution')}: {formatDate(selectedRecurringJob?.nextExecution, i18n.language)}

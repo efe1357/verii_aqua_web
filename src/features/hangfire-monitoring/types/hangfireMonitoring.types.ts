@@ -52,6 +52,9 @@ export interface HangfireSuccessResponseDto {
 export interface HangfireRecurringJobItemDto {
   id: string;
   jobName: string;
+  technicalJobName?: string;
+  description?: string;
+  category?: string;
   method?: string;
   cron?: string;
   queue?: string;
@@ -69,6 +72,8 @@ export interface HangfireRecurringJobsResponseDto {
 
 export interface HangfireTriggerRecurringJobResponseDto {
   jobId: string;
+  jobName?: string;
+  recurringJobId?: string;
   triggeredAt: string;
   message: string;
 }

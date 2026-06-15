@@ -38,7 +38,7 @@
     "title": "Zamanlanmış İşler",
     "description": "Buradan kayıtlı Hangfire işlerini görebilir ve seçtiğin işi hemen tetikleyebilirsin.",
     "selectLabel": "Çalıştırılacak iş",
-    "selectPlaceholder": "Bir job seç",
+    "selectPlaceholder": "Bir iş seç",
     "triggerButton": "Şimdi çalıştır",
     "triggerSuccess": "{{jobName}} işi tetiklendi.",
     "triggerError": "Job tetiklenirken bir hata oluştu.",
@@ -46,6 +46,7 @@
     "table": {
       "id": "Job Kimliği",
       "job": "İş",
+      "category": "Kategori",
       "cron": "Zamanlama",
       "nextExecution": "Sonraki çalışma",
       "lastExecution": "Son çalışma",

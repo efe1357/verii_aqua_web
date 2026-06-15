@@ -82,6 +82,13 @@ function normalizeRecurringJobs(items: unknown): HangfireRecurringJobsResponseDt
     return {
       id: String(pick<string>(row, 'Id', 'id') ?? ''),
       jobName: String(pick<string>(row, 'JobName', 'jobName') ?? pick<string>(row, 'Id', 'id') ?? 'unknown'),
+      technicalJobName: pick<string>(row, 'TechnicalJobName', 'technicalJobName') != null
+        ? String(pick<string>(row, 'TechnicalJobName', 'technicalJobName'))
+        : undefined,
+      description: pick<string>(row, 'Description', 'description') != null
+        ? String(pick<string>(row, 'Description', 'description'))
+        : undefined,
+      category: pick<string>(row, 'Category', 'category') != null ? String(pick<string>(row, 'Category', 'category')) : undefined,
       method: pick<string>(row, 'Method', 'method') != null ? String(pick<string>(row, 'Method', 'method')) : undefined,
       cron: pick<string>(row, 'Cron', 'cron') != null ? String(pick<string>(row, 'Cron', 'cron')) : undefined,
       queue: pick<string>(row, 'Queue', 'queue') != null ? String(pick<string>(row, 'Queue', 'queue')) : undefined,
@@ -153,6 +160,8 @@ export const hangfireMonitoringApi = {
     const data = unwrapResponse(response);
     return {
       jobId: String(pick<string>(data, 'JobId', 'jobId') ?? jobId),
+      jobName: pick<string>(data, 'JobName', 'jobName') != null ? String(pick<string>(data, 'JobName', 'jobName')) : undefined,
+      recurringJobId: pick<string>(data, 'RecurringJobId', 'recurringJobId') != null ? String(pick<string>(data, 'RecurringJobId', 'recurringJobId')) : undefined,
       triggeredAt: String(pick<string>(data, 'TriggeredAt', 'triggeredAt') ?? new Date().toISOString()),
       message: String(pick<string>(data, 'Message', 'message') ?? 'Recurring job triggered successfully.'),
     };

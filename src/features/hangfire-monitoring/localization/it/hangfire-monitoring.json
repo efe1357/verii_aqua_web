@@ -46,6 +46,7 @@
     "table": {
       "id": "Job ID",
       "job": "Job",
+      "category": "Categoria",
       "cron": "Schedule",
       "nextExecution": "Next run",
       "lastExecution": "Last run",
