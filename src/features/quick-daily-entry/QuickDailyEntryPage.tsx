@@ -1,7 +1,6 @@
 import { Suspense, lazy, type ReactElement, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
-import { arSA, de, enUS, es, fr, it, tr } from 'date-fns/locale';
 import { toast } from 'sonner';
 import {
   AlertDialog,
@@ -12,10 +11,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
 import { Combobox } from '@/components/ui/combobox';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { LocalizedDateInput } from '@/components/shared/LocalizedDateInput';
 import { formatLabelWithKey } from '@/shared/utils/dropdown-label';
 import { OperationTypeTabs } from './components/OperationTypeTabs';
 import { useAquaSettingsQuery } from '@/features/aqua-settings/hooks/useAquaSettingsQuery';
@@ -60,7 +57,7 @@ import {
   localDateString,
 } from './utils/quick-operations';
 import { ChevronRight, ClipboardEdit, CheckCircle2, CalendarDays } from 'lucide-react';
-import { formatDateOnlyForLocale, getLocalizedDatePlaceholder, parseDateOnlyToLocalDate, toIsoDateOnly } from '@/lib/date-localization';
+import { parseDateOnlyToLocalDate, toIsoDateOnly } from '@/lib/date-localization';
 import { useMyPermissionsQuery } from '@/features/access-control/hooks/useMyPermissionsQuery';
 import { hasPermission } from '@/features/access-control/utils/hasPermission';
 import { AQUA_SPECIAL_PERMISSION_CODES } from '@/features/access-control/utils/permission-config';
@@ -72,19 +69,15 @@ function formatAverageKg(averageGram: number | null | undefined): string {
   return Number.isFinite(averageKg) ? averageKg.toFixed(3) : '0.000';
 }
 
-const CALENDAR_LOCALES = {
-  tr,
-  en: enUS,
-  de,
-  es,
-  fr,
-  it,
-  ar: arSA,
-};
+const QUICK_DAILY_ENTRY_DATE_STORAGE_KEY = 'aqua.quickDailyEntry.selectedDate';
 
-function resolveCalendarLocale(language?: string) {
-  const shortCode = (language || 'tr').toLowerCase().split('-')[0] as keyof typeof CALENDAR_LOCALES;
-  return CALENDAR_LOCALES[shortCode] ?? tr;
+function readInitialQuickDailyEntryDate(): string {
+  if (typeof window === 'undefined') {
+    return localDateString();
+  }
+
+  const stored = window.sessionStorage.getItem(QUICK_DAILY_ENTRY_DATE_STORAGE_KEY);
+  return parseDateOnlyToLocalDate(stored) ? stored! : localDateString();
 }
 
 const FeedingQuickForm = lazy(async () => {
@@ -141,7 +134,7 @@ function LazyTabFallback(): ReactElement {
 }
 
 export function QuickDailyEntryPage(): ReactElement {
-  const { t, i18n } = useTranslation('common');
+  const { t } = useTranslation('common');
   const { data: aquaSettings } = useAquaSettingsQuery();
   const { data: permissions } = useMyPermissionsQuery();
   const [searchParams] = useSearchParams();
@@ -152,8 +145,7 @@ export function QuickDailyEntryPage(): ReactElement {
   const [projectId, setProjectId] = useState<number | null>(null);
   const [projectCageId, setProjectCageId] = useState<number | null>(null);
   const [targetProjectId, setTargetProjectId] = useState<number | null>(null);
-  const [selectedDate, setSelectedDate] = useState<string>(localDateString());
-  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<string>(readInitialQuickDailyEntryDate);
   const [sourceBatch, setSourceBatch] = useState<ActiveCageBatchSnapshot | null>(null);
   const [sourceBatchByCageId, setSourceBatchByCageId] = useState<Record<number, ActiveCageBatchSnapshot | null>>({});
   const [transferTargetBatchByCageId, setTransferTargetBatchByCageId] = useState<Record<number, ActiveCageBatchSnapshot | null>>({});
@@ -176,21 +168,16 @@ export function QuickDailyEntryPage(): ReactElement {
   const { data: windDirections } = useWindDirectionListQuery();
   const { data: currentDirections } = useCurrentDirectionListQuery();
   const { data: netOperationTypes } = useNetOperationTypeListQuery();
-  const selectedCalendarDate = useMemo(() => parseDateOnlyToLocalDate(selectedDate) ?? new Date(), [selectedDate]);
-  const selectedDateDisplay = useMemo(() => formatDateOnlyForLocale(selectedDate, i18n.language), [i18n.language, selectedDate]);
-  const selectedDateLongDisplay = useMemo(() => {
-    const date = parseDateOnlyToLocalDate(selectedDate);
-    if (!date) return selectedDateDisplay;
 
-    return new Intl.DateTimeFormat(i18n.language || 'tr-TR', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric',
-      weekday: 'long',
-    }).format(date);
-  }, [i18n.language, selectedDate, selectedDateDisplay]);
-  const calendarLocale = useMemo(() => resolveCalendarLocale(i18n.language), [i18n.language]);
-  const dateFormatHint = useMemo(() => getLocalizedDatePlaceholder(i18n.language), [i18n.language]);
+  const handleSelectedDateChange = (nextDate: string): void => {
+    const parsedDate = parseDateOnlyToLocalDate(nextDate);
+    const normalizedDate = parsedDate ? toIsoDateOnly(parsedDate) : localDateString();
+
+    setSelectedDate(normalizedDate);
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.setItem(QUICK_DAILY_ENTRY_DATE_STORAGE_KEY, normalizedDate);
+    }
+  };
 
   const createFeedingLineWithAutoHeader = useCreateFeedingLineWithAutoHeaderMutation();
   const createMortalityLineWithAutoHeader = useCreateMortalityLineWithAutoHeaderMutation();
@@ -893,108 +880,19 @@ export function QuickDailyEntryPage(): ReactElement {
               <CalendarDays size={14} className="text-cyan-500" />
               {t('aqua.quickDailyEntry.date')}
             </label>
-            <Popover open={isDatePickerOpen} onOpenChange={setIsDatePickerOpen}>
-              <PopoverTrigger asChild>
-                <Button
-                  type="button"
-                  variant="outline"
-                  aria-label={t('aqua.quickDailyEntry.datePicker.open')}
-                  className="group w-full justify-between bg-slate-50 dark:bg-blue-900/20 text-slate-900 dark:text-white border-slate-200 dark:border-cyan-800/30 h-12 rounded-xl focus-visible:ring-cyan-500/20 font-medium transition-all hover:bg-slate-100 dark:hover:bg-blue-900/30"
-                >
-                  <span className="flex min-w-0 items-center gap-2">
-                    <span className="grid size-8 place-items-center rounded-lg bg-cyan-500/10 text-cyan-500 ring-1 ring-cyan-500/20 transition-colors group-hover:bg-cyan-500/15">
-                      <CalendarDays size={16} />
-                    </span>
-                    <span className="flex min-w-0 flex-col items-start leading-none">
-                      <span className="truncate text-[10px] font-black uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
-                        {t('aqua.quickDailyEntry.datePicker.selected')}
-                      </span>
-                      <span className="mt-1 tabular-nums text-sm font-black text-slate-900 dark:text-white">{selectedDateDisplay}</span>
-                    </span>
-                  </span>
-                  <ChevronRight size={16} className="rotate-90 text-cyan-500 transition-transform group-data-[state=open]:-rotate-90" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent
-                align="start"
-                sideOffset={10}
-                className="z-80 w-[min(calc(100vw-2rem),20.5rem)] overflow-hidden rounded-2xl border border-slate-200 bg-white p-0 shadow-2xl dark:border-cyan-900/50 dark:bg-slate-950"
-              >
-                <div className="border-b border-slate-100 px-4 py-3 dark:border-cyan-900/40">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-300">
-                        <CalendarDays size={14} />
-                        {t('aqua.quickDailyEntry.datePicker.title')}
-                      </div>
-                      <div className="mt-1 truncate text-sm font-bold text-slate-900 dark:text-white">{selectedDateLongDisplay}</div>
-                    </div>
-                    <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-cyan-50 text-cyan-600 ring-1 ring-cyan-100 dark:bg-cyan-500/10 dark:text-cyan-200 dark:ring-cyan-500/20">
-                      <CalendarDays size={14} />
-                    </div>
-                  </div>
-                  <div className="mt-2 text-[11px] font-semibold text-slate-500 dark:text-slate-400">
-                    {t('aqua.quickDailyEntry.datePicker.formatHint', { format: dateFormatHint })}
-                  </div>
-                </div>
-
-                <div className="bg-white p-3 dark:bg-slate-950">
-                  <Calendar
-                    mode="single"
-                    selected={selectedCalendarDate}
-                    locale={calendarLocale}
-                    weekStartsOn={1}
-                    onSelect={(date) => {
-                      if (!date) return;
-                      setSelectedDate(toIsoDateOnly(date));
-                      setIsDatePickerOpen(false);
-                    }}
-                    className="w-full p-0"
-                    classNames={{
-                      month: 'space-y-3',
-                      month_caption: 'relative flex h-10 items-center justify-center rounded-xl bg-slate-50 px-10 dark:bg-white/5',
-                      caption_label: 'text-sm font-black capitalize text-slate-900 dark:text-white',
-                      nav: 'absolute inset-x-2 top-1 flex items-center justify-between',
-                      button_previous: 'grid size-8 place-items-center rounded-lg border border-slate-200 bg-white p-0 text-slate-600 opacity-100 shadow-sm transition-colors hover:bg-slate-100 hover:text-slate-900 dark:border-cyan-900/50 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800',
-                      button_next: 'grid size-8 place-items-center rounded-lg border border-slate-200 bg-white p-0 text-slate-600 opacity-100 shadow-sm transition-colors hover:bg-slate-100 hover:text-slate-900 dark:border-cyan-900/50 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800',
-                      month_grid: 'w-full border-collapse',
-                      weekdays: 'grid grid-cols-7',
-                      weekday: 'grid h-8 place-items-center text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500',
-                      week: 'mt-1 grid grid-cols-7 gap-1',
-                      day: 'p-0 text-center',
-                      day_button: 'grid size-9 place-items-center rounded-lg p-0 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950 focus-visible:ring-2 focus-visible:ring-cyan-400 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-white',
-                      selected: 'bg-cyan-600 text-white shadow-md shadow-cyan-600/20 hover:bg-cyan-600 hover:text-white focus:bg-cyan-600 focus:text-white dark:bg-cyan-400 dark:text-slate-950 dark:hover:bg-cyan-300',
-                      today: 'bg-cyan-50 text-cyan-700 ring-1 ring-cyan-200 dark:bg-cyan-500/10 dark:text-cyan-200 dark:ring-cyan-500/30',
-                      outside: 'text-slate-300 opacity-70 dark:text-slate-700',
-                      disabled: 'text-slate-300 opacity-40 dark:text-slate-700',
-                    }}
-                    initialFocus
-                  />
-                </div>
-
-                <div className="flex items-center justify-between gap-2 border-t border-slate-100 bg-slate-50 px-3 py-3 dark:border-cyan-900/40 dark:bg-slate-900/60">
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    className="h-9 rounded-xl px-3 text-xs font-black text-cyan-700 hover:bg-cyan-100 dark:text-cyan-200 dark:hover:bg-cyan-900/40"
-                    onClick={() => {
-                      setSelectedDate(toIsoDateOnly(new Date()));
-                      setIsDatePickerOpen(false);
-                    }}
-                  >
-                    {t('aqua.quickDailyEntry.datePicker.today')}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="h-9 rounded-xl border-slate-200 px-3 text-xs font-black dark:border-cyan-800/40 dark:bg-slate-950/50 dark:text-slate-100"
-                    onClick={() => setIsDatePickerOpen(false)}
-                  >
-                    {t('common.close')}
-                  </Button>
-                </div>
-              </PopoverContent>
-            </Popover>
+            <div className="relative">
+              <span className="pointer-events-none absolute left-3 top-1/2 z-10 grid size-7 -translate-y-1/2 place-items-center rounded-lg bg-cyan-500/10 text-cyan-500 ring-1 ring-cyan-500/20">
+                <CalendarDays size={15} />
+              </span>
+              <LocalizedDateInput
+                value={selectedDate}
+                onChange={handleSelectedDateChange}
+                aria-label={t('aqua.quickDailyEntry.datePicker.selected')}
+                calendarButtonAriaLabel={t('aqua.quickDailyEntry.datePicker.open')}
+                showCalendarButton
+                className="h-12 rounded-xl border-slate-200 bg-slate-50 pl-11 font-black tabular-nums text-slate-900 transition-all focus-visible:ring-cyan-500/20 dark:border-cyan-800/30 dark:bg-blue-900/20 dark:text-white"
+              />
+            </div>
           </div>
         </div>
       </div>
