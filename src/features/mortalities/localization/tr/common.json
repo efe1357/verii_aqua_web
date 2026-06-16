@@ -2,12 +2,12 @@
   "aqua": {
     "pages": {
       "mortalities": {
-        "title": "Fire",
-        "description": "Fire başlık kayıtları."
+        "title": "Fire Kayıtları",
+        "description": "Günlük fire başlık kayıtları."
       },
       "mortalityLines": {
         "title": "Fire Satırları",
-        "description": "Fire satır kayıtları."
+        "description": "Kafes ve batch bazında fire satır kayıtları."
       }
     }
   }
