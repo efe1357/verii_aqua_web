@@ -20,7 +20,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Combobox } from '@/components/ui/combobox';
-import { LocalizedDateInput } from '@/components/shared/LocalizedDateInput';
+import { LocalizedDateInput, LocalizedDateTimeInput } from '@/components/shared/LocalizedDateInput';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -1311,10 +1311,10 @@ export function AquaCrudPage({
                           className="bg-slate-50 dark:bg-blue-950/50 text-slate-900 dark:text-white border-slate-200 dark:border-cyan-800/30"
                         />
                       )}
-                      {(field.type === 'text' || field.type === 'number' || field.type === 'datetime') && (
+                      {(field.type === 'text' || field.type === 'number') && (
                         <Input
                           id={field.key}
-                          type={field.type === 'number' ? 'number' : field.type === 'datetime' ? 'datetime-local' : 'text'}
+                          type={field.type === 'number' ? 'number' : 'text'}
                           step={field.type === 'number' ? resolveNumberInputStep(field) : undefined}
                           min={field.type === 'number' ? field.numberMin : undefined}
                           max={field.type === 'number' ? field.numberMax : undefined}
@@ -1338,6 +1338,15 @@ export function AquaCrudPage({
                       )}
                       {field.type === 'date' && (
                         <LocalizedDateInput
+                          id={field.key}
+                          placeholder={field.placeholder}
+                          value={normalizeInputValue(field, formValues[field.key])}
+                          onChange={(value) => setFormValues((prev) => ({ ...prev, [field.key]: value }))}
+                          className={INPUT_STYLE}
+                        />
+                      )}
+                      {field.type === 'datetime' && (
+                        <LocalizedDateTimeInput
                           id={field.key}
                           placeholder={field.placeholder}
                           value={normalizeInputValue(field, formValues[field.key])}

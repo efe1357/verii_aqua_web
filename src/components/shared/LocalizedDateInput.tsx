@@ -1,12 +1,10 @@
-import { type ChangeEvent, type ComponentProps, type FocusEvent, type ReactElement, useEffect, useState } from 'react';
+import { type ComponentProps, type ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CalendarDays } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import {
-  formatDateOnlyForLocale,
   getLocalizedDatePlaceholder,
-  parseLocalizedDateInput,
   parseDateOnlyToLocalDate,
   toIsoDateOnly,
 } from '@/lib/date-localization';
@@ -19,6 +17,13 @@ interface LocalizedDateInputProps extends Omit<ComponentProps<typeof Input>, 'ty
   calendarButtonClassName?: string;
 }
 
+interface LocalizedDateTimeInputProps extends Omit<ComponentProps<typeof Input>, 'type' | 'value' | 'onChange'> {
+  value?: string | null;
+  onChange: (value: string) => void;
+  calendarButtonAriaLabel?: string;
+  calendarButtonClassName?: string;
+}
+
 export function LocalizedDateInput({
   value,
   onChange,
@@ -26,67 +31,25 @@ export function LocalizedDateInput({
   placeholder,
   className,
   disabled,
-  showCalendarButton = false,
+  showCalendarButton = true,
   calendarButtonAriaLabel,
   calendarButtonClassName,
   ...props
 }: LocalizedDateInputProps): ReactElement {
   const { i18n } = useTranslation();
-  const [draftValue, setDraftValue] = useState(() => formatDateOnlyForLocale(value, i18n.language));
-  const [isFocused, setIsFocused] = useState(false);
-
-  useEffect(() => {
-    if (!isFocused) {
-      setDraftValue(formatDateOnlyForLocale(value, i18n.language));
-    }
-  }, [i18n.language, isFocused, value]);
-
-  const commitValue = (): void => {
-    const parsed = parseLocalizedDateInput(draftValue, i18n.language);
-    if (parsed === null) {
-      setDraftValue(formatDateOnlyForLocale(value, i18n.language));
-      return;
-    }
-
-    onChange(parsed);
-    setDraftValue(formatDateOnlyForLocale(parsed, i18n.language));
-  };
-
-  const handleBlur = (event: FocusEvent<HTMLInputElement>): void => {
-    setIsFocused(false);
-    commitValue();
-    onBlur?.(event);
-  };
-
-  const handleChange = (nextValue: string): void => {
-    setDraftValue(nextValue);
-    const parsed = parseLocalizedDateInput(nextValue, i18n.language);
-    if (parsed !== null) {
-      onChange(parsed);
-    }
-  };
-
-  const handleNativeDateChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const nextValue = event.target.value;
-    onChange(nextValue);
-    setDraftValue(formatDateOnlyForLocale(nextValue, i18n.language));
-  };
-
   const nativeDate = parseDateOnlyToLocalDate(value);
   const nativeDateValue = nativeDate ? toIsoDateOnly(nativeDate) : '';
-
   const input = (
     <Input
       {...props}
-      type="text"
-      inputMode="numeric"
-      value={draftValue}
+      type="date"
+      value={nativeDateValue}
       placeholder={placeholder ?? getLocalizedDatePlaceholder(i18n.language)}
       disabled={disabled}
       className={cn(showCalendarButton && 'pr-12', className)}
-      onFocus={() => setIsFocused(true)}
-      onBlur={handleBlur}
-      onChange={(event) => handleChange(event.target.value)}
+      aria-label={props['aria-label'] ?? calendarButtonAriaLabel ?? placeholder ?? getLocalizedDatePlaceholder(i18n.language)}
+      onBlur={onBlur}
+      onChange={(event) => onChange(event.target.value)}
     />
   );
 
@@ -99,20 +62,55 @@ export function LocalizedDateInput({
       {input}
       <span
         className={cn(
-          'absolute right-1.5 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-lg text-cyan-600 transition-colors hover:bg-cyan-100 hover:text-cyan-700 dark:text-cyan-200 dark:hover:bg-cyan-900/40',
+          'pointer-events-none absolute right-1.5 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-lg text-cyan-600 dark:text-cyan-200',
           disabled && 'pointer-events-none opacity-50',
           calendarButtonClassName,
         )}
       >
         <CalendarDays size={16} aria-hidden="true" />
-        <input
-          type="date"
-          value={nativeDateValue}
-          disabled={disabled}
-          aria-label={calendarButtonAriaLabel ?? placeholder ?? getLocalizedDatePlaceholder(i18n.language)}
-          className="absolute inset-0 cursor-pointer opacity-0"
-          onChange={handleNativeDateChange}
-        />
+      </span>
+    </div>
+  );
+}
+
+function normalizeDateTimeLocalValue(value: string | null | undefined): string {
+  if (!value) return '';
+  const normalized = String(value).replace(' ', 'T');
+  return normalized.length >= 16 ? normalized.slice(0, 16) : normalized;
+}
+
+export function LocalizedDateTimeInput({
+  value,
+  onChange,
+  className,
+  disabled,
+  placeholder,
+  calendarButtonAriaLabel,
+  calendarButtonClassName,
+  ...props
+}: LocalizedDateTimeInputProps): ReactElement {
+  const nativeValue = normalizeDateTimeLocalValue(value);
+
+  return (
+    <div className="relative">
+      <Input
+        {...props}
+        type="datetime-local"
+        value={nativeValue}
+        placeholder={placeholder}
+        disabled={disabled}
+        className={cn('pr-12', className)}
+        onChange={(event) => onChange(event.target.value)}
+      />
+      <span
+        className={cn(
+          'pointer-events-none absolute right-1.5 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-lg text-cyan-600 dark:text-cyan-200',
+          disabled && 'opacity-50',
+          calendarButtonClassName,
+        )}
+      >
+        <CalendarDays size={16} aria-hidden="true" />
+        <span className="sr-only">{calendarButtonAriaLabel ?? placeholder}</span>
       </span>
     </div>
   );

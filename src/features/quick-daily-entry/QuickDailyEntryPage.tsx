@@ -889,7 +889,6 @@ export function QuickDailyEntryPage(): ReactElement {
                 onChange={handleSelectedDateChange}
                 aria-label={t('aqua.quickDailyEntry.datePicker.selected')}
                 calendarButtonAriaLabel={t('aqua.quickDailyEntry.datePicker.open')}
-                showCalendarButton
                 className="h-12 rounded-xl border-slate-200 bg-slate-50 pl-11 font-black tabular-nums text-slate-900 transition-all focus-visible:ring-cyan-500/20 dark:border-cyan-800/30 dark:bg-blue-900/20 dark:text-white"
               />
             </div>
