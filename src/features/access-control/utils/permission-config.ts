@@ -482,6 +482,14 @@ const NETSIS_MIRROR_PERMISSION_RESOURCES: AccessControlPermissionResource[] = [
     actions: ['view'],
     display: { key: 'sidebar.netsisMirrorBranches', fallback: 'Mirror Şube' },
   },
+  {
+    codeBase: 'netsis.mirror.receipt-shipment-movements',
+    routePermission: 'netsis.mirror.receipt-shipment-movements.view',
+    routePaths: ['/netsis/mirror-receipt-shipment-movements'],
+    routePatterns: [/^\/netsis\/mirror-receipt-shipment-movements(\/|$)/],
+    actions: ['view'],
+    display: { key: 'sidebar.netsisMirrorReceiptShipmentMovements', fallback: 'ERP Mal Kabul/Sevkiyat' },
+  },
 ];
 
 function buildPermissionDisplayMap<T extends { codeBase: string; actions: AquaCrudAction[]; display: PermissionDisplayMeta }>(
@@ -773,6 +781,7 @@ export const ROUTE_PERMISSION_MAP: Record<string, string> = {
   '/netsis/mirror-stocks': 'netsis.mirror.stocks.view',
   '/netsis/mirror-warehouses': 'netsis.mirror.warehouses.view',
   '/netsis/mirror-branches': 'netsis.mirror.branches.view',
+  '/netsis/mirror-receipt-shipment-movements': 'netsis.mirror.receipt-shipment-movements.view',
   '/access-control/permission-definitions': 'access-control.permission-definitions.view',
   '/access-control/permission-groups': 'access-control.permission-groups.view',
   '/access-control/user-group-assignments': 'access-control.user-group-assignments.view',

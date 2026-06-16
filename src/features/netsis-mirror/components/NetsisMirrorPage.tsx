@@ -26,7 +26,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, ArrowRight, Boxes, Building2, UsersRound, GitBranch, ChevronDown, Filter } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Boxes, Building2, UsersRound, GitBranch, ChevronDown, Filter, ArrowLeftRight } from 'lucide-react';
 import { netsisMirrorApi, type NetsisMirrorKind, type NetsisMirrorRow } from '../api/netsisMirrorApi';
 import { applyFilterRowsClient, type FilterColumnConfig, type FilterRow } from '@/lib/advanced-filter-types';
 import { loadColumnPreferences } from '@/lib/column-preferences';
@@ -38,6 +38,7 @@ interface ColumnDefinition {
   key: string;
   labelKey: string;
   className?: string;
+  type?: 'string' | 'number' | 'boolean' | 'date' | 'datetime';
 }
 
 const COLUMNS_BY_KIND: Record<NetsisMirrorKind, ColumnDefinition[]> = {
@@ -69,6 +70,29 @@ const COLUMNS_BY_KIND: Record<NetsisMirrorKind, ColumnDefinition[]> = {
     { key: 'subeKodu', labelKey: 'columns.branchCode', className: 'font-mono' },
     { key: 'unvan', labelKey: 'columns.branchName' },
   ],
+  receiptShipmentMovements: [
+    { key: 'movementDate', labelKey: 'columns.movementDate', type: 'date' },
+    { key: 'documentNo', labelKey: 'columns.documentNo', className: 'font-mono' },
+    { key: 'operationType', labelKey: 'columns.operationType' },
+    { key: 'inOutCode', labelKey: 'columns.inOutCode', className: 'font-mono' },
+    { key: 'erpProjectCode', labelKey: 'columns.erpProjectCode', className: 'font-mono' },
+    { key: 'erpWarehouseCode', labelKey: 'columns.erpWarehouseCode', className: 'font-mono' },
+    { key: 'erpStockCode', labelKey: 'columns.erpStockCode', className: 'font-mono' },
+    { key: 'erpStockName', labelKey: 'columns.erpStockName' },
+    { key: 'quantity', labelKey: 'columns.quantity', type: 'number' },
+    { key: 'stockGroupCode', labelKey: 'columns.groupCode', className: 'font-mono' },
+    { key: 'projectCode', labelKey: 'columns.projectCode', className: 'font-mono' },
+    { key: 'projectName', labelKey: 'columns.projectName' },
+    { key: 'cageCode', labelKey: 'columns.cageCode', className: 'font-mono' },
+    { key: 'cageName', labelKey: 'columns.cageName' },
+    { key: 'stockCode', labelKey: 'columns.stockCode', className: 'font-mono' },
+    { key: 'batchCode', labelKey: 'columns.batchCode', className: 'font-mono' },
+    { key: 'isMatched', labelKey: 'columns.isMatched', type: 'boolean' },
+    { key: 'isProcessed', labelKey: 'columns.isProcessed', type: 'boolean' },
+    { key: 'processingAttemptCount', labelKey: 'columns.processingAttemptCount', type: 'number' },
+    { key: 'lastSyncedAt', labelKey: 'columns.lastSyncedAt', type: 'datetime' },
+    { key: 'processError', labelKey: 'columns.processError' },
+  ],
 };
 
 const ICON_BY_KIND = {
@@ -76,6 +100,7 @@ const ICON_BY_KIND = {
   stocks: Boxes,
   warehouses: Building2,
   branches: GitBranch,
+  receiptShipmentMovements: ArrowLeftRight,
 } as const;
 
 interface NetsisMirrorPageProps {
@@ -95,8 +120,35 @@ function readCell(row: NetsisMirrorRow, key: string): string {
   return String(value);
 }
 
+function formatCell(row: NetsisMirrorRow, column: ColumnDefinition, language: string, t: (key: string) => string): string {
+  const raw = row as unknown as Record<string, unknown>;
+  const pascalKey = column.key.charAt(0).toUpperCase() + column.key.slice(1);
+  const value = raw[column.key] ?? raw[pascalKey];
+
+  if (value == null || value === '') return '-';
+
+  if (column.type === 'boolean') {
+    return value === true ? t('common:yes') : t('common:no');
+  }
+
+  if (column.type === 'date' || column.type === 'datetime') {
+    const date = new Date(String(value));
+    if (Number.isNaN(date.getTime())) return String(value);
+    return new Intl.DateTimeFormat(language, column.type === 'date'
+      ? { day: '2-digit', month: '2-digit', year: 'numeric' }
+      : { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(date);
+  }
+
+  if (column.type === 'number' && typeof value === 'number') {
+    return new Intl.NumberFormat(language, { maximumFractionDigits: 3 }).format(value);
+  }
+
+  return readCell(row, column.key);
+}
+
 function NetsisMirrorPage({ kind }: NetsisMirrorPageProps): ReactElement {
   const { t } = useTranslation(['netsis-mirror', 'stock', 'common']);
+  const { i18n } = useTranslation();
   const { setPageTitle } = useUIStore();
   const { user } = useAuthStore();
   const [pageNumber, setPageNumber] = useState(1);
@@ -143,7 +195,7 @@ function NetsisMirrorPage({ kind }: NetsisMirrorPageProps): ReactElement {
   const totalPages = Math.max(1, query.data?.totalPages ?? Math.ceil(totalCount / pageSize));
   const filterColumns = useMemo<(FilterColumnConfig & { translatedLabel: string })[]>(() => columns.map((column) => ({
     value: column.key,
-    type: column.key.toLowerCase().includes('kilit') || column.key.toLowerCase().includes('locked') ? 'boolean' : 'string',
+    type: column.type === 'boolean' || column.key.toLowerCase().includes('kilit') || column.key.toLowerCase().includes('locked') ? 'boolean' : 'string',
     labelKey: column.labelKey,
     translatedLabel: t(column.labelKey),
   })), [columns, t]);
@@ -285,8 +337,8 @@ function NetsisMirrorPage({ kind }: NetsisMirrorPageProps): ReactElement {
                 ) : filteredRows.map((row, index) => (
                   <TableRow key={`${kind}-${pageNumber}-${index}`} className="group border-b border-slate-200 dark:border-cyan-800/30 last:border-0 hover:bg-slate-50 dark:hover:bg-blue-900/30 transition-colors duration-200">
                     {activeColumns.map((column) => (
-                      <TableCell key={column.key} className={cn('max-w-[320px] truncate py-4 text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400', column.className)} title={readCell(row, column.key)}>
-                        {readCell(row, column.key)}
+                      <TableCell key={column.key} className={cn('max-w-[320px] truncate py-4 text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400', column.className)} title={formatCell(row, column, i18n.language, t)}>
+                        {formatCell(row, column, i18n.language, t)}
                       </TableCell>
                     ))}
                   </TableRow>
@@ -331,4 +383,8 @@ export function NetsisMirrorWarehousesPage(): ReactElement {
 
 export function NetsisMirrorBranchesPage(): ReactElement {
   return <NetsisMirrorPage kind="branches" />;
+}
+
+export function NetsisMirrorReceiptShipmentMovementsPage(): ReactElement {
+  return <NetsisMirrorPage kind="receiptShipmentMovements" />;
 }

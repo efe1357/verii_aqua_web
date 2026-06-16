@@ -23,6 +23,12 @@
       "description": "Shows Netsis/ERP branches in a paged read-only view. Use it to verify branch codes used by headers and sync operations.",
       "badge": "Branch",
       "searchPlaceholder": "Search by branch code or title..."
+    },
+    "receiptShipmentMovements": {
+      "title": "حركات استلام وشحن ERP",
+      "description": "يعرض حركات استلام البضائع والشحن المقروءة من مصدر FN مع حالة المطابقة والمعالجة في Aqua.",
+      "badge": "حركة ERP",
+      "searchPlaceholder": "ابحث برقم المستند أو المشروع أو المستودع أو المخزون أو نوع العملية أو الخطأ..."
     }
   },
   "actions": {
@@ -54,6 +60,25 @@
     "branchCode": "Branch Code",
     "branchName": "Branch Title",
     "locked": "Locked",
-    "negativeBalance": "Negative Balance"
+    "negativeBalance": "Negative Balance",
+    "movementDate": "تاريخ الحركة",
+    "documentNo": "رقم المستند",
+    "operationType": "نوع العملية",
+    "inOutCode": "دخول/خروج",
+    "erpProjectCode": "كود مشروع ERP",
+    "erpWarehouseCode": "كود مستودع ERP",
+    "erpStockCode": "كود مخزون ERP",
+    "erpStockName": "اسم مخزون ERP",
+    "quantity": "الكمية",
+    "projectCode": "كود مشروع Aqua",
+    "projectName": "اسم مشروع Aqua",
+    "cageCode": "كود القفص",
+    "cageName": "اسم القفص",
+    "batchCode": "كود الدفعة",
+    "isMatched": "تمت المطابقة",
+    "isProcessed": "تمت المعالجة",
+    "processingAttemptCount": "المحاولات",
+    "lastSyncedAt": "آخر مزامنة",
+    "processError": "خطأ المعالجة"
   }
 }

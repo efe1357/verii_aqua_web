@@ -122,6 +122,7 @@ export function MainLayout({ navItems }: MainLayoutProps): ReactElement {
           { title: sidebarT('netsisMirrorStocks'), href: '/netsis/mirror-stocks' },
           { title: sidebarT('netsisMirrorWarehouses'), href: '/netsis/mirror-warehouses' },
           { title: sidebarT('netsisMirrorBranches'), href: '/netsis/mirror-branches' },
+          { title: sidebarT('netsisMirrorReceiptShipmentMovements'), href: '/netsis/mirror-receipt-shipment-movements' },
         ],
       },
       {

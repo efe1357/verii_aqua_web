@@ -23,6 +23,12 @@
       "description": "Shows Netsis/ERP branches in a paged read-only view. Use it to verify branch codes used by headers and sync operations.",
       "badge": "Branch",
       "searchPlaceholder": "Search by branch code or title..."
+    },
+    "receiptShipmentMovements": {
+      "title": "Movimenti ERP di carico/spedizione",
+      "description": "Mostra i movimenti ERP di carico e spedizione letti dalla fonte FN con lo stato di abbinamento ed elaborazione Aqua.",
+      "badge": "Movimento ERP",
+      "searchPlaceholder": "Cerca per documento, progetto, magazzino, stock, tipo operazione o errore..."
     }
   },
   "actions": {
@@ -54,6 +60,25 @@
     "branchCode": "Branch Code",
     "branchName": "Branch Title",
     "locked": "Locked",
-    "negativeBalance": "Negative Balance"
+    "negativeBalance": "Negative Balance",
+    "movementDate": "Data movimento",
+    "documentNo": "N. documento",
+    "operationType": "Tipo operazione",
+    "inOutCode": "Entrata/Uscita",
+    "erpProjectCode": "Codice progetto ERP",
+    "erpWarehouseCode": "Codice magazzino ERP",
+    "erpStockCode": "Codice stock ERP",
+    "erpStockName": "Nome stock ERP",
+    "quantity": "Quantità",
+    "projectCode": "Codice progetto Aqua",
+    "projectName": "Nome progetto Aqua",
+    "cageCode": "Codice gabbia",
+    "cageName": "Nome gabbia",
+    "batchCode": "Codice batch",
+    "isMatched": "Abbinato",
+    "isProcessed": "Elaborato",
+    "processingAttemptCount": "Tentativi",
+    "lastSyncedAt": "Ultima sincronizzazione",
+    "processError": "Errore elaborazione"
   }
 }

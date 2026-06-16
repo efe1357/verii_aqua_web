@@ -23,6 +23,12 @@
       "description": "Netsis/ERP şube bilgilerini sayfalı olarak görüntüler. Branch header ve sync kontrollerinde kullanılan şube kodlarını doğrulamak için kullanılır.",
       "badge": "Şube",
       "searchPlaceholder": "Şube kodu veya ünvan ara..."
+    },
+    "receiptShipmentMovements": {
+      "title": "ERP Mal Kabul/Sevkiyat Hareketleri",
+      "description": "FN kaynağından okunan ERP mal kabul ve sevkiyat hareketlerini, Aqua eşleşme ve işlenme durumlarıyla birlikte gösterir.",
+      "badge": "ERP Hareket",
+      "searchPlaceholder": "Fiş no, proje, depo, stok, işlem türü veya hata ara..."
     }
   },
   "actions": {
@@ -54,6 +60,25 @@
     "branchCode": "Şube Kodu",
     "branchName": "Şube Ünvanı",
     "locked": "Kilit",
-    "negativeBalance": "Eksi Bakiye"
+    "negativeBalance": "Eksi Bakiye",
+    "movementDate": "Hareket Tarihi",
+    "documentNo": "Fiş No",
+    "operationType": "İşlem Türü",
+    "inOutCode": "G/C",
+    "erpProjectCode": "ERP Proje Kodu",
+    "erpWarehouseCode": "ERP Depo Kodu",
+    "erpStockCode": "ERP Stok Kodu",
+    "erpStockName": "ERP Stok Adı",
+    "quantity": "Miktar",
+    "projectCode": "Aqua Proje Kodu",
+    "projectName": "Aqua Proje Adı",
+    "cageCode": "Kafes Kodu",
+    "cageName": "Kafes Adı",
+    "batchCode": "Batch Kodu",
+    "isMatched": "Eşleşti",
+    "isProcessed": "İşlendi",
+    "processingAttemptCount": "Deneme",
+    "lastSyncedAt": "Son Sync",
+    "processError": "İşlem Hatası"
   }
 }

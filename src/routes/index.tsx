@@ -48,6 +48,7 @@ const NetsisMirrorCustomersPage = lazyImport(() => import('@/features/netsis-mir
 const NetsisMirrorStocksPage = lazyImport(() => import('@/features/netsis-mirror'), 'NetsisMirrorStocksPage', 'netsis-mirror');
 const NetsisMirrorWarehousesPage = lazyImport(() => import('@/features/netsis-mirror'), 'NetsisMirrorWarehousesPage', 'netsis-mirror');
 const NetsisMirrorBranchesPage = lazyImport(() => import('@/features/netsis-mirror'), 'NetsisMirrorBranchesPage', 'netsis-mirror');
+const NetsisMirrorReceiptShipmentMovementsPage = lazyImport(() => import('@/features/netsis-mirror'), 'NetsisMirrorReceiptShipmentMovementsPage', 'netsis-mirror');
 const ProfilePage = lazyImport(() => import('@/features/user-detail-management/components/ProfilePage.tsx'), 'ProfilePage', 'user-detail-management');
 const ProjectsPage = lazyImport(() => import('@/features/projects'), 'ProjectsPage', ['aqua', 'projects']);
 const CagesPage = lazyImport(() => import('@/features/cages'), 'CagesPage', ['aqua', 'cages']);
@@ -127,6 +128,7 @@ export const router = createBrowserRouter([
       { path: 'netsis/mirror-stocks', element: <NetsisMirrorStocksPage /> },
       { path: 'netsis/mirror-warehouses', element: <NetsisMirrorWarehousesPage /> },
       { path: 'netsis/mirror-branches', element: <NetsisMirrorBranchesPage /> },
+      { path: 'netsis/mirror-receipt-shipment-movements', element: <NetsisMirrorReceiptShipmentMovementsPage /> },
       { path: 'profile', element: <ProfilePage /> },
       { path: 'aqua/definitions/projects', element: <ProjectsPage /> },
       { path: 'aqua/definitions/cages', element: <CagesPage /> },
