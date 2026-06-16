@@ -29,7 +29,7 @@ export function loadColumnPreferences(
     const missingOrder = defaultOrder.filter((k) => !validOrder.includes(k));
     const order = validOrder.length > 0 ? [...validOrder, ...missingOrder] : [...defaultOrder];
     const visibleKeys = storedVisible.filter((k) => defaultOrder.includes(k));
-    const visibleWithDefaults = visibleKeys.length > 0 ? visibleKeys : [...defaultOrder];
+    const visibleWithDefaults = visibleKeys.length > 0 ? [...visibleKeys, ...missingOrder] : [...defaultOrder];
     const idFirst =
       order[0] === idColumnKey ? order : [idColumnKey, ...order.filter((k) => k !== idColumnKey)];
     return { visibleKeys: visibleWithDefaults, order: idFirst };

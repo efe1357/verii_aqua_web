@@ -29,7 +29,12 @@ export const mortalitiesConfig: AquaCrudConfig = {
   columns: [
     { key: 'projectCode', label: 'aqua.fields.projectCode' },
     { key: 'projectName', label: 'aqua.fields.projectName' },
-    { key: 'mortalityDate', label: 'aqua.fields.mortalityDate' },
+    { key: 'mortalityDate', label: 'aqua.fields.mortalityDate', type: 'date' },
+    { key: 'isERPIntegrated', label: 'aqua.fields.isERPIntegrated', type: 'boolean' },
+    { key: 'erpReferenceNumber', label: 'aqua.fields.erpReferenceNumber' },
+    { key: 'erpIntegrationDate', label: 'aqua.fields.erpIntegrationDate', type: 'datetime' },
+    { key: 'erpIntegrationStatus', label: 'aqua.fields.erpIntegrationStatus' },
+    { key: 'erpErrorMessage', label: 'aqua.fields.erpErrorMessage' },
   ],
   defaultValues: { status: 0 },
 };
@@ -106,6 +111,11 @@ export const mortalityLinesConfig: AquaCrudConfig = {
     { key: 'cageCode', label: 'aqua.fields.cageCode' },
     { key: 'cageName', label: 'aqua.fields.cageName' },
     { key: 'deadCount', label: 'aqua.fields.deadCount' },
+    { key: 'isERPIntegrated', label: 'aqua.fields.isERPIntegrated', type: 'boolean' },
+    { key: 'erpReferenceNumber', label: 'aqua.fields.erpReferenceNumber' },
+    { key: 'erpIntegrationDate', label: 'aqua.fields.erpIntegrationDate', type: 'datetime' },
+    { key: 'erpIntegrationStatus', label: 'aqua.fields.erpIntegrationStatus' },
+    { key: 'erpErrorMessage', label: 'aqua.fields.erpErrorMessage' },
   ],
   defaultValues: { mortalityDate: localDateString() },
 };

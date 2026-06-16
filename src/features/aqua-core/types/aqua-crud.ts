@@ -48,6 +48,7 @@ export interface AquaFieldConfig {
 export interface AquaColumnConfig {
   key: string;
   label: string;
+  type?: 'text' | 'number' | 'date' | 'datetime' | 'boolean';
   unitTransform?: 'gram-to-kg';
 }
 
