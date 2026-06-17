@@ -549,6 +549,50 @@ export const aquaQuickDailyApi = {
     return line ?? null;
   },
 
+  getFeedingLinesByProjectCageAndDate: async (
+    projectId: number,
+    feedingDate: string,
+    projectCageId: number
+  ): Promise<FeedingLineDto[]> => {
+    const headerQuery = buildPagedQuery(1, 10, [
+      { column: 'ProjectId', operator: 'eq', value: String(projectId) },
+      { column: 'FeedingDate', operator: 'eq', value: feedingDate },
+    ]);
+    const headerResponse = await api.get<ApiResponse<PagedResultRaw<FeedingHeaderDto>>>(`/api/aqua/Feeding?${headerQuery}`);
+    const headerRaw = ensureSuccess(headerResponse, i18n.t('aqua.api.queryFailed', { ns: 'common' }));
+    const headers = extractPagedItems(headerRaw).filter((header) => header?.id != null);
+    if (headers.length === 0) return [];
+
+    const lines = await Promise.all(headers.map(async (header) => {
+      const distributionQuery = buildPagedQuery(1, 20, [
+        { column: 'FeedingId', operator: 'eq', value: String(header.id) },
+        { column: 'ProjectCageId', operator: 'eq', value: String(projectCageId) },
+      ]);
+      const distributionResponse = await api.get<ApiResponse<PagedResultRaw<FeedingDistributionDto>>>(`/api/aqua/FeedingDistribution?${distributionQuery}`);
+      const distributionRaw = ensureSuccess(distributionResponse, i18n.t('aqua.api.queryFailed', { ns: 'common' }));
+      const distribution = extractPagedItems(distributionRaw)[0];
+      if (!distribution?.feedingLineId) return null;
+
+      const lineQuery = buildPagedQuery(1, 1, [
+        { column: 'FeedingId', operator: 'eq', value: String(header.id) },
+        { column: 'Id', operator: 'eq', value: String(distribution.feedingLineId) },
+      ]);
+      const lineResponse = await api.get<ApiResponse<PagedResultRaw<FeedingLineDto>>>(`/api/aqua/FeedingLine?${lineQuery}`);
+      const lineRaw = ensureSuccess(lineResponse, i18n.t('aqua.api.queryFailed', { ns: 'common' }));
+      const line = extractPagedItems(lineRaw)[0];
+      return line ? { ...line, feedingSlot: line.feedingSlot ?? header.feedingSlot } : null;
+    }));
+
+    const uniqueLines = new Map<number, FeedingLineDto>();
+    lines.forEach((line) => {
+      if (line?.id) {
+        uniqueLines.set(line.id, line);
+      }
+    });
+
+    return Array.from(uniqueLines.values());
+  },
+
   findMortalityHeaderByProjectAndDate: async (
     projectId: number,
     mortalityDate: string

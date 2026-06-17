@@ -31,6 +31,12 @@
         "selectStock": "seleziona azione",
         "qty": "quantità",
         "save": "Salva",
+        "summaryTitle": "Riepilogo giornaliero alimentazione",
+        "summaryDescription": "Mostra i record di alimentazione del giro 1 e del giro 2 per progetto, gabbia e data selezionati.",
+        "summaryEmptySlot": "Nessun record per questo giro.",
+        "summaryRecorded": "Registrato",
+        "summaryQuantityKg": "Quantità (KG)",
+        "summaryTotalKg": "Mangime Totale (KG)",
         "existingUpdateTitle": "Esiste già una registrazione per questo turno e mangime.",
         "existingUpdateDescription": "Il salvataggio aggiornerà il valore esistente invece di creare una nuova riga. Quantità attuale: {{qty}} KG, mangime totale: {{totalKg}} KG.",
         "existingCages": "Gabbia/e registrata/e: {{cages}}"

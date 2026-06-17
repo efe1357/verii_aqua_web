@@ -40,6 +40,12 @@
         "selectStock": "Stok seçin",
         "qty": "Miktar",
         "save": "Kaydet",
+        "summaryTitle": "Günün yemleme özeti",
+        "summaryDescription": "Seçili proje, kafes ve tarih için 1. ve 2. tur yemleme kayıtlarını gösterir.",
+        "summaryEmptySlot": "Bu tur için kayıt yok.",
+        "summaryRecorded": "Kayıtlı",
+        "summaryQuantityKg": "Miktar (KG)",
+        "summaryTotalKg": "Toplam Yem (KG)",
         "existingUpdateTitle": "Bu tur ve yem stoğu için mevcut kayıt var.",
         "existingUpdateDescription": "Kaydettiğinizde yeni satır açılmaz; mevcut değer güncellenir. Mevcut miktar: {{qty}} KG, toplam yem: {{totalKg}} KG.",
         "existingCages": "Kayıtlı kafes(ler): {{cages}}"

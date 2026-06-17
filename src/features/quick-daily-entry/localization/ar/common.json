@@ -31,6 +31,12 @@
         "selectStock": "حدد المخزون",
         "qty": "كمية",
         "save": "يحفظ",
+        "summaryTitle": "ملخص التغذية اليومي",
+        "summaryDescription": "يعرض سجلات التغذية للجولة 1 والجولة 2 للمشروع والقفص والتاريخ المحددين.",
+        "summaryEmptySlot": "لا يوجد سجل لهذه الجولة.",
+        "summaryRecorded": "مسجل",
+        "summaryQuantityKg": "الكمية (كجم)",
+        "summaryTotalKg": "إجمالي العلف (كجم)",
         "existingUpdateTitle": "يوجد إدخال سابق لهذه الجولة وهذا العلف.",
         "existingUpdateDescription": "عند الحفظ سيتم تحديث القيمة الحالية بدلاً من إنشاء سطر جديد. الكمية الحالية: {{qty}} كجم، إجمالي العلف: {{totalKg}} كجم.",
         "existingCages": "الأقفاص المسجلة: {{cages}}"

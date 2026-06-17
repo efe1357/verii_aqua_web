@@ -31,6 +31,12 @@
         "selectStock": "Lager auswählen",
         "qty": "Menge",
         "save": "Speichern",
+        "summaryTitle": "Tägliche Fütterungsübersicht",
+        "summaryDescription": "Zeigt die Fütterungsdatensätze für Runde 1 und Runde 2 zum ausgewählten Projekt, Käfig und Datum.",
+        "summaryEmptySlot": "Für diese Runde gibt es keinen Eintrag.",
+        "summaryRecorded": "Erfasst",
+        "summaryQuantityKg": "Menge (KG)",
+        "summaryTotalKg": "Gesamtfutter (KG)",
         "existingUpdateTitle": "Für diese Runde und diesen Futterartikel existiert bereits ein Eintrag.",
         "existingUpdateDescription": "Beim Speichern wird kein neuer Eintrag erstellt; der vorhandene Wert wird aktualisiert. Aktuelle Menge: {{qty}} KG, Gesamtfutter: {{totalKg}} KG.",
         "existingCages": "Erfasste Käfige: {{cages}}"

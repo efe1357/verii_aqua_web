@@ -31,6 +31,12 @@
         "selectStock": "sélectionner des actions",
         "qty": "quantité",
         "save": "Enregistrer",
+        "summaryTitle": "Résumé quotidien de l’alimentation",
+        "summaryDescription": "Affiche les enregistrements d’alimentation du tour 1 et du tour 2 pour le projet, la cage et la date sélectionnés.",
+        "summaryEmptySlot": "Aucun enregistrement pour ce tour.",
+        "summaryRecorded": "Enregistré",
+        "summaryQuantityKg": "Quantité (KG)",
+        "summaryTotalKg": "Aliment Total (KG)",
         "existingUpdateTitle": "Une saisie existe déjà pour ce tour et cet aliment.",
         "existingUpdateDescription": "L'enregistrement mettra à jour la valeur existante au lieu de créer une nouvelle ligne. Quantité actuelle : {{qty}} KG, aliment total : {{totalKg}} KG.",
         "existingCages": "Cage(s) enregistrée(s) : {{cages}}"

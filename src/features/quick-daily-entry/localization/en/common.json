@@ -39,6 +39,12 @@
         "selectStock": "select stock",
         "qty": "quantity",
         "save": "Save",
+        "summaryTitle": "Daily feeding summary",
+        "summaryDescription": "Shows Round 1 and Round 2 feeding records for the selected project, cage, and date.",
+        "summaryEmptySlot": "No record for this round.",
+        "summaryRecorded": "Recorded",
+        "summaryQuantityKg": "Quantity (KG)",
+        "summaryTotalKg": "Total Feed (KG)",
         "existingUpdateTitle": "An entry already exists for this round and feed stock.",
         "existingUpdateDescription": "Saving will update the existing value instead of creating a new line. Current quantity: {{qty}} KG, total feed: {{totalKg}} KG.",
         "existingCages": "Registered cage(s): {{cages}}"
