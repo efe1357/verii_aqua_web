@@ -808,13 +808,6 @@ export const aquaQuickDailyApi = {
     return ensureSuccess(response, i18n.t('aqua.api.postFailed', { ns: 'common' }));
   },
 
-  postMortality: async (mortalityId: number): Promise<boolean> => {
-    const response = await api.post<ApiResponse<boolean>>(
-      `/api/aqua/posting/mortality/${mortalityId}`
-    );
-    return ensureSuccess(response, i18n.t('aqua.api.postFailed', { ns: 'common' }));
-  },
-
   postNetOperation: async (netOperationId: number): Promise<boolean> => {
     const response = await api.post<ApiResponse<boolean>>(
       `/api/aqua/posting/net-operation/${netOperationId}`

@@ -502,18 +502,13 @@ export function QuickDailyEntryPage(): ReactElement {
 
       const sourceBatch = await aquaQuickDailyApi.findActiveFishBatchByProjectCage(projectCageId);
       if (sourceBatch == null) throw new Error(t('aqua.quickDailyEntry.toast.noActiveBatchForCage'));
-      const mortalityLine = await createMortalityLineWithAutoHeader.mutateAsync({
+      await createMortalityLineWithAutoHeader.mutateAsync({
         projectId,
         mortalityDate: selectedDate,
         fishBatchId: sourceBatch.fishBatchId,
         projectCageId,
         deadCount: data.deadCount,
       });
-      if (Number(mortalityLine.mortalityId ?? 0) > 0) {
-        try { await aquaQuickDailyApi.postMortality(Number(mortalityLine.mortalityId)); } catch {
-          // Posting is a non-blocking follow-up after line save.
-        }
-      }
       toast.success(t('aqua.quickDailyEntry.toast.mortalitySaved'));
     } catch (e) {
       toast.error(e instanceof Error ? e.message : t('aqua.quickDailyEntry.toast.saveFailed')); throw e;
