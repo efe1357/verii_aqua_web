@@ -34,6 +34,47 @@ function appendPathSegment(url: string | undefined, segment: string): string | u
   return query ? `${nextPath}?${query}` : nextPath;
 }
 
+function normalizeLegacyPagedFiltersUrl(url: string | undefined): string | undefined {
+  if (!url || !url.includes('filters=')) return url;
+
+  const hashIndex = url.indexOf('#');
+  const hash = hashIndex >= 0 ? url.slice(hashIndex) : '';
+  const withoutHash = hashIndex >= 0 ? url.slice(0, hashIndex) : url;
+  const queryIndex = withoutHash.indexOf('?');
+  if (queryIndex < 0) return url;
+
+  const path = withoutHash.slice(0, queryIndex);
+  const query = new URLSearchParams(withoutHash.slice(queryIndex + 1));
+  const legacyFilters = query.get('filters');
+  if (!legacyFilters || !legacyFilters.trim().startsWith('[')) return url;
+
+  try {
+    const parsed = JSON.parse(legacyFilters) as Array<{
+      column?: unknown;
+      operator?: unknown;
+      value?: unknown;
+    }>;
+
+    query.delete('filters');
+    parsed
+      .filter((filter) => filter?.column && filter.value !== undefined && filter.value !== null && filter.value !== '')
+      .forEach((filter, index) => {
+        query.append(`filters[${index}].column`, String(filter.column));
+        query.append(`filters[${index}].operator`, String(filter.operator || 'eq'));
+        query.append(`filters[${index}].value`, String(filter.value));
+      });
+
+    if (!parsed.length) {
+      query.delete('filterLogic');
+    }
+
+    const nextQuery = query.toString();
+    return `${path}${nextQuery ? `?${nextQuery}` : ''}${hash}`;
+  } catch {
+    return url;
+  }
+}
+
 function resolveBranchCodeFromPersistedState(): string | null {
   try {
     const raw = localStorage.getItem('auth-storage');
@@ -253,6 +294,7 @@ async function refreshAccessToken(): Promise<string | null> {
 
 api.interceptors.request.use((config) => {
   config.baseURL = config.baseURL || getApiBaseUrl() || api.defaults.baseURL;
+  config.url = normalizeLegacyPagedFiltersUrl(config.url);
   const originalMethod = (config.method ?? 'get').toLowerCase();
   if (originalMethod === 'put') {
     config.method = 'post';
