@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useForm, useWatch } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Resolver, SubmitHandler } from 'react-hook-form';
@@ -63,7 +63,6 @@ export function FeedingQuickForm({
   };
 
   const disabled = projectId == null || projectCageId == null;
-  const selectedFeedingSlot = useWatch({ control: form.control, name: 'feedingSlot' });
 
   const feedingSummaryQuery = useQuery({
     queryKey: ['aqua', 'quick-daily-entry', 'feeding-summary', projectId, projectCageId, feedingDate],
@@ -79,9 +78,6 @@ export function FeedingQuickForm({
     staleTime: 5000,
   });
   const feedingSummaryLines = feedingSummaryQuery.data ?? [];
-  const existingFeedingLine = feedingSummaryLines.find(
-    (line) => Number(line.feedingSlot ?? 0) === Number(selectedFeedingSlot)
-  ) ?? null;
 
   const feedingSlotOptions = [
     { value: '0', label: t('aqua.quickDailyEntry.feeding.morning') },
@@ -241,35 +237,6 @@ export function FeedingQuickForm({
                   )}
                 />
             </div>
-
-            {existingFeedingLine ? (
-              <div className="rounded-2xl border border-cyan-200 bg-cyan-50/80 px-4 py-3 text-sm text-cyan-950 shadow-sm dark:border-cyan-700/50 dark:bg-cyan-950/40 dark:text-cyan-50">
-                <div className="flex items-start gap-3">
-                  <Info size={18} className="mt-0.5 shrink-0 text-cyan-600 dark:text-cyan-300" />
-                  <div className="space-y-1">
-                    <p className="font-semibold">
-                      {t('aqua.quickDailyEntry.feeding.existingUpdateTitle')}
-                    </p>
-                    <p className="text-cyan-800 dark:text-cyan-100">
-                      {t('aqua.quickDailyEntry.feeding.existingUpdateDescription', {
-                        qty: Number(existingFeedingLine.qtyUnit ?? 0).toLocaleString(undefined, { maximumFractionDigits: 3 }),
-                        totalKg: (Number(existingFeedingLine.totalGram ?? 0) / 1000).toLocaleString(undefined, { maximumFractionDigits: 3 }),
-                      })}
-                    </p>
-                    {existingFeedingLine.stockCode || existingFeedingLine.stockName ? (
-                      <p className="text-xs font-medium text-cyan-700 dark:text-cyan-200">
-                        {formatCodeAndKeyLabel(existingFeedingLine.stockCode, existingFeedingLine.stockId, existingFeedingLine.stockName)}
-                      </p>
-                    ) : null}
-                    {existingFeedingLine.cageCode ? (
-                      <p className="text-xs font-medium text-cyan-700 dark:text-cyan-200">
-                        {t('aqua.quickDailyEntry.feeding.existingCages', { cages: existingFeedingLine.cageCode })}
-                      </p>
-                    ) : null}
-                  </div>
-                </div>
-              </div>
-            ) : null}
             
             <div className="pt-4 flex justify-end border-t border-slate-200 dark:border-cyan-800/30">
                 <Button 
