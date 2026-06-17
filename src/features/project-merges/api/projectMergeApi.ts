@@ -1,4 +1,5 @@
 import { api } from '@/lib/axios';
+import { appendPagedQueryParams } from '@/utils/query-params';
 import type { ApiResponse } from '@/types/api';
 import type { CreateProjectMergeDto, ProjectMergeDto } from '../types/projectMerge';
 
@@ -21,9 +22,10 @@ function extractPagedItems<T>(raw: PagedResultRaw<T>): T[] {
 
 export const projectMergeApi = {
   getList: async (): Promise<ProjectMergeDto[]> => {
-    const query = new URLSearchParams({
-      pageNumber: '1',
-      pageSize: '100',
+    const query = new URLSearchParams();
+    appendPagedQueryParams(query, {
+      pageNumber: 1,
+      pageSize: 100,
       sortBy: 'MergeDate',
       sortDirection: 'desc',
     });

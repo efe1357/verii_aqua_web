@@ -1,6 +1,6 @@
 import { api } from '@/lib/axios';
 import i18n from '@/lib/i18n';
-import { appendPagedFilters } from '@/shared/api/paged-query';
+import { appendPagedQueryParams } from '@/utils/query-params';
 import type { ApiResponse } from '@/types/api';
 import type {
   ProjectDto,
@@ -154,17 +154,15 @@ function buildPagedQuery(
   filters?: Array<{ column: string; operator: string; value: string }>,
   sortDirection: 'asc' | 'desc' = 'asc'
 ): string {
-  const query = new URLSearchParams({
-    pageNumber: String(pageNumber),
-    pageSize: String(pageSize),
+  const query = new URLSearchParams();
+  appendPagedQueryParams(query, {
+    pageNumber,
+    pageSize,
     sortBy: 'Id',
     sortDirection,
+    filters,
+    filterLogic: 'and',
   });
-
-  if (filters && filters.length > 0) {
-    appendPagedFilters(query, filters, 'and');
-  }
-
   return query.toString();
 }
 

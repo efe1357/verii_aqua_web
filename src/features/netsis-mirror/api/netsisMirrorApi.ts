@@ -1,4 +1,5 @@
 import { api } from '@/lib/axios';
+import { appendPagedQueryParams } from '@/utils/query-params';
 import type { ApiResponse, PagedResponse } from '@/types/api';
 import type { BranchErp, CariDto, ErpProduct, ErpWarehouse } from '@/services/erp-types';
 
@@ -79,14 +80,8 @@ function normalizePaged<T>(response: ApiResponse<PagedResponse<T> & { items?: T[
 
 export const netsisMirrorApi = {
   async getPaged<T extends NetsisMirrorRow>(params: NetsisMirrorPagedParams): Promise<PagedResponse<T>> {
-    const query = new URLSearchParams({
-      pageNumber: String(params.pageNumber),
-      pageSize: String(params.pageSize),
-    });
-
-    if (params.search?.trim()) {
-      query.set('search', params.search.trim());
-    }
+    const query = new URLSearchParams();
+    appendPagedQueryParams(query, params);
 
     const response = await api.get<ApiResponse<PagedResponse<T> & { items?: T[]; Items?: T[] }>>(
       `${ENDPOINT_BY_KIND[params.kind]}?${query.toString()}`,

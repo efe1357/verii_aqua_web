@@ -1,6 +1,6 @@
 import { api } from '@/lib/axios';
 import i18n from '@/lib/i18n';
-import { appendPagedFilters } from '@/shared/api/paged-query';
+import { appendPagedQueryParams } from '@/utils/query-params';
 import type { ApiResponse } from '@/types/api';
 import type {
   ProjectDto,
@@ -175,17 +175,15 @@ function buildPagedQuery(
   sortDirection: 'asc' | 'desc' = 'asc',
   filterLogic: 'and' | 'or' = 'and'
 ): string {
-  const query = new URLSearchParams({
-    pageNumber: String(pageNumber),
-    pageSize: String(pageSize),
+  const query = new URLSearchParams();
+  appendPagedQueryParams(query, {
+    pageNumber,
+    pageSize,
     sortBy: 'Id',
     sortDirection,
+    filters,
+    filterLogic,
   });
-
-  if (filters && filters.length > 0) {
-    appendPagedFilters(query, filters, filterLogic);
-  }
-
   return query.toString();
 }
 
@@ -337,7 +335,10 @@ export const aquaQuickDailyApi = {
       sortBy: 'Id',
       sortDirection: 'asc',
     });
-    appendPagedFilters(query, [{ column: 'GrupKodu', operator: 'eq', value: 'YEM' }], 'and');
+    appendPagedQueryParams(query, {
+      filters: [{ column: 'GrupKodu', operator: 'eq', value: 'YEM' }],
+      filterLogic: 'and',
+    });
     const response = await api.get<ApiResponse<PagedResultRaw<StockListResponseItem>>>(`/api/Stock?${query.toString()}`);
     const raw = ensureSuccess(response, i18n.t('aqua.api.listLoadFailed', { ns: 'common' }));
     return extractStockList(raw);

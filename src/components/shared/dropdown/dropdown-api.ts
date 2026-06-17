@@ -1,6 +1,6 @@
 import { api } from '@/lib/axios';
 import i18n from '@/lib/i18n';
-import { appendPagedFilters } from '@/shared/api/paged-query';
+import { appendPagedQueryParams } from '@/utils/query-params';
 import type { ApiResponse, PagedFilter, PagedResponse } from '@/types/api';
 import type { StockGetDto, StockGetWithMainImageDto } from '@/features/stock/types';
 
@@ -39,21 +39,11 @@ function buildPagedQueryParams(
   pageNumberParamName: 'pageNumber' | 'page'
 ): URLSearchParams {
   const queryParams = new URLSearchParams();
-  queryParams.append(pageNumberParamName, request.pageNumber.toString());
-  queryParams.append('pageSize', request.pageSize.toString());
-
-  if (request.sortBy) {
-    queryParams.append('sortBy', request.sortBy);
-  }
-
-  if (request.sortDirection) {
-    queryParams.append('sortDirection', request.sortDirection);
-  }
-
-  if (request.filters) {
-    appendPagedFilters(queryParams, request.filters, 'or');
-  }
-
+  appendPagedQueryParams(
+    queryParams,
+    { ...request, filterLogic: 'or' },
+    { pageParamName: pageNumberParamName }
+  );
   return queryParams;
 }
 

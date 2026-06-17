@@ -31,7 +31,7 @@ export const appendIndexedFilterParams = (
 
 export const appendPagedQueryParams = (
   queryParams: URLSearchParams,
-  params: PagedParams & { filters?: FilterInput; search?: string },
+  params: Omit<PagedParams, 'filters'> & { filters?: FilterInput; search?: string },
   options?: {
     pageParamName?: string;
     pageSizeParamName?: string;
