@@ -13,6 +13,11 @@
       "selectProject": "حدد المشروع",
       "cage": "قفص",
       "selectCage": "اختر القفص",
+      "balance": {
+        "liveCountShort": "المتبقي",
+        "averageKgShort": "المتوسط",
+        "stockKgShort": "المخزون"
+      },
       "tabFeeding": "تغذية",
       "tabMortality": "النفوق",
       "tabWeather": "طقس",

@@ -64,9 +64,37 @@ import { AQUA_SPECIAL_PERMISSION_CODES } from '@/features/access-control/utils/p
 import { useCreateProjectMergeMutation } from '../project-merges/hooks/useCreateProjectMergeMutation';
 import type { ProjectMergeFormSchema } from '../project-merges/types/projectMerge';
 
-function formatAverageKg(averageGram: number | null | undefined): string {
+function formatQuantity(value: number | null | undefined, language?: string, fractionDigits = 0): string {
+  const numericValue = Number(value ?? 0);
+  return new Intl.NumberFormat(language || 'tr-TR', {
+    maximumFractionDigits: fractionDigits,
+    minimumFractionDigits: fractionDigits,
+  }).format(Number.isFinite(numericValue) ? numericValue : 0);
+}
+
+function formatAverageKg(averageGram: number | null | undefined, language?: string): string {
   const averageKg = Number(averageGram ?? 0) / 1000;
-  return Number.isFinite(averageKg) ? averageKg.toFixed(3) : '0.000';
+  return formatQuantity(averageKg, language, 3);
+}
+
+function formatBiomassKg(biomassGram: number | null | undefined, language?: string): string {
+  const biomassKg = Number(biomassGram ?? 0) / 1000;
+  return formatQuantity(biomassKg, language, 0);
+}
+
+function formatBalanceSnapshotLabel(
+  baseLabel: string,
+  snapshot: Pick<ActiveCageBatchSnapshot, 'liveCount' | 'averageGram' | 'biomassGram'> | Pick<ActiveWarehouseBatchSnapshot, 'liveCount' | 'averageGram' | 'biomassGram'> | null | undefined,
+  language: string | undefined,
+  t: (key: string) => string
+): string {
+  const liveCount = Number(snapshot?.liveCount ?? 0);
+  return [
+    baseLabel,
+    `${t('aqua.quickDailyEntry.balance.liveCountShort')}: ${formatQuantity(liveCount, language)}`,
+    `${t('aqua.quickDailyEntry.balance.averageKgShort')}: ${formatAverageKg(snapshot?.averageGram, language)} KG`,
+    `${t('aqua.quickDailyEntry.balance.stockKgShort')}: ${formatBiomassKg(snapshot?.biomassGram, language)} KG`,
+  ].join(' | ');
 }
 
 const QUICK_DAILY_ENTRY_DATE_STORAGE_KEY = 'aqua.quickDailyEntry.selectedDate';
@@ -134,7 +162,7 @@ function LazyTabFallback(): ReactElement {
 }
 
 export function QuickDailyEntryPage(): ReactElement {
-  const { t } = useTranslation('common');
+  const { i18n, t } = useTranslation('common');
   const { data: aquaSettings } = useAquaSettingsQuery();
   const { data: permissions } = useMyPermissionsQuery();
   const [searchParams] = useSearchParams();
@@ -348,14 +376,13 @@ export function QuickDailyEntryPage(): ReactElement {
     () =>
       sourceProjectCages.map((pc) => {
       const snapshot = sourceBatchByCageId[pc.id];
-      const liveCount = Number(snapshot?.liveCount ?? 0);
       const baseLabel = pc.cageCode ?? pc.cageName ?? String(pc.id);
       return {
         value: String(pc.id),
-        label: `${formatLabelWithKey(baseLabel, pc.id)} - ${liveCount}/${formatAverageKg(snapshot?.averageGram)} KG`,
+        label: formatBalanceSnapshotLabel(formatLabelWithKey(baseLabel, pc.id), snapshot, i18n.language, t),
       };
       }),
-    [sourceProjectCages, sourceBatchByCageId]
+    [i18n.language, sourceProjectCages, sourceBatchByCageId, t]
   );
 
   const transferTargetOptions = useMemo(() => {
@@ -406,9 +433,9 @@ export function QuickDailyEntryPage(): ReactElement {
     () =>
       warehouseTransferBatchSnapshots.map((batch) => ({
         value: String(batch.fishBatchId),
-        label: `${batch.batchCode ?? batch.fishBatchId} - ${batch.liveCount}/${formatAverageKg(batch.averageGram)} KG`,
+        label: formatBalanceSnapshotLabel(String(batch.batchCode ?? batch.fishBatchId), batch, i18n.language, t),
       })),
-    [warehouseTransferBatchSnapshots]
+    [i18n.language, t, warehouseTransferBatchSnapshots]
   );
 
   const warehouseCageTransferBatchSnapshots = useMemo(
@@ -420,9 +447,9 @@ export function QuickDailyEntryPage(): ReactElement {
     () =>
       warehouseCageTransferBatchSnapshots.map((batch) => ({
         value: String(batch.fishBatchId),
-        label: `${batch.batchCode ?? batch.fishBatchId} - ${batch.liveCount}/${formatAverageKg(batch.averageGram)} KG`,
+        label: formatBalanceSnapshotLabel(String(batch.batchCode ?? batch.fishBatchId), batch, i18n.language, t),
       })),
-    [warehouseCageTransferBatchSnapshots]
+    [i18n.language, t, warehouseCageTransferBatchSnapshots]
   );
 
   useEffect(() => {

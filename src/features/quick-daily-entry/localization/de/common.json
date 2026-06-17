@@ -13,6 +13,11 @@
       "selectProject": "Projekt auswählen",
       "cage": "Käfig",
       "selectCage": "Wählen Sie einen Käfig",
+      "balance": {
+        "liveCountShort": "Restbestand",
+        "averageKgShort": "Durchschn.",
+        "stockKgShort": "Bestand"
+      },
       "tabFeeding": "Füttern",
       "tabMortality": "Mortalität",
       "tabWeather": "Wetter",

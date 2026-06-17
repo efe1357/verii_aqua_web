@@ -13,6 +13,11 @@
       "selectProject": "Seleccionar proyecto",
       "cage": "jaula",
       "selectCage": "Elige jaula",
+      "balance": {
+        "liveCountShort": "Restante",
+        "averageKgShort": "Prom.",
+        "stockKgShort": "Stock"
+      },
       "tabFeeding": "alimentación",
       "tabMortality": "Mortalidad",
       "tabWeather": "El tiempo",

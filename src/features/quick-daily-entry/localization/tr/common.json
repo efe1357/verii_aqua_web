@@ -15,6 +15,11 @@
       "selectProject": "Proje seçin",
       "cage": "Kafes",
       "selectCage": "Kafes seçin",
+      "balance": {
+        "liveCountShort": "Kalan",
+        "averageKgShort": "Ort.",
+        "stockKgShort": "Stok"
+      },
       "tabFeeding": "Yemleme",
       "tabMortality": "Fire",
       "tabWeather": "Hava Durumu",

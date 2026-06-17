@@ -14,6 +14,11 @@
       "selectProject": "Select project",
       "cage": "cage",
       "selectCage": "Choose cage",
+      "balance": {
+        "liveCountShort": "Remaining",
+        "averageKgShort": "Avg.",
+        "stockKgShort": "Stock"
+      },
       "tabFeeding": "feeding",
       "tabMortality": "Wastage",
       "tabWeather": "Weather",

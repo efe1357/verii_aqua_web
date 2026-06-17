@@ -13,6 +13,11 @@
       "selectProject": "Seleziona progetto",
       "cage": "gabbia",
       "selectCage": "Scegli la gabbia",
+      "balance": {
+        "liveCountShort": "Residuo",
+        "averageKgShort": "Med.",
+        "stockKgShort": "Stock"
+      },
       "tabFeeding": "alimentazione",
       "tabMortality": "Mortalità",
       "tabWeather": "Meteo",
