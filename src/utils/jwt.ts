@@ -5,6 +5,7 @@ interface JwtPayload {
   firstName: string;
   lastName: string;
   'http://schemas.microsoft.com/ws/2008/06/identity/claims/role': string;
+  RoleId?: string;
   exp: number;
   iss: string;
   aud: string;
@@ -28,17 +29,19 @@ export const decodeJwt = (token: string): JwtPayload | null => {
 
 export const getUserFromToken = (
   token: string
-): { id: number; email: string; name: string; role?: string; roles?: string[] } | null => {
+): { id: number; email: string; name: string; role?: string; roleId?: number; roles?: string[] } | null => {
   const payload = decodeJwt(token);
   if (!payload) return null;
 
   const role = payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+  const roleId = payload.RoleId ? parseInt(payload.RoleId, 10) : undefined;
 
   return {
     id: parseInt(payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'], 10),
     email: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
     name: `${payload.firstName} ${payload.lastName}`.trim() || payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
     role,
+    roleId: Number.isFinite(roleId) ? roleId : undefined,
     roles: role ? [role] : [],
   };
 };

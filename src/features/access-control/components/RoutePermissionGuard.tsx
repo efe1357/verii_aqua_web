@@ -10,13 +10,15 @@ import { useAuthStore } from '@/stores/auth-store';
 import { getUserFromToken } from '@/utils/jwt';
 
 const ADMIN_ROLE_TOKENS = ['admin', 'administrator', 'system admin', 'yonetici', 'yönetici', 'roles.admin'];
+const ADMIN_ROLE_IDS = [3];
 
 function normalizeRoleValue(value: string | null | undefined): string {
   return (value ?? '').trim().toLocaleLowerCase('tr-TR');
 }
 
-function isAdminLikeUser(user: { role?: string; roles?: string[] } | null): boolean {
+function isAdminLikeUser(user: { role?: string; roleId?: number; roles?: string[] } | null): boolean {
   if (!user) return false;
+  if (typeof user.roleId === 'number' && ADMIN_ROLE_IDS.includes(user.roleId)) return true;
 
   const candidateRoles = [
     user.role,
@@ -30,7 +32,7 @@ function isAdminLikeUser(user: { role?: string; roles?: string[] } | null): bool
 }
 
 function resolveAdminLikeUser(
-  user: { role?: string; roles?: string[] } | null,
+  user: { role?: string; roleId?: number; roles?: string[] } | null,
   token: string | null
 ): boolean {
   if (isAdminLikeUser(user)) {

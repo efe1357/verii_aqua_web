@@ -7,6 +7,7 @@ interface User {
   email: string;
   name?: string;
   role?: string;
+  roleId?: number;
   roles?: string[];
 }
 
@@ -23,19 +24,22 @@ function mergeUserWithTokenClaims(user: User | null, token: string | null): User
   if (!tokenUser) return user;
 
   const nextRole = user.role ?? tokenUser.role;
+  const nextRoleId = user.roleId ?? tokenUser.roleId;
   const nextRoles = Array.isArray(user.roles) && user.roles.length > 0 ? user.roles : tokenUser.roles;
   const sameRole = user.role === nextRole;
+  const sameRoleId = user.roleId === nextRoleId;
   const sameRoles =
     (user.roles ?? []).length === (nextRoles ?? []).length &&
     (user.roles ?? []).every((value, index) => value === (nextRoles ?? [])[index]);
 
-  if (sameRole && sameRoles) {
+  if (sameRole && sameRoleId && sameRoles) {
     return user;
   }
 
   return {
     ...user,
     role: nextRole,
+    roleId: nextRoleId,
     roles: nextRoles,
   };
 }

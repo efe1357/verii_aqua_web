@@ -7,13 +7,15 @@ import type { MyPermissionsDto } from '../types/access-control.types';
 
 const STALE_TIME_MS = 5 * 60 * 1000;
 const ADMIN_ROLE_TOKENS = ['admin', 'administrator', 'system admin', 'yonetici', 'yönetici', 'roles.admin'];
+const ADMIN_ROLE_IDS = [3];
 
 function normalizeRoleValue(value: string | null | undefined): string {
   return (value ?? '').trim().toLocaleLowerCase('tr-TR');
 }
 
-function isAdminLikeUser(user: { role?: string; roles?: string[] } | null): boolean {
+function isAdminLikeUser(user: { role?: string; roleId?: number; roles?: string[] } | null): boolean {
   if (!user) return false;
+  if (typeof user.roleId === 'number' && ADMIN_ROLE_IDS.includes(user.roleId)) return true;
 
   const candidateRoles = [user.role, ...(Array.isArray(user.roles) ? user.roles : [])]
     .map(normalizeRoleValue)
@@ -23,8 +25,8 @@ function isAdminLikeUser(user: { role?: string; roles?: string[] } | null): bool
 }
 
 function mergeUserWithTokenRoles(
-  user: { id?: number; role?: string; roles?: string[] } | null,
-  tokenUser: { id: number; role?: string; roles?: string[] } | null
+  user: { id?: number; role?: string; roleId?: number; roles?: string[] } | null,
+  tokenUser: { id: number; role?: string; roleId?: number; roles?: string[] } | null
 ) {
   if (!user) return tokenUser;
   if (!tokenUser) return user;
@@ -32,6 +34,7 @@ function mergeUserWithTokenRoles(
   return {
     ...user,
     role: user.role ?? tokenUser.role,
+    roleId: user.roleId ?? tokenUser.roleId,
     roles:
       Array.isArray(user.roles) && user.roles.length > 0
         ? user.roles
@@ -63,8 +66,8 @@ export const useMyPermissionsQuery = () => {
     gcTime: 10 * 60 * 1000,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-    retry: 3,
-    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000),
+    retry: 1,
+    retryDelay: 1500,
   });
 
   if (isAdminUser) {
