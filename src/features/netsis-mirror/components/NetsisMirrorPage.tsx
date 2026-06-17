@@ -91,7 +91,7 @@ const COLUMNS_BY_KIND: Record<NetsisMirrorKind, ColumnDefinition[]> = {
     { key: 'isProcessed', labelKey: 'columns.isProcessed', type: 'boolean' },
     { key: 'processingAttemptCount', labelKey: 'columns.processingAttemptCount', type: 'number' },
     { key: 'lastSyncedAt', labelKey: 'columns.lastSyncedAt', type: 'datetime' },
-    { key: 'processError', labelKey: 'columns.processError' },
+    { key: 'processError', labelKey: 'columns.processError', className: 'min-w-[420px] max-w-[640px] whitespace-normal break-words text-cyan-700 dark:text-cyan-300' },
   ],
 };
 
@@ -336,11 +336,15 @@ function NetsisMirrorPage({ kind }: NetsisMirrorPageProps): ReactElement {
                   </TableRow>
                 ) : filteredRows.map((row, index) => (
                   <TableRow key={`${kind}-${pageNumber}-${index}`} className="group border-b border-slate-200 dark:border-cyan-800/30 last:border-0 hover:bg-slate-50 dark:hover:bg-blue-900/30 transition-colors duration-200">
-                    {activeColumns.map((column) => (
-                      <TableCell key={column.key} className={cn('max-w-[320px] truncate py-4 text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400', column.className)} title={formatCell(row, column, i18n.language, t)}>
-                        {formatCell(row, column, i18n.language, t)}
+                    {activeColumns.map((column) => {
+                      const value = formatCell(row, column, i18n.language, t);
+                      const isLongText = column.key === 'processError';
+                      return (
+                      <TableCell key={column.key} className={cn('py-4 text-sm font-semibold text-slate-800 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400', isLongText ? 'align-top leading-relaxed' : 'max-w-[320px] truncate', column.className)} title={value}>
+                        {value}
                       </TableCell>
-                    ))}
+                      );
+                    })}
                   </TableRow>
                 ))}
               </TableBody>
