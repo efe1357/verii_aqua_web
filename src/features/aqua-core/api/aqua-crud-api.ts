@@ -1,6 +1,6 @@
 import { api } from '@/lib/axios';
 import i18n from '@/lib/i18n';
-import { appendPagedFilters } from '@/shared/api/paged-query';
+import { appendPagedQueryParams } from '@/utils/query-params';
 import type { ApiResponse } from '@/types/api';
 import type { AquaListParams, AquaListResponse } from '../types/aqua-crud';
 
@@ -17,11 +17,7 @@ interface AquaListResponseRaw extends Partial<AquaListResponse> {
 
 function buildQuery(params: AquaListParams): string {
   const query = new URLSearchParams();
-  if (params.pageNumber != null) query.append('pageNumber', String(params.pageNumber));
-  if (params.pageSize != null) query.append('pageSize', String(params.pageSize));
-  if (params.sortBy) query.append('sortBy', params.sortBy);
-  if (params.sortDirection) query.append('sortDirection', params.sortDirection);
-  appendPagedFilters(query, params.filters, params.filterLogic ?? 'and');
+  appendPagedQueryParams(query, params);
   return query.toString();
 }
 

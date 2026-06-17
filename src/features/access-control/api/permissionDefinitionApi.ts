@@ -1,5 +1,5 @@
 import { api } from '@/lib/axios';
-import { appendPagedFilters } from '@/shared/api/paged-query';
+import { appendPagedQueryParams } from '@/utils/query-params';
 import { extractData } from '../utils/extract-api-data';
 import type {
   ApiResponse,
@@ -14,11 +14,7 @@ import type {
 
 function buildQueryParams(params: PagedRequest): string {
   const queryParams = new URLSearchParams();
-  if (params.pageNumber !== undefined) queryParams.append('pageNumber', params.pageNumber.toString());
-  if (params.pageSize !== undefined) queryParams.append('pageSize', params.pageSize.toString());
-  if (params.sortBy) queryParams.append('sortBy', params.sortBy);
-  if (params.sortDirection) queryParams.append('sortDirection', params.sortDirection);
-  appendPagedFilters(queryParams, params.filters, params.filterLogic ?? 'and');
+  appendPagedQueryParams(queryParams, params);
   return queryParams.toString();
 }
 

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/lib/axios';
 import i18n from '@/lib/i18n';
-import { appendPagedFilters } from '@/shared/api/paged-query';
+import { appendPagedQueryParams } from '@/utils/query-params';
 import type { ApiResponse, PagedParams, PagedResponse } from '@/types/api';
 
 export interface AssignableUserDto {
@@ -13,11 +13,7 @@ export interface AssignableUserDto {
 
 const getUserList = async (params: PagedParams): Promise<PagedResponse<AssignableUserDto>> => {
   const queryParams = new URLSearchParams();
-  if (params.pageNumber) queryParams.append('pageNumber', params.pageNumber.toString());
-  if (params.pageSize) queryParams.append('pageSize', params.pageSize.toString());
-  if (params.sortBy) queryParams.append('sortBy', params.sortBy);
-  if (params.sortDirection) queryParams.append('sortDirection', params.sortDirection);
-  appendPagedFilters(queryParams, params.filters, params.filterLogic ?? 'and');
+  appendPagedQueryParams(queryParams, params);
 
   const response = await api.get<ApiResponse<PagedResponse<AssignableUserDto>>>(`/api/User?${queryParams.toString()}`);
   if (response.success && response.data) {
