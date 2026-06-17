@@ -12,6 +12,8 @@ import {
 
 export { loadConfig, getApiUrl, getApiBaseUrl, resolveAppPath };
 
+const MAX_MANAGEMENT_PAGE_SIZE = 500;
+
 export async function ensureApiReady(): Promise<void> {
   const base = await loadConfig();
   api.defaults.baseURL = base;
@@ -34,8 +36,55 @@ function appendPathSegment(url: string | undefined, segment: string): string | u
   return query ? `${nextPath}?${query}` : nextPath;
 }
 
-function normalizeLegacyPagedFiltersUrl(url: string | undefined): string | undefined {
-  if (!url || !url.includes('filters=')) return url;
+type RequestFilterParam = {
+  column?: unknown;
+  operator?: unknown;
+  value?: unknown;
+};
+
+function clampPageSizeValue(value: unknown): string | null {
+  const numeric = typeof value === 'string' ? Number(value) : typeof value === 'number' ? value : Number.NaN;
+  if (!Number.isFinite(numeric) || numeric <= 0) return null;
+  return String(Math.min(Math.trunc(numeric), MAX_MANAGEMENT_PAGE_SIZE));
+}
+
+function appendIndexedFilters(searchParams: URLSearchParams, filters: RequestFilterParam[]): boolean {
+  const validFilters = filters.filter((filter) => filter?.column && filter?.operator);
+  if (validFilters.length === 0) return false;
+
+  searchParams.delete('filters');
+  searchParams.delete('Filters');
+
+  validFilters.forEach((filter, index) => {
+    searchParams.append(`filters[${index}].column`, String(filter.column));
+    searchParams.append(`filters[${index}].operator`, String(filter.operator));
+    searchParams.append(`filters[${index}].value`, filter.value == null ? '' : String(filter.value));
+  });
+
+  return true;
+}
+
+function rewriteJsonFilterParam(searchParams: URLSearchParams): boolean {
+  const rawFilters = searchParams.get('filters') ?? searchParams.get('Filters');
+  if (!rawFilters?.trim().startsWith('[')) return false;
+
+  try {
+    const parsed = JSON.parse(rawFilters) as unknown;
+    if (!Array.isArray(parsed)) return false;
+    const changed = appendIndexedFilters(searchParams, parsed as RequestFilterParam[]);
+    if (!changed) {
+      searchParams.delete('filters');
+      searchParams.delete('Filters');
+      searchParams.delete('filterLogic');
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function normalizePagedRequestUrl(url: string | undefined): string | undefined {
+  if (!url || !url.includes('?')) return url;
 
   const hashIndex = url.indexOf('#');
   const hash = hashIndex >= 0 ? url.slice(hashIndex) : '';
@@ -45,36 +94,68 @@ function normalizeLegacyPagedFiltersUrl(url: string | undefined): string | undef
 
   const path = withoutHash.slice(0, queryIndex);
   const query = new URLSearchParams(withoutHash.slice(queryIndex + 1));
-  const legacyFilters = query.get('filters');
-  if (!legacyFilters || !legacyFilters.trim().startsWith('[')) return url;
+  let changed = false;
 
-  try {
-    const parsed = JSON.parse(legacyFilters) as Array<{
-      column?: unknown;
-      operator?: unknown;
-      value?: unknown;
-    }>;
-
-    query.delete('filters');
-    let appendedCount = 0;
-    parsed
-      .filter((filter) => filter?.column && filter.value !== undefined && filter.value !== null && filter.value !== '')
-      .forEach((filter, index) => {
-        query.append(`filters[${index}].column`, String(filter.column));
-        query.append(`filters[${index}].operator`, String(filter.operator || 'eq'));
-        query.append(`filters[${index}].value`, String(filter.value));
-        appendedCount += 1;
-      });
-
-    if (appendedCount === 0) {
-      query.delete('filterLogic');
+  ['pageSize', 'PageSize'].forEach((key) => {
+    const current = query.get(key);
+    const next = clampPageSizeValue(current);
+    if (current != null && next != null && current !== next) {
+      query.set(key, next);
+      changed = true;
     }
+  });
 
-    const nextQuery = query.toString();
-    return `${path}${nextQuery ? `?${nextQuery}` : ''}${hash}`;
-  } catch {
-    return url;
+  changed = rewriteJsonFilterParam(query) || changed;
+  if (!changed) return url;
+
+  const nextQuery = query.toString();
+  return `${path}${nextQuery ? `?${nextQuery}` : ''}${hash}`;
+}
+
+function normalizePagedRequestParams(params: unknown): unknown {
+  if (!params) return params;
+
+  if (params instanceof URLSearchParams) {
+    ['pageSize', 'PageSize'].forEach((key) => {
+      const current = params.get(key);
+      const next = clampPageSizeValue(current);
+      if (current != null && next != null && current !== next) {
+        params.set(key, next);
+      }
+    });
+    rewriteJsonFilterParam(params);
+    return params;
   }
+
+  if (typeof params !== 'object' || Array.isArray(params)) {
+    return params;
+  }
+
+  const nextParams = { ...(params as Record<string, unknown>) };
+  ['pageSize', 'PageSize'].forEach((key) => {
+    if (!(key in nextParams)) return;
+    const next = clampPageSizeValue(nextParams[key]);
+    if (next != null) {
+      nextParams[key] = next;
+    }
+  });
+
+  const rawFilters = nextParams.filters ?? nextParams.Filters;
+  if (Array.isArray(rawFilters)) {
+    delete nextParams.filters;
+    delete nextParams.Filters;
+
+    rawFilters
+      .filter((filter): filter is RequestFilterParam => Boolean(filter && typeof filter === 'object'))
+      .forEach((filter, index) => {
+        if (!filter.column || !filter.operator) return;
+        nextParams[`filters[${index}].column`] = String(filter.column);
+        nextParams[`filters[${index}].operator`] = String(filter.operator);
+        nextParams[`filters[${index}].value`] = filter.value == null ? '' : String(filter.value);
+      });
+  }
+
+  return nextParams;
 }
 
 function resolveBranchCodeFromPersistedState(): string | null {
@@ -296,7 +377,6 @@ async function refreshAccessToken(): Promise<string | null> {
 
 api.interceptors.request.use((config) => {
   config.baseURL = config.baseURL || getApiBaseUrl() || api.defaults.baseURL;
-  config.url = normalizeLegacyPagedFiltersUrl(config.url);
   const originalMethod = (config.method ?? 'get').toLowerCase();
   if (originalMethod === 'put') {
     config.method = 'post';
@@ -304,6 +384,11 @@ api.interceptors.request.use((config) => {
   } else if (originalMethod === 'delete') {
     config.method = 'post';
     config.url = appendPathSegment(config.url, 'delete');
+  }
+
+  if (originalMethod === 'get') {
+    config.url = normalizePagedRequestUrl(config.url);
+    config.params = normalizePagedRequestParams(config.params);
   }
 
   const token = getStoredAccessToken();
