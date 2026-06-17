@@ -40,7 +40,10 @@
       "bulkDeleteError": "Toplu silme işlemi sırasında bazı hatalar oluştu.",
       "deleting": "Siliniyor...",
       "active": "Aktif",
-      "passive": "Pasif"
+      "passive": "Pasif",
+      "erpIntegratedRecordLocked": "Netsis'e aktarılmış kayıt değiştirilemez veya silinemez.",
+      "erpIntegratedFeedingLocked": "Netsis'e aktarılmış yemleme kaydı değiştirilemez veya silinemez.",
+      "erpIntegratedMortalityLocked": "Netsis'e aktarılmış fire kaydı değiştirilemez veya silinemez."
     },
     "toast": {
       "created": "Kayıt oluşturuldu",

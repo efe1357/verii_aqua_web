@@ -526,7 +526,10 @@
       "bulkDeleteError": "Beim Massenlöschvorgang sind einige Fehler aufgetreten.",
       "deleting": "Löschen...",
       "active": "Active",
-      "passive": "Passive"
+      "passive": "Passive",
+      "erpIntegratedRecordLocked": "Ein bereits an Netsis übertragener Datensatz kann nicht geändert oder gelöscht werden.",
+      "erpIntegratedFeedingLocked": "Ein bereits an Netsis übertragener Fütterungsdatensatz kann nicht geändert oder gelöscht werden.",
+      "erpIntegratedMortalityLocked": "Ein bereits an Netsis übertragener Mortalitätsdatensatz kann nicht geändert oder gelöscht werden."
     },
     "toast": {
       "created": "Datensatz erstellt",

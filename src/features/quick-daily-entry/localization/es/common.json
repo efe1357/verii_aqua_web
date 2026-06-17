@@ -35,6 +35,7 @@
         "summaryDescription": "Muestra los registros de alimentación de la ronda 1 y la ronda 2 para el proyecto, jaula y fecha seleccionados.",
         "summaryEmptySlot": "No hay registro para esta ronda.",
         "summaryRecorded": "Registrado",
+        "summaryErpIntegrated": "Transferido a Netsis",
         "summaryQuantityKg": "Cantidad (KG)",
         "summaryTotalKg": "Alimento Total (KG)",
         "existingUpdateTitle": "Ya existe un registro para esta ronda y este alimento.",

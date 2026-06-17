@@ -35,6 +35,7 @@
         "summaryDescription": "يعرض سجلات التغذية للجولة 1 والجولة 2 للمشروع والقفص والتاريخ المحددين.",
         "summaryEmptySlot": "لا يوجد سجل لهذه الجولة.",
         "summaryRecorded": "مسجل",
+        "summaryErpIntegrated": "تم ترحيله إلى Netsis",
         "summaryQuantityKg": "الكمية (كجم)",
         "summaryTotalKg": "إجمالي العلف (كجم)",
         "existingUpdateTitle": "يوجد إدخال سابق لهذه الجولة وهذا العلف.",

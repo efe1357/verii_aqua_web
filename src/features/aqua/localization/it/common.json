@@ -526,7 +526,10 @@
       "bulkDeleteError": "Si sono verificati alcuni errori durante il processo di eliminazione collettiva.",
       "deleting": "Eliminazione...",
       "active": "Active",
-      "passive": "Passive"
+      "passive": "Passive",
+      "erpIntegratedRecordLocked": "Un record già trasferito a Netsis non può essere modificato o eliminato.",
+      "erpIntegratedFeedingLocked": "Un record di alimentazione già trasferito a Netsis non può essere modificato o eliminato.",
+      "erpIntegratedMortalityLocked": "Un record di mortalità già trasferito a Netsis non può essere modificato o eliminato."
     },
     "toast": {
       "created": "Registrazione creata",

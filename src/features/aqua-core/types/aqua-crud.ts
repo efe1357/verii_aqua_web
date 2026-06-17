@@ -63,6 +63,8 @@ export interface AquaCrudConfig {
   columns?: AquaColumnConfig[];
   defaultValues?: Record<string, unknown>;
   readOnly?: boolean;
+  lockWhenErpIntegrated?: boolean;
+  erpIntegratedLockMessage?: string;
   prepareSubmitPayload?: (args: {
     payload: Record<string, unknown>;
     formValues: Record<string, unknown>;

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Resolver, SubmitHandler } from 'react-hook-form';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -57,6 +58,12 @@ export function FeedingQuickForm({
   });
 
   const handleSubmit: SubmitHandler<FeedingQuickFormSchema> = async (data) => {
+    const existingLine = feedingSummaryLines.find((item) => Number(item.feedingSlot ?? 0) === Number(data.feedingSlot));
+    if (existingLine?.isERPIntegrated) {
+      toast.error(t('aqua.common.erpIntegratedFeedingLocked'));
+      return;
+    }
+
     await onSubmit(data);
     await feedingSummaryQuery.refetch();
     form.reset({ feedingSlot: 0, stockId: 0, qtyUnit: 0, gramPerUnit: 0.001 });
@@ -136,8 +143,10 @@ export function FeedingQuickForm({
                           {slot.label}
                         </span>
                         {line ? (
-                          <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-300">
-                            {t('aqua.quickDailyEntry.feeding.summaryRecorded')}
+                          <span className={`text-xs font-semibold ${line.isERPIntegrated ? 'text-amber-600 dark:text-amber-300' : 'text-emerald-600 dark:text-emerald-300'}`}>
+                            {line.isERPIntegrated
+                              ? t('aqua.quickDailyEntry.feeding.summaryErpIntegrated')
+                              : t('aqua.quickDailyEntry.feeding.summaryRecorded')}
                           </span>
                         ) : null}
                       </div>

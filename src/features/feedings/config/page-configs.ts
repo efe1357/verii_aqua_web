@@ -5,6 +5,8 @@ export const feedingsConfig: AquaCrudConfig = {
   title: 'aqua.pages.feedings.title',
   description: 'aqua.pages.feedings.description',
   endpoint: 'Feeding',
+  lockWhenErpIntegrated: true,
+  erpIntegratedLockMessage: 'aqua.common.erpIntegratedFeedingLocked',
   listStaleTimeMs: 10000,
   fields: [
     {
@@ -63,6 +65,8 @@ export const feedingLinesConfig: AquaCrudConfig = {
   title: 'aqua.pages.feedingLines.title',
   description: 'aqua.pages.feedingLines.description',
   endpoint: 'FeedingLine',
+  lockWhenErpIntegrated: true,
+  erpIntegratedLockMessage: 'aqua.common.erpIntegratedFeedingLocked',
   listStaleTimeMs: 10000,
   fields: [
     {
@@ -127,6 +131,8 @@ export const feedingDistributionsConfig: AquaCrudConfig = {
   title: 'aqua.pages.feedingDistributions.title',
   description: 'aqua.pages.feedingDistributions.description',
   endpoint: 'FeedingDistribution',
+  lockWhenErpIntegrated: true,
+  erpIntegratedLockMessage: 'aqua.common.erpIntegratedFeedingLocked',
   listStaleTimeMs: 10000,
   fields: [
     {

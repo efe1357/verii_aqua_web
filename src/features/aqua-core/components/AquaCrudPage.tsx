@@ -203,6 +203,18 @@ function extractRecordId(record: Record<string, unknown> | null | undefined): nu
   return Number.isFinite(id) && id > 0 ? id : null;
 }
 
+function isRecordErpIntegrated(record: Record<string, unknown> | null | undefined): boolean {
+  if (!record) return false;
+  const rawValue = record.isERPIntegrated ?? record.IsERPIntegrated;
+  if (typeof rawValue === 'boolean') return rawValue;
+  if (typeof rawValue === 'number') return rawValue === 1;
+  if (typeof rawValue === 'string') {
+    const normalized = rawValue.trim().toLowerCase();
+    return normalized === 'true' || normalized === '1' || normalized === 'yes' || normalized === 'evet';
+  }
+  return false;
+}
+
 function normalizeInputValue(field: AquaFieldConfig, value: unknown): string {
   if (value == null) return '';
   if (field.type === 'number' && shouldDisplayAsKg(field)) {
@@ -616,6 +628,11 @@ export function AquaCrudPage({
   const confirmBulkDelete = async (): Promise<void> => {
     if (!canDelete) return;
     if (selectedIds.length === 0) return;
+    const lockedSelectedCount = rows.filter((row) => selectedIds.includes(Number(row.id ?? row.Id)) && isErpLocked(row)).length;
+    if (lockedSelectedCount > 0) {
+      showErpLockedToast();
+      return;
+    }
 
     setIsBulkDeleting(true);
     try {
@@ -833,8 +850,22 @@ export function AquaCrudPage({
     setFormValues(initial); setFormOpen(true);
   };
 
+  const getErpLockedMessage = (): string =>
+    t(config.erpIntegratedLockMessage ?? 'aqua.common.erpIntegratedRecordLocked');
+
+  const showErpLockedToast = (): void => {
+    toast.error(getErpLockedMessage());
+  };
+
+  const isErpLocked = (row: Record<string, unknown> | null | undefined): boolean =>
+    config.lockWhenErpIntegrated === true && isRecordErpIntegrated(row);
+
   const handleEdit = (row: Record<string, unknown>): void => {
     if (!canUpdate) return;
+    if (isErpLocked(row)) {
+      showErpLockedToast();
+      return;
+    }
     setEditingRow(row); const nextValues: Record<string, unknown> = {};
     for (const field of config.fields) nextValues[field.key] = normalizeInputValue(field, row[field.key] ?? '');
     setFormValues({ ...getInitialValues(config), ...nextValues }); setFormOpen(true);
@@ -842,17 +873,30 @@ export function AquaCrudPage({
 
   const handleDeleteClick = (row: Record<string, unknown>): void => {
     if (!canDelete) return;
+    if (isErpLocked(row)) {
+      showErpLockedToast();
+      return;
+    }
     setRowToDelete(row);
   };
   const confirmDelete = (): void => {
     if (!canDelete) return;
     if (!rowToDelete) return; const id = Number(rowToDelete.id ?? rowToDelete.Id);
+    if (isErpLocked(rowToDelete)) {
+      showErpLockedToast();
+      setRowToDelete(null);
+      return;
+    }
     if (!id) return; deleteMutation.mutate(id);
   };
 
   const handleSubmit = async (): Promise<void> => {
     if (editingRow && !canUpdate) return;
     if (!editingRow && !canCreate) return;
+    if (editingRow && isErpLocked(editingRow)) {
+      showErpLockedToast();
+      return;
+    }
     const payload: Record<string, unknown> = {};
     for (const field of config.fields) payload[field.key] = normalizeFieldValue(field, formValues[field.key]);
     const statusFallback = resolveStatusFallbackValue(config);
@@ -1185,19 +1229,20 @@ export function AquaCrudPage({
                   ) : rows.length === 0 ? (
                     <tr><td colSpan={displayedColumns.length + (rowSelectionEnabled ? 1 : 2)} className="text-center py-20 text-slate-500 dark:text-slate-400 font-medium">{t('aqua.common.noData')}</td></tr>
                   ) : (
-                    rows.map((row) => {
-                      const id = Number(row.id ?? row.Id);
-                      const status = Number(row.status ?? row.Status);
-                      const isSelected = rowSelectionEnabled ? selectedRowId === id : selectedIds.includes(id);
+	                    rows.map((row) => {
+	                      const id = Number(row.id ?? row.Id);
+	                      const status = Number(row.status ?? row.Status);
+	                      const erpLocked = isErpLocked(row);
+	                      const isSelected = rowSelectionEnabled ? selectedRowId === id : selectedIds.includes(id);
                       
                       return (
                         <tr key={id} className={`h-10 border-b border-slate-200 dark:border-cyan-800/30 transition-colors duration-200 hover:bg-slate-50 dark:hover:bg-blue-900/40 group last:border-0 bg-transparent ${rowSelectionEnabled ? 'cursor-pointer' : ''} ${isSelected ? 'bg-cyan-50 dark:bg-cyan-800/20' : ''}`} onClick={() => { if (rowSelectionEnabled) onRowSelect?.(row); }}>
                           {/* PREMIUM ÖZELLİK: Çoklu Seçim Checkbox */}
-                          {!rowSelectionEnabled && (
-                            <td className={`${cellStyle} px-4 text-center`}>
-                              <Checkbox checked={isSelected} onCheckedChange={() => toggleSelectRow(id)} className="border-slate-300 dark:border-cyan-700 data-[state=checked]:bg-cyan-600" />
-                            </td>
-                          )}
+	                          {!rowSelectionEnabled && (
+	                            <td className={`${cellStyle} px-4 text-center`}>
+	                              <Checkbox checked={isSelected} disabled={erpLocked} onCheckedChange={() => toggleSelectRow(id)} className="border-slate-300 dark:border-cyan-700 data-[state=checked]:bg-cyan-600 disabled:cursor-not-allowed disabled:opacity-40" />
+	                            </td>
+	                          )}
 
                           {displayedColumns.map((column) => (
                             <td key={column.key} className={cellStyle}>
@@ -1213,16 +1258,16 @@ export function AquaCrudPage({
                               </Button>
 
                               {!config.readOnly && (
-                                <>
-                                  {canUpdate && (
-                                    <Button variant="ghost" size="icon" title={t('aqua.common.edit')} onClick={(e) => { e.stopPropagation(); handleEdit(row); }} className="h-8 w-8 rounded-lg text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors">
-                                      <Edit size={16} />
-                                    </Button>
-                                  )}
-                                  {canDelete && (
-                                    <Button variant="ghost" size="icon" title={t('aqua.common.delete')} onClick={(e) => { e.stopPropagation(); handleDeleteClick(row); }} className="h-8 w-8 rounded-lg text-slate-400 hover:text-red-600 dark:hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors">
-                                      <Trash2 size={16} />
-                                    </Button>
+	                                <>
+	                                  {canUpdate && (
+	                                    <Button variant="ghost" size="icon" title={erpLocked ? getErpLockedMessage() : t('aqua.common.edit')} aria-disabled={erpLocked} onClick={(e) => { e.stopPropagation(); handleEdit(row); }} className={`h-8 w-8 rounded-lg text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors ${erpLocked ? 'cursor-not-allowed opacity-35 hover:bg-transparent hover:text-slate-400 dark:hover:text-slate-400' : ''}`}>
+	                                      <Edit size={16} />
+	                                    </Button>
+	                                  )}
+	                                  {canDelete && (
+	                                    <Button variant="ghost" size="icon" title={erpLocked ? getErpLockedMessage() : t('aqua.common.delete')} aria-disabled={erpLocked} onClick={(e) => { e.stopPropagation(); handleDeleteClick(row); }} className={`h-8 w-8 rounded-lg text-slate-400 hover:text-red-600 dark:hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors ${erpLocked ? 'cursor-not-allowed opacity-35 hover:bg-transparent hover:text-slate-400 dark:hover:text-slate-400' : ''}`}>
+	                                      <Trash2 size={16} />
+	                                    </Button>
                                   )}
                                 </>
                               )}

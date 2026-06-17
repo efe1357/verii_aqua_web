@@ -526,7 +526,10 @@
       "bulkDeleteError": "حدثت بعض الأخطاء أثناء عملية الحذف المجمع.",
       "deleting": "جارٍ الحذف...",
       "active": "Active",
-      "passive": "Passive"
+      "passive": "Passive",
+      "erpIntegratedRecordLocked": "لا يمكن تعديل أو حذف سجل تم ترحيله إلى Netsis.",
+      "erpIntegratedFeedingLocked": "لا يمكن تعديل أو حذف سجل تغذية تم ترحيله إلى Netsis.",
+      "erpIntegratedMortalityLocked": "لا يمكن تعديل أو حذف سجل نفوق تم ترحيله إلى Netsis."
     },
     "toast": {
       "created": "تم إنشاء السجل",

@@ -494,6 +494,12 @@ export function QuickDailyEntryPage(): ReactElement {
     if (!canCreateQuickDailyEntry) return;
     if (projectId == null || projectCageId == null) return;
     try {
+      const existingMortalityHeader = await aquaQuickDailyApi.findMortalityHeaderByProjectAndDate(projectId, selectedDate);
+      if (existingMortalityHeader?.isERPIntegrated) {
+        toast.error(t('aqua.common.erpIntegratedMortalityLocked'));
+        return;
+      }
+
       const sourceBatch = await aquaQuickDailyApi.findActiveFishBatchByProjectCage(projectCageId);
       if (sourceBatch == null) throw new Error(t('aqua.quickDailyEntry.toast.noActiveBatchForCage'));
       const mortalityLine = await createMortalityLineWithAutoHeader.mutateAsync({

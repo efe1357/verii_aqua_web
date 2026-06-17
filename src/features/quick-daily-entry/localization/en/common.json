@@ -43,6 +43,7 @@
         "summaryDescription": "Shows Round 1 and Round 2 feeding records for the selected project, cage, and date.",
         "summaryEmptySlot": "No record for this round.",
         "summaryRecorded": "Recorded",
+        "summaryErpIntegrated": "Transferred to Netsis",
         "summaryQuantityKg": "Quantity (KG)",
         "summaryTotalKg": "Total Feed (KG)",
         "existingUpdateTitle": "An entry already exists for this round and feed stock.",

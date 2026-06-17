@@ -587,7 +587,10 @@
       "bulkDeleteError": "Some errors occurred during the bulk deletion process.",
       "deleting": "Deleting...",
       "active": "Active",
-      "passive": "Passive"
+      "passive": "Passive",
+      "erpIntegratedRecordLocked": "A record already transferred to Netsis cannot be changed or deleted.",
+      "erpIntegratedFeedingLocked": "A feeding record already transferred to Netsis cannot be changed or deleted.",
+      "erpIntegratedMortalityLocked": "A mortality record already transferred to Netsis cannot be changed or deleted."
     },
     "toast": {
       "created": "Record created",

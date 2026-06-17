@@ -526,7 +526,10 @@
       "bulkDeleteError": "Certaines erreurs se sont produites lors du processus de suppression groupée.",
       "deleting": "Suppression...",
       "active": "Active",
-      "passive": "Passive"
+      "passive": "Passive",
+      "erpIntegratedRecordLocked": "Un enregistrement déjà transféré vers Netsis ne peut pas être modifié ni supprimé.",
+      "erpIntegratedFeedingLocked": "Un enregistrement d'alimentation déjà transféré vers Netsis ne peut pas être modifié ni supprimé.",
+      "erpIntegratedMortalityLocked": "Un enregistrement de mortalité déjà transféré vers Netsis ne peut pas être modifié ni supprimé."
     },
     "toast": {
       "created": "Enregistrement créé",

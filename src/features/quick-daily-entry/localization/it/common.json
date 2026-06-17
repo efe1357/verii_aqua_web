@@ -35,6 +35,7 @@
         "summaryDescription": "Mostra i record di alimentazione del giro 1 e del giro 2 per progetto, gabbia e data selezionati.",
         "summaryEmptySlot": "Nessun record per questo giro.",
         "summaryRecorded": "Registrato",
+        "summaryErpIntegrated": "Trasferito a Netsis",
         "summaryQuantityKg": "Quantità (KG)",
         "summaryTotalKg": "Mangime Totale (KG)",
         "existingUpdateTitle": "Esiste già una registrazione per questo turno e mangime.",

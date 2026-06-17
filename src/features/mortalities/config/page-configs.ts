@@ -6,6 +6,8 @@ export const mortalitiesConfig: AquaCrudConfig = {
   title: 'aqua.pages.mortalities.title',
   description: 'aqua.pages.mortalities.description',
   endpoint: 'Mortality',
+  lockWhenErpIntegrated: true,
+  erpIntegratedLockMessage: 'aqua.common.erpIntegratedMortalityLocked',
   postingSlug: 'mortality',
   autoPostOnSave: true,
   listStaleTimeMs: 10000,
@@ -44,6 +46,8 @@ export const mortalityLinesConfig: AquaCrudConfig = {
   title: 'aqua.pages.mortalityLines.title',
   description: 'aqua.pages.mortalityLines.description',
   endpoint: 'MortalityLine',
+  lockWhenErpIntegrated: true,
+  erpIntegratedLockMessage: 'aqua.common.erpIntegratedMortalityLocked',
   createEndpoint: 'MortalityLine/auto-header',
   listStaleTimeMs: 10000,
   fields: [

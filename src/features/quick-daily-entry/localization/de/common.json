@@ -35,6 +35,7 @@
         "summaryDescription": "Zeigt die Fütterungsdatensätze für Runde 1 und Runde 2 zum ausgewählten Projekt, Käfig und Datum.",
         "summaryEmptySlot": "Für diese Runde gibt es keinen Eintrag.",
         "summaryRecorded": "Erfasst",
+        "summaryErpIntegrated": "An Netsis übertragen",
         "summaryQuantityKg": "Menge (KG)",
         "summaryTotalKg": "Gesamtfutter (KG)",
         "existingUpdateTitle": "Für diese Runde und diesen Futterartikel existiert bereits ein Eintrag.",

@@ -35,6 +35,7 @@
         "summaryDescription": "Affiche les enregistrements d’alimentation du tour 1 et du tour 2 pour le projet, la cage et la date sélectionnés.",
         "summaryEmptySlot": "Aucun enregistrement pour ce tour.",
         "summaryRecorded": "Enregistré",
+        "summaryErpIntegrated": "Transféré vers Netsis",
         "summaryQuantityKg": "Quantité (KG)",
         "summaryTotalKg": "Aliment Total (KG)",
         "existingUpdateTitle": "Une saisie existe déjà pour ce tour et cet aliment.",

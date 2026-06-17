@@ -79,6 +79,7 @@ export interface FeedingHeaderDto {
   projectId: number;
   feedingDate: string;
   feedingSlot?: number;
+  isERPIntegrated?: boolean;
 }
 
 export interface FeedingLineDto {
@@ -93,6 +94,7 @@ export interface FeedingLineDto {
   qtyUnit: number;
   gramPerUnit: number;
   totalGram: number;
+  isERPIntegrated?: boolean;
 }
 
 export interface FeedingDistributionDto {
@@ -108,6 +110,7 @@ export interface MortalityHeaderDto {
   projectId: number;
   mortalityDate: string;
   status?: number;
+  isERPIntegrated?: boolean;
 }
 
 export interface NetOperationHeaderDto {

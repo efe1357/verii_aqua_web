@@ -44,6 +44,7 @@
         "summaryDescription": "Seçili proje, kafes ve tarih için 1. ve 2. tur yemleme kayıtlarını gösterir.",
         "summaryEmptySlot": "Bu tur için kayıt yok.",
         "summaryRecorded": "Kayıtlı",
+        "summaryErpIntegrated": "Netsis'e aktarıldı",
         "summaryQuantityKg": "Miktar (KG)",
         "summaryTotalKg": "Toplam Yem (KG)",
         "existingUpdateTitle": "Bu tur ve yem stoğu için mevcut kayıt var.",
