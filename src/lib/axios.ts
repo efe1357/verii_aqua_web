@@ -56,15 +56,17 @@ function normalizeLegacyPagedFiltersUrl(url: string | undefined): string | undef
     }>;
 
     query.delete('filters');
+    let appendedCount = 0;
     parsed
       .filter((filter) => filter?.column && filter.value !== undefined && filter.value !== null && filter.value !== '')
       .forEach((filter, index) => {
         query.append(`filters[${index}].column`, String(filter.column));
         query.append(`filters[${index}].operator`, String(filter.operator || 'eq'));
         query.append(`filters[${index}].value`, String(filter.value));
+        appendedCount += 1;
       });
 
-    if (!parsed.length) {
+    if (appendedCount === 0) {
       query.delete('filterLogic');
     }
 

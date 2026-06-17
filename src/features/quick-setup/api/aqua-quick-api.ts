@@ -217,12 +217,10 @@ export const aquaQuickApi = {
 
   getStocks: async (): Promise<StockDto[]> => {
     const query = new URLSearchParams({
-      page: '1',
+      pageNumber: '1',
       pageSize: '500',
       sortBy: 'Id',
       sortDirection: 'asc',
-      filters: '[]',
-      filterLogic: 'and',
     });
     const response = await api.get<ApiResponse<PagedResultRaw<StockListResponseItem>>>(`/api/Stock?${query.toString()}`);
     const raw = ensureSuccess(response, i18n.t('aqua.api.listLoadFailed', { ns: 'common' }));
