@@ -1,5 +1,6 @@
 import { api } from '@/lib/axios';
 import i18n from '@/lib/i18n';
+import { appendPagedFilters } from '@/shared/api/paged-query';
 import type { ApiResponse } from '@/types/api';
 import type { AquaListParams, AquaListResponse } from '../types/aqua-crud';
 
@@ -20,8 +21,7 @@ function buildQuery(params: AquaListParams): string {
   if (params.pageSize != null) query.append('pageSize', String(params.pageSize));
   if (params.sortBy) query.append('sortBy', params.sortBy);
   if (params.sortDirection) query.append('sortDirection', params.sortDirection);
-  if (params.filters) query.append('filters', JSON.stringify(params.filters));
-  if (params.filterLogic) query.append('filterLogic', params.filterLogic);
+  appendPagedFilters(query, params.filters, params.filterLogic ?? 'and');
   return query.toString();
 }
 

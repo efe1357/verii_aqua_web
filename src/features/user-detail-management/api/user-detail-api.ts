@@ -1,5 +1,6 @@
 import { api } from '@/lib/axios';
 import i18n from '@/lib/i18n';
+import { appendPagedFilters } from '@/shared/api/paged-query';
 import type { ApiResponse, PagedResponse, PagedParams, PagedFilter } from '@/types/api';
 import type { UserDetailDto, CreateUserDetailDto, UpdateUserDetailDto } from '../types/user-detail-types';
 
@@ -10,10 +11,7 @@ export const userDetailApi = {
     if (params.pageSize) queryParams.append('pageSize', params.pageSize.toString());
     if (params.sortBy) queryParams.append('sortBy', params.sortBy);
     if (params.sortDirection) queryParams.append('sortDirection', params.sortDirection);
-    if (params.filters) {
-      queryParams.append('filters', JSON.stringify(params.filters));
-      queryParams.append('filterLogic', params.filterLogic ?? 'and');
-    }
+    appendPagedFilters(queryParams, params.filters, params.filterLogic ?? 'and');
 
     const response = await api.get<ApiResponse<PagedResponse<UserDetailDto>>>(
       `/api/UserDetail?${queryParams.toString()}`

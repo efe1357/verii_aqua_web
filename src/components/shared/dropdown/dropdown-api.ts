@@ -1,5 +1,6 @@
 import { api } from '@/lib/axios';
 import i18n from '@/lib/i18n';
+import { appendPagedFilters } from '@/shared/api/paged-query';
 import type { ApiResponse, PagedFilter, PagedResponse } from '@/types/api';
 import type { StockGetDto, StockGetWithMainImageDto } from '@/features/stock/types';
 
@@ -50,8 +51,7 @@ function buildPagedQueryParams(
   }
 
   if (request.filters) {
-    queryParams.append('filters', JSON.stringify(request.filters));
-    queryParams.append('filterLogic', 'or');
+    appendPagedFilters(queryParams, request.filters, 'or');
   }
 
   return queryParams;

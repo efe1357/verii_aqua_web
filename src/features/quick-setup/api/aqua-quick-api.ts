@@ -1,5 +1,6 @@
 import { api } from '@/lib/axios';
 import i18n from '@/lib/i18n';
+import { appendPagedFilters } from '@/shared/api/paged-query';
 import type { ApiResponse } from '@/types/api';
 import type {
   ProjectDto,
@@ -161,8 +162,7 @@ function buildPagedQuery(
   });
 
   if (filters && filters.length > 0) {
-    query.append('filters', JSON.stringify(filters));
-    query.append('filterLogic', 'and');
+    appendPagedFilters(query, filters, 'and');
   }
 
   return query.toString();
