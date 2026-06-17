@@ -133,18 +133,25 @@ export function FeedingQuickForm({
                     ? formatCodeAndKeyLabel(line.stockCode, line.stockId, line.stockName)
                     : t('aqua.quickDailyEntry.feeding.summaryEmptySlot');
 
+                  const isErpIntegrated = line?.isERPIntegrated === true;
+                  const cardStateClass = !line
+                    ? 'border-slate-200 bg-white/70 dark:border-cyan-800/30 dark:bg-blue-950/50'
+                    : isErpIntegrated
+                      ? 'border-red-400/60 bg-red-500/10 shadow-red-500/10 dark:border-red-400/40 dark:bg-red-950/30'
+                      : 'border-emerald-400/50 bg-emerald-500/10 shadow-emerald-500/10 dark:border-emerald-400/35 dark:bg-emerald-950/20';
+
                   return (
                     <div
                       key={slot.value}
-                      className="rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm dark:border-cyan-800/30 dark:bg-blue-950/50"
+                      className={`rounded-2xl border p-4 shadow-sm transition-colors duration-200 ${cardStateClass}`}
                     >
                       <div className="mb-3 flex items-center justify-between gap-3">
                         <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-bold text-cyan-700 dark:text-cyan-200">
                           {slot.label}
                         </span>
                         {line ? (
-                          <span className={`text-xs font-semibold ${line.isERPIntegrated ? 'text-amber-600 dark:text-amber-300' : 'text-emerald-600 dark:text-emerald-300'}`}>
-                            {line.isERPIntegrated
+                          <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${isErpIntegrated ? 'bg-red-500/15 text-red-700 dark:text-red-200' : 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-200'}`}>
+                            {isErpIntegrated
                               ? t('aqua.quickDailyEntry.feeding.summaryErpIntegrated')
                               : t('aqua.quickDailyEntry.feeding.summaryRecorded')}
                           </span>

@@ -48,7 +48,11 @@
         "selectBatch": "Charge auswählen",
         "deadCount": "Mortalitätsmenge",
         "save": "Speichern",
-        "exampleCount": "Beispiel: 15"
+        "exampleCount": "Beispiel: 15",
+        "summaryTitle": "Täglicher Mortalitätsstatus",
+        "summaryEmpty": "Für dieses Datum gibt es keinen Mortalitätsdatensatz.",
+        "summaryRecorded": "Ein Mortalitätsdatensatz ist vorhanden und wartet auf die Netsis-Übertragung.",
+        "summaryErpIntegrated": "An Netsis übertragen; dieser Datensatz kann nicht geändert werden."
       },
       "weather": {
         "title": "Wetter",

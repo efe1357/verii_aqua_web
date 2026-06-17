@@ -1,6 +1,7 @@
 import { type ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
+import { useQuery } from '@tanstack/react-query';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type { Resolver, SubmitHandler } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
@@ -14,13 +15,15 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { aquaQuickDailyApi } from '../api/aqua-quick-api';
 import { mortalityQuickFormSchema, type MortalityQuickFormSchema } from '../schema/quick-daily-entry-schema';
-import { ChevronRight, Save, TrendingDown } from 'lucide-react'; 
+import { ChevronRight, Info, Save, TrendingDown } from 'lucide-react';
 import { getPositiveNumberInputProps } from './positive-number-input';
 
 interface MortalityQuickFormProps {
   projectId: number | null;
   projectCageId: number | null;
+  mortalityDate: string;
   onSubmit: (data: MortalityQuickFormSchema) => Promise<void>;
   isSubmitting: boolean;
   canSubmit: boolean;
@@ -29,6 +32,7 @@ interface MortalityQuickFormProps {
 export function MortalityQuickForm({
   projectId,
   projectCageId,
+  mortalityDate,
   onSubmit,
   isSubmitting,
   canSubmit,
@@ -46,6 +50,14 @@ export function MortalityQuickForm({
   };
 
   const disabled = projectId == null || projectCageId == null;
+  const mortalityStatusQuery = useQuery({
+    queryKey: ['aqua', 'quick-daily-entry', 'mortality-status', projectId, mortalityDate],
+    queryFn: () => aquaQuickDailyApi.findMortalityHeaderByProjectAndDate(projectId!, mortalityDate),
+    enabled: projectId != null && Boolean(mortalityDate),
+    staleTime: 5000,
+  });
+  const mortalityStatus = mortalityStatusQuery.data;
+  const isErpIntegrated = mortalityStatus?.isERPIntegrated === true;
 
   // AQUA KONSEPT STİLLERİ
   const labelStyle = "text-[11px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest ml-1 flex items-center gap-1.5";
@@ -69,6 +81,33 @@ export function MortalityQuickForm({
       <CardContent className="p-6 sm:p-8 relative z-10">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} noValidate className="space-y-8">
+            <div
+              className={`rounded-2xl border p-4 transition-colors duration-200 ${
+                mortalityStatus
+                  ? isErpIntegrated
+                    ? 'border-red-400/60 bg-red-500/10 dark:border-red-400/40 dark:bg-red-950/30'
+                    : 'border-emerald-400/50 bg-emerald-500/10 dark:border-emerald-400/35 dark:bg-emerald-950/20'
+                  : 'border-cyan-800/30 bg-blue-950/30'
+              }`}
+            >
+              <div className="flex items-start gap-3">
+                <Info size={18} className={`mt-0.5 shrink-0 ${isErpIntegrated ? 'text-red-400' : mortalityStatus ? 'text-emerald-400' : 'text-cyan-400'}`} />
+                <div>
+                  <p className="text-sm font-bold text-slate-900 dark:text-white">
+                    {t('aqua.quickDailyEntry.mortality.summaryTitle')}
+                  </p>
+                  <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                    {mortalityStatusQuery.isFetching
+                      ? t('common.loading')
+                      : mortalityStatus
+                        ? isErpIntegrated
+                          ? t('aqua.quickDailyEntry.mortality.summaryErpIntegrated')
+                          : t('aqua.quickDailyEntry.mortality.summaryRecorded')
+                        : t('aqua.quickDailyEntry.mortality.summaryEmpty')}
+                  </p>
+                </div>
+              </div>
+            </div>
             <div className="max-w-md">
               <FormField
                 control={form.control}

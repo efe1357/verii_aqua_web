@@ -48,7 +48,11 @@
         "selectBatch": "Seleccionar lote",
         "deadCount": "Cantidad de mortalidad",
         "save": "Guardar",
-        "exampleCount": "Ej: 15"
+        "exampleCount": "Ej: 15",
+        "summaryTitle": "Estado diario de mortalidad",
+        "summaryEmpty": "No hay registro de mortalidad para esta fecha.",
+        "summaryRecorded": "Existe un registro de mortalidad y espera transferencia a Netsis.",
+        "summaryErpIntegrated": "Transferido a Netsis; este registro no se puede modificar."
       },
       "weather": {
         "title": "El tiempo",

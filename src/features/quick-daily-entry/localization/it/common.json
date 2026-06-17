@@ -48,7 +48,11 @@
         "selectBatch": "Seleziona lotto",
         "deadCount": "Quantità mortalità",
         "save": "Salva",
-        "exampleCount": "Esempio: 15"
+        "exampleCount": "Esempio: 15",
+        "summaryTitle": "Stato giornaliero mortalità",
+        "summaryEmpty": "Non esiste alcun record di mortalità per questa data.",
+        "summaryRecorded": "Esiste un record di mortalità in attesa di trasferimento a Netsis.",
+        "summaryErpIntegrated": "Trasferito a Netsis; questo record non può essere modificato."
       },
       "weather": {
         "title": "Meteo",

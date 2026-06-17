@@ -56,7 +56,11 @@
         "selectBatch": "Select batch",
         "deadCount": "Wastage quantity",
         "save": "Save",
-        "exampleCount": "Ex: 15"
+        "exampleCount": "Ex: 15",
+        "summaryTitle": "Daily wastage status",
+        "summaryEmpty": "There is no wastage record for this date.",
+        "summaryRecorded": "A wastage record exists and is waiting for Netsis transfer.",
+        "summaryErpIntegrated": "Transferred to Netsis; this record cannot be changed."
       },
       "weather": {
         "title": "Weather",

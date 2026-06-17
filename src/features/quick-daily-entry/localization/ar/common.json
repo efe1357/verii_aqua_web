@@ -48,7 +48,11 @@
         "selectBatch": "حدد الدفعة",
         "deadCount": "كمية النفوق",
         "save": "يحفظ",
-        "exampleCount": "مثال: 15"
+        "exampleCount": "مثال: 15",
+        "summaryTitle": "حالة النفوق اليومية",
+        "summaryEmpty": "لا يوجد سجل نفوق لهذا التاريخ.",
+        "summaryRecorded": "يوجد سجل نفوق وينتظر الترحيل إلى Netsis.",
+        "summaryErpIntegrated": "تم ترحيله إلى Netsis؛ لا يمكن تعديل هذا السجل."
       },
       "weather": {
         "title": "طقس",

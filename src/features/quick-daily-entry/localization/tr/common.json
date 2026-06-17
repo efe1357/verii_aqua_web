@@ -57,7 +57,11 @@
         "selectBatch": "Batch seçin",
         "deadCount": "Fire Adedi",
         "save": "Kaydet",
-        "exampleCount": "Örn: 15"
+        "exampleCount": "Örn: 15",
+        "summaryTitle": "Günün fire durumu",
+        "summaryEmpty": "Bu tarih için fire kaydı yok.",
+        "summaryRecorded": "Fire kaydı var; Netsis aktarımı bekliyor.",
+        "summaryErpIntegrated": "Netsis'e aktarıldı; bu kayıt değiştirilemez."
       },
       "weather": {
         "title": "Hava Durumu",
