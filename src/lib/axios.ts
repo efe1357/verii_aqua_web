@@ -12,8 +12,6 @@ import {
 
 export { loadConfig, getApiUrl, getApiBaseUrl, resolveAppPath };
 
-const MAX_MANAGEMENT_PAGE_SIZE = 500;
-
 export async function ensureApiReady(): Promise<void> {
   const base = await loadConfig();
   api.defaults.baseURL = base;
@@ -41,12 +39,6 @@ type RequestFilterParam = {
   operator?: unknown;
   value?: unknown;
 };
-
-function clampPageSizeValue(value: unknown): string | null {
-  const numeric = typeof value === 'string' ? Number(value) : typeof value === 'number' ? value : Number.NaN;
-  if (!Number.isFinite(numeric) || numeric <= 0) return null;
-  return String(Math.min(Math.trunc(numeric), MAX_MANAGEMENT_PAGE_SIZE));
-}
 
 function appendIndexedFilters(searchParams: URLSearchParams, filters: RequestFilterParam[]): boolean {
   const validFilters = filters.filter((filter) => filter?.column && filter.value !== undefined && filter.value !== null && filter.value !== '');
@@ -94,18 +86,7 @@ function normalizePagedRequestUrl(url: string | undefined): string | undefined {
 
   const path = withoutHash.slice(0, queryIndex);
   const query = new URLSearchParams(withoutHash.slice(queryIndex + 1));
-  let changed = false;
-
-  ['pageSize', 'PageSize'].forEach((key) => {
-    const current = query.get(key);
-    const next = clampPageSizeValue(current);
-    if (current != null && next != null && current !== next) {
-      query.set(key, next);
-      changed = true;
-    }
-  });
-
-  changed = rewriteJsonFilterParam(query) || changed;
+  const changed = rewriteJsonFilterParam(query);
   if (!changed) return url;
 
   const nextQuery = query.toString();
@@ -116,13 +97,6 @@ function normalizePagedRequestParams(params: unknown): unknown {
   if (!params) return params;
 
   if (params instanceof URLSearchParams) {
-    ['pageSize', 'PageSize'].forEach((key) => {
-      const current = params.get(key);
-      const next = clampPageSizeValue(current);
-      if (current != null && next != null && current !== next) {
-        params.set(key, next);
-      }
-    });
     rewriteJsonFilterParam(params);
     return params;
   }
@@ -132,14 +106,6 @@ function normalizePagedRequestParams(params: unknown): unknown {
   }
 
   const nextParams = { ...(params as Record<string, unknown>) };
-  ['pageSize', 'PageSize'].forEach((key) => {
-    if (!(key in nextParams)) return;
-    const next = clampPageSizeValue(nextParams[key]);
-    if (next != null) {
-      nextParams[key] = next;
-    }
-  });
-
   const rawFilters = nextParams.filters ?? nextParams.Filters;
   if (Array.isArray(rawFilters)) {
     delete nextParams.filters;
