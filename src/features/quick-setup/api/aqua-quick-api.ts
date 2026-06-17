@@ -214,9 +214,10 @@ export const aquaQuickApi = {
   },
 
   getStocks: async (): Promise<StockDto[]> => {
-    const query = new URLSearchParams({
-      pageNumber: '1',
-      pageSize: '500',
+    const query = new URLSearchParams();
+    appendPagedQueryParams(query, {
+      pageNumber: 1,
+      pageSize: 500,
       sortBy: 'Id',
       sortDirection: 'asc',
     });

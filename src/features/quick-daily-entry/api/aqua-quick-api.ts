@@ -329,13 +329,12 @@ export const aquaQuickDailyApi = {
   },
 
   getStocks: async (): Promise<StockDto[]> => {
-    const query = new URLSearchParams({
-      pageNumber: '1',
-      pageSize: '500',
+    const query = new URLSearchParams();
+    appendPagedQueryParams(query, {
+      pageNumber: 1,
+      pageSize: 500,
       sortBy: 'Id',
       sortDirection: 'asc',
-    });
-    appendPagedQueryParams(query, {
       filters: [{ column: 'GrupKodu', operator: 'eq', value: 'YEM' }],
       filterLogic: 'and',
     });
