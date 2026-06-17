@@ -49,7 +49,7 @@ function clampPageSizeValue(value: unknown): string | null {
 }
 
 function appendIndexedFilters(searchParams: URLSearchParams, filters: RequestFilterParam[]): boolean {
-  const validFilters = filters.filter((filter) => filter?.column && filter?.operator);
+  const validFilters = filters.filter((filter) => filter?.column && filter.value !== undefined && filter.value !== null && filter.value !== '');
   if (validFilters.length === 0) return false;
 
   searchParams.delete('filters');
@@ -57,7 +57,7 @@ function appendIndexedFilters(searchParams: URLSearchParams, filters: RequestFil
 
   validFilters.forEach((filter, index) => {
     searchParams.append(`filters[${index}].column`, String(filter.column));
-    searchParams.append(`filters[${index}].operator`, String(filter.operator));
+    searchParams.append(`filters[${index}].operator`, String(filter.operator || 'eq'));
     searchParams.append(`filters[${index}].value`, filter.value == null ? '' : String(filter.value));
   });
 
@@ -148,9 +148,9 @@ function normalizePagedRequestParams(params: unknown): unknown {
     rawFilters
       .filter((filter): filter is RequestFilterParam => Boolean(filter && typeof filter === 'object'))
       .forEach((filter, index) => {
-        if (!filter.column || !filter.operator) return;
+        if (!filter.column || filter.value === undefined || filter.value === null || filter.value === '') return;
         nextParams[`filters[${index}].column`] = String(filter.column);
-        nextParams[`filters[${index}].operator`] = String(filter.operator);
+        nextParams[`filters[${index}].operator`] = String(filter.operator || 'eq');
         nextParams[`filters[${index}].value`] = filter.value == null ? '' : String(filter.value);
       });
   }

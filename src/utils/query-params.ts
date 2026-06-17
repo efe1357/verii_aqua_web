@@ -10,7 +10,7 @@ export const appendIndexedFilterParams = (
   if (!filters) return queryParams;
 
   const normalizedFilters = Array.isArray(filters)
-    ? filters.filter((filter) => filter.column && filter.operator && filter.value !== undefined && filter.value !== null && filter.value !== '')
+    ? filters.filter((filter) => filter.column && filter.value !== undefined && filter.value !== null && filter.value !== '')
     : Object.entries(filters).flatMap(([column, value]) => {
         if (value == null || value === '') return [];
         return [{ column, operator: 'eq', value: String(value) }];
