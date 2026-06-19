@@ -681,6 +681,7 @@
       "feedingLineId": "Feeding Line ID",
       "batchCode": "Batch Code",
       "feedGram": "Feed Gram",
+      "totalFeedGram": "Total Feed",
       "feedingDate": "Feeding Date",
       "feedingSlot": "Feeding Tour",
       "sourceType": "Source Type",

@@ -622,6 +622,7 @@
       "feedingLineId": "Linea di alimentazione ID",
       "batchCode": "Codice batch",
       "feedGram": "Dai da mangiare al grammo",
+      "totalFeedGram": "Mangime totale",
       "mortalityId": "Mortalità ID",
       "deadCount": "Quantità mortalità",
       "transferId": "Trasferimento ID",

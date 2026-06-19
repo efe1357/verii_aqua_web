@@ -622,6 +622,7 @@
       "feedingLineId": "Zuführleitung ID",
       "batchCode": "Batch-Code",
       "feedGram": "Futtergramm",
+      "totalFeedGram": "Gesamtfutter",
       "mortalityId": "Mortalität ID",
       "deadCount": "Mortalitätsmenge",
       "transferId": "Übertragen ID",

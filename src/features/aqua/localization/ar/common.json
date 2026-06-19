@@ -622,6 +622,7 @@
       "feedingLineId": "صف الخلاصة ID",
       "batchCode": "رمز الدفعة",
       "feedGram": "تغذية جرام",
+      "totalFeedGram": "إجمالي العلف",
       "mortalityId": "النفوق ID",
       "deadCount": "كمية النفوق",
       "transferId": "نقل ID",

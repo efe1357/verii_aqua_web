@@ -134,6 +134,7 @@
       "feedingLineId": "Yemleme Satır ID",
       "batchCode": "Batch Kodu",
       "feedGram": "Yem Gram",
+      "totalFeedGram": "Toplam Yem",
       "feedingDate": "Yemleme Tarihi",
       "feedingSlot": "Yemleme Turu",
       "sourceType": "Kaynak Tipi",
