@@ -1,0 +1,35 @@
+{
+  "aqua": {
+    "projectFeedFishSummaryReport": {
+      "pageTitle": "Resumen de alimento/peces por proyecto",
+      "description": "Muestra cantidades de jaula, almacén, peces totales y alimento total por proyecto en un único informe.",
+      "refresh": "Actualizar",
+      "loading": "Cargando resumen de alimento y peces por proyecto...",
+      "loadFailed": "No se pudo cargar el resumen de alimento y peces por proyecto.",
+      "tableTitle": "Totales por proyecto",
+      "tableDescription": "Los totales se calculan desde saldos de jaulas y almacenes más registros de alimentación posted.",
+      "cards": {
+        "totalFish": "Peces totales",
+        "totalFishDescription": "Cantidad total de peces vivos en saldos de jaula y almacén.",
+        "totalFeed": "Alimento total",
+        "totalFeedDescription": "Cantidad total de alimento calculada desde registros de alimentación posted.",
+        "warehouseFish": "Peces en almacén",
+        "warehouseFishDescription": "Peces vivos visibles en almacenes vinculados al proyecto.",
+        "activeCage": "Jaulas activas",
+        "activeCageDescription": "Número de jaulas actualmente activas en los proyectos."
+      },
+      "columns": {
+        "project": "Proyecto",
+        "cageFish": "Peces en jaula",
+        "warehouseFish": "Peces en almacén",
+        "totalFish": "Peces totales",
+        "cageBiomassKg": "Jaula KG",
+        "warehouseBiomassKg": "Almacén KG",
+        "totalBiomassKg": "Total KG",
+        "totalFeedKg": "Alimento total KG",
+        "activeCageCount": "Jaulas activas",
+        "total": "TOTAL"
+      }
+    }
+  }
+}

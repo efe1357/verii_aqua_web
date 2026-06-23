@@ -1,0 +1,35 @@
+{
+  "aqua": {
+    "projectFeedFishSummaryReport": {
+      "pageTitle": "Synthèse aliment/poissons par projet",
+      "description": "Affiche les quantités en cage, en entrepôt, les poissons totaux et l'aliment total par projet.",
+      "refresh": "Actualiser",
+      "loading": "Chargement de la synthèse aliment et poissons par projet...",
+      "loadFailed": "La synthèse aliment et poissons par projet n'a pas pu être chargée.",
+      "tableTitle": "Totaux par projet",
+      "tableDescription": "Les totaux sont calculés depuis les soldes cage/entrepôt et les alimentations posted.",
+      "cards": {
+        "totalFish": "Poissons totaux",
+        "totalFishDescription": "Nombre total de poissons vivants dans les soldes cage et entrepôt.",
+        "totalFeed": "Aliment total",
+        "totalFeedDescription": "Quantité totale d'aliment calculée depuis les alimentations posted.",
+        "warehouseFish": "Poissons en entrepôt",
+        "warehouseFishDescription": "Poissons vivants visibles dans les entrepôts liés au projet.",
+        "activeCage": "Cages actives",
+        "activeCageDescription": "Nombre de cages actuellement actives dans les projets."
+      },
+      "columns": {
+        "project": "Projet",
+        "cageFish": "Poissons en cage",
+        "warehouseFish": "Poissons en entrepôt",
+        "totalFish": "Poissons totaux",
+        "cageBiomassKg": "Cage KG",
+        "warehouseBiomassKg": "Entrepôt KG",
+        "totalBiomassKg": "Total KG",
+        "totalFeedKg": "Aliment total KG",
+        "activeCageCount": "Cages actives",
+        "total": "TOTAL"
+      }
+    }
+  }
+}

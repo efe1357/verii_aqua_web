@@ -1,0 +1,35 @@
+{
+  "aqua": {
+    "projectFeedFishSummaryReport": {
+      "pageTitle": "Projekt Futter/Fisch Übersicht",
+      "description": "Zeigt Käfig-, Lager-, Gesamtfisch- und Gesamtfuttermengen je Projekt in einem Bericht.",
+      "refresh": "Aktualisieren",
+      "loading": "Projektübersicht für Futter und Fisch wird geladen...",
+      "loadFailed": "Projektübersicht für Futter und Fisch konnte nicht geladen werden.",
+      "tableTitle": "Projektgesamtsummen",
+      "tableDescription": "Summen werden aus Käfig- und Lagerbeständen sowie gebuchten Fütterungen berechnet.",
+      "cards": {
+        "totalFish": "Gesamtfische",
+        "totalFishDescription": "Gesamte lebende Fische in Käfig- und Lagerbeständen.",
+        "totalFeed": "Gesamtfutter",
+        "totalFeedDescription": "Gesamtfuttermenge aus gebuchten Fütterungen.",
+        "warehouseFish": "Lagerfische",
+        "warehouseFishDescription": "Lebende Fische in projektbezogenen Lagern.",
+        "activeCage": "Aktive Käfige",
+        "activeCageDescription": "Anzahl der aktuell aktiven Käfige in Projekten."
+      },
+      "columns": {
+        "project": "Projekt",
+        "cageFish": "Käfigfische",
+        "warehouseFish": "Lagerfische",
+        "totalFish": "Gesamtfische",
+        "cageBiomassKg": "Käfig KG",
+        "warehouseBiomassKg": "Lager KG",
+        "totalBiomassKg": "Gesamt KG",
+        "totalFeedKg": "Gesamtfutter KG",
+        "activeCageCount": "Aktive Käfige",
+        "total": "GESAMT"
+      }
+    }
+  }
+}

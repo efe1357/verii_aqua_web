@@ -1,0 +1,35 @@
+{
+  "aqua": {
+    "projectFeedFishSummaryReport": {
+      "pageTitle": "ملخص العلف/الأسماك حسب المشروع",
+      "description": "يعرض كميات الأقفاص والمستودعات وإجمالي الأسماك وإجمالي العلف حسب المشروع في تقرير واحد.",
+      "refresh": "تحديث",
+      "loading": "جار تحميل ملخص العلف والأسماك حسب المشروع...",
+      "loadFailed": "تعذر تحميل ملخص العلف والأسماك حسب المشروع.",
+      "tableTitle": "إجماليات المشاريع",
+      "tableDescription": "يتم احتساب الإجماليات من أرصدة الأقفاص والمستودعات وسجلات التغذية posted.",
+      "cards": {
+        "totalFish": "إجمالي الأسماك",
+        "totalFishDescription": "إجمالي عدد الأسماك الحية في أرصدة الأقفاص والمستودعات.",
+        "totalFeed": "إجمالي العلف",
+        "totalFeedDescription": "إجمالي كمية العلف المحتسبة من سجلات التغذية posted.",
+        "warehouseFish": "أسماك المستودع",
+        "warehouseFishDescription": "عدد الأسماك الحية الظاهرة في مستودعات المشروع.",
+        "activeCage": "الأقفاص النشطة",
+        "activeCageDescription": "عدد الأقفاص النشطة حالياً في المشاريع."
+      },
+      "columns": {
+        "project": "المشروع",
+        "cageFish": "أسماك القفص",
+        "warehouseFish": "أسماك المستودع",
+        "totalFish": "إجمالي الأسماك",
+        "cageBiomassKg": "كجم القفص",
+        "warehouseBiomassKg": "كجم المستودع",
+        "totalBiomassKg": "إجمالي كجم",
+        "totalFeedKg": "إجمالي العلف كجم",
+        "activeCageCount": "الأقفاص النشطة",
+        "total": "الإجمالي"
+      }
+    }
+  }
+}

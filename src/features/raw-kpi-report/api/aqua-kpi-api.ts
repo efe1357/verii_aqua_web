@@ -2,7 +2,7 @@ import { api } from '@/lib/axios';
 import i18n from '@/lib/i18n';
 import type { ApiResponse } from '@/types/api';
 import type { ProjectDto } from '@/features/project-detail-report/types/project-detail-report-types';
-import type { BusinessKpiReport, RawKpiReport } from '@/features/raw-kpi-report/types';
+import type { BusinessKpiReport, ProjectFeedFishSummaryReport, RawKpiReport } from '@/features/raw-kpi-report/types';
 
 function ensureSuccess<T>(response: ApiResponse<T>, fallback: string): T {
   if (!response.success || response.data == null) {
@@ -19,6 +19,11 @@ export const aquaKpiApi = {
 
   getRawKpiReport: async (projectId: number): Promise<RawKpiReport> => {
     const response = await api.get<ApiResponse<RawKpiReport>>(`/api/kpi-report/raw-kpi/${projectId}`);
+    return ensureSuccess(response, i18n.t('errors.reportLoadFailed', { ns: 'dashboard' }));
+  },
+
+  getProjectFeedFishSummary: async (projectIds: number[] = []): Promise<ProjectFeedFishSummaryReport> => {
+    const response = await api.post<ApiResponse<ProjectFeedFishSummaryReport>>('/api/kpi-report/project-feed-fish-summary', { projectIds });
     return ensureSuccess(response, i18n.t('errors.reportLoadFailed', { ns: 'dashboard' }));
   },
 

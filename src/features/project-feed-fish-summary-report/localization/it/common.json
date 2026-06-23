@@ -1,0 +1,35 @@
+{
+  "aqua": {
+    "projectFeedFishSummaryReport": {
+      "pageTitle": "Riepilogo mangime/pesci per progetto",
+      "description": "Mostra quantità in gabbia, magazzino, pesci totali e mangime totale per progetto in un unico report.",
+      "refresh": "Aggiorna",
+      "loading": "Caricamento riepilogo mangime e pesci per progetto...",
+      "loadFailed": "Impossibile caricare il riepilogo mangime e pesci per progetto.",
+      "tableTitle": "Totali per progetto",
+      "tableDescription": "I totali sono calcolati da saldi gabbia/magazzino e alimentazioni posted.",
+      "cards": {
+        "totalFish": "Pesci totali",
+        "totalFishDescription": "Numero totale di pesci vivi nei saldi gabbia e magazzino.",
+        "totalFeed": "Mangime totale",
+        "totalFeedDescription": "Quantità totale di mangime calcolata dalle alimentazioni posted.",
+        "warehouseFish": "Pesci in magazzino",
+        "warehouseFishDescription": "Pesci vivi presenti nei magazzini collegati al progetto.",
+        "activeCage": "Gabbie attive",
+        "activeCageDescription": "Numero di gabbie attualmente attive nei progetti."
+      },
+      "columns": {
+        "project": "Progetto",
+        "cageFish": "Pesci in gabbia",
+        "warehouseFish": "Pesci in magazzino",
+        "totalFish": "Pesci totali",
+        "cageBiomassKg": "Gabbia KG",
+        "warehouseBiomassKg": "Magazzino KG",
+        "totalBiomassKg": "Totale KG",
+        "totalFeedKg": "Mangime totale KG",
+        "activeCageCount": "Gabbie attive",
+        "total": "TOTALE"
+      }
+    }
+  }
+}

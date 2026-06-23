@@ -94,6 +94,7 @@ const AquaDashboardPage = lazyImport(() => import('@/features/aqua-dashboard'), 
 const RawKpiReportPage = lazyImport(() => import('@/features/raw-kpi-report'), 'RawKpiReportPage', ['aqua', 'raw-kpi-report']);
 const BusinessKpiReportPage = lazyImport(() => import('@/features/business-kpi-report'), 'BusinessKpiReportPage', ['aqua', 'business-kpi-report']);
 const DevirFcrReportPage = lazyImport(() => import('@/features/devir-fcr-report'), 'DevirFcrReportPage', ['aqua', 'devir-fcr-report']);
+const ProjectFeedFishSummaryReportPage = lazyImport(() => import('@/features/project-feed-fish-summary-report'), 'ProjectFeedFishSummaryReportPage', ['aqua', 'project-feed-fish-summary-report']);
 const QuickSetupPage = lazyImport(() => import('@/features/quick-setup'), 'QuickSetupPage', ['aqua', 'quick-setup']);
 const QuickDailyEntryPage = lazyImport(() => import('@/features/quick-daily-entry'), 'QuickDailyEntryPage', ['aqua', 'quick-daily-entry', 'project-merges']);
 const OpeningImportPage = lazyImport(() => import('@/features/opening-import'), 'OpeningImportPage', ['aqua', 'opening-import']);
@@ -177,6 +178,7 @@ export const router = createBrowserRouter([
       { path: 'aqua/reports/raw-kpi', element: <RawKpiReportPage /> },
       { path: 'aqua/reports/business-kpi', element: <BusinessKpiReportPage /> },
       { path: 'aqua/reports/devir-fcr', element: <DevirFcrReportPage /> },
+      { path: 'aqua/reports/project-feed-fish-summary', element: <ProjectFeedFishSummaryReportPage /> },
       { path: 'aqua/dashboard', element: <AquaDashboardPage /> },
     ],
   },

@@ -54,6 +54,36 @@ export interface RawKpiReport {
   metricDefinitions: KpiMetricDefinition[];
 }
 
+export interface ProjectFeedFishSummaryRow {
+  projectId: number;
+  projectCode: string;
+  projectName: string;
+  cageFish: number;
+  warehouseFish: number;
+  totalFish: number;
+  cageBiomassKg: number;
+  warehouseBiomassKg: number;
+  totalBiomassKg: number;
+  totalFeedKg: number;
+  activeCageCount: number;
+}
+
+export interface ProjectFeedFishSummaryTotal {
+  cageFish: number;
+  warehouseFish: number;
+  totalFish: number;
+  cageBiomassKg: number;
+  warehouseBiomassKg: number;
+  totalBiomassKg: number;
+  totalFeedKg: number;
+  activeCageCount: number;
+}
+
+export interface ProjectFeedFishSummaryReport {
+  rows: ProjectFeedFishSummaryRow[];
+  totals: ProjectFeedFishSummaryTotal;
+}
+
 export interface BusinessKpiRow {
   projectCageId: number;
   cageLabel: string;

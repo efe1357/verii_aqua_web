@@ -413,6 +413,14 @@ const AQUA_PERMISSION_RESOURCES: AquaPermissionResource[] = [
     display: { key: 'sidebar.aquaRawKpiReport', fallback: 'Raw KPI Raporu' },
   },
   {
+    codeBase: 'aqua.reports.project-feed-fish-summary',
+    routePermission: 'aqua.reports.project-feed-fish-summary.view',
+    routePaths: ['/aqua/reports/project-feed-fish-summary'],
+    routePatterns: [/^\/aqua\/reports\/project-feed-fish-summary(\/|$)/],
+    actions: ['view'],
+    display: { key: 'sidebar.aquaProjectFeedFishSummaryReport', fallback: 'Proje Yem/Balık Özeti' },
+  },
+  {
     codeBase: 'aqua.reports.business-kpi',
     routePermission: 'aqua.reports.business-kpi.view',
     routePaths: ['/aqua/reports/business-kpi'],
@@ -737,6 +745,9 @@ export const AQUA_CONFIG_PERMISSION_CODES: Record<string, Partial<Record<AquaCru
   rawKpi: {
     view: 'aqua.reports.raw-kpi.view',
   },
+  projectFeedFishSummary: {
+    view: 'aqua.reports.project-feed-fish-summary.view',
+  },
   businessKpi: {
     view: 'aqua.reports.business-kpi.view',
   },
@@ -834,6 +845,7 @@ export const ROUTE_PERMISSION_MAP: Record<string, string> = {
   '/aqua/reports/batch-movements': 'aqua.reports.batch-movements.view',
   '/aqua/reports/cage-balances': 'aqua.reports.cage-balances.view',
   '/aqua/reports/raw-kpi': 'aqua.reports.raw-kpi.view',
+  '/aqua/reports/project-feed-fish-summary': 'aqua.reports.project-feed-fish-summary.view',
   '/aqua/reports/business-kpi': 'aqua.reports.business-kpi.view',
   '/aqua/dashboard': 'dashboard.view',
 };

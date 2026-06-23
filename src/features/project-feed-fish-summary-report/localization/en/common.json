@@ -1,0 +1,35 @@
+{
+  "aqua": {
+    "projectFeedFishSummaryReport": {
+      "pageTitle": "Project Feed/Fish Summary",
+      "description": "Shows cage, warehouse, total fish and total feed quantities by project in a single report.",
+      "refresh": "Refresh",
+      "loading": "Loading project feed and fish summary...",
+      "loadFailed": "Project feed and fish summary could not be loaded.",
+      "tableTitle": "Project Totals",
+      "tableDescription": "Totals are calculated from cage and warehouse balances plus posted feeding records.",
+      "cards": {
+        "totalFish": "Total Fish",
+        "totalFishDescription": "Total live fish count in cage and warehouse balances.",
+        "totalFeed": "Total Feed",
+        "totalFeedDescription": "Total feed quantity calculated from posted feeding records.",
+        "warehouseFish": "Warehouse Fish",
+        "warehouseFishDescription": "Live fish count shown in project warehouses.",
+        "activeCage": "Active Cages",
+        "activeCageDescription": "Number of cages currently active in projects."
+      },
+      "columns": {
+        "project": "Project",
+        "cageFish": "Cage Fish",
+        "warehouseFish": "Warehouse Fish",
+        "totalFish": "Total Fish",
+        "cageBiomassKg": "Cage KG",
+        "warehouseBiomassKg": "Warehouse KG",
+        "totalBiomassKg": "Total KG",
+        "totalFeedKg": "Total Feed KG",
+        "activeCageCount": "Active Cages",
+        "total": "TOTAL"
+      }
+    }
+  }
+}

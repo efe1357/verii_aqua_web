@@ -1,0 +1,35 @@
+{
+  "aqua": {
+    "projectFeedFishSummaryReport": {
+      "pageTitle": "Proje Yem/Balık Özeti",
+      "description": "Projeler bazında kafes, depo, toplam balık ve toplam yem miktarlarını tek raporda gösterir.",
+      "refresh": "Yenile",
+      "loading": "Proje yem ve balık özeti yükleniyor...",
+      "loadFailed": "Proje yem ve balık özeti yüklenemedi.",
+      "tableTitle": "Proje Bazlı Toplamlar",
+      "tableDescription": "Kafes ve depo bakiyeleri ile posted yemleme kayıtlarından hesaplanan toplamlar listelenir.",
+      "cards": {
+        "totalFish": "Toplam Balık",
+        "totalFishDescription": "Kafes ve depo bakiyelerindeki toplam canlı balık adedi.",
+        "totalFeed": "Toplam Yem",
+        "totalFeedDescription": "Posted yemleme kayıtlarından hesaplanan toplam yem miktarı.",
+        "warehouseFish": "Depodaki Balık",
+        "warehouseFishDescription": "Projelere bağlı depolarda görünen canlı balık adedi.",
+        "activeCage": "Aktif Kafes",
+        "activeCageDescription": "Projelerde aktif görünen kafes sayısı."
+      },
+      "columns": {
+        "project": "Proje",
+        "cageFish": "Kafes Balık",
+        "warehouseFish": "Depo Balık",
+        "totalFish": "Toplam Balık",
+        "cageBiomassKg": "Kafes KG",
+        "warehouseBiomassKg": "Depo KG",
+        "totalBiomassKg": "Toplam KG",
+        "totalFeedKg": "Toplam Yem KG",
+        "activeCageCount": "Aktif Kafes",
+        "total": "TOPLAM"
+      }
+    }
+  }
+}
