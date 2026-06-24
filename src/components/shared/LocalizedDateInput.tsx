@@ -59,12 +59,15 @@ export function LocalizedDateInput({
 }: LocalizedDateInputProps): ReactElement {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const [displayValue, setDisplayValue] = useState(() => formatDateOnlyForLocale(value, i18n.language));
   const nativeDate = parseDateOnlyToLocalDate(value);
 
   useEffect(() => {
-    setDisplayValue(formatDateOnlyForLocale(value, i18n.language));
-  }, [i18n.language, value]);
+    if (!isFocused) {
+      setDisplayValue(formatDateOnlyForLocale(value, i18n.language));
+    }
+  }, [i18n.language, value, isFocused]);
 
   const commitDisplayValue = (nextValue: string): void => {
     const parsed = parseLocalizedDateInput(nextValue, i18n.language);
@@ -73,11 +76,15 @@ export function LocalizedDateInput({
       setDisplayValue(formatDateOnlyForLocale(parsed, i18n.language));
       return;
     }
-
     setDisplayValue(formatDateOnlyForLocale(value, i18n.language));
   };
 
+  const handleFocus = (): void => {
+    setIsFocused(true);
+  };
+
   const handleBlur = (event: FocusEvent<HTMLInputElement>): void => {
+    setIsFocused(false);
     commitDisplayValue(displayValue);
     onBlur?.(event);
   };
@@ -92,6 +99,7 @@ export function LocalizedDateInput({
       disabled={disabled}
       className={cn(showCalendarButton && 'pr-12', className)}
       aria-label={props['aria-label'] ?? calendarButtonAriaLabel ?? placeholder ?? getLocalizedDatePlaceholder(i18n.language)}
+      onFocus={handleFocus}
       onBlur={handleBlur}
       onChange={(event) => {
         const nextValue = event.target.value;
