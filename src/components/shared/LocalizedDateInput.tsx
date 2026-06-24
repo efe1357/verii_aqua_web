@@ -102,9 +102,15 @@ export function LocalizedDateInput({
       onFocus={handleFocus}
       onBlur={handleBlur}
       onChange={(event) => {
-        const nextValue = event.target.value;
-        setDisplayValue(nextValue);
-        const parsed = parseLocalizedDateInput(nextValue, i18n.language);
+        const raw = event.target.value.replace(/\D/g, '');
+        let formatted = raw;
+        if (raw.length >= 3 && raw.length <= 4) {
+          formatted = `${raw.slice(0, 2)}.${raw.slice(2)}`;
+        } else if (raw.length >= 5) {
+          formatted = `${raw.slice(0, 2)}.${raw.slice(2, 4)}.${raw.slice(4, 8)}`;
+        }
+        setDisplayValue(formatted);
+        const parsed = parseLocalizedDateInput(formatted, i18n.language);
         if (parsed !== null && parsed !== '') {
           onChange(parsed);
         }
